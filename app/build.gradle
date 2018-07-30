@@ -1,0 +1,63 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.github.neone35.enalyzer"
+        minSdkVersion 16
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+ext {
+    support_lib_v = '27.1.1'
+    aac_v = '1.1.1'
+    retrofit_v = '2.4.0'
+    glide_v = '4.7.1'
+    butterknife_v = '8.8.1'
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:support-v4:$support_lib_v" //v4
+    implementation "com.android.support:appcompat-v7:$support_lib_v" // dependent on v4
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+
+    // ANDROID ARCHITECTURE COMPONENTS
+    implementation "android.arch.lifecycle:extensions:$aac_v" // ViewModel & LiveData
+    implementation "android.arch.lifecycle:runtime:$aac_v" // Compat with support library
+    annotationProcessor "android.arch.lifecycle:compiler:$aac_v"
+    implementation "android.arch.persistence.room:runtime:$aac_v" // database
+    annotationProcessor "android.arch.persistence.room:compiler:$aac_v"
+
+    // 3RD PARTY LIBRARIES
+    implementation 'com.google.code.gson:gson:2.8.5' // parsing
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_v" // network calls
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_v" // gson & retrofit
+    implementation 'com.orhanobut:logger:2.2.0' // logging
+    implementation "com.github.bumptech.glide:glide:$glide_v" // loading images
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide_v"
+    api 'com.google.guava:guava:25.1-android' // helper libraries from Google
+    implementation 'com.blankj:utilcode:1.17.3' // helper functions
+    implementation "com.jakewharton:butterknife:$butterknife_v" // R class binding
+    annotationProcessor "com.jakewharton:butterknife-compiler:$butterknife_v"
+    implementation 'com.beloo.widget:ChipsLayoutManager:0.3.7@aar' // UI view for scanActivity
+
+    // TEST DEPS
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
