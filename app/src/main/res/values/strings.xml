@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Enalyzer</string>
+    <string name="photo_of_ingredient_label">Photo of ingredient label</string>
 </resources>
