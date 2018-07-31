@@ -11,14 +11,13 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.orhanobut.logger.Logger;
 
 import java.util.Calendar;
-import java.util.Objects;
 
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements
-        PhotoFragment.OnPhotoListFragmentInteractionListener {
+        PhotoListFragment.OnPhotoListFragmentInteractionListener {
 
     @BindView(R.id.viewpager)
     ViewPager mViewPager;
@@ -31,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements
     String mAppName;
 
     private FirebaseAnalytics mFirebaseAnalytics;
+    public static String TAB_POSITION = "tab_position";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +38,17 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
         setSupportActionBar(mToolbar);
         ButterKnife.bind(this);
+        setupActionBar();
         setupFirebaseAnalytics();
         setupTabs();
+    }
+
+    public void setupActionBar() {
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setLogo(R.mipmap.ic_launcher);
+            getSupportActionBar().setDisplayUseLogoEnabled(true);
+        }
     }
 
     private void setupFirebaseAnalytics() {
@@ -60,6 +69,20 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onPhotoFragmentInteraction(DummyContent.DummyItem item) {
         Logger.d(item);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(TAB_POSITION, mTabLayout.getSelectedTabPosition());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if (savedInstanceState != null) {
+            mViewPager.setCurrentItem(savedInstanceState.getInt(TAB_POSITION));
+        }
     }
 }
 

@@ -10,7 +10,7 @@
         android:id="@+id/iv_photo"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/colorSecondaryText"
+        android:background="@drawable/rounded_rect"
         android:contentDescription="@string/photo_of_ingredient_label"
         android:scaleType="centerCrop"
         app:layout_constraintDimensionRatio="H,1:1"

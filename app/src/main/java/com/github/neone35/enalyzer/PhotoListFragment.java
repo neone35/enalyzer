@@ -13,15 +13,13 @@ import android.view.ViewGroup;
 import com.github.neone35.enalyzer.dummy.DummyContent;
 import com.github.neone35.enalyzer.dummy.DummyContent.DummyItem;
 
-import java.util.List;
-
 /**
  * A fragment representing a list of Items.
  * <p/>
  * Activities containing this fragment MUST implement the {@link OnPhotoListFragmentInteractionListener}
  * interface.
  */
-public class PhotoFragment extends Fragment {
+public class PhotoListFragment extends Fragment {
 
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 2;
@@ -31,12 +29,12 @@ public class PhotoFragment extends Fragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public PhotoFragment() {
+    public PhotoListFragment() {
     }
 
     @SuppressWarnings("unused")
-    public static PhotoFragment newInstance(int columnCount) {
-        PhotoFragment fragment = new PhotoFragment();
+    public static PhotoListFragment newInstance(int columnCount) {
+        PhotoListFragment fragment = new PhotoListFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -66,7 +64,7 @@ public class PhotoFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new PhotoRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new PhotoListRecyclerAdapter(DummyContent.ITEMS, mListener));
         }
         return view;
     }

@@ -22,7 +22,17 @@ public class MainFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return PhotoFragment.newInstance(position + 1);
+        Fragment fragment = null;
+        switch (position) {
+            case 0:
+                fragment = PhotoListFragment.newInstance(2);
+                break;
+            case 1:
+                // TODO: Replace with another fragment
+                fragment = PhotoListFragment.newInstance(3);
+                break;
+        }
+        return fragment;
     }
 
     @Override

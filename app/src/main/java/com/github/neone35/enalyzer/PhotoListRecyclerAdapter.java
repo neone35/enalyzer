@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.github.neone35.enalyzer.PhotoFragment.OnPhotoListFragmentInteractionListener;
+import com.github.neone35.enalyzer.PhotoListFragment.OnPhotoListFragmentInteractionListener;
 import com.github.neone35.enalyzer.dummy.DummyContent.DummyItem;
 
 import java.util.List;
@@ -16,12 +16,12 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class PhotoRecyclerViewAdapter extends RecyclerView.Adapter<PhotoRecyclerViewAdapter.ViewHolder> {
+public class PhotoListRecyclerAdapter extends RecyclerView.Adapter<PhotoListRecyclerAdapter.ViewHolder> {
 
     private final List<DummyItem> mValues;
     private final OnPhotoListFragmentInteractionListener mListener;
 
-    public PhotoRecyclerViewAdapter(List<DummyItem> items, PhotoFragment.OnPhotoListFragmentInteractionListener listener) {
+    public PhotoListRecyclerAdapter(List<DummyItem> items, PhotoListFragment.OnPhotoListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
