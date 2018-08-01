@@ -1,23 +1,34 @@
 package com.github.neone35.enalyzer;
 
+import android.animation.ObjectAnimator;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Handler;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import com.github.neone35.enalyzer.dummy.DummyContent;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 
 import java.util.Calendar;
+import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements
-        PhotoListFragment.OnPhotoListFragmentInteractionListener {
+        ScanListFragment.OnScanListFragmentInteractionListener,
+        ScanDetailListFragment.OnScanDetailListFragmentInteractionListener {
 
     @BindView(R.id.viewpager)
     ViewPager mViewPager;
@@ -31,24 +42,41 @@ public class MainActivity extends AppCompatActivity implements
 
     private FirebaseAnalytics mFirebaseAnalytics;
     public static String TAB_POSITION = "tab_position";
+    public static String PAGER_INSTRUCT_MOTION = "pager_motion";
+    private SharedPreferences mSettings;
+    private FragmentManager mFragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setSupportActionBar(mToolbar);
+        Logger.addLogAdapter(new AndroidLogAdapter());
         ButterKnife.bind(this);
-        setupActionBar();
+
+        mSettings = this.getSharedPreferences("Settings", Context.MODE_PRIVATE);
+        mFragmentManager = getSupportFragmentManager();
+
+        setSupportActionBar(mToolbar);
         setupFirebaseAnalytics();
-        setupTabs();
+        setupTabs(mFragmentManager);
+
+        // show instructive motion (once per lifetime)
+        if (!mSettings.getBoolean(PAGER_INSTRUCT_MOTION, false))
+            showInstructiveMotion(mViewPager);
     }
 
-    public void setupActionBar() {
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-            getSupportActionBar().setLogo(R.mipmap.ic_launcher);
-            getSupportActionBar().setDisplayUseLogoEnabled(true);
-        }
+    private void showInstructiveMotion(ViewPager pager) {
+        final Handler handler = new Handler();
+        handler.postDelayed(() ->
+                        ObjectAnimator.ofInt(pager, "scrollX", pager.getScrollX() + 100).setDuration(1000).start(),
+                2000);
+        handler.postDelayed(() ->
+                        ObjectAnimator.ofInt(pager, "scrollX", pager.getScrollX() - 100).setDuration(1000).start(),
+                3000);
+        // save key for lifetime (show motion once)
+        SharedPreferences.Editor editor = mSettings.edit();
+        editor.putBoolean(PAGER_INSTRUCT_MOTION, true);
+        editor.apply();
     }
 
     private void setupFirebaseAnalytics() {
@@ -58,18 +86,13 @@ public class MainActivity extends AppCompatActivity implements
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.APP_OPEN, bundle);
     }
 
-    private void setupTabs() {
+    private void setupTabs(FragmentManager fragmentManager) {
         // Set ViewPager's PagerAdapter so that it can display items
-        mViewPager.setAdapter(new MainFragmentPagerAdapter(getSupportFragmentManager(),
-                MainActivity.this));
+        mViewPager.setAdapter(new MainFragmentPagerAdapter(fragmentManager, MainActivity.this));
         // Give the TabLayout the ViewPager
         mTabLayout.setupWithViewPager(mViewPager);
     }
 
-    @Override
-    public void onPhotoFragmentInteraction(DummyContent.DummyItem item) {
-        Logger.d(item);
-    }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -83,6 +106,23 @@ public class MainActivity extends AppCompatActivity implements
         if (savedInstanceState != null) {
             mViewPager.setCurrentItem(savedInstanceState.getInt(TAB_POSITION));
         }
+    }
+
+    @Override
+    public void onScanListFragmentInteraction(DummyContent.DummyItem item) {
+        Logger.d(item);
+        List<Fragment> fragments = mFragmentManager.getFragments();
+        int currentPage = mViewPager.getCurrentItem();
+        int currentFragmentID = fragments.get(currentPage).getId();
+        ScanDetailListFragment scanDetailListFragment = ScanDetailListFragment.newInstance(1);
+        mFragmentManager.beginTransaction()
+                .replace(currentFragmentID, scanDetailListFragment)
+                .commit();
+    }
+
+    @Override
+    public void onScanDetailListFragmentInteraction(DummyContent.DummyItem item) {
+        // TODO: Open AdditiveActivity here
     }
 }
 

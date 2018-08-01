@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Enalyzer</string>
     <string name="photo_of_ingredient_label">Photo of ingredient label</string>
+    <string name="enalyzer_logo_in_appbar">Enalyzer logo in AppBar</string>
 </resources>

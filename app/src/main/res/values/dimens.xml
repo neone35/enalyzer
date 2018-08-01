@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="appbar_logo_margin">4dp</dimen>
+    <dimen name="appbar_margin">16dp</dimen>
+    <dimen name="grids_margin">8dp</dimen>
+    <dimen name="list_item_title_margin">8dp</dimen>
+    <dimen name="list_item_title_text_size">22sp</dimen>
+    <dimen name="fab_margin">24dp</dimen>
+    <dimen name="fab_press_z_translation">8dp</dimen>
+    <dimen name="fab_elevation">6dp</dimen>
+    <dimen name="card_corner_radius">4dp</dimen>
 </resources>

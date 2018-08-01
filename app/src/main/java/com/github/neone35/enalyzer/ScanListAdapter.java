@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.github.neone35.enalyzer.PhotoListFragment.OnPhotoListFragmentInteractionListener;
+import com.github.neone35.enalyzer.ScanListFragment.OnScanListFragmentInteractionListener;
 import com.github.neone35.enalyzer.dummy.DummyContent.DummyItem;
 
 import java.util.List;
@@ -16,12 +16,12 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class PhotoListRecyclerAdapter extends RecyclerView.Adapter<PhotoListRecyclerAdapter.ViewHolder> {
+public class ScanListAdapter extends RecyclerView.Adapter<ScanListAdapter.ViewHolder> {
 
     private final List<DummyItem> mValues;
-    private final OnPhotoListFragmentInteractionListener mListener;
+    private final OnScanListFragmentInteractionListener mListener;
 
-    public PhotoListRecyclerAdapter(List<DummyItem> items, PhotoListFragment.OnPhotoListFragmentInteractionListener listener) {
+    public ScanListAdapter(List<DummyItem> items, OnScanListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -30,7 +30,7 @@ public class PhotoListRecyclerAdapter extends RecyclerView.Adapter<PhotoListRecy
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_photo, parent, false);
+                .inflate(R.layout.fragment_scan_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -42,7 +42,7 @@ public class PhotoListRecyclerAdapter extends RecyclerView.Adapter<PhotoListRecy
             if (null != mListener) {
                 // Notify the active callbacks interface (the activity, if the
                 // fragment is attached to one) that an item has been selected.
-                mListener.onPhotoFragmentInteraction(holder.mItem);
+                mListener.onScanListFragmentInteraction(holder.mItem);
             }
         });
     }

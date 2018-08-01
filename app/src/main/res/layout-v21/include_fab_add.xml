@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.FloatingActionButton xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/add_fab"
+    style="@style/Widget.Design.FloatingActionButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|end"
+    android:layout_margin="@dimen/fab_margin"
+    android:clickable="true"
+    android:focusable="true"
+    android:stateListAnimator="@animator/fab_state_list_anim"
+    app:elevation="@dimen/fab_elevation"
+    app:fabSize="normal"
+    app:rippleColor="@color/colorWhite"
+    app:srcCompat="@drawable/ic_add_white_24dp" />
