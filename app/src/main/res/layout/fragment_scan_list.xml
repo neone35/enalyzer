@@ -6,8 +6,5 @@
     android:name="com.github.neone35.enalyzer.PhotoFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginEnd="@dimen/grids_margin"
-    android:layout_marginRight="@dimen/grids_margin"
-    android:layout_marginTop="@dimen/grids_margin"
     tools:context=".ScanListFragment"
     tools:listitem="@layout/fragment_scan_item" />

@@ -28,7 +28,7 @@ public class MainFragmentPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = ScanListFragment.newInstance(2);
+                fragment = new ScanFragment();
                 break;
             case 1:
                 // TODO: Replace with another fragment

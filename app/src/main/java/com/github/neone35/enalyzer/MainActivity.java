@@ -111,13 +111,15 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onScanListFragmentInteraction(DummyContent.DummyItem item) {
         Logger.d(item);
-        List<Fragment> fragments = mFragmentManager.getFragments();
         int currentPage = mViewPager.getCurrentItem();
-        int currentFragmentID = fragments.get(currentPage).getId();
-        ScanDetailListFragment scanDetailListFragment = ScanDetailListFragment.newInstance(1);
-        mFragmentManager.beginTransaction()
-                .replace(currentFragmentID, scanDetailListFragment)
-                .commit();
+        if (currentPage == 0) {
+            // replace ScanList with ScanDetailList
+            mFragmentManager.beginTransaction()
+                    .replace(R.id.fl_scan_root, ScanDetailListFragment.newInstance(1))
+                    // enable switch back to ScanList with addToBackStack
+                    .addToBackStack(null)
+                    .commit();
+        }
     }
 
     @Override

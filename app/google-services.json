@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "699334004037",
+    "firebase_url": "https://enalyzer-8048b.firebaseio.com",
+    "project_id": "enalyzer-8048b",
+    "storage_bucket": "enalyzer-8048b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:699334004037:android:56ea0c2ecd046414",
+        "android_client_info": {
+          "package_name": "com.github.neone35.enalyzer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "699334004037-rfd0l3l0n73bsrp5c3mh1trgoc2nh3r6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByxCb2Uc-afcLSp4w3OA9ufKYDH7UeDXs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
