@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/scan_detail_list"
-    android:name="com.github.neone35.enalyzer.ScanDetailListFragment"
+    android:id="@+id/code_category_list"
+    android:name="com.github.neone35.enalyzer.CodeCategoryListFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".main.scans.ScanDetailListFragment"
-    tools:listitem="@layout/fragment_scan_detail_item" />
+    tools:context=".main.codes.CodeCategoryListFragment"
+    tools:listitem="@layout/fragment_code_category_item" />

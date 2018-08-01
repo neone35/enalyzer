@@ -1,4 +1,4 @@
-package com.github.neone35.enalyzer;
+package com.github.neone35.enalyzer.main.scans;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.github.neone35.enalyzer.ScanListFragment.OnScanListFragmentInteractionListener;
+import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.dummy.DummyContent.DummyItem;
 
 import java.util.List;
@@ -16,12 +16,12 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ScanListAdapter extends RecyclerView.Adapter<ScanListAdapter.ViewHolder> {
+public class ScanDetailListAdapter extends RecyclerView.Adapter<ScanDetailListAdapter.ViewHolder> {
 
     private final List<DummyItem> mValues;
-    private final OnScanListFragmentInteractionListener mListener;
+    private final ScanDetailListFragment.OnScanDetailListListener mListener;
 
-    public ScanListAdapter(List<DummyItem> items, OnScanListFragmentInteractionListener listener) {
+    ScanDetailListAdapter(List<DummyItem> items, ScanDetailListFragment.OnScanDetailListListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -30,7 +30,8 @@ public class ScanListAdapter extends RecyclerView.Adapter<ScanListAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_scan_item, parent, false);
+                .inflate(R.layout.fragment_scan_detail_item, parent, false);
+
         return new ViewHolder(view);
     }
 
@@ -42,7 +43,7 @@ public class ScanListAdapter extends RecyclerView.Adapter<ScanListAdapter.ViewHo
             if (null != mListener) {
                 // Notify the active callbacks interface (the activity, if the
                 // fragment is attached to one) that an item has been selected.
-                mListener.onScanListFragmentInteraction(holder.mItem);
+                mListener.onScanDetailListInteraction(holder.mItem);
             }
         });
     }
@@ -54,22 +55,31 @@ public class ScanListAdapter extends RecyclerView.Adapter<ScanListAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         final View mView;
-        public DummyItem mItem;
-        @BindView(R.id.iv_photo)
-        ImageView mPhotoView;
-        @BindView(R.id.tv_photo_date)
-        TextView mPhotoDate;
+        DummyItem mItem;
+        @BindView(R.id.iv_scan_detail_photo)
+        ImageView ivPhotoView;
+        @BindView(R.id.tv_scan_detail_ecode)
+        TextView tvEcode;
+        @BindView(R.id.tv_scan_detail_category)
+        TextView tvCategory;
+        @BindView(R.id.tv_scan_detail_names)
+        TextView tvNames;
+        @BindView(R.id.iv_scan_detail_hazard)
+        ImageView ivHazardView;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             mView = view;
-            ButterKnife.bind(view, mPhotoView);
-            ButterKnife.bind(view, mPhotoDate);
+            ButterKnife.bind(view, ivPhotoView);
+            ButterKnife.bind(view, tvEcode);
+            ButterKnife.bind(view, tvCategory);
+            ButterKnife.bind(view, tvNames);
+            ButterKnife.bind(view, ivHazardView);
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" + mPhotoDate.getText() + "'";
+            return super.toString() + " '" + tvEcode.getText() + "'";
         }
     }
 }

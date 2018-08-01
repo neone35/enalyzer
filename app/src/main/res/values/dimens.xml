@@ -5,9 +5,12 @@
     <dimen name="appbar_margin">16dp</dimen>
     <dimen name="grids_margin">8dp</dimen>
     <dimen name="list_item_title_margin">8dp</dimen>
-    <dimen name="list_item_title_text_size">22sp</dimen>
+    <dimen name="list_item_title_text_size">18sp</dimen>
     <dimen name="fab_margin">24dp</dimen>
     <dimen name="fab_press_z_translation">8dp</dimen>
     <dimen name="fab_elevation">6dp</dimen>
     <dimen name="card_corner_radius">4dp</dimen>
+    <dimen name="list_item_subtitle_text_size">16sp</dimen>
+    <dimen name="list_item_big_title_size">24sp</dimen>
+    <dimen name="list_item_big_subtitle_size">20sp</dimen>
 </resources>

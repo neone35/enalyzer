@@ -1,7 +1,8 @@
-package com.github.neone35.enalyzer;
+package com.github.neone35.enalyzer.main.scans;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,20 +11,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.dummy.DummyContent;
 import com.github.neone35.enalyzer.dummy.DummyContent.DummyItem;
 
 /**
  * A fragment representing a list of Items.
  * <p/>
- * Activities containing this fragment MUST implement the {@link OnScanDetailListFragmentInteractionListener}
+ * Activities containing this fragment MUST implement the {@link OnScanDetailListListener}
  * interface.
  */
 public class ScanDetailListFragment extends Fragment {
 
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
-    private OnScanDetailListFragmentInteractionListener mListener;
+    private OnScanDetailListListener mListener;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -51,7 +53,7 @@ public class ScanDetailListFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_scan_detail_list, container, false);
 
@@ -73,11 +75,11 @@ public class ScanDetailListFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnScanDetailListFragmentInteractionListener) {
-            mListener = (OnScanDetailListFragmentInteractionListener) context;
+        if (context instanceof OnScanDetailListListener) {
+            mListener = (OnScanDetailListListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnScanDetailListFragmentInteractionListener");
+                    + " must implement OnScanDetailListListener");
         }
     }
 
@@ -97,7 +99,7 @@ public class ScanDetailListFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnScanDetailListFragmentInteractionListener {
-        void onScanDetailListFragmentInteraction(DummyItem item);
+    public interface OnScanDetailListListener {
+        void onScanDetailListInteraction(DummyItem item);
     }
 }

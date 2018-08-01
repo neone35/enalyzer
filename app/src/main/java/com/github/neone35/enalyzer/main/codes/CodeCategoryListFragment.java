@@ -1,7 +1,8 @@
-package com.github.neone35.enalyzer;
+package com.github.neone35.enalyzer.main.codes;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,31 +11,32 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.dummy.DummyContent;
 import com.github.neone35.enalyzer.dummy.DummyContent.DummyItem;
 
 /**
  * A fragment representing a list of Items.
  * <p/>
- * Activities containing this fragment MUST implement the {@link OnScanListFragmentInteractionListener}
+ * Activities containing this fragment MUST implement the {@link OnCodeCategoryListListener}
  * interface.
  */
-public class ScanListFragment extends Fragment {
+public class CodeCategoryListFragment extends Fragment {
 
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 2;
-    private OnScanListFragmentInteractionListener mListener;
+    private OnCodeCategoryListListener mListener;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public ScanListFragment() {
+    public CodeCategoryListFragment() {
     }
 
     @SuppressWarnings("unused")
-    public static ScanListFragment newInstance(int columnCount) {
-        ScanListFragment fragment = new ScanListFragment();
+    public static CodeCategoryListFragment newInstance(int columnCount) {
+        CodeCategoryListFragment fragment = new CodeCategoryListFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -51,9 +53,9 @@ public class ScanListFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_scan_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_code_category_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -64,7 +66,7 @@ public class ScanListFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new ScanListAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new CodeCategoryListAdapter(DummyContent.ITEMS, mListener));
         }
         return view;
     }
@@ -73,11 +75,11 @@ public class ScanListFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnScanListFragmentInteractionListener) {
-            mListener = (OnScanListFragmentInteractionListener) context;
+        if (context instanceof OnCodeCategoryListListener) {
+            mListener = (OnCodeCategoryListListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnScanDetailListFragmentInteractionListener");
+                    + " must implement OnCodeCategoryListListener");
         }
     }
 
@@ -97,7 +99,8 @@ public class ScanListFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnScanListFragmentInteractionListener {
-        void onScanListFragmentInteraction(DummyItem item);
+    public interface OnCodeCategoryListListener {
+        // TODO: Update argument type and name
+        void onCodeCategoryListInteraction(DummyItem item);
     }
 }
