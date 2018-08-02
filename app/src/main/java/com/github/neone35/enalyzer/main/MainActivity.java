@@ -17,6 +17,7 @@ import android.view.View;
 import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.dummy.DummyContent;
 import com.github.neone35.enalyzer.main.codes.CodeCategoryListFragment;
+import com.github.neone35.enalyzer.main.codes.CodeDetailListFragment;
 import com.github.neone35.enalyzer.main.scans.ScanDetailListFragment;
 import com.github.neone35.enalyzer.main.scans.ScanPhotoListFragment;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -32,7 +33,8 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity implements
         ScanPhotoListFragment.OnScanPhotoListListener,
         ScanDetailListFragment.OnScanDetailListListener,
-        CodeCategoryListFragment.OnCodeCategoryListListener {
+        CodeCategoryListFragment.OnCodeCategoryListListener,
+        CodeDetailListFragment.OnCodeDetailListListener {
 
     @BindView(R.id.viewpager)
     ViewPager mViewPager;
@@ -40,16 +42,17 @@ public class MainActivity extends AppCompatActivity implements
     TabLayout mTabLayout;
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    public static final String SCANS_DETAIL = "scans_page";
+    @BindView(R.id.inc_add_fab)
+    FloatingActionButton mAddFab;
 
     @BindString(R.string.app_name)
     String mAppName;
 
-    private FirebaseAnalytics mFirebaseAnalytics;
+    public static final String SCANS_DETAIL = "scans_detail";
+    public static final String CODES_DETAIL = "codes_detail";
     public static String TAB_POSITION = "tab_position";
     public static String PAGER_INSTRUCT_MOTION = "pager_motion";
-    @BindView(R.id.inc_add_fab)
-    FloatingActionButton mAddFab;
+    private FirebaseAnalytics mFirebaseAnalytics;
     private SharedPreferences mSettings;
     private FragmentManager mFragmentManager;
 
@@ -138,7 +141,6 @@ public class MainActivity extends AppCompatActivity implements
         mTabLayout.setupWithViewPager(mViewPager);
     }
 
-
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -162,9 +164,12 @@ public class MainActivity extends AppCompatActivity implements
             mFragmentManager.popBackStack(SCANS_DETAIL, FragmentManager.POP_BACK_STACK_INCLUSIVE);
             // if tab = codes && codes detail is shown
         } else if (currentPage == 1 && fragStackNum != 0) {
-            // TODO: replace with another pop call to CODES_PAGE
-            Logger.d("Must be replaced by another fragment stack to pop off");
-        } else {
+            mFragmentManager.popBackStack(CODES_DETAIL, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            // if tab = codes && back pressed, switch to scans tab
+        } else if (currentPage == 1) {
+            mViewPager.setCurrentItem(0, true);
+            // else do default operation
+        } else if (fragStackNum == 0) {
             super.onBackPressed();
         }
     }
@@ -192,9 +197,24 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onCodeCategoryListInteraction(DummyContent.DummyItem item) {
-        // TODO: Begin fragment transaction here
+        Logger.d(item);
+        int currentPage = mViewPager.getCurrentItem();
+        // if current page is codes
+        if (currentPage == 1) {
+            // replace CodeCategoryList with CodeDetailList
+            mFragmentManager.beginTransaction()
+                    .replace(R.id.fl_code_root, CodeDetailListFragment.newInstance(3))
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    // enable switch back to CodeCategoryList with addToBackStack
+                    .addToBackStack(CODES_DETAIL)
+                    .commit();
+        }
     }
 
+    @Override
+    public void onCodeDetailListInteraction(DummyContent.DummyItem item) {
+        // TODO: Open AdditiveActivity here
+    }
 }
 
 

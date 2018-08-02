@@ -56,21 +56,21 @@ public class ScanPhotoListAdapter extends RecyclerView.Adapter<ScanPhotoListAdap
     public class ViewHolder extends RecyclerView.ViewHolder {
         final View mView;
         DummyItem mItem;
-        @BindView(R.id.iv_photo)
-        ImageView mPhotoView;
-        @BindView(R.id.tv_photo_date)
-        TextView mPhotoDate;
+        @BindView(R.id.iv_scan_photo)
+        ImageView ivPhoto;
+        @BindView(R.id.tv_scan_photo_date)
+        TextView tvPhotoDate;
 
         ViewHolder(View view) {
             super(view);
             mView = view;
-            ButterKnife.bind(view, mPhotoView);
-            ButterKnife.bind(view, mPhotoDate);
+            ButterKnife.bind(view, ivPhoto);
+            ButterKnife.bind(view, tvPhotoDate);
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" + mPhotoDate.getText() + "'";
+            return super.toString() + " '" + tvPhotoDate.getText() + "'";
         }
     }
 }

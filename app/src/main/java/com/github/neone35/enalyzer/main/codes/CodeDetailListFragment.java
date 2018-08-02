@@ -1,8 +1,7 @@
-package com.github.neone35.enalyzer.main.scans;
+package com.github.neone35.enalyzer.main.codes;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,24 +17,24 @@ import com.github.neone35.enalyzer.dummy.DummyContent.DummyItem;
 /**
  * A fragment representing a list of Items.
  * <p/>
- * Activities containing this fragment MUST implement the {@link OnScanDetailListListener}
+ * Activities containing this fragment MUST implement the {@link OnCodeDetailListListener}
  * interface.
  */
-public class ScanDetailListFragment extends Fragment {
+public class CodeDetailListFragment extends Fragment {
 
     private static final String ARG_COLUMN_COUNT = "column-count";
-    private int mColumnCount = 1;
-    private OnScanDetailListListener mListener;
+    private int mColumnCount = 2;
+    private OnCodeDetailListListener mListener;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public ScanDetailListFragment() {
+    public CodeDetailListFragment() {
     }
 
-    public static ScanDetailListFragment newInstance(int columnCount) {
-        ScanDetailListFragment fragment = new ScanDetailListFragment();
+    public static CodeDetailListFragment newInstance(int columnCount) {
+        CodeDetailListFragment fragment = new CodeDetailListFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -52,9 +51,9 @@ public class ScanDetailListFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_scan_detail_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_code_detail_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -65,7 +64,7 @@ public class ScanDetailListFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new ScanDetailListAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new CodeDetailListAdapter(DummyContent.ITEMS, mListener));
         }
         return view;
     }
@@ -74,11 +73,11 @@ public class ScanDetailListFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnScanDetailListListener) {
-            mListener = (OnScanDetailListListener) context;
+        if (context instanceof OnCodeDetailListListener) {
+            mListener = (OnCodeDetailListListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnScanDetailListListener");
+                    + " must implement OnCodeDetailListListener");
         }
     }
 
@@ -98,7 +97,7 @@ public class ScanDetailListFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnScanDetailListListener {
-        void onScanDetailListInteraction(DummyItem item);
+    public interface OnCodeDetailListListener {
+        void onCodeDetailListInteraction(DummyItem item);
     }
 }
