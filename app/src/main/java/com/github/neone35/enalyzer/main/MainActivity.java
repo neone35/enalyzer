@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements
     ViewPager mViewPager;
     @BindView(R.id.sliding_tabs)
     TabLayout mTabLayout;
-    @BindView(R.id.toolbar)
+    @BindView(R.id.toolbar_appbar_tabs)
     Toolbar mToolbar;
     @BindView(R.id.inc_add_fab)
     FloatingActionButton mAddFab;

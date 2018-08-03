@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true"
+    android:layout_gravity="top"
+    android:theme="@style/AppTheme">
+
+    <android.support.design.widget.CollapsingToolbarLayout
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:fitsSystemWindows="true"
+        app:layout_scrollFlags="scroll|enterAlwaysCollapsed|snap">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_appbar"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_gravity="top"
+            android:theme="@style/AppTheme">
+
+            <TextView
+                style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:text="@string/app_name"
+                android:textColor="@color/colorWhite" />
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.CollapsingToolbarLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?android:attr/actionBarSize"
+        app:layout_scrollFlags="scroll|exitUntilCollapsed"
+        android:layout_gravity="bottom">
+
+        <ImageView
+            android:id="@+id/iv_additive_photo"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/square_rect"
+            android:contentDescription="@string/photo_of_ingredient_label"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="H,2.5:1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/photo_protection"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/gradient_protection_square"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_additive_photo"
+            app:layout_constraintEnd_toEndOf="@+id/iv_additive_photo"
+            app:layout_constraintStart_toStartOf="@+id/iv_additive_photo"
+            app:layout_constraintTop_toTopOf="@+id/iv_additive_photo" />
+
+        <TextView
+            android:id="@+id/tv_additive_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/list_item_title_margin"
+            android:layout_marginStart="@dimen/list_item_title_margin"
+            android:layout_marginBottom="@dimen/list_item_title_margin"
+            android:text="@string/list_item_mega_text_size"
+            android:textColor="@color/colorWhite"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_additive_photo"
+            app:layout_constraintStart_toStartOf="@+id/iv_additive_photo"
+            tools:text="E221" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:gravity="end"
+            android:text="CH8N2O3"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/list_item_subtitle_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_additive_code"
+            app:layout_constraintEnd_toEndOf="@+id/iv_additive_photo"
+            app:layout_constraintStart_toEndOf="@+id/tv_additive_code"
+            app:layout_constraintTop_toTopOf="@+id/tv_additive_code"
+            tools:text="CH8N2O3" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.design.widget.AppBarLayout>

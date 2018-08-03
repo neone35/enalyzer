@@ -38,6 +38,7 @@ public class HazardStatementListFragment extends Fragment {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
             recyclerView.setAdapter(new HazardStatementListAdapter(DummyContent.ITEMS));
+            // turn on sroll inertion on NestedScrollView
             recyclerView.setNestedScrollingEnabled(false);
         }
         return view;

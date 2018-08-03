@@ -13,7 +13,7 @@
             app:layout_scrollFlags="scroll|enterAlwaysCollapsed|snap">
 
             <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
+                android:id="@+id/toolbar_appbar_tabs"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:contentInsetEnd="0dp"

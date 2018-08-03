@@ -99,7 +99,6 @@ public class CodeCategoryListFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnCodeCategoryListListener {
-        // TODO: Update argument type and name
         void onCodeCategoryListInteraction(DummyItem item);
     }
 }
