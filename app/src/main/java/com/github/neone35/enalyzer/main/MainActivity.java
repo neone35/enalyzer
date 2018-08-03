@@ -25,6 +25,7 @@ import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 import butterknife.BindString;
 import butterknife.BindView;
@@ -157,16 +158,18 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onBackPressed() {
-        int currentPage = mViewPager.getCurrentItem();
+        int currentPagePos = mViewPager.getCurrentItem();
         int fragStackNum = mFragmentManager.getBackStackEntryCount();
+        String currentPageTitle = Objects.requireNonNull(Objects.requireNonNull(
+                mViewPager.getAdapter()).getPageTitle(currentPagePos)).toString();
         // if tab = scans && scans detail is shown
-        if (currentPage == 0 && fragStackNum != 0) {
+        if (currentPageTitle.equals("Scans") && fragStackNum != 0) {
             mFragmentManager.popBackStack(SCANS_DETAIL, FragmentManager.POP_BACK_STACK_INCLUSIVE);
             // if tab = codes && codes detail is shown
-        } else if (currentPage == 1 && fragStackNum != 0) {
+        } else if (currentPageTitle.equals("Codes") && fragStackNum != 0) {
             mFragmentManager.popBackStack(CODES_DETAIL, FragmentManager.POP_BACK_STACK_INCLUSIVE);
             // if tab = codes && back pressed, switch to scans tab
-        } else if (currentPage == 1) {
+        } else if (currentPageTitle.equals("Codes")) {
             mViewPager.setCurrentItem(0, true);
             // else do default operation
         } else if (fragStackNum == 0) {
