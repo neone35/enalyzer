@@ -1,15 +1,13 @@
-package com.github.neone35.enalyzer;
+package com.github.neone35.enalyzer.additive;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ImageView;
-import android.widget.TextView;
 
+import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.main.MainActivity;
 import com.orhanobut.logger.Logger;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class AdditiveActivity extends AppCompatActivity implements
@@ -26,6 +24,8 @@ public class AdditiveActivity extends AppCompatActivity implements
         ButterKnife.bind(this);
         mFragmentManager = getSupportFragmentManager();
 
+        setupActionBar();
+
         // check if intent bundle received successfully and setup view
         Bundle mainExtrasBundle = getIntent().getExtras();
         if (mainExtrasBundle != null) {
@@ -39,6 +39,12 @@ public class AdditiveActivity extends AppCompatActivity implements
                         .add(R.id.frag_additive, additiveFragment)
                         .commit();
             }
+        }
+    }
+
+    public void setupActionBar() {
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
     }
 

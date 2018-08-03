@@ -1,11 +1,13 @@
-package com.github.neone35.enalyzer;
+package com.github.neone35.enalyzer.additive;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.dummy.DummyContent.DummyItem;
 
 import java.util.List;
@@ -17,19 +19,20 @@ public class HazardStatementListAdapter extends RecyclerView.Adapter<HazardState
 
     private final List<DummyItem> mValues;
 
-    public HazardStatementListAdapter(List<DummyItem> items) {
+    HazardStatementListAdapter(List<DummyItem> items) {
         mValues = items;
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_hazard_statement_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
     }
 
@@ -39,12 +42,12 @@ public class HazardStatementListAdapter extends RecyclerView.Adapter<HazardState
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public final View mView;
+        final View mView;
         @BindView(R.id.tv_hazard_statement_code)
         TextView tvHazardStatementCode;
         @BindView(R.id.tv_hazard_statement)
         TextView tvHazardStatement;
-        public DummyItem mItem;
+        DummyItem mItem;
 
         public ViewHolder(View view) {
             super(view);

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
-    tools:context=".AdditiveActivity">
+    tools:context=".additive.AdditiveActivity">
 
     <include
         android:id="@+id/inc_appbar"
@@ -168,8 +168,8 @@
                             android:layout_height="match_parent"
                             android:id="@+id/frag_hazard"
                             android:layout_margin="8dp"
-                            android:name="com.github.neone35.enalyzer.HazardStatementListFragment"
-                            tools:context=".AdditiveActivity"
+                            android:name="com.github.neone35.enalyzer.additive.HazardStatementListFragment"
+                            tools:context=".additive.AdditiveActivity"
                             tools:layout="@layout/fragment_hazard_statement_list" />
 
                     </LinearLayout>

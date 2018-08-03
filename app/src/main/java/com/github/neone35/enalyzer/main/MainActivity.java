@@ -17,7 +17,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.github.neone35.enalyzer.AdditiveActivity;
+import com.github.neone35.enalyzer.scan.ScanActivity;
+import com.github.neone35.enalyzer.additive.AdditiveActivity;
 import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.dummy.DummyContent;
 import com.github.neone35.enalyzer.main.codes.CodeCategoryListFragment;
@@ -76,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements
         setSupportActionBar(mToolbar);
         setupFirebaseAnalytics();
         setupTabs(mFragmentManager);
-        setupViewPager(mViewPager);
+        setupAddFAB(mViewPager, mAddFab);
 
         // show instructive motion (once per lifetime)
         if (!mSettings.getBoolean(KEY_PAGER_INSTRUCT_MOTION, false))
@@ -97,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements
         editor.apply();
     }
 
-    private void setupViewPager(ViewPager pager) {
+    private void setupAddFAB(ViewPager pager, FloatingActionButton addFab) {
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -106,7 +107,6 @@ public class MainActivity extends AppCompatActivity implements
 
             @Override
             public void onPageSelected(int position) {
-                Logger.d("Page is being selected");
                 long animDuration = 500;
                 float visible = 1.0f;
                 float invisible = 0.0f;
@@ -131,6 +131,10 @@ public class MainActivity extends AppCompatActivity implements
             public void onPageScrollStateChanged(int state) {
 
             }
+        });
+
+        addFab.setOnClickListener(v -> {
+            startScanActivity();
         });
     }
 
@@ -183,19 +187,12 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-    @Override
-    public void onScanListInteraction(DummyContent.DummyItem item) {
-        Logger.d(item);
-        int currentPage = mViewPager.getCurrentItem();
-        // if current page is scans
-        if (currentPage == 0) {
-            // replace ScanList with ScanDetailList
-            mFragmentManager.beginTransaction()
-                    .replace(R.id.fl_scan_root, ScanDetailListFragment.newInstance(1))
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    // enable switch back to ScanList with addToBackStack
-                    .addToBackStack(SCANS_DETAIL)
-                    .commit();
+    private void startScanActivity() {
+        Intent scanActivityIntent = new Intent(this, ScanActivity.class);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            startActivity(scanActivityIntent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+        } else {
+            startActivity(scanActivityIntent);
         }
     }
 
@@ -209,6 +206,22 @@ public class MainActivity extends AppCompatActivity implements
             startActivity(additiveActivityIntent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
         } else {
             startActivity(additiveActivityIntent);
+        }
+    }
+
+    @Override
+    public void onScanListInteraction(DummyContent.DummyItem item) {
+        Logger.d(item);
+        int currentPage = mViewPager.getCurrentItem();
+        // if current page is scans
+        if (currentPage == 0) {
+            // replace ScanList with ScanDetailList
+            mFragmentManager.beginTransaction()
+                    .replace(R.id.fl_scan_root, ScanDetailListFragment.newInstance(1))
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    // enable switch back to ScanList with addToBackStack
+                    .addToBackStack(SCANS_DETAIL)
+                    .commit();
         }
     }
 

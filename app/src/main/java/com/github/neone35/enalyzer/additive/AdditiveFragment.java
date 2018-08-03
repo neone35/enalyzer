@@ -1,4 +1,4 @@
-package com.github.neone35.enalyzer;
+package com.github.neone35.enalyzer.additive;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.main.MainActivity;
 
 import butterknife.BindView;
@@ -111,7 +112,7 @@ public class AdditiveFragment extends Fragment {
     private void setupAdditiveSwitchButtons(String replaceWithData, Button btnPreviousAdditive, Button btnNextAdditive) {
         int eCodeID = 0;
         // If source is 'scans' tab, switch between scanDetail items
-        if (mTabSource == MainActivity.SCANS_DETAIL) {
+        if (mTabSource.equals(MainActivity.SCANS_DETAIL)) {
             // TODO: Add 'ScanDetail' additive switch logic
             btnPreviousAdditive.setOnClickListener(v -> {
                 if (null != mListener) {
@@ -123,7 +124,7 @@ public class AdditiveFragment extends Fragment {
                     mListener.onAdditiveFragmentInteraction(replaceWithData, eCodeID, AdditiveActivity.KEY_NEXT);
                 }
             });
-        } else if (mTabSource == MainActivity.CODES_DETAIL) {
+        } else if (mTabSource.equals(MainActivity.CODES_DETAIL)) {
             // TODO: Add 'CodeDetail' additive switch logic
             btnPreviousAdditive.setOnClickListener(v -> {
                 if (null != mListener) {

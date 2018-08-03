@@ -10,4 +10,5 @@
     <string name="additive_switch_next"><![CDATA[Next >]]></string>
     <string name="list_item_mega_text_size">E221</string>
     <string name="additive_details">Additive details</string>
+    <string name="scan_label">Scan label</string>
 </resources>

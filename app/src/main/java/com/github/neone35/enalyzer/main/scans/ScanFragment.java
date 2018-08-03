@@ -25,9 +25,11 @@ public class ScanFragment extends Fragment {
         if (getFragmentManager() != null) {
             // replace root fragment with ScanList first
             // it'll be replaced by ScanDetailList on item click
-            getFragmentManager().beginTransaction()
-                    .add(R.id.fl_scan_root, ScanPhotoListFragment.newInstance(2))
-                    .commit();
+            if (savedInstanceState == null) {
+                getFragmentManager().beginTransaction()
+                        .add(R.id.fl_scan_root, ScanPhotoListFragment.newInstance(2))
+                        .commit();
+            }
         }
 
         return scanRootView;

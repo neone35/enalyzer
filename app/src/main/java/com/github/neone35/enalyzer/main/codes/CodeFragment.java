@@ -25,9 +25,11 @@ public class CodeFragment extends Fragment {
         if (getFragmentManager() != null) {
             // replace root fragment with CodeCategoryList first
             // it'll be replaced by CodeDetailList on item click
-            getFragmentManager().beginTransaction()
-                    .add(R.id.fl_code_root, CodeCategoryListFragment.newInstance(2))
-                    .commit();
+            if (savedInstanceState == null) {
+                getFragmentManager().beginTransaction()
+                        .add(R.id.fl_code_root, CodeCategoryListFragment.newInstance(2))
+                        .commit();
+            }
         }
 
         return codeRootView;

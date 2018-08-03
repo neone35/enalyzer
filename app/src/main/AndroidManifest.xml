@@ -22,7 +22,7 @@
             android:value="ocr" />
 
         <activity
-            android:name=".AdditiveActivity"
+            android:name=".additive.AdditiveActivity"
             android:label="@string/additive_details"
             android:parentActivityName=".main.MainActivity"
             android:theme="@style/AppTheme">
@@ -30,7 +30,17 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".main.MainActivity" />
+        </activity>
 
+        <activity
+            android:name=".scan.ScanActivity"
+            android:label="@string/scan_label"
+            android:parentActivityName=".main.MainActivity"
+            android:theme="@style/AppTheme">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".main.MainActivity" />
         </activity>
     </application>
 

@@ -34,7 +34,6 @@ public class CodeCategoryListFragment extends Fragment {
     public CodeCategoryListFragment() {
     }
 
-    @SuppressWarnings("unused")
     public static CodeCategoryListFragment newInstance(int columnCount) {
         CodeCategoryListFragment fragment = new CodeCategoryListFragment();
         Bundle args = new Bundle();
