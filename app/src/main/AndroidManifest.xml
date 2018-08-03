@@ -21,7 +21,17 @@
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="ocr" />
 
-        <activity android:name=".AdditiveActivity"></activity>
+        <activity
+            android:name=".AdditiveActivity"
+            android:label="@string/additive_details"
+            android:parentActivityName=".main.MainActivity"
+            android:theme="@style/AppTheme">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".main.MainActivity" />
+
+        </activity>
     </application>
 
 </manifest>

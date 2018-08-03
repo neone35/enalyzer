@@ -36,6 +36,7 @@ public class HazardStatementListFragment extends Fragment {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
             recyclerView.setAdapter(new HazardStatementListAdapter(DummyContent.ITEMS));
+            recyclerView.setNestedScrollingEnabled(false);
         }
         return view;
     }

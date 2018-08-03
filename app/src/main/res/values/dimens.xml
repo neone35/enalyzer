@@ -13,4 +13,5 @@
     <dimen name="list_item_subtitle_text_size">16sp</dimen>
     <dimen name="list_item_big_title_size">24sp</dimen>
     <dimen name="list_item_big_subtitle_size">20sp</dimen>
+    <dimen name="additive_switch_button_height">48dp</dimen>
 </resources>

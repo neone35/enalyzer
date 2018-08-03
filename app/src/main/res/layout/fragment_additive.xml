@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    tools:context=".AdditiveActivity">
+
+    <include
+        android:id="@+id/inc_appbar"
+        layout="@layout/include_appbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/inc_appbar">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_additive_photo"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/square_rect"
+                android:contentDescription="@string/photo_of_ingredient_label"
+                android:scaleType="centerCrop"
+                app:layout_constraintDimensionRatio="H,2.5:1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/photo_protection"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/gradient_protection_square"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_additive_photo"
+                app:layout_constraintEnd_toEndOf="@+id/iv_additive_photo"
+                app:layout_constraintStart_toStartOf="@+id/iv_additive_photo"
+                app:layout_constraintTop_toTopOf="@+id/iv_additive_photo" />
+
+            <TextView
+                android:id="@+id/tv_additive_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/list_item_title_margin"
+                android:layout_marginLeft="@dimen/list_item_title_margin"
+                android:layout_marginStart="@dimen/list_item_title_margin"
+                android:text="@string/list_item_mega_text_size"
+                android:textColor="@color/colorWhite"
+                android:textSize="32sp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_additive_photo"
+                app:layout_constraintStart_toStartOf="@+id/iv_additive_photo"
+                tools:text="E221" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:gravity="end"
+                android:text="CH8N2O3"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/list_item_subtitle_text_size"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_additive_code"
+                app:layout_constraintEnd_toEndOf="@+id/iv_additive_photo"
+                app:layout_constraintStart_toEndOf="@+id/tv_additive_code"
+                app:layout_constraintTop_toTopOf="@+id/tv_additive_code"
+                tools:text="CH8N2O3" />
+
+            <android.support.v4.widget.NestedScrollView
+                android:scrollbars="vertical"
+                android:id="@+id/nsv_additive"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:paddingBottom="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_additive_photo">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_additive_known_label"
+                            style="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:text="Known as"
+                            tools:text="Known as" />
+
+                        <TextView
+                            android:id="@+id/tv_additive_known"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingMultiplier="1.2"
+                            android:text="'Baker's Amonia', 'Sal volatile', 'Salt of hartshorn' "
+                            tools:text="'Baker's Amonia', 'Sal volatile', 'Salt of hartshorn', 'Baker's Amonia', 'Sal volatile', 'Salt of hartshorn'" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_additive_about_label"
+                            style="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:text="About"
+                            tools:text="About" />
+
+                        <TextView
+                            android:id="@+id/tv_additive_about"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingMultiplier="1.2"
+                            android:text="Ammonium carbonate is a salt with the chemical formula (NH4)2CO3. Since it readily degrades to gaseous ammonia... "
+                            tools:text="Ammonium carbonate is a salt with the chemical formula (NH4)2CO3. Since it readily degrades to gaseous ammonia..." />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_margin="8dp"
+                        android:background="@color/colorDivider" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <include
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_marginLeft="-8dp"
+                            android:layout_marginTop="-8dp"
+                            android:layout_marginBottom="-8dp"
+                            android:id="@+id/inc_hazards_cl"
+                            layout="@layout/include_hazard_pictograms"
+                            android:layout_marginStart="-8dp" />
+
+                        <fragment
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/frag_hazard"
+                            android:layout_margin="8dp"
+                            android:name="com.github.neone35.enalyzer.HazardStatementListFragment"
+                            tools:context=".AdditiveActivity"
+                            tools:layout="@layout/fragment_hazard_statement_list" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.v4.widget.NestedScrollView>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </FrameLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/fl_buttons_holder"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/additive_switch_button_height"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/btn_previous_additive"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/additive_switch_prev"
+            android:theme="@style/AppTheme.Button.Primary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_next_additive"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/additive_switch_next"
+            android:theme="@style/AppTheme.Button.Primary"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_previous_additive"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/btn_previous_additive" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

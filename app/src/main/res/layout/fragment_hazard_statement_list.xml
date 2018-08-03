@@ -4,6 +4,6 @@
     android:id="@+id/hazard_statement_list"
     android:name="com.github.neone35.enalyzer.HazardStatementFragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".HazardStatementListFragment"
     tools:listitem="@layout/fragment_hazard_statement_item" />

@@ -1,8 +1,11 @@
 package com.github.neone35.enalyzer.main;
 
 import android.animation.ObjectAnimator;
+import android.app.ActivityOptions;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
@@ -14,6 +17,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.github.neone35.enalyzer.AdditiveActivity;
 import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.dummy.DummyContent;
 import com.github.neone35.enalyzer.main.codes.CodeCategoryListFragment;
@@ -51,8 +55,10 @@ public class MainActivity extends AppCompatActivity implements
 
     public static final String SCANS_DETAIL = "scans_detail";
     public static final String CODES_DETAIL = "codes_detail";
-    public static String TAB_POSITION = "tab_position";
-    public static String PAGER_INSTRUCT_MOTION = "pager_motion";
+    public static final String KEY_TAB_POSITION = "tab_position";
+    public static final String KEY_PAGER_INSTRUCT_MOTION = "pager_motion";
+    public static final String KEY_SELECTED_ECODE = "selected_ecode";
+    public static final String KEY_TAB_SOURCE = "tab_source";
     private FirebaseAnalytics mFirebaseAnalytics;
     private SharedPreferences mSettings;
     private FragmentManager mFragmentManager;
@@ -73,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements
         setupViewPager(mViewPager);
 
         // show instructive motion (once per lifetime)
-        if (!mSettings.getBoolean(PAGER_INSTRUCT_MOTION, false))
+        if (!mSettings.getBoolean(KEY_PAGER_INSTRUCT_MOTION, false))
             showInstructiveMotion(mViewPager);
     }
 
@@ -87,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements
                 3000);
         // save key for lifetime (show motion once)
         SharedPreferences.Editor editor = mSettings.edit();
-        editor.putBoolean(PAGER_INSTRUCT_MOTION, true);
+        editor.putBoolean(KEY_PAGER_INSTRUCT_MOTION, true);
         editor.apply();
     }
 
@@ -145,14 +151,14 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt(TAB_POSITION, mTabLayout.getSelectedTabPosition());
+        outState.putInt(KEY_TAB_POSITION, mTabLayout.getSelectedTabPosition());
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         if (savedInstanceState != null) {
-            mViewPager.setCurrentItem(savedInstanceState.getInt(TAB_POSITION));
+            mViewPager.setCurrentItem(savedInstanceState.getInt(KEY_TAB_POSITION));
         }
     }
 
@@ -193,9 +199,22 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
+    private void startAdditiveActivity(String intentSourceKey) {
+        Intent additiveActivityIntent = new Intent(this, AdditiveActivity.class);
+        Bundle additiveBundle = new Bundle();
+        additiveBundle.putString(KEY_SELECTED_ECODE, "E221");
+        additiveBundle.putString(KEY_TAB_SOURCE, intentSourceKey);
+        additiveActivityIntent.putExtras(additiveBundle);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            startActivity(additiveActivityIntent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+        } else {
+            startActivity(additiveActivityIntent);
+        }
+    }
+
     @Override
     public void onScanDetailListInteraction(DummyContent.DummyItem item) {
-        // TODO: Open AdditiveActivity here
+        startAdditiveActivity(SCANS_DETAIL);
     }
 
     @Override
@@ -216,7 +235,7 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onCodeDetailListInteraction(DummyContent.DummyItem item) {
-        // TODO: Open AdditiveActivity here
+        startAdditiveActivity(CODES_DETAIL);
     }
 }
 
