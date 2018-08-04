@@ -5,4 +5,4 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
-    tools:context=".main.scans.ScanFragment" />
+    tools:context=".ui.main.scans.ScanFragment" />

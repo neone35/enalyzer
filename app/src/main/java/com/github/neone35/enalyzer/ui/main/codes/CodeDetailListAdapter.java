@@ -1,5 +1,6 @@
-package com.github.neone35.enalyzer.main.codes;
+package com.github.neone35.enalyzer.ui.main.codes;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,30 +23,28 @@ public class CodeDetailListAdapter extends RecyclerView.Adapter<CodeDetailListAd
     private final List<DummyContent.DummyItem> mValues;
     private final CodeDetailListFragment.OnCodeDetailListListener mListener;
 
-    public CodeDetailListAdapter(List<DummyContent.DummyItem> items, CodeDetailListFragment.OnCodeDetailListListener listener) {
+    CodeDetailListAdapter(List<DummyContent.DummyItem> items, CodeDetailListFragment.OnCodeDetailListListener listener) {
         mValues = items;
         mListener = listener;
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_code_detail_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
 
-        holder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener.onCodeDetailListInteraction(holder.mItem);
-                }
+        holder.mView.setOnClickListener(v -> {
+            if (null != mListener) {
+                // Notify the active callbacks interface (the activity, if the
+                // fragment is attached to one) that an item has been selected.
+                mListener.onCodeDetailListInteraction(holder.mItem);
             }
         });
     }
@@ -56,14 +55,14 @@ public class CodeDetailListAdapter extends RecyclerView.Adapter<CodeDetailListAd
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public final View mView;
+        final View mView;
         public DummyItem mItem;
         @BindView(R.id.iv_code_detail_photo)
         ImageView ivPhoto;
         @BindView(R.id.tv_code_detail_title)
         TextView tvPhotoTitle;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             mView = view;
             ButterKnife.bind(view, ivPhoto);

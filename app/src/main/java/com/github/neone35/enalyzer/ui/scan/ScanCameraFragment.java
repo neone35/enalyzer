@@ -1,4 +1,4 @@
-package com.github.neone35.enalyzer.scan;
+package com.github.neone35.enalyzer.ui.scan;
 
 import android.content.Context;
 import android.net.Uri;

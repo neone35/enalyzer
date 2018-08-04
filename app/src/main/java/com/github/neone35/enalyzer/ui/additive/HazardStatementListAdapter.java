@@ -1,4 +1,4 @@
-package com.github.neone35.enalyzer.additive;
+package com.github.neone35.enalyzer.ui.additive;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -49,7 +49,7 @@ public class HazardStatementListAdapter extends RecyclerView.Adapter<HazardState
         TextView tvHazardStatement;
         DummyItem mItem;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             mView = view;
             ButterKnife.bind(view, tvHazardStatementCode);

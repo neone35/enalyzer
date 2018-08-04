@@ -2,13 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.github.neone35.enalyzer">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".main.MainActivity">
+        <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,31 +24,31 @@
             android:value="ocr" />
 
         <activity
-            android:name=".additive.AdditiveActivity"
+            android:name=".ui.additive.AdditiveActivity"
             android:label="@string/additive_details"
-            android:parentActivityName=".main.MainActivity"
+            android:parentActivityName=".ui.main.MainActivity"
             android:theme="@style/AppTheme">
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".main.MainActivity" />
+                android:value=".ui.main.MainActivity" />
         </activity>
 
         <activity
-            android:name=".scan.ScanActivity"
+            android:name=".ui.scan.ScanActivity"
             android:label="@string/scan_label"
-            android:parentActivityName=".main.MainActivity"
+            android:parentActivityName=".ui.main.MainActivity"
             android:theme="@style/AppTheme">
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".main.MainActivity" />
+                android:value=".ui.main.MainActivity" />
         </activity>
 
         <!-- receive system broadcasts for this widget update -->
         <!-- has 5s restriction, long running tasks should be in service -->
         <receiver
-            android:name=".scan.ScanShortcutWidgetProvider"
+            android:name=".ui.scan.ScanShortcutWidgetProvider"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/widget_scan_shorctut">
             <intent-filter>

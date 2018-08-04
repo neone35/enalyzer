@@ -1,4 +1,4 @@
-package com.github.neone35.enalyzer.main.codes;
+package com.github.neone35.enalyzer.ui.main.codes;
 
 
 import android.os.Bundle;

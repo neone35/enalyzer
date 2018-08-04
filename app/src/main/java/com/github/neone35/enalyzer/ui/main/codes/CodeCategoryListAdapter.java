@@ -1,4 +1,4 @@
-package com.github.neone35.enalyzer.main.codes;
+package com.github.neone35.enalyzer.ui.main.codes;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.github.neone35.enalyzer.R;
-import com.github.neone35.enalyzer.main.codes.CodeCategoryListFragment.OnCodeCategoryListListener;
+import com.github.neone35.enalyzer.ui.main.codes.CodeCategoryListFragment.OnCodeCategoryListListener;
 import com.github.neone35.enalyzer.dummy.DummyContent.DummyItem;
 
 import java.util.List;

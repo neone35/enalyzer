@@ -1,4 +1,4 @@
-package com.github.neone35.enalyzer.additive;
+package com.github.neone35.enalyzer.ui.additive;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.github.neone35.enalyzer.R;
-import com.github.neone35.enalyzer.main.MainActivity;
+import com.github.neone35.enalyzer.ui.main.MainActivity;
 import com.orhanobut.logger.Logger;
 
 import butterknife.BindView;

@@ -1,6 +1,10 @@
-package com.github.neone35.enalyzer.scan;
+package com.github.neone35.enalyzer.ui.scan;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
+import android.content.Context;
 import android.net.Uri;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -17,6 +21,19 @@ public class ScanActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan);
         ButterKnife.bind(this);
+
+        askForScanShortcutPin();
+    }
+
+    private void askForScanShortcutPin() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Context ctx = ScanActivity.this;
+            AppWidgetManager appWidgetManager = ctx.getSystemService(AppWidgetManager.class);
+            ComponentName scanShortcutWidgetProvider = new ComponentName(ctx, ScanShortcutWidgetProvider.class);
+            if (appWidgetManager != null && appWidgetManager.isRequestPinAppWidgetSupported()) {
+                appWidgetManager.requestPinAppWidget(scanShortcutWidgetProvider, null, null);
+            }
+        }
     }
 
     @Override

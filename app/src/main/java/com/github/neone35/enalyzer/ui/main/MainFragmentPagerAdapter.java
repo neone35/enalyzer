@@ -1,12 +1,12 @@
-package com.github.neone35.enalyzer.main;
+package com.github.neone35.enalyzer.ui.main;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.github.neone35.enalyzer.main.codes.CodeFragment;
-import com.github.neone35.enalyzer.main.scans.ScanFragment;
+import com.github.neone35.enalyzer.ui.main.codes.CodeFragment;
+import com.github.neone35.enalyzer.ui.main.scans.ScanFragment;
 
 public class MainFragmentPagerAdapter extends FragmentPagerAdapter {
     private final int PAGE_COUNT = 2;

@@ -1,7 +1,8 @@
-package com.github.neone35.enalyzer.main.codes;
+package com.github.neone35.enalyzer.ui.main.scans;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,24 +18,25 @@ import com.github.neone35.enalyzer.dummy.DummyContent.DummyItem;
 /**
  * A fragment representing a list of Items.
  * <p/>
- * Activities containing this fragment MUST implement the {@link OnCodeDetailListListener}
+ * Activities containing this fragment MUST implement the {@link OnScanPhotoListListener}
  * interface.
  */
-public class CodeDetailListFragment extends Fragment {
+public class ScanPhotoListFragment extends Fragment {
 
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 2;
-    private OnCodeDetailListListener mListener;
+    private OnScanPhotoListListener mListener;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public CodeDetailListFragment() {
+    public ScanPhotoListFragment() {
     }
 
-    public static CodeDetailListFragment newInstance(int columnCount) {
-        CodeDetailListFragment fragment = new CodeDetailListFragment();
+    @SuppressWarnings("unused")
+    public static ScanPhotoListFragment newInstance(int columnCount) {
+        ScanPhotoListFragment fragment = new ScanPhotoListFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -51,9 +53,9 @@ public class CodeDetailListFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_code_detail_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_scan_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -64,7 +66,7 @@ public class CodeDetailListFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new CodeDetailListAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new ScanPhotoListAdapter(DummyContent.ITEMS, mListener));
         }
         return view;
     }
@@ -73,11 +75,11 @@ public class CodeDetailListFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnCodeDetailListListener) {
-            mListener = (OnCodeDetailListListener) context;
+        if (context instanceof OnScanPhotoListListener) {
+            mListener = (OnScanPhotoListListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnCodeDetailListListener");
+                    + " must implement OnScanDetailListListener");
         }
     }
 
@@ -97,7 +99,7 @@ public class CodeDetailListFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnCodeDetailListListener {
-        void onCodeDetailListInteraction(DummyItem item);
+    public interface OnScanPhotoListListener {
+        void onScanListInteraction(DummyItem item);
     }
 }

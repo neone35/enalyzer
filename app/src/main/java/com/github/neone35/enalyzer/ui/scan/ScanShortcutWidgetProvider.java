@@ -1,10 +1,11 @@
-package com.github.neone35.enalyzer.scan;
+package com.github.neone35.enalyzer.ui.scan;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.widget.RemoteViews;
 
 import com.github.neone35.enalyzer.R;

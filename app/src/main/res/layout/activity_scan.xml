@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".scan.ScanActivity">
+    tools:context=".ui.scan.ScanActivity">
 
     <fragment
         android:id="@+id/frag_scan_camera"
-        android:name="com.github.neone35.enalyzer.scan.ScanCameraFragment"
+        android:name="com.github.neone35.enalyzer.ui.scan.ScanCameraFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         tools:layout="@layout/fragment_scan_camera"
@@ -26,7 +26,7 @@
 
     <fragment
         android:id="@+id/frag_scan_chips"
-        android:name="com.github.neone35.enalyzer.scan.ScanChipsFragment"
+        android:name="com.github.neone35.enalyzer.ui.scan.ScanChipsFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         tools:layout="@layout/fragment_scan_chips"

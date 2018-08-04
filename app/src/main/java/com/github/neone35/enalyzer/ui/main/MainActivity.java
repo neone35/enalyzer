@@ -1,7 +1,8 @@
-package com.github.neone35.enalyzer.main;
+package com.github.neone35.enalyzer.ui.main;
 
 import android.animation.ObjectAnimator;
 import android.app.ActivityOptions;
+import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,14 +18,14 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.github.neone35.enalyzer.scan.ScanActivity;
-import com.github.neone35.enalyzer.additive.AdditiveActivity;
+import com.github.neone35.enalyzer.ui.scan.ScanActivity;
+import com.github.neone35.enalyzer.ui.additive.AdditiveActivity;
 import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.dummy.DummyContent;
-import com.github.neone35.enalyzer.main.codes.CodeCategoryListFragment;
-import com.github.neone35.enalyzer.main.codes.CodeDetailListFragment;
-import com.github.neone35.enalyzer.main.scans.ScanDetailListFragment;
-import com.github.neone35.enalyzer.main.scans.ScanPhotoListFragment;
+import com.github.neone35.enalyzer.ui.main.codes.CodeCategoryListFragment;
+import com.github.neone35.enalyzer.ui.main.codes.CodeDetailListFragment;
+import com.github.neone35.enalyzer.ui.main.scans.ScanDetailListFragment;
+import com.github.neone35.enalyzer.ui.main.scans.ScanPhotoListFragment;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;

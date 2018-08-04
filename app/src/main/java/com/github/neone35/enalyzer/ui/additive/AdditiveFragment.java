@@ -1,4 +1,4 @@
-package com.github.neone35.enalyzer.additive;
+package com.github.neone35.enalyzer.ui.additive;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.neone35.enalyzer.R;
-import com.github.neone35.enalyzer.main.MainActivity;
+import com.github.neone35.enalyzer.ui.main.MainActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

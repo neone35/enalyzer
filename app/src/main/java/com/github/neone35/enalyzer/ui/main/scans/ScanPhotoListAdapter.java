@@ -1,4 +1,4 @@
-package com.github.neone35.enalyzer.main.scans;
+package com.github.neone35.enalyzer.ui.main.scans;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.neone35.enalyzer.R;
-import com.github.neone35.enalyzer.main.scans.ScanPhotoListFragment.OnScanPhotoListListener;
+import com.github.neone35.enalyzer.ui.main.scans.ScanPhotoListFragment.OnScanPhotoListListener;
 import com.github.neone35.enalyzer.dummy.DummyContent.DummyItem;
 
 import java.util.List;

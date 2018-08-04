@@ -1,4 +1,4 @@
-package com.github.neone35.enalyzer.main.scans;
+package com.github.neone35.enalyzer.ui.main.scans;
 
 import android.content.Context;
 import android.os.Bundle;

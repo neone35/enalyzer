@@ -1,4 +1,4 @@
-package com.github.neone35.enalyzer.additive;
+package com.github.neone35.enalyzer.ui.additive;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.dummy.DummyContent;
+import com.github.neone35.enalyzer.ui.additive.HazardStatementListAdapter;
 
 public class HazardStatementListFragment extends Fragment {
 

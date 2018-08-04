@@ -5,5 +5,5 @@
     android:name="com.github.neone35.enalyzer.ScanDetailListFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".main.scans.ScanDetailListFragment"
+    tools:context=".ui.main.scans.ScanDetailListFragment"
     tools:listitem="@layout/fragment_scan_detail_item" />
