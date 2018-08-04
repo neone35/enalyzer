@@ -42,6 +42,20 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".main.MainActivity" />
         </activity>
-    </application>
 
+        <!-- receive system broadcasts for this widget update -->
+        <!-- has 5s restriction, long running tasks should be in service -->
+        <receiver
+            android:name=".scan.ScanShortcutWidgetProvider"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/widget_scan_shorctut">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_scan_shortcut_info" />
+        </receiver>
+
+    </application>
 </manifest>

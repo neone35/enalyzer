@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?><!-- 40dp = 1 cell, +70dp +1 cell -->
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:initialLayout="@layout/widget_scan_shortcut_layout"
+    android:minHeight="40dp"
+    android:minWidth="40dp"
+    android:minResizeHeight="40dp"
+    android:minResizeWidth="40dp"
+    android:previewImage="@drawable/ic_widget_scan_shortcut"
+    android:resizeMode="vertical|horizontal"
+    android:updatePeriodMillis="1800000" />
+
