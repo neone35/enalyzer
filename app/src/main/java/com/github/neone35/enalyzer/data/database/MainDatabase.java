@@ -13,7 +13,7 @@ import com.orhanobut.logger.Logger;
 
 // version number needs to be incremented if schema models change
 @Database(entities = {Additive.class, ScanPhoto.class, CodeCategory.class}, version = 1)
-@TypeConverters({RoomConverters.class})
+@TypeConverters({MainConverters.class})
 public abstract class MainDatabase extends RoomDatabase {
 
     private static final String DATABASE_NAME = "mainDB";

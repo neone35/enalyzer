@@ -29,4 +29,64 @@ public class Additive {
     @ColumnInfo(name = "hazards")
     private List<Hazard> hazard;
 
+    // Constructor used by Room to create Recipes
+    public Additive(int ecode, String wikiDataID, String wikiEditDate, String pubchemID,
+                    String description, String category, String formula, String imageURL,
+                    List<String> knownAs, List<String> ghsPictogramURL, List<Hazard> hazard) {
+        this.ecode = ecode;
+        this.wikiDataID = wikiDataID;
+        this.wikiEditDate = wikiEditDate;
+        this.pubchemID = pubchemID;
+        this.description = description;
+        this.category = category;
+        this.formula = formula;
+        this.imageURL = imageURL;
+        this.knownAs = knownAs;
+        this.ghsPictogramURL = ghsPictogramURL;
+        this.hazard = hazard;
+    }
+
+    public int getEcode() {
+        return ecode;
+    }
+
+    public String getWikiDataID() {
+        return wikiDataID;
+    }
+
+    public String getWikiEditDate() {
+        return wikiEditDate;
+    }
+
+    public String getPubchemID() {
+        return pubchemID;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public String getFormula() {
+        return formula;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public List<String> getKnownAs() {
+        return knownAs;
+    }
+
+    public List<String> getGhsPictogramURL() {
+        return ghsPictogramURL;
+    }
+
+    public List<Hazard> getHazard() {
+        return hazard;
+    }
 }
