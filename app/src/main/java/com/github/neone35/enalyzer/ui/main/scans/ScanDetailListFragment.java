@@ -99,6 +99,6 @@ public class ScanDetailListFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnScanDetailListListener {
-        void onScanDetailListInteraction(DummyItem item);
+        void onScanDetailListInteraction(String transitionName);
     }
 }

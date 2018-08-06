@@ -1,6 +1,8 @@
 package com.github.neone35.enalyzer.ui.main.codes;
 
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,7 @@ import com.github.neone35.enalyzer.dummy.DummyContent.DummyItem;
 
 import java.util.List;
 
+import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -40,11 +43,16 @@ public class CodeDetailListAdapter extends RecyclerView.Adapter<CodeDetailListAd
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
 
+        // assign transitionName to every recyclerView item
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            holder.ivPhoto.setTransitionName(holder.additiveImageTransitionName + position);
+        }
+
         holder.mView.setOnClickListener(v -> {
             if (null != mListener) {
                 // Notify the active callbacks interface (the activity, if the
                 // fragment is attached to one) that an item has been selected.
-                mListener.onCodeDetailListInteraction(holder.mItem);
+                mListener.onCodeDetailListInteraction(holder.additiveImageTransitionName + position);
             }
         });
     }
@@ -61,12 +69,13 @@ public class CodeDetailListAdapter extends RecyclerView.Adapter<CodeDetailListAd
         ImageView ivPhoto;
         @BindView(R.id.tv_code_detail_title)
         TextView tvPhotoTitle;
+        @BindString(R.string.additive_image_transition)
+        String additiveImageTransitionName;
 
         ViewHolder(View view) {
             super(view);
             mView = view;
-            ButterKnife.bind(view, ivPhoto);
-            ButterKnife.bind(view, tvPhotoTitle);
+            ButterKnife.bind(this, view);
         }
 
         @Override

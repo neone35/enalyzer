@@ -1,9 +1,7 @@
 package com.github.neone35.enalyzer.ui.main;
 
-import android.Manifest;
 import android.animation.ObjectAnimator;
 import android.app.ActivityOptions;
-import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
@@ -22,6 +21,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.github.neone35.enalyzer.ui.scan.ScanActivity;
@@ -62,6 +62,10 @@ public class MainActivity extends AppCompatActivity implements
 
     @BindString(R.string.app_name)
     String mAppName;
+    @BindString(R.string.photo_fab_transition)
+    String photoFabTransitionName;
+    @BindString(R.string.additive_image_transition)
+    String additiveImageTransitionName;
 
     public static final String SCANS_DETAIL = "scans_detail";
     public static final String CODES_DETAIL = "codes_detail";
@@ -69,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements
     public static final String KEY_PAGER_INSTRUCT_MOTION = "pager_motion";
     public static final String KEY_SELECTED_ECODE = "selected_ecode";
     public static final String KEY_TAB_SOURCE = "tab_source";
+    public static final String KEY_TRANSITION_NAME = "transition_name";
     public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 1;
     public static int ID_CAMERA_PERMISSION;
     public static int ID_EXTERNAL_STORAGE_PERMISSION;
@@ -229,41 +234,100 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     public void onBackPressed() {
         int currentPagePos = mViewPager.getCurrentItem();
-        int fragStackNum = mFragmentManager.getBackStackEntryCount();
         String currentPageTitle = Objects.requireNonNull(Objects.requireNonNull(
                 mViewPager.getAdapter()).getPageTitle(currentPagePos)).toString();
-        // if tab = scans && scans detail is shown
-        if (currentPageTitle.equals("Scans") && fragStackNum != 0) {
-            mFragmentManager.popBackStack(SCANS_DETAIL, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-            // if tab = codes && codes detail is shown
-        } else if (currentPageTitle.equals("Codes") && fragStackNum != 0) {
-            mFragmentManager.popBackStack(CODES_DETAIL, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-            // if tab = codes && back pressed, switch to scans tab
-        } else if (currentPageTitle.equals("Codes")) {
-            mViewPager.setCurrentItem(0, true);
-            // else do default operation
+        int fragStackNum = mFragmentManager.getBackStackEntryCount();
+        String lastEntryName = null;
+        if (fragStackNum != 0) {
+            lastEntryName = mFragmentManager.getBackStackEntryAt(fragStackNum - 1).getName();
+            /*Logger.d(fragStackNum);
+            Logger.d(currentPageTitle);
+            Logger.d(lastEntryName);*/
+        }
+
+        // both scans & codes details fragments are added to back stack
+        if (fragStackNum > 1) {
+            if (currentPageTitle.equals("Scans")) {
+                mFragmentManager.popBackStack(SCANS_DETAIL, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            } else if (currentPageTitle.equals("Codes")) {
+                mFragmentManager.popBackStack(CODES_DETAIL, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            }
+            // one (scans or codes) detail fragment is in back stack
+        } else if (fragStackNum == 1) {
+            // if tab = scans
+            if (currentPageTitle.equals("Scans")) {
+                // && backstack = scans
+                if (lastEntryName.equals(SCANS_DETAIL)) {
+                    mFragmentManager.popBackStack(SCANS_DETAIL, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    // && backstack = codes
+                } else if (lastEntryName.equals(CODES_DETAIL)) {
+                    // exit this activity
+                    finish();
+                }
+                // if tab = codes
+            } else if (currentPageTitle.equals("Codes")) {
+                // && backstack = codes
+                if (lastEntryName.equals(CODES_DETAIL)) {
+                    mFragmentManager.popBackStack(CODES_DETAIL, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                }
+                // && backstack = scans
+                else if (lastEntryName.equals(SCANS_DETAIL)) {
+                    // switch to 'scans' page
+                    mViewPager.setCurrentItem(0, true);
+                }
+                // if tab = codes && scan detail is shown
+            }
+            // no fragments found in back stack
         } else if (fragStackNum == 0) {
+            if (currentPageTitle.equals("Codes")) {
+                // switch to 'scans' page
+                mViewPager.setCurrentItem(0, true);
+            } else if (currentPageTitle.equals("Scans")) {
+                // exit this activity
+                finish();
+            }
+        } else {
             super.onBackPressed();
         }
     }
 
     private void startScanActivity() {
         Intent scanActivityIntent = new Intent(this, ScanActivity.class);
+        // start with transitions
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            startActivity(scanActivityIntent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+            ActivityOptionsCompat options = ActivityOptionsCompat.
+                    makeSceneTransitionAnimation(this, mAddFab, photoFabTransitionName);
+            startActivity(scanActivityIntent, options.toBundle());
+            // start without transitions
         } else {
             startActivity(scanActivityIntent);
         }
     }
 
-    private void startAdditiveActivity(String intentSourceKey) {
+    private void startAdditiveActivity(String tabSourceKey, String transitionName) {
         Intent additiveActivityIntent = new Intent(this, AdditiveActivity.class);
         Bundle additiveBundle = new Bundle();
         additiveBundle.putString(KEY_SELECTED_ECODE, "E221");
-        additiveBundle.putString(KEY_TAB_SOURCE, intentSourceKey);
+        additiveBundle.putString(KEY_TAB_SOURCE, tabSourceKey);
+        additiveBundle.putString(KEY_TRANSITION_NAME, transitionName);
         additiveActivityIntent.putExtras(additiveBundle);
+        // start with transitions
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            startActivity(additiveActivityIntent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+            // set shared element source
+            ImageView additivePhoto = null;
+            if (tabSourceKey.equals(CODES_DETAIL))
+                additivePhoto = findViewById(R.id.iv_code_detail_photo);
+            else if (tabSourceKey.equals(SCANS_DETAIL)) {
+                additivePhoto = findViewById(R.id.iv_scan_detail_photo);
+            }
+            // transition without shared elements
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this);
+            if (additivePhoto != null) {
+                // transition with shared elements
+                options = ActivityOptions.makeSceneTransitionAnimation(this, additivePhoto, transitionName);
+            }
+            startActivity(additiveActivityIntent, options.toBundle());
+            // start without transitions
         } else {
             startActivity(additiveActivityIntent);
         }
@@ -286,8 +350,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onScanDetailListInteraction(DummyContent.DummyItem item) {
-        startAdditiveActivity(SCANS_DETAIL);
+    public void onScanDetailListInteraction(String transitionName) {
+        startAdditiveActivity(SCANS_DETAIL, transitionName);
     }
 
     @Override
@@ -307,8 +371,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onCodeDetailListInteraction(DummyContent.DummyItem item) {
-        startAdditiveActivity(CODES_DETAIL);
+    public void onCodeDetailListInteraction(String transitionName) {
+        startAdditiveActivity(CODES_DETAIL, transitionName);
     }
 }
 

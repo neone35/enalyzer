@@ -1,6 +1,8 @@
 package com.github.neone35.enalyzer.ui.main.scans;
 
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +12,11 @@ import android.widget.TextView;
 
 import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.dummy.DummyContent.DummyItem;
+import com.orhanobut.logger.Logger;
 
 import java.util.List;
 
+import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -39,11 +43,17 @@ public class ScanDetailListAdapter extends RecyclerView.Adapter<ScanDetailListAd
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
 
+        // assign transitionName to every recyclerView item
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            holder.ivPhoto.setTransitionName(holder.additiveImageTransitionName + position);
+            Logger.d(holder.additiveImageTransitionName + position);
+        }
+
         holder.mView.setOnClickListener(v -> {
             if (null != mListener) {
                 // Notify the active callbacks interface (the activity, if the
                 // fragment is attached to one) that an item has been selected.
-                mListener.onScanDetailListInteraction(holder.mItem);
+                mListener.onScanDetailListInteraction(holder.additiveImageTransitionName + position);
             }
         });
     }
@@ -57,7 +67,7 @@ public class ScanDetailListAdapter extends RecyclerView.Adapter<ScanDetailListAd
         final View mView;
         DummyItem mItem;
         @BindView(R.id.iv_scan_detail_photo)
-        ImageView ivPhotoView;
+        ImageView ivPhoto;
         @BindView(R.id.tv_scan_detail_ecode)
         TextView tvEcode;
         @BindView(R.id.tv_scan_detail_category)
@@ -66,15 +76,13 @@ public class ScanDetailListAdapter extends RecyclerView.Adapter<ScanDetailListAd
         TextView tvNames;
         @BindView(R.id.iv_scan_detail_hazard)
         ImageView ivHazardView;
+        @BindString(R.string.additive_image_transition)
+        String additiveImageTransitionName;
 
         ViewHolder(View view) {
             super(view);
             mView = view;
-            ButterKnife.bind(view, ivPhotoView);
-            ButterKnife.bind(view, tvEcode);
-            ButterKnife.bind(view, tvCategory);
-            ButterKnife.bind(view, tvNames);
-            ButterKnife.bind(view, ivHazardView);
+            ButterKnife.bind(this, view);
         }
 
         @Override

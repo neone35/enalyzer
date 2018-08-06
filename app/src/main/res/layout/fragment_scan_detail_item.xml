@@ -30,6 +30,7 @@
                     android:id="@+id/iv_scan_detail_photo"
                     android:layout_width="0dp"
                     android:layout_height="150dp"
+                    android:transitionName="@string/additive_image_transition"
                     android:background="@drawable/round_rect_top_left"
                     android:contentDescription="@string/photo_of_ingredient_label"
                     android:scaleType="centerCrop"

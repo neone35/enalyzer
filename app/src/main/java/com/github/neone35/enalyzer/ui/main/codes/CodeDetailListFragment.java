@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 
 import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.dummy.DummyContent;
-import com.github.neone35.enalyzer.dummy.DummyContent.DummyItem;
 
 /**
  * A fragment representing a list of Items.
@@ -99,6 +98,6 @@ public class CodeDetailListFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnCodeDetailListListener {
-        void onCodeDetailListInteraction(DummyItem item);
+        void onCodeDetailListInteraction(String transitionName);
     }
 }

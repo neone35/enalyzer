@@ -2,9 +2,6 @@
     <string name="app_name">Enalyzer</string>
     <string name="photo_of_ingredient_label">Photo of ingredient label</string>
     <string name="enalyzer_logo_in_appbar">Enalyzer logo in AppBar</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="possible_hazards_of_current_additive">Possible hazards of current additive</string>
     <string name="additive_switch_prev"><![CDATA[< Previous]]></string>
     <string name="additive_switch_next"><![CDATA[Next >]]></string>

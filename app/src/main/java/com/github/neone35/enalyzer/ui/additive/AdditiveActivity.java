@@ -1,5 +1,6 @@
 package com.github.neone35.enalyzer.ui.additive;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
@@ -34,10 +35,14 @@ public class AdditiveActivity extends AppCompatActivity implements
         if (mainExtrasBundle != null) {
             String SELECTED_ECODE = mainExtrasBundle.getString(MainActivity.KEY_SELECTED_ECODE);
             String TAB_SOURCE = mainExtrasBundle.getString(MainActivity.KEY_TAB_SOURCE);
+            String TRANSITION_NAME = null;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                TRANSITION_NAME = mainExtrasBundle.getString(MainActivity.KEY_TRANSITION_NAME);
+            }
             // only create fragment if there was no configuration change
             if (savedInstanceState == null) {
                 // TODO: Send scanID or ecodeID with TAB_SOURCE
-                AdditiveFragment additiveFragment = AdditiveFragment.newInstance(SELECTED_ECODE, TAB_SOURCE);
+                AdditiveFragment additiveFragment = AdditiveFragment.newInstance(SELECTED_ECODE, TAB_SOURCE, TRANSITION_NAME);
                 mFragmentManager.beginTransaction()
                         .add(R.id.frag_additive, additiveFragment)
                         .commit();

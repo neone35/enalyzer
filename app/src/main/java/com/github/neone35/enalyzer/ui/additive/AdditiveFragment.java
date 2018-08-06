@@ -1,6 +1,7 @@
 package com.github.neone35.enalyzer.ui.additive;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.ui.main.MainActivity;
+import com.orhanobut.logger.Logger;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -50,16 +52,18 @@ public class AdditiveFragment extends Fragment {
 
     private String mSelectedEcode;
     private String mTabSource;
+    private String mTransitionName;
     private OnAdditiveFragmentListener mListener;
 
     public AdditiveFragment() {
     }
 
-    public static AdditiveFragment newInstance(String eCode, String tabSource) {
+    public static AdditiveFragment newInstance(String eCode, String tabSource, String transitionName) {
         AdditiveFragment fragment = new AdditiveFragment();
         Bundle args = new Bundle();
         args.putString(MainActivity.KEY_SELECTED_ECODE, eCode);
         args.putString(MainActivity.KEY_TAB_SOURCE, tabSource);
+        args.putString(MainActivity.KEY_TRANSITION_NAME, transitionName);
         fragment.setArguments(args);
         return fragment;
     }
@@ -70,6 +74,7 @@ public class AdditiveFragment extends Fragment {
         if (getArguments() != null) {
             mSelectedEcode = getArguments().getString(MainActivity.KEY_SELECTED_ECODE);
             mTabSource = getArguments().getString(MainActivity.KEY_TAB_SOURCE);
+            mTransitionName = getArguments().getString(MainActivity.KEY_TRANSITION_NAME);
         }
     }
 
@@ -79,8 +84,13 @@ public class AdditiveFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_additive, container, false);
         ButterKnife.bind(this, rootView);
-        scrollNestedScrollViewToTop(nsvAdditive);
+        // set transition name received from recyclerView adapter
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            ivAdditivePhoto.setTransitionName(mTransitionName);
+            Logger.d(mTransitionName);
+        }
 
+        scrollNestedScrollViewToTop(nsvAdditive);
         setupAdditiveSwitchButtons(null, btnPreviousAdditive, btnNextAdditive);
 
         return rootView;
