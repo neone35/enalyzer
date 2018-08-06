@@ -2,13 +2,17 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/fl_scan_camera_preview"
     android:layout_height="match_parent"
+    android:layout_weight="1"
     tools:context=".ui.scan.ScanCameraFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Hello scan camera" />
+    <ProgressBar
+        android:id="@+id/pb_camera_preview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Base.Widget.AppCompat.ProgressBar"
+        android:layout_gravity="center"
+        android:visibility="invisible" />
 
 </FrameLayout>

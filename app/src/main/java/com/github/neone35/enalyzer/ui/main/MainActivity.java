@@ -1,23 +1,29 @@
 package com.github.neone35.enalyzer.ui.main;
 
+import android.Manifest;
 import android.animation.ObjectAnimator;
 import android.app.ActivityOptions;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.github.neone35.enalyzer.ui.scan.ScanActivity;
 import com.github.neone35.enalyzer.ui.additive.AdditiveActivity;
 import com.github.neone35.enalyzer.R;
@@ -30,7 +36,9 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Objects;
 
 import butterknife.BindString;
@@ -61,6 +69,9 @@ public class MainActivity extends AppCompatActivity implements
     public static final String KEY_PAGER_INSTRUCT_MOTION = "pager_motion";
     public static final String KEY_SELECTED_ECODE = "selected_ecode";
     public static final String KEY_TAB_SOURCE = "tab_source";
+    public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 1;
+    public static int ID_CAMERA_PERMISSION;
+    public static int ID_EXTERNAL_STORAGE_PERMISSION;
     private FirebaseAnalytics mFirebaseAnalytics;
     private SharedPreferences mSettings;
     private FragmentManager mFragmentManager;
@@ -135,7 +146,10 @@ public class MainActivity extends AppCompatActivity implements
         });
 
         addFab.setOnClickListener(v -> {
-            startScanActivity();
+            checkAndRequestPermissions();
+            if (ID_CAMERA_PERMISSION == PackageManager.PERMISSION_GRANTED &&
+                    ID_EXTERNAL_STORAGE_PERMISSION == PackageManager.PERMISSION_GRANTED)
+                startScanActivity();
         });
     }
 
@@ -157,6 +171,51 @@ public class MainActivity extends AppCompatActivity implements
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt(KEY_TAB_POSITION, mTabLayout.getSelectedTabPosition());
+    }
+
+    private void checkAndRequestPermissions() {
+        ID_CAMERA_PERMISSION = ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA);
+        ID_EXTERNAL_STORAGE_PERMISSION = ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        List<String> listPermissionsNeeded = new ArrayList<>();
+
+        if (ID_CAMERA_PERMISSION != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(android.Manifest.permission.CAMERA);
+        }
+        if (ID_EXTERNAL_STORAGE_PERMISSION != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
+        if (!listPermissionsNeeded.isEmpty()) {
+            ActivityCompat.requestPermissions(this, listPermissionsNeeded.toArray
+                    (new String[listPermissionsNeeded.size()]), REQUEST_ID_MULTIPLE_PERMISSIONS);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_ID_MULTIPLE_PERMISSIONS: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+                    mAddFab.setEnabled(true);
+                    mAddFab.setAlpha(1f);
+                    final Handler handler = new Handler();
+                    handler.postDelayed(() ->
+                                    mAddFab.performClick(),
+                            1000);
+                } else {
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                    ToastUtils.showShort("Permissions denied. Limited functionality.");
+                    mAddFab.setEnabled(false);
+                    mAddFab.setAlpha(0.5f);
+                }
+            }
+            // other 'case' lines to check for other
+            // permissions this app might request.
+        }
     }
 
     @Override
