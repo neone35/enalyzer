@@ -328,6 +328,7 @@ public class MainActivity extends AppCompatActivity implements
             } catch (Exception e) {
                 // transition without shared elements
                 options = ActivityOptions.makeSceneTransitionAnimation(this);
+                e.printStackTrace();
             }
             additiveActivityIntent.putExtras(additiveBundle);
             startActivity(additiveActivityIntent, options.toBundle());

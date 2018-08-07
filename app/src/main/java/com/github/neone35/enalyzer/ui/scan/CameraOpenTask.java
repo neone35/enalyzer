@@ -23,7 +23,7 @@ public class CameraOpenTask extends AsyncTask<Void, Void, Camera> {
         Camera c = null;
         try {
             releaseCameraAndPreview();
-            c = Camera.open(0); // attempt to get a Camera instance
+            c = Camera.open(0); // attempt to get a back Camera instance
         } catch (Exception e) {
             // Camera is not available (in use or does not exist)
             mException = e;

@@ -33,7 +33,7 @@ public class ScanCameraFragment extends Fragment {
 
     private String mParam1;
     private OnScanCameraFragmentListener mListener;
-    private Camera mCamera;
+    public static Camera mCamera;
     private CameraPreview mPreview;
 
     public ScanCameraFragment() {
@@ -62,7 +62,6 @@ public class ScanCameraFragment extends Fragment {
         ButterKnife.bind(this, rootView);
 
         // Create an instance of Camera and set it on Preview
-        // If user allows the use of it
         startCameraPreview();
 
         return rootView;
