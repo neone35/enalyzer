@@ -2,7 +2,6 @@ package com.github.neone35.enalyzer.ui.main.scans;
 
 import android.os.Build;
 import android.support.annotation.NonNull;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +11,9 @@ import android.widget.TextView;
 
 import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.dummy.DummyContent.DummyItem;
-import com.orhanobut.logger.Logger;
+import com.github.neone35.enalyzer.ui.main.MainActivity;
 
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindString;
@@ -43,17 +43,21 @@ public class ScanDetailListAdapter extends RecyclerView.Adapter<ScanDetailListAd
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
 
-        // assign transitionName to every recyclerView item
+        // assign unique transition name to recyclerView item
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            holder.ivPhoto.setTransitionName(holder.additiveImageTransitionName + position);
-            Logger.d(holder.additiveImageTransitionName + position);
+            String photoTransitionName = holder.additiveImageTransitionName + position;
+            String ecodeTransitionName = holder.additiveEcodeTransitionName + position;
+            holder.ivPhoto.setTransitionName(photoTransitionName);
+            holder.tvEcode.setTransitionName(ecodeTransitionName);
         }
 
         holder.mView.setOnClickListener(v -> {
             if (null != mListener) {
-                // Notify the active callbacks interface (the activity, if the
-                // fragment is attached to one) that an item has been selected.
-                mListener.onScanDetailListInteraction(holder.additiveImageTransitionName + position);
+                // Pass transitionViews to AdditiveActivity through MainActivity callback
+                HashMap<String, View> transitionViews = new HashMap<String, View>();
+                transitionViews.put(MainActivity.KEY_PHOTO_TRANSITION_VIEW, holder.ivPhoto);
+                transitionViews.put(MainActivity.KEY_ECODE_TRANSITION_VIEW, holder.tvEcode);
+                mListener.onScanDetailListInteraction(transitionViews);
             }
         });
     }
@@ -78,6 +82,8 @@ public class ScanDetailListAdapter extends RecyclerView.Adapter<ScanDetailListAd
         ImageView ivHazardView;
         @BindString(R.string.additive_image_transition)
         String additiveImageTransitionName;
+        @BindString(R.string.additive_ecode_transition)
+        String additiveEcodeTransitionName;
 
         ViewHolder(View view) {
             super(view);

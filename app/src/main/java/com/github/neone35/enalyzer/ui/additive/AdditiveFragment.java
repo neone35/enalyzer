@@ -5,7 +5,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.NestedScrollView;
 import android.view.LayoutInflater;
@@ -52,18 +51,21 @@ public class AdditiveFragment extends Fragment {
 
     private String mSelectedEcode;
     private String mTabSource;
-    private String mTransitionName;
+    private String mPhotoTransitionName;
+    private String mEcodeTransitionName;
     private OnAdditiveFragmentListener mListener;
 
     public AdditiveFragment() {
     }
 
-    public static AdditiveFragment newInstance(String eCode, String tabSource, String transitionName) {
+    public static AdditiveFragment newInstance(String eCode, String tabSource,
+                                               String photoTransitionName, String ecodeTransitionName) {
         AdditiveFragment fragment = new AdditiveFragment();
         Bundle args = new Bundle();
         args.putString(MainActivity.KEY_SELECTED_ECODE, eCode);
         args.putString(MainActivity.KEY_TAB_SOURCE, tabSource);
-        args.putString(MainActivity.KEY_TRANSITION_NAME, transitionName);
+        args.putString(MainActivity.KEY_PHOTO_TRANSITION_VIEW, photoTransitionName);
+        args.putString(MainActivity.KEY_ECODE_TRANSITION_VIEW, ecodeTransitionName);
         fragment.setArguments(args);
         return fragment;
     }
@@ -74,7 +76,8 @@ public class AdditiveFragment extends Fragment {
         if (getArguments() != null) {
             mSelectedEcode = getArguments().getString(MainActivity.KEY_SELECTED_ECODE);
             mTabSource = getArguments().getString(MainActivity.KEY_TAB_SOURCE);
-            mTransitionName = getArguments().getString(MainActivity.KEY_TRANSITION_NAME);
+            mPhotoTransitionName = getArguments().getString(MainActivity.KEY_PHOTO_TRANSITION_VIEW);
+            mEcodeTransitionName = getArguments().getString(MainActivity.KEY_ECODE_TRANSITION_VIEW);
         }
     }
 
@@ -84,10 +87,10 @@ public class AdditiveFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_additive, container, false);
         ButterKnife.bind(this, rootView);
-        // set transition name received from recyclerView adapter
+        // set transition names received from recyclerView adapter
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            ivAdditivePhoto.setTransitionName(mTransitionName);
-            Logger.d(mTransitionName);
+            ivAdditivePhoto.setTransitionName(mPhotoTransitionName);
+            tvAdditiveCode.setTransitionName(mEcodeTransitionName);
         }
 
         scrollNestedScrollViewToTop(nsvAdditive);

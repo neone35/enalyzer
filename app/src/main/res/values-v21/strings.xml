@@ -2,4 +2,5 @@
 <resources>
     <string name="photo_fab_transition">photo_fab</string>
     <string name="additive_image_transition">additive_image_transition</string>
+    <string name="additive_ecode_transition">additive_ecode_transition</string>
 </resources>

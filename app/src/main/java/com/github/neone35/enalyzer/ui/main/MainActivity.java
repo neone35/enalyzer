@@ -20,8 +20,10 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.github.neone35.enalyzer.ui.scan.ScanActivity;
@@ -38,6 +40,7 @@ import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -64,8 +67,6 @@ public class MainActivity extends AppCompatActivity implements
     String mAppName;
     @BindString(R.string.photo_fab_transition)
     String photoFabTransitionName;
-    @BindString(R.string.additive_image_transition)
-    String additiveImageTransitionName;
 
     public static final String SCANS_DETAIL = "scans_detail";
     public static final String CODES_DETAIL = "codes_detail";
@@ -73,7 +74,8 @@ public class MainActivity extends AppCompatActivity implements
     public static final String KEY_PAGER_INSTRUCT_MOTION = "pager_motion";
     public static final String KEY_SELECTED_ECODE = "selected_ecode";
     public static final String KEY_TAB_SOURCE = "tab_source";
-    public static final String KEY_TRANSITION_NAME = "transition_name";
+    public static String KEY_PHOTO_TRANSITION_VIEW = "photo_transition";
+    public static String KEY_ECODE_TRANSITION_VIEW = "ecode_transition";
     public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 1;
     public static int ID_CAMERA_PERMISSION;
     public static int ID_EXTERNAL_STORAGE_PERMISSION;
@@ -304,31 +306,34 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-    private void startAdditiveActivity(String tabSourceKey, String transitionName) {
+    private void startAdditiveActivity(String tabSourceKey, HashMap<String, View> transitionViews) {
         Intent additiveActivityIntent = new Intent(this, AdditiveActivity.class);
         Bundle additiveBundle = new Bundle();
         additiveBundle.putString(KEY_SELECTED_ECODE, "E221");
         additiveBundle.putString(KEY_TAB_SOURCE, tabSourceKey);
-        additiveBundle.putString(KEY_TRANSITION_NAME, transitionName);
-        additiveActivityIntent.putExtras(additiveBundle);
         // start with transitions
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            // set shared element source
-            ImageView additivePhoto = null;
-            if (tabSourceKey.equals(CODES_DETAIL))
-                additivePhoto = findViewById(R.id.iv_code_detail_photo);
-            else if (tabSourceKey.equals(SCANS_DETAIL)) {
-                additivePhoto = findViewById(R.id.iv_scan_detail_photo);
-            }
-            // transition without shared elements
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this);
-            if (additivePhoto != null) {
+            ActivityOptions options;
+            try {
                 // transition with shared elements
-                options = ActivityOptions.makeSceneTransitionAnimation(this, additivePhoto, transitionName);
+                ImageView ivPhoto = (ImageView) transitionViews.get(KEY_PHOTO_TRANSITION_VIEW);
+                TextView tvEcode = (TextView) transitionViews.get(KEY_ECODE_TRANSITION_VIEW);
+                String photoTransitionName = ivPhoto.getTransitionName();
+                String ecodeTransitionName = tvEcode.getTransitionName();
+                additiveBundle.putString(KEY_PHOTO_TRANSITION_VIEW, photoTransitionName);
+                additiveBundle.putString(KEY_ECODE_TRANSITION_VIEW, ecodeTransitionName);
+                options = ActivityOptions.makeSceneTransitionAnimation(this,
+                        Pair.create(ivPhoto, photoTransitionName),
+                        Pair.create(tvEcode, ecodeTransitionName));
+            } catch (Exception e) {
+                // transition without shared elements
+                options = ActivityOptions.makeSceneTransitionAnimation(this);
             }
+            additiveActivityIntent.putExtras(additiveBundle);
             startActivity(additiveActivityIntent, options.toBundle());
             // start without transitions
         } else {
+            additiveActivityIntent.putExtras(additiveBundle);
             startActivity(additiveActivityIntent);
         }
     }
@@ -350,8 +355,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onScanDetailListInteraction(String transitionName) {
-        startAdditiveActivity(SCANS_DETAIL, transitionName);
+    public void onScanDetailListInteraction(HashMap<String, View> transitionViews) {
+        startAdditiveActivity(SCANS_DETAIL, transitionViews);
     }
 
     @Override
@@ -371,8 +376,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onCodeDetailListInteraction(String transitionName) {
-        startAdditiveActivity(CODES_DETAIL, transitionName);
+    public void onCodeDetailListInteraction(HashMap<String, View> transitionViews) {
+        startAdditiveActivity(CODES_DETAIL, transitionViews);
     }
 }
 

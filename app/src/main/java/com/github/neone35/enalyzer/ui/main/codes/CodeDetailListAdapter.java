@@ -13,7 +13,10 @@ import android.widget.TextView;
 import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.dummy.DummyContent;
 import com.github.neone35.enalyzer.dummy.DummyContent.DummyItem;
+import com.github.neone35.enalyzer.ui.main.MainActivity;
+import com.orhanobut.logger.Logger;
 
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindString;
@@ -43,16 +46,21 @@ public class CodeDetailListAdapter extends RecyclerView.Adapter<CodeDetailListAd
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
 
-        // assign transitionName to every recyclerView item
+        // assign unique transition name to recyclerView item
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            holder.ivPhoto.setTransitionName(holder.additiveImageTransitionName + position);
+            String photoTransitionName = holder.additiveImageTransitionName + position;
+            String ecodeTransitionName = holder.additiveEcodeTransitionName + position;
+            holder.ivPhoto.setTransitionName(photoTransitionName);
+            holder.tvPhotoTitle.setTransitionName(ecodeTransitionName);
         }
 
         holder.mView.setOnClickListener(v -> {
             if (null != mListener) {
-                // Notify the active callbacks interface (the activity, if the
-                // fragment is attached to one) that an item has been selected.
-                mListener.onCodeDetailListInteraction(holder.additiveImageTransitionName + position);
+                // Pass transitionViews to AdditiveActivity through MainActivity callback
+                HashMap<String, View> transitionViews = new HashMap<String, View>();
+                transitionViews.put(MainActivity.KEY_PHOTO_TRANSITION_VIEW, holder.ivPhoto);
+                transitionViews.put(MainActivity.KEY_ECODE_TRANSITION_VIEW, holder.tvPhotoTitle);
+                mListener.onCodeDetailListInteraction(transitionViews);
             }
         });
     }
@@ -71,6 +79,8 @@ public class CodeDetailListAdapter extends RecyclerView.Adapter<CodeDetailListAd
         TextView tvPhotoTitle;
         @BindString(R.string.additive_image_transition)
         String additiveImageTransitionName;
+        @BindString(R.string.additive_ecode_transition)
+        String additiveEcodeTransitionName;
 
         ViewHolder(View view) {
             super(view);

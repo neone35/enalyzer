@@ -1,8 +1,6 @@
 package com.github.neone35.enalyzer.ui.additive;
 
-import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
@@ -10,7 +8,6 @@ import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.ui.main.MainActivity;
 import com.orhanobut.logger.Logger;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class AdditiveActivity extends AppCompatActivity implements
@@ -33,16 +30,15 @@ public class AdditiveActivity extends AppCompatActivity implements
         // check if intent bundle received successfully and setup view
         Bundle mainExtrasBundle = getIntent().getExtras();
         if (mainExtrasBundle != null) {
-            String SELECTED_ECODE = mainExtrasBundle.getString(MainActivity.KEY_SELECTED_ECODE);
-            String TAB_SOURCE = mainExtrasBundle.getString(MainActivity.KEY_TAB_SOURCE);
-            String TRANSITION_NAME = null;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                TRANSITION_NAME = mainExtrasBundle.getString(MainActivity.KEY_TRANSITION_NAME);
-            }
+            String selectedEcode = mainExtrasBundle.getString(MainActivity.KEY_SELECTED_ECODE);
+            String tabSource = mainExtrasBundle.getString(MainActivity.KEY_TAB_SOURCE);
+            String photoTransitionName = mainExtrasBundle.getString(MainActivity.KEY_PHOTO_TRANSITION_VIEW);
+            String ecodeTransitionName = mainExtrasBundle.getString(MainActivity.KEY_ECODE_TRANSITION_VIEW);
             // only create fragment if there was no configuration change
             if (savedInstanceState == null) {
-                // TODO: Send scanID or ecodeID with TAB_SOURCE
-                AdditiveFragment additiveFragment = AdditiveFragment.newInstance(SELECTED_ECODE, TAB_SOURCE, TRANSITION_NAME);
+                // TODO: Send scanID or ecodeID with tabSource
+                AdditiveFragment additiveFragment =
+                        AdditiveFragment.newInstance(selectedEcode, tabSource, photoTransitionName, ecodeTransitionName);
                 mFragmentManager.beginTransaction()
                         .add(R.id.frag_additive, additiveFragment)
                         .commit();

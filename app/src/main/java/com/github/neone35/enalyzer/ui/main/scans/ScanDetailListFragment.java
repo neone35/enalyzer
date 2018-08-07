@@ -13,7 +13,8 @@ import android.view.ViewGroup;
 
 import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.dummy.DummyContent;
-import com.github.neone35.enalyzer.dummy.DummyContent.DummyItem;
+
+import java.util.HashMap;
 
 /**
  * A fragment representing a list of Items.
@@ -99,6 +100,6 @@ public class ScanDetailListFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnScanDetailListListener {
-        void onScanDetailListInteraction(String transitionName);
+        void onScanDetailListInteraction(HashMap<String, View> transitionViews);
     }
 }
