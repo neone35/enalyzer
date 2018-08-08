@@ -24,6 +24,16 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.5" />
 
+    <ProgressBar
+        android:id="@+id/pb_scan"
+        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:indeterminate="true"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
     <fragment
         android:id="@+id/frag_scan_chips"
         android:name="com.github.neone35.enalyzer.ui.scan.ScanChipsFragment"
@@ -43,9 +53,9 @@
         android:layout_marginBottom="8dp"
         android:layout_marginStart="24dp"
         android:transitionName="@string/photo_fab_transition"
-        app:layout_constraintBottom_toTopOf="@+id/frag_scan_chips"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/frag_scan_chips" />
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
     <include
         android:id="@+id/inc_fab_done"
@@ -53,8 +63,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/frag_scan_chips"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/frag_scan_chips" />
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
 </android.support.constraint.ConstraintLayout>

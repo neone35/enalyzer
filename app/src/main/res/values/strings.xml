@@ -10,4 +10,6 @@
     <string name="scan_label">Scan label</string>
     <string name="widget_scan_shorctut">Scan shortcut</string>
     <string name="shortcut_to_enalyzer_scan_activity">Shortcut to enalyzer scan activity</string>
+    <string name="saving_file">Saving file…</string>
+    <string name="please_wait">Please wait…</string>
 </resources>
