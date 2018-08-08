@@ -3,12 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.scan.ScanChipsFragment">
+    tools:context=".ui.scan.ScanChipsListFragment">
 
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_chips_list"
+        android:name=".ui.scan.ScanChipsListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Hello scan chips" />
+        android:clipToPadding="false"
+        android:scrollbars="vertical"
+        android:paddingTop="40dp"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"
+        android:paddingBottom="12dp"
+        tools:listitem="@layout/fragment_scan_chips_item" />
 
 </FrameLayout>

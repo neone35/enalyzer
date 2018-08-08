@@ -1,0 +1,4304 @@
+{
+  "count": 502,
+  "tags": [
+    {
+      "url": "https://world.openfoodfacts.org/additive/e330-citric-acid",
+      "id": "en:e330",
+      "name": "E330 - Citric acid",
+      "products": 59920,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q159683"
+      ]
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e322-lecithins",
+      "id": "en:e322",
+      "name": "E322 - Lecithins",
+      "products": 38292,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q241595"
+      ]
+    },
+    {
+      "products": 32358,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q241595"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e322i-lecithin",
+      "id": "en:e322i",
+      "name": "E322i - Lecithin"
+    },
+    {
+      "products": 19916,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q410768"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e415-xanthan-gum",
+      "id": "en:e415",
+      "name": "E415 - Xanthan gum"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q416711"
+      ],
+      "products": 15598,
+      "name": "E471 - Mono- and diglycerides of fatty acids",
+      "id": "en:e471",
+      "url": "https://world.openfoodfacts.org/additive/e471-mono-and-diglycerides-of-fatty-acids"
+    },
+    {
+      "name": "E412 - Guar gum",
+      "url": "https://world.openfoodfacts.org/additive/e412-guar-gum",
+      "id": "en:e412",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q422071"
+      ],
+      "products": 15357
+    },
+    {
+      "products": 15085,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q190227"
+      ],
+      "id": "en:e500",
+      "url": "https://world.openfoodfacts.org/additive/e500-sodium-carbonates",
+      "name": "E500 - Sodium carbonates"
+    },
+    {
+      "name": "E202 - Potassium sorbate",
+      "id": "en:e202",
+      "url": "https://world.openfoodfacts.org/additive/e202-potassium-sorbate",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q410744"
+      ],
+      "products": 14094
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q193598"
+      ],
+      "products": 14084,
+      "name": "E300 - Ascorbic acid",
+      "url": "https://world.openfoodfacts.org/additive/e300-ascorbic-acid",
+      "id": "en:e300"
+    },
+    {
+      "id": "en:e407",
+      "url": "https://world.openfoodfacts.org/additive/e407-carrageenan",
+      "name": "E407 - Carrageenan",
+      "products": 13414,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q421991"
+      ]
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q188154"
+      ],
+      "products": 13255,
+      "name": "E440 - Pectins",
+      "url": "https://world.openfoodfacts.org/additive/e440-pectins",
+      "id": "en:e440"
+    },
+    {
+      "products": 13079,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q339975"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e250-sodium-nitrite",
+      "id": "en:e250",
+      "name": "E250 - Sodium nitrite"
+    },
+    {
+      "id": "en:e450",
+      "url": "https://world.openfoodfacts.org/additive/e450-diphosphates",
+      "name": "E450 - Diphosphates",
+      "products": 12605,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q290828"
+      ]
+    },
+    {
+      "name": "E150a - Plain caramel",
+      "url": "https://world.openfoodfacts.org/additive/e150a-plain-caramel",
+      "id": "en:e150a",
+      "products": 10429
+    },
+    {
+      "products": 10227,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q188154"
+      ],
+      "id": "en:e440i",
+      "url": "https://world.openfoodfacts.org/additive/e440i-pectin",
+      "name": "E440i - Pectin"
+    },
+    {
+      "products": 10163,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q6460572"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e331-sodium-citrates",
+      "id": "en:e331",
+      "name": "E331 - Sodium citrates"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q161249"
+      ],
+      "products": 9004,
+      "name": "E270 - Lactic acid",
+      "url": "https://world.openfoodfacts.org/additive/e270-lactic-acid",
+      "id": "en:e270"
+    },
+    {
+      "id": "en:e410",
+      "url": "https://world.openfoodfacts.org/additive/e410-locust-bean-gum",
+      "name": "E410 - Locust bean gum",
+      "products": 8959,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q221391"
+      ]
+    },
+    {
+      "products": 8925,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q419895"
+      ],
+      "id": "en:e129",
+      "url": "https://world.openfoodfacts.org/additive/e129-allura-red-ac",
+      "name": "E129 - Allura red ac"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q130365"
+      ],
+      "products": 8637,
+      "name": "E101 - Riboflavin",
+      "url": "https://world.openfoodfacts.org/additive/e101-riboflavin",
+      "id": "en:e101"
+    },
+    {
+      "products": 8613,
+      "id": "en:e375",
+      "url": "https://world.openfoodfacts.org/additive/e375-nicotinic-acid",
+      "name": "E375 - Nicotinic acid"
+    },
+    {
+      "products": 8502,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q190227"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e500ii-sodium-hydrogen-carbonate",
+      "id": "en:e500ii",
+      "name": "E500ii - Sodium hydrogen carbonate"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e14xx-modified-starch",
+      "id": "en:e14xx",
+      "name": "E14XX - Modified Starch",
+      "products": 8210
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q130365"
+      ],
+      "products": 8111,
+      "name": "E101i - Riboflavin",
+      "id": "en:e101i",
+      "url": "https://world.openfoodfacts.org/additive/e101i-riboflavin"
+    },
+    {
+      "products": 7689,
+      "id": "en:e428",
+      "url": "https://world.openfoodfacts.org/additive/e428-gelatine",
+      "name": "E428 - Gelatine"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q407158"
+      ],
+      "products": 7627,
+      "name": "E102 - Tartrazine",
+      "id": "en:e102",
+      "url": "https://world.openfoodfacts.org/additive/e102-tartrazine"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q179678"
+      ],
+      "products": 7430,
+      "name": "E621 - Monosodium glutamate",
+      "id": "en:e621",
+      "url": "https://world.openfoodfacts.org/additive/e621-monosodium-glutamate"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q420093"
+      ],
+      "products": 7377,
+      "name": "E133 - Brilliant blue FCF",
+      "id": "en:e133",
+      "url": "https://world.openfoodfacts.org/additive/e133-brilliant-blue-fcf"
+    },
+    {
+      "name": "E316 - Sodium erythorbate",
+      "url": "https://world.openfoodfacts.org/additive/e316-sodium-erythorbate",
+      "id": "en:e316",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q417003"
+      ],
+      "products": 6492
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q132501"
+      ],
+      "products": 6159,
+      "name": "E422 - Glycerol",
+      "id": "en:e422",
+      "url": "https://world.openfoodfacts.org/additive/e422-glycerol"
+    },
+    {
+      "id": "en:e211",
+      "url": "https://world.openfoodfacts.org/additive/e211-sodium-benzoate",
+      "name": "E211 - Sodium benzoate",
+      "products": 5912,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q423971"
+      ]
+    },
+    {
+      "name": "E296 - Malic acid",
+      "url": "https://world.openfoodfacts.org/additive/e296-malic-acid",
+      "id": "en:e296",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q190143"
+      ],
+      "products": 5685
+    },
+    {
+      "products": 5363,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q245280"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e420-sorbitol",
+      "id": "en:e420",
+      "name": "E420 - Sorbitol"
+    },
+    {
+      "products": 5278,
+      "name": "E160b - Annatto",
+      "id": "en:e160b",
+      "url": "https://world.openfoodfacts.org/additive/e160b-annatto"
+    },
+    {
+      "name": "E160a - Alpha-carotene",
+      "id": "en:e160a",
+      "url": "https://world.openfoodfacts.org/additive/e160a-alpha-carotene",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q190156"
+      ],
+      "products": 5248
+    },
+    {
+      "products": 5120,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q535814"
+      ],
+      "id": "en:e414",
+      "url": "https://world.openfoodfacts.org/additive/e414-acacia-gum",
+      "name": "E414 - Acacia gum"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q424551"
+      ],
+      "products": 5106,
+      "name": "E301 - Sodium ascorbate",
+      "id": "en:e301",
+      "url": "https://world.openfoodfacts.org/additive/e301-sodium-ascorbate"
+    },
+    {
+      "name": "E339 - Sodium phosphates",
+      "url": "https://world.openfoodfacts.org/additive/e339-sodium-phosphates",
+      "id": "en:e339",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q3249706"
+      ],
+      "products": 5088
+    },
+    {
+      "name": "E341 - Calcium phosphates",
+      "id": "en:e341",
+      "url": "https://world.openfoodfacts.org/additive/e341-calcium-phosphates",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q426664"
+      ],
+      "products": 4961
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q410095"
+      ],
+      "products": 4894,
+      "name": "E110 - Sunset yellow FCF",
+      "url": "https://world.openfoodfacts.org/additive/e110-sunset-yellow-fcf",
+      "id": "en:e110"
+    },
+    {
+      "id": "en:e160c",
+      "url": "https://world.openfoodfacts.org/additive/e160c-paprika-extract",
+      "name": "E160c - Paprika extract",
+      "products": 4837
+    },
+    {
+      "name": "E955 - Sucralose",
+      "id": "en:e955",
+      "url": "https://world.openfoodfacts.org/additive/e955-sucralose",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q410209"
+      ],
+      "products": 4744
+    },
+    {
+      "products": 4483,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q411030"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e466-sodium-carboxy-methyl-cellulose",
+      "id": "en:e466",
+      "name": "E466 - Sodium carboxy methyl cellulose"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q132037"
+      ],
+      "products": 4323,
+      "name": "E950 - Acesulfame k",
+      "url": "https://world.openfoodfacts.org/additive/e950-acesulfame-k",
+      "id": "en:e950"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q339940"
+      ],
+      "products": 4271,
+      "name": "E262 - Sodium acetates",
+      "url": "https://world.openfoodfacts.org/additive/e262-sodium-acetates",
+      "id": "en:e262"
+    },
+    {
+      "products": 4244,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q193521"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e171-titanium-dioxide",
+      "id": "en:e171",
+      "name": "E171 - Titanium dioxide"
+    },
+    {
+      "name": "E503 - Ammonium carbonates",
+      "id": "en:e503",
+      "url": "https://world.openfoodfacts.org/additive/e503-ammonium-carbonates",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q204873"
+      ],
+      "products": 4214
+    },
+    {
+      "name": "E903 - Carnauba wax",
+      "id": "en:e903",
+      "url": "https://world.openfoodfacts.org/additive/e903-carnauba-wax",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q839494"
+      ],
+      "products": 4198
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q245280"
+      ],
+      "products": 3626,
+      "name": "E420i - Sorbitol",
+      "url": "https://world.openfoodfacts.org/additive/e420i-sorbitol",
+      "id": "en:e420i"
+    },
+    {
+      "name": "E120 - Cochineal",
+      "id": "en:e120",
+      "url": "https://world.openfoodfacts.org/additive/e120-cochineal",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q416860"
+      ],
+      "products": 3582
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q306135"
+      ],
+      "products": 3253,
+      "name": "E160ai - Beta-carotene",
+      "id": "en:e160ai",
+      "url": "https://world.openfoodfacts.org/additive/e160ai-beta-carotene"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q11867365"
+      ],
+      "products": 3135,
+      "name": "E452 - Polyphosphates",
+      "url": "https://world.openfoodfacts.org/additive/e452-polyphosphates",
+      "id": "en:e452"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q417394"
+      ],
+      "products": 3092,
+      "name": "E282 - Calcium propionate",
+      "url": "https://world.openfoodfacts.org/additive/e282-calcium-propionate",
+      "id": "en:e282"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e100-curcumin",
+      "id": "en:e100",
+      "name": "E100 - Curcumin",
+      "products": 2962
+    },
+    {
+      "products": 2877,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q407131"
+      ],
+      "id": "en:e200",
+      "url": "https://world.openfoodfacts.org/additive/e200-sorbic-acid",
+      "name": "E200 - Sorbic acid"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e451-triphosphates",
+      "id": "en:e451",
+      "name": "E451 - Triphosphates",
+      "products": 2858,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q29145"
+      ]
+    },
+    {
+      "id": "en:e341i",
+      "url": "https://world.openfoodfacts.org/additive/e341i-monocalcium-phosphate",
+      "name": "E341i - Monocalcium phosphate",
+      "products": 2788,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q426664"
+      ]
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q182040"
+      ],
+      "products": 2712,
+      "name": "E951 - Aspartame",
+      "url": "https://world.openfoodfacts.org/additive/e951-aspartame",
+      "id": "en:e951"
+    },
+    {
+      "name": "E1400 - Dextrin",
+      "url": "https://world.openfoodfacts.org/additive/e1400-dextrin",
+      "id": "en:e1400",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q191978"
+      ],
+      "products": 2578
+    },
+    {
+      "products": 2555,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q177836"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e252-potassium-nitrate",
+      "id": "en:e252",
+      "name": "E252 - Potassium nitrate"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e627-disodium-guanylate",
+      "id": "en:e627",
+      "name": "E627 - Disodium guanylate",
+      "products": 2485,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q905776"
+      ]
+    },
+    {
+      "name": "E340 - Potassium phosphates",
+      "id": "en:e340",
+      "url": "https://world.openfoodfacts.org/additive/e340-potassium-phosphates",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q3381491"
+      ],
+      "products": 2483
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q290828"
+      ],
+      "products": 2414,
+      "name": "E450i - Disodium diphosphate",
+      "id": "en:e450i",
+      "url": "https://world.openfoodfacts.org/additive/e450i-disodium-diphosphate"
+    },
+    {
+      "products": 2378,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q1187513"
+      ],
+      "id": "en:e401",
+      "url": "https://world.openfoodfacts.org/additive/e401-sodium-alginate",
+      "name": "E401 - Sodium alginate"
+    },
+    {
+      "products": 2330,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18967194"
+      ],
+      "id": "en:e385",
+      "url": "https://world.openfoodfacts.org/additive/e385-calcium-disodium-ethylenediaminetetraacetate",
+      "name": "E385 - Calcium disodium ethylenediaminetetraacetate"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q80294"
+      ],
+      "products": 2319,
+      "name": "E460 - Cellulose",
+      "url": "https://world.openfoodfacts.org/additive/e460-cellulose",
+      "id": "en:e460"
+    },
+    {
+      "products": 2287,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q905782"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e631-disodium-inosinate",
+      "id": "en:e631",
+      "name": "E631 - Disodium inosinate"
+    },
+    {
+      "products": 2264,
+      "name": "E160 - Carotene",
+      "id": "en:e160",
+      "url": "https://world.openfoodfacts.org/additive/e160-carotene"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e326-potassium-lactate",
+      "id": "en:e326",
+      "name": "E326 - Potassium lactate",
+      "products": 2252,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q411342"
+      ]
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q416058"
+      ],
+      "products": 2214,
+      "name": "E481 - Sodium stearoyl-2-lactylate",
+      "url": "https://world.openfoodfacts.org/additive/e481-sodium-stearoyl-2-lactylate",
+      "id": "en:e481"
+    },
+    {
+      "name": "E223 - Sodium metabisulphite",
+      "url": "https://world.openfoodfacts.org/additive/e223-sodium-metabisulphite",
+      "id": "en:e223",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q284549"
+      ],
+      "products": 2212
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e472e-mono-and-diacetyltartaric-acid-esters-of-mono-and-diglycerides-of-fatty-acids",
+      "id": "en:e472e",
+      "name": "E472e - Mono- and diacetyltartaric acid esters of mono- and diglycerides of fatty acids",
+      "products": 2212
+    },
+    {
+      "products": 2210,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q420358"
+      ],
+      "id": "en:e433",
+      "url": "https://world.openfoodfacts.org/additive/e433-polyoxyethylene-sorbitan-monooleate",
+      "name": "E433 - Polyoxyethylene sorbitan monooleate"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q5282"
+      ],
+      "products": 2151,
+      "name": "E220 - Sulphur dioxide",
+      "url": "https://world.openfoodfacts.org/additive/e220-sulphur-dioxide",
+      "id": "en:e220"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e262ii-sodium-diacetate",
+      "id": "en:e262ii",
+      "name": "E262ii - Sodium diacetate",
+      "products": 2110,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q339940"
+      ]
+    },
+    {
+      "products": 2039,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q184782"
+      ],
+      "id": "en:e338",
+      "url": "https://world.openfoodfacts.org/additive/e338-phosphoric-acid",
+      "name": "E338 - Phosphoric acid"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e260-acetic-acid",
+      "id": "en:e260",
+      "name": "E260 - Acetic acid",
+      "products": 2023,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q47512"
+      ]
+    },
+    {
+      "name": "E509 - Calcium chloride",
+      "id": "en:e509",
+      "url": "https://world.openfoodfacts.org/additive/e509-calcium-chloride",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q208451"
+      ],
+      "products": 1938
+    },
+    {
+      "products": 1873,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q3249706"
+      ],
+      "id": "en:e339ii",
+      "url": "https://world.openfoodfacts.org/additive/e339ii-disodium-phosphate",
+      "name": "E339ii - Disodium phosphate"
+    },
+    {
+      "products": 1859,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q417881"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e224-potassium-metabisulphite",
+      "id": "en:e224",
+      "name": "E224 - Potassium metabisulphite"
+    },
+    {
+      "id": "en:e235",
+      "url": "https://world.openfoodfacts.org/additive/e235-natamycin",
+      "name": "E235 - Natamycin",
+      "products": 1798,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q248466"
+      ]
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q418235"
+      ],
+      "products": 1732,
+      "name": "E325 - Sodium lactate",
+      "id": "en:e325",
+      "url": "https://world.openfoodfacts.org/additive/e325-sodium-lactate"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q168686"
+      ],
+      "products": 1702,
+      "name": "E476 - Polyglycerol polyricinoleate",
+      "id": "en:e476",
+      "url": "https://world.openfoodfacts.org/additive/e476-polyglycerol-polyricinoleate"
+    },
+    {
+      "name": "E321 - Butylated hydroxytoluene (bht)",
+      "url": "https://world.openfoodfacts.org/additive/e321-butylated-hydroxytoluene-bht",
+      "id": "en:e321",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q221945"
+      ],
+      "products": 1665
+    },
+    {
+      "products": 1576,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q3381491"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e340ii-dipotassium-phosphate",
+      "id": "en:e340ii",
+      "name": "E340ii - Dipotassium phosphate"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e212-potassium-benzoate",
+      "id": "en:e212",
+      "name": "E212 - Potassium benzoate",
+      "products": 1564,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q413611"
+      ]
+    },
+    {
+      "products": 1558,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q23767"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e170-calcium-carbonate",
+      "id": "en:e170",
+      "name": "E170 - Calcium carbonate"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e392-extracts-of-rosemary",
+      "id": "en:e392",
+      "name": "E392 - Extracts of rosemary",
+      "products": 1510
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q153"
+      ],
+      "products": 1477,
+      "name": "E1510 - Ethanon",
+      "url": "https://world.openfoodfacts.org/additive/e1510-ethanon",
+      "id": "en:e1510"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e445-glycerol-esters-of-wood-rosin",
+      "id": "en:e445",
+      "name": "E445 - Glycerol esters of wood rosin",
+      "products": 1465,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q836765"
+      ]
+    },
+    {
+      "products": 1463,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q423882"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e965-maltitol",
+      "id": "en:e965",
+      "name": "E965 - Maltitol"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e297-fumaric-acid",
+      "id": "en:e297",
+      "name": "E297 - Fumaric acid",
+      "products": 1460,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q139857"
+      ]
+    },
+    {
+      "products": 1457,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q262547"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e163-anthocyanins",
+      "id": "en:e163",
+      "name": "E163 - Anthocyanins"
+    },
+    {
+      "name": "E150d - Sulphite ammonia caramel",
+      "url": "https://world.openfoodfacts.org/additive/e150d-sulphite-ammonia-caramel",
+      "id": "en:e150d",
+      "products": 1454
+    },
+    {
+      "products": 1431,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q194322"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e334-l-tartaric-acid",
+      "id": "en:e334",
+      "name": "E334 - L(+)-tartaric acid"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q409401"
+      ],
+      "products": 1329,
+      "name": "E320 - Butylated hydroxyanisole (bha)",
+      "id": "en:e320",
+      "url": "https://world.openfoodfacts.org/additive/e320-butylated-hydroxyanisole-bha"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q2103104"
+      ],
+      "products": 1319,
+      "name": "E435 - Polyoxyethylene sorbitan monostearate",
+      "url": "https://world.openfoodfacts.org/additive/e435-polyoxyethylene-sorbitan-monostearate",
+      "id": "en:e435"
+    },
+    {
+      "name": "E541 - Sodium aluminium phosphate",
+      "url": "https://world.openfoodfacts.org/additive/e541-sodium-aluminium-phosphate",
+      "id": "en:e541",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q1220360"
+      ],
+      "products": 1314
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e307c-tocopherol",
+      "id": "en:e307c",
+      "name": "E307c - Tocopherol",
+      "products": 1312,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q158348"
+      ]
+    },
+    {
+      "products": 1274,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q204873"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e503ii-ammonium-hydrogen-carbonate",
+      "id": "en:e503ii",
+      "name": "E503ii - Ammonium hydrogen carbonate"
+    },
+    {
+      "id": "en:e406",
+      "url": "https://world.openfoodfacts.org/additive/e406-agar",
+      "name": "E406 - Agar",
+      "products": 1262,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q177998"
+      ]
+    },
+    {
+      "products": 1165,
+      "name": "E161b - Lutein",
+      "url": "https://world.openfoodfacts.org/additive/e161b-lutein",
+      "id": "en:e161b"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e306-tocopherol-rich-extract",
+      "id": "en:e306",
+      "name": "E306 - Tocopherol-rich extract",
+      "products": 1158,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q13081782"
+      ]
+    },
+    {
+      "name": "E290 - Carbon dioxide",
+      "id": "en:e290",
+      "url": "https://world.openfoodfacts.org/additive/e290-carbon-dioxide",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q1997"
+      ],
+      "products": 1155
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e965i-maltitol",
+      "id": "en:e965i",
+      "name": "E965i - Maltitol",
+      "products": 1131,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q423882"
+      ]
+    },
+    {
+      "products": 1109,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q419693"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e327-calcium-lactate",
+      "id": "en:e327",
+      "name": "E327 - Calcium lactate"
+    },
+    {
+      "products": 1101,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q407891"
+      ],
+      "id": "en:e222",
+      "url": "https://world.openfoodfacts.org/additive/e222-sodium-bisulphite",
+      "name": "E222 - Sodium bisulphite"
+    },
+    {
+      "name": "E901 - White and Yellow Beeswax",
+      "url": "https://world.openfoodfacts.org/additive/e901-white-and-yellow-beeswax",
+      "id": "en:e901",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q143739"
+      ],
+      "products": 1097
+    },
+    {
+      "products": 1088,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q116269"
+      ],
+      "id": "en:e551",
+      "url": "https://world.openfoodfacts.org/additive/e551-silicon-dioxide",
+      "name": "E551 - Silicon dioxide"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q158348"
+      ],
+      "products": 1018,
+      "name": "E307 - Alpha-tocopherol",
+      "id": "en:e307",
+      "url": "https://world.openfoodfacts.org/additive/e307-alpha-tocopherol"
+    },
+    {
+      "id": "en:e418",
+      "url": "https://world.openfoodfacts.org/additive/e418-gellan-gum",
+      "name": "E418 - Gellan gum",
+      "products": 1000,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q416694"
+      ]
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q190227"
+      ],
+      "products": 997,
+      "name": "E500i - Sodium carbonate",
+      "url": "https://world.openfoodfacts.org/additive/e500i-sodium-carbonate",
+      "id": "en:e500i"
+    },
+    {
+      "products": 973,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q429659"
+      ],
+      "id": "en:e904",
+      "url": "https://world.openfoodfacts.org/additive/e904-shellac",
+      "name": "E904 - Shellac"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q416713"
+      ],
+      "products": 966,
+      "name": "E572 - Magnesium stearate",
+      "id": "en:e572",
+      "url": "https://world.openfoodfacts.org/additive/e572-magnesium-stearate"
+    },
+    {
+      "products": 931,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q419921"
+      ],
+      "id": "en:e332",
+      "url": "https://world.openfoodfacts.org/additive/e332-potassium-citrates",
+      "name": "E332 - Potassium citrates"
+    },
+    {
+      "name": "E150 - Caramel",
+      "id": "en:e150",
+      "url": "https://world.openfoodfacts.org/additive/e150-caramel",
+      "products": 927
+    },
+    {
+      "products": 916,
+      "id": "en:e150c",
+      "url": "https://world.openfoodfacts.org/additive/e150c-ammonia-caramel",
+      "name": "E150c - Ammonia caramel"
+    },
+    {
+      "id": "en:e319",
+      "url": "https://world.openfoodfacts.org/additive/e319-tertiary-butylhydroquinone-tbhq",
+      "name": "E319 - Tertiary-butylhydroquinone (tbhq)",
+      "products": 910,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q662443"
+      ]
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q11867365"
+      ],
+      "products": 907,
+      "name": "E452vi - Sodium tripolyphosphate",
+      "id": "en:e452vi",
+      "url": "https://world.openfoodfacts.org/additive/e452vi-sodium-tripolyphosphate"
+    },
+    {
+      "products": 899,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q339940"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e262i-sodium-acetate",
+      "id": "en:e262i",
+      "name": "E262i - Sodium acetate"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q80294"
+      ],
+      "products": 891,
+      "name": "E460ii - Powdered cellulose",
+      "url": "https://world.openfoodfacts.org/additive/e460ii-powdered-cellulose",
+      "id": "en:e460ii"
+    },
+    {
+      "products": 817,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q420138"
+      ],
+      "id": "en:e162",
+      "url": "https://world.openfoodfacts.org/additive/e162-beetroot-red",
+      "name": "E162 - Beetroot red"
+    },
+    {
+      "id": "en:e575",
+      "url": "https://world.openfoodfacts.org/additive/e575-glucono-delta-lactone",
+      "name": "E575 - Glucono-delta-lactone",
+      "products": 816,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q114174"
+      ]
+    },
+    {
+      "name": "E502 - Carbonates",
+      "id": "en:e502",
+      "url": "https://world.openfoodfacts.org/additive/e502-carbonates",
+      "products": 811
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e141-copper-complexes-of-chlorophylls-and-chlorophyllins",
+      "id": "en:e141",
+      "name": "E141 - Copper complexes of chlorophylls and chlorophyllins",
+      "products": 805,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18967203"
+      ]
+    },
+    {
+      "name": "E461 - Methyl cellulose",
+      "url": "https://world.openfoodfacts.org/additive/e461-methyl-cellulose",
+      "id": "en:e461",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q416312"
+      ],
+      "products": 786
+    },
+    {
+      "products": 780,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q184630"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e508-potassium-chloride",
+      "id": "en:e508",
+      "name": "E508 - Potassium chloride"
+    },
+    {
+      "products": 778,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18967269"
+      ],
+      "id": "en:e1520",
+      "url": "https://world.openfoodfacts.org/additive/e1520-propylene-glycol",
+      "name": "E1520 - Propylene Glycol"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q184373"
+      ],
+      "products": 757,
+      "name": "E251 - Sodium nitrate",
+      "id": "en:e251",
+      "url": "https://world.openfoodfacts.org/additive/e251-sodium-nitrate"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q379885"
+      ],
+      "products": 752,
+      "name": "E501 - Potassium carbonates",
+      "id": "en:e501",
+      "url": "https://world.openfoodfacts.org/additive/e501-potassium-carbonates"
+    },
+    {
+      "name": "E570 - Fatty acids",
+      "url": "https://world.openfoodfacts.org/additive/e570-fatty-acids",
+      "id": "en:e570",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q61476"
+      ],
+      "products": 715
+    },
+    {
+      "products": 695,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q421291"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e579-ferrous-gluconate",
+      "id": "en:e579",
+      "name": "E579 - Ferrous gluconate"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e960-steviol-glycosides",
+      "id": "en:e960",
+      "name": "E960 - Steviol glycosides",
+      "products": 694,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q2805600"
+      ]
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q407258"
+      ],
+      "products": 687,
+      "name": "E516 - Calcium sulphate",
+      "url": "https://world.openfoodfacts.org/additive/e516-calcium-sulphate",
+      "id": "en:e516"
+    },
+    {
+      "id": "en:e333",
+      "url": "https://world.openfoodfacts.org/additive/e333-calcium-citrates",
+      "name": "E333 - Calcium citrates",
+      "products": 654,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q420280"
+      ]
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e472b-lactic-acid-esters-of-mono-and-diglycerides-of-fatty-acids",
+      "id": "en:e472b",
+      "name": "E472b - Lactic acid esters of mono- and diglycerides of fatty acids",
+      "products": 651
+    },
+    {
+      "name": "E1200 - Polydextrose",
+      "url": "https://world.openfoodfacts.org/additive/e1200-polydextrose",
+      "id": "en:e1200",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q424616"
+      ],
+      "products": 629
+    },
+    {
+      "id": "en:e304",
+      "url": "https://world.openfoodfacts.org/additive/e304-fatty-acid-esters-of-ascorbic-acid",
+      "name": "E304 - Fatty acid esters of ascorbic acid",
+      "products": 623,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q424521"
+      ]
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q6460572"
+      ],
+      "products": 617,
+      "name": "E331iii - Trisodium citrate",
+      "url": "https://world.openfoodfacts.org/additive/e331iii-trisodium-citrate",
+      "id": "en:e331iii"
+    },
+    {
+      "products": 604,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q273144"
+      ],
+      "id": "en:e1105",
+      "url": "https://world.openfoodfacts.org/additive/e1105-lysozyme",
+      "name": "E1105 - Lysozyme"
+    },
+    {
+      "name": "E407a - Processed eucheuma seaweed",
+      "url": "https://world.openfoodfacts.org/additive/e407a-processed-eucheuma-seaweed",
+      "id": "en:e407a",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q421991"
+      ],
+      "products": 582
+    },
+    {
+      "products": 572,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q420101"
+      ],
+      "id": "en:e127",
+      "url": "https://world.openfoodfacts.org/additive/e127-erythrosine",
+      "name": "E127 - Erythrosine"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q421873"
+      ],
+      "products": 564,
+      "name": "E968 - Erythritol",
+      "url": "https://world.openfoodfacts.org/additive/e968-erythritol",
+      "id": "en:e968"
+    },
+    {
+      "products": 564,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q245280"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e420ii-sorbitol-syrup",
+      "id": "en:e420ii",
+      "name": "E420ii - Sorbitol syrup"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q426664"
+      ],
+      "products": 561,
+      "name": "E341iii - Tricalcium phosphate",
+      "url": "https://world.openfoodfacts.org/additive/e341iii-tricalcium-phosphate",
+      "id": "en:e341iii"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18944671"
+      ],
+      "products": 560,
+      "name": "E153 - Vegetable carbon",
+      "id": "en:e153",
+      "url": "https://world.openfoodfacts.org/additive/e153-vegetable-carbon"
+    },
+    {
+      "id": "en:e965ii",
+      "url": "https://world.openfoodfacts.org/additive/e965ii-maltitol-syrup",
+      "name": "E965ii - Maltitol syrup",
+      "products": 556,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q423882"
+      ]
+    },
+    {
+      "name": "E341ii - Dicalcium phosphate",
+      "url": "https://world.openfoodfacts.org/additive/e341ii-dicalcium-phosphate",
+      "id": "en:e341ii",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q426664"
+      ],
+      "products": 537
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q212093"
+      ],
+      "products": 535,
+      "name": "E967 - Xylitol",
+      "url": "https://world.openfoodfacts.org/additive/e967-xylitol",
+      "id": "en:e967"
+    },
+    {
+      "products": 532,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q907898"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e491-sorbitan-monostearate",
+      "id": "en:e491",
+      "name": "E491 - Sorbitan monostearate"
+    },
+    {
+      "id": "en:e475",
+      "url": "https://world.openfoodfacts.org/additive/e475-polyglycerol-esters-of-fatty-acids",
+      "name": "E475 - Polyglycerol esters of fatty acids",
+      "products": 527,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q4037764"
+      ]
+    },
+    {
+      "id": "en:e450ii",
+      "url": "https://world.openfoodfacts.org/additive/e450ii-trisodium-diphosphate",
+      "name": "E450ii - Trisodium diphosphate",
+      "products": 500,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q290828"
+      ]
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q579764"
+      ],
+      "products": 495,
+      "name": "E905a - Mineral oil",
+      "id": "en:e905a",
+      "url": "https://world.openfoodfacts.org/additive/e905a-mineral-oil"
+    },
+    {
+      "name": "E450iii - Tetrasodium diphosphate",
+      "id": "en:e450iii",
+      "url": "https://world.openfoodfacts.org/additive/e450iii-tetrasodium-diphosphate",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q290828"
+      ],
+      "products": 482
+    },
+    {
+      "products": 474,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q412068"
+      ],
+      "id": "en:e953",
+      "url": "https://world.openfoodfacts.org/additive/e953-isomalt",
+      "name": "E953 - Isomalt"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e552-calcium-silicate",
+      "id": "en:e552",
+      "name": "E552 - Calcium silicate",
+      "products": 474,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q416365"
+      ]
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q419189"
+      ],
+      "products": 472,
+      "name": "E1103 - Invertase",
+      "id": "en:e1103",
+      "url": "https://world.openfoodfacts.org/additive/e1103-invertase"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q420087"
+      ],
+      "products": 465,
+      "name": "E131 - Patent blue v",
+      "url": "https://world.openfoodfacts.org/additive/e131-patent-blue-v",
+      "id": "en:e131"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q420130"
+      ],
+      "products": 442,
+      "name": "E281 - Sodium propionate",
+      "id": "en:e281",
+      "url": "https://world.openfoodfacts.org/additive/e281-sodium-propionate"
+    },
+    {
+      "products": 437,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q191831"
+      ],
+      "id": "en:e517",
+      "url": "https://world.openfoodfacts.org/additive/e517-ammonium-sulphate",
+      "name": "E517 - Ammonium sulphate"
+    },
+    {
+      "name": "E336 - Potassium tartrates",
+      "id": "en:e336",
+      "url": "https://world.openfoodfacts.org/additive/e336-potassium-tartrates",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q418064"
+      ],
+      "products": 435
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q423846"
+      ],
+      "products": 426,
+      "name": "E464 - Hydroxypropyl methyl cellulose",
+      "id": "en:e464",
+      "url": "https://world.openfoodfacts.org/additive/e464-hydroxypropyl-methyl-cellulose"
+    },
+    {
+      "products": 423,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q102769"
+      ],
+      "id": "en:e524",
+      "url": "https://world.openfoodfacts.org/additive/e524-sodium-hydroxide",
+      "name": "E524 - Sodium hydroxide"
+    },
+    {
+      "products": 413,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q15089452"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e417-tara-gum",
+      "id": "en:e417",
+      "name": "E417 - Tara gum"
+    },
+    {
+      "name": "E635 - Disodium 5'-ribonucleotide",
+      "id": "en:e635",
+      "url": "https://world.openfoodfacts.org/additive/e635-disodium-5-ribonucleotide",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18967210"
+      ],
+      "products": 408
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q17153"
+      ],
+      "products": 407,
+      "name": "E1100 - Alpha-Amylase",
+      "id": "en:e1100",
+      "url": "https://world.openfoodfacts.org/additive/e1100-alpha-amylase"
+    },
+    {
+      "products": 401,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q357415"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e355-adipic-acid",
+      "id": "en:e355",
+      "name": "E355 - Adipic acid"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e473-sucrose-esters-of-fatty-acids",
+      "id": "en:e473",
+      "name": "E473 - Sucrose esters of fatty acids",
+      "products": 383,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q32418"
+      ]
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q186474"
+      ],
+      "products": 374,
+      "name": "E920 - L-cysteine hydrochloride",
+      "id": "en:e920",
+      "url": "https://world.openfoodfacts.org/additive/e920-l-cysteine-hydrochloride"
+    },
+    {
+      "products": 357,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q2824457"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e1422-acetylated-distarch-adipate",
+      "id": "en:e1422",
+      "name": "E1422 - Acetylated distarch adipate"
+    },
+    {
+      "name": "E172 - Iron oxides and iron hydroxides",
+      "url": "https://world.openfoodfacts.org/additive/e172-iron-oxides-and-iron-hydroxides",
+      "id": "en:e172",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q3045754"
+      ],
+      "products": 352
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q11867365"
+      ],
+      "products": 345,
+      "name": "E452i - Sodium polyphosphate",
+      "id": "en:e452i",
+      "url": "https://world.openfoodfacts.org/additive/e452i-sodium-polyphosphate"
+    },
+    {
+      "name": "E339iii - Trisodium phosphate",
+      "id": "en:e339iii",
+      "url": "https://world.openfoodfacts.org/additive/e339iii-trisodium-phosphate",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q3249706"
+      ],
+      "products": 341
+    },
+    {
+      "name": "E503i - Ammonium carbonate",
+      "id": "en:e503i",
+      "url": "https://world.openfoodfacts.org/additive/e503i-ammonium-carbonate",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q204873"
+      ],
+      "products": 339
+    },
+    {
+      "id": "en:e501i",
+      "url": "https://world.openfoodfacts.org/additive/e501i-potassium-carbonate",
+      "name": "E501i - Potassium carbonate",
+      "products": 333,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q379885"
+      ]
+    },
+    {
+      "name": "E160e - Beta-apo-8′-carotenal (c30)",
+      "id": "en:e160e",
+      "url": "https://world.openfoodfacts.org/additive/e160e-beta-apo-8%E2%80%B2-carotenal-c30",
+      "products": 323
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e304i-ascorbyl-palmitate",
+      "id": "en:e304i",
+      "name": "E304i - Ascorbyl palmitate",
+      "products": 321,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q424521"
+      ]
+    },
+    {
+      "name": "E310 - Propyl gallate",
+      "id": "en:e310",
+      "url": "https://world.openfoodfacts.org/additive/e310-propyl-gallate",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q608726"
+      ],
+      "products": 321
+    },
+    {
+      "name": "E1442 - Hydroxypropyl distarch phosphate",
+      "url": "https://world.openfoodfacts.org/additive/e1442-hydroxypropyl-distarch-phosphate",
+      "id": "en:e1442",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q10528966"
+      ],
+      "products": 318
+    },
+    {
+      "products": 314,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q4164502"
+      ],
+      "id": "en:e443",
+      "url": "https://world.openfoodfacts.org/additive/e443-brominated-vegetable-oil",
+      "name": "E443 - Brominated vegetable oil"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q29145"
+      ],
+      "products": 305,
+      "name": "E451i - Pentasodium triphosphate",
+      "url": "https://world.openfoodfacts.org/additive/e451i-pentasodium-triphosphate",
+      "id": "en:e451i"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q413559"
+      ],
+      "products": 299,
+      "name": "E521 - Aluminium sodium sulphate",
+      "url": "https://world.openfoodfacts.org/additive/e521-aluminium-sodium-sulphate",
+      "id": "en:e521"
+    },
+    {
+      "products": 287,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q191381"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e954-saccharin-and-its-na",
+      "id": "en:e954",
+      "name": "E954 - Saccharin and its Na"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q181136"
+      ],
+      "products": 286,
+      "name": "E620 - Glutamic acid",
+      "id": "en:e620",
+      "url": "https://world.openfoodfacts.org/additive/e620-glutamic-acid"
+    },
+    {
+      "name": "E554 - Sodium aluminium silicate",
+      "url": "https://world.openfoodfacts.org/additive/e554-sodium-aluminium-silicate",
+      "id": "en:e554",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18967277"
+      ],
+      "products": 278
+    },
+    {
+      "products": 274,
+      "url": "https://world.openfoodfacts.org/additive/e472c-citric-acid-esters-of-mono-and-diglycerides-of-fatty-acids",
+      "id": "en:e472c",
+      "name": "E472c - Citric acid esters of mono- and diglycerides of fatty acids"
+    },
+    {
+      "id": "en:e150b",
+      "url": "https://world.openfoodfacts.org/additive/e150b-caustic-sulphite-caramel",
+      "name": "E150b - Caustic sulphite caramel",
+      "products": 273
+    },
+    {
+      "products": 270,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q80294"
+      ],
+      "id": "en:e460i",
+      "url": "https://world.openfoodfacts.org/additive/e460i-microcrystalline-cellulose",
+      "name": "E460i - Microcrystalline cellulose"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q407931"
+      ],
+      "products": 266,
+      "name": "E504 - Magnesium carbonates",
+      "url": "https://world.openfoodfacts.org/additive/e504-magnesium-carbonates",
+      "id": "en:e504"
+    },
+    {
+      "products": 264,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q424531"
+      ],
+      "id": "en:e315",
+      "url": "https://world.openfoodfacts.org/additive/e315-erythorbic-acid",
+      "name": "E315 - Erythorbic acid"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q836788"
+      ],
+      "products": 264,
+      "name": "E350 - Sodium malates",
+      "id": "en:e350",
+      "url": "https://world.openfoodfacts.org/additive/e350-sodium-malates"
+    },
+    {
+      "id": "en:e132",
+      "url": "https://world.openfoodfacts.org/additive/e132-indigotine",
+      "name": "E132 - Indigotine",
+      "products": 263,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q410120"
+      ]
+    },
+    {
+      "products": 254,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q2474785"
+      ],
+      "id": "en:e405",
+      "url": "https://world.openfoodfacts.org/additive/e405-propane-1-2-diol-alginate",
+      "name": "E405 - Propane-1‚2-diol alginate"
+    },
+    {
+      "products": 250,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q409251"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e263-calcium-acetate",
+      "id": "en:e263",
+      "name": "E263 - Calcium acetate"
+    },
+    {
+      "products": 250,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q423901"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e413-tragacanth",
+      "id": "en:e413",
+      "name": "E413 - Tragacanth"
+    },
+    {
+      "products": 250,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q407806"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e221-sodium-sulphite",
+      "id": "en:e221",
+      "name": "E221 - Sodium sulphite"
+    },
+    {
+      "name": "E492 - Sorbitan tristearate",
+      "id": "en:e492",
+      "url": "https://world.openfoodfacts.org/additive/e492-sorbitan-tristearate",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q1416224"
+      ],
+      "products": 240
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q407646"
+      ],
+      "products": 236,
+      "name": "E421 - Mannitol",
+      "url": "https://world.openfoodfacts.org/additive/e421-mannitol",
+      "id": "en:e421"
+    },
+    {
+      "products": 223,
+      "name": "E927a - Azodicarbonamide",
+      "url": "https://world.openfoodfacts.org/additive/e927a-azodicarbonamide",
+      "id": "en:e927a"
+    },
+    {
+      "name": "E952 - Cyclamic acid and its Na and Ca salts",
+      "id": "en:e952",
+      "url": "https://world.openfoodfacts.org/additive/e952-cyclamic-acid-and-its-na-and-ca-salts",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q2130929"
+      ],
+      "products": 216
+    },
+    {
+      "name": "E511 - Magnesium chloride",
+      "url": "https://world.openfoodfacts.org/additive/e511-magnesium-chloride",
+      "id": "en:e511",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q265414"
+      ],
+      "products": 215
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q94770"
+      ],
+      "products": 211,
+      "name": "E930 - Calcium peroxide",
+      "url": "https://world.openfoodfacts.org/additive/e930-calcium-peroxide",
+      "id": "en:e930"
+    },
+    {
+      "id": "en:e535",
+      "url": "https://world.openfoodfacts.org/additive/e535-sodium-ferrocyanide",
+      "name": "E535 - Sodium ferrocyanide",
+      "products": 209,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q418474"
+      ]
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q3381491"
+      ],
+      "products": 209,
+      "name": "E340i - Monopotassium phosphate",
+      "id": "en:e340i",
+      "url": "https://world.openfoodfacts.org/additive/e340i-monopotassium-phosphate"
+    },
+    {
+      "id": "en:e442",
+      "url": "https://world.openfoodfacts.org/additive/e442-ammonium-phosphatides",
+      "name": "E442 - Ammonium phosphatides",
+      "products": 206,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q695975"
+      ]
+    },
+    {
+      "products": 203,
+      "id": "en:e160aii",
+      "url": "https://world.openfoodfacts.org/additive/e160aii-plant-carotenes",
+      "name": "E160aii - Plant carotenes"
+    },
+    {
+      "id": "en:e444",
+      "url": "https://world.openfoodfacts.org/additive/e444-sucrose-acetate-isobutyrate",
+      "name": "E444 - Sucrose acetate isobutyrate",
+      "products": 202,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q410537"
+      ]
+    },
+    {
+      "id": "en:e140",
+      "url": "https://world.openfoodfacts.org/additive/e140-chlorophylls-and-chlorophyllins",
+      "name": "E140 - Chlorophylls and Chlorophyllins",
+      "products": 199,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q82182"
+      ]
+    },
+    {
+      "name": "E530 - Magnesium oxide",
+      "id": "en:e530",
+      "url": "https://world.openfoodfacts.org/additive/e530-magnesium-oxide",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q214769"
+      ],
+      "products": 197
+    },
+    {
+      "name": "E924a - Potassium bromate",
+      "id": "en:e924a",
+      "url": "https://world.openfoodfacts.org/additive/e924a-potassium-bromate",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q409241"
+      ],
+      "products": 196
+    },
+    {
+      "name": "E501ii - Potassium hydrogen carbonate",
+      "id": "en:e501ii",
+      "url": "https://world.openfoodfacts.org/additive/e501ii-potassium-hydrogen-carbonate",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q379885"
+      ],
+      "products": 196
+    },
+    {
+      "name": "E261 - Potassium acetate",
+      "url": "https://world.openfoodfacts.org/additive/e261-potassium-acetate",
+      "id": "en:e261",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q409199"
+      ],
+      "products": 193
+    },
+    {
+      "products": 191,
+      "name": "E472a - Acetic acid esters of mono- and diglycerides of fatty acids",
+      "id": "en:e472a",
+      "url": "https://world.openfoodfacts.org/additive/e472a-acetic-acid-esters-of-mono-and-diglycerides-of-fatty-acids"
+    },
+    {
+      "name": "E363 - Succinic acid",
+      "id": "en:e363",
+      "url": "https://world.openfoodfacts.org/additive/e363-succinic-acid",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q213050"
+      ],
+      "products": 178
+    },
+    {
+      "id": "en:e470b",
+      "url": "https://world.openfoodfacts.org/additive/e470b-magnesium-salts-of-fatty-acids",
+      "name": "E470b - Magnesium salts of fatty acids",
+      "products": 176
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q836793"
+      ],
+      "products": 174,
+      "name": "E585 - Ferrous lactate",
+      "url": "https://world.openfoodfacts.org/additive/e585-ferrous-lactate",
+      "id": "en:e585"
+    },
+    {
+      "products": 168,
+      "name": "E553b - Talc",
+      "url": "https://world.openfoodfacts.org/additive/e553b-talc",
+      "id": "en:e553b"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q212410"
+      ],
+      "products": 164,
+      "name": "E1101 - Protease",
+      "url": "https://world.openfoodfacts.org/additive/e1101-protease",
+      "id": "en:e1101"
+    },
+    {
+      "name": "E302 - Calcium ascorbate",
+      "id": "en:e302",
+      "url": "https://world.openfoodfacts.org/additive/e302-calcium-ascorbate",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q283033"
+      ],
+      "products": 150
+    },
+    {
+      "name": "E477 - Propane-1‚2-diol esters of fatty acids",
+      "id": "en:e477",
+      "url": "https://world.openfoodfacts.org/additive/e477-propane-1-2-diol-esters-of-fatty-acids",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18944660"
+      ],
+      "products": 148
+    },
+    {
+      "name": "E504i - Magnesium carbonate",
+      "id": "en:e504i",
+      "url": "https://world.openfoodfacts.org/additive/e504i-magnesium-carbonate",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q407931"
+      ],
+      "products": 145
+    },
+    {
+      "products": 144,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q191700"
+      ],
+      "id": "en:e210",
+      "url": "https://world.openfoodfacts.org/additive/e210-benzoic-acid",
+      "name": "E210 - Benzoic acid"
+    },
+    {
+      "products": 144,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q421857"
+      ],
+      "id": "en:e520",
+      "url": "https://world.openfoodfacts.org/additive/e520-aluminium-sulphate",
+      "name": "E520 - Aluminium sulphate"
+    },
+    {
+      "products": 143,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18967228"
+      ],
+      "id": "en:e640",
+      "url": "https://world.openfoodfacts.org/additive/e640-glycine-and-its-sodium-salt",
+      "name": "E640 - Glycine and its sodium salt"
+    },
+    {
+      "products": 142,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q3381491"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e340iii-tripotassium-phosphate",
+      "id": "en:e340iii",
+      "name": "E340iii - Tripotassium phosphate"
+    },
+    {
+      "id": "en:e1104",
+      "url": "https://world.openfoodfacts.org/additive/e1104-lipase",
+      "name": "E1104 - Lipase",
+      "products": 140,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q380967"
+      ]
+    },
+    {
+      "products": 134,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q384709"
+      ],
+      "id": "en:e124",
+      "url": "https://world.openfoodfacts.org/additive/e124-ponceau-4r",
+      "name": "E124 - Ponceau 4r"
+    },
+    {
+      "name": "E175 - Gold",
+      "url": "https://world.openfoodfacts.org/additive/e175-gold",
+      "id": "en:e175",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q897"
+      ],
+      "products": 126
+    },
+    {
+      "products": 122,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q836788"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e350ii-sodium-hydrogen-malate",
+      "id": "en:e350ii",
+      "name": "E350ii - Sodium hydrogen malate"
+    },
+    {
+      "id": "en:e122",
+      "url": "https://world.openfoodfacts.org/additive/e122-azorubine",
+      "name": "E122 - Azorubine",
+      "products": 121,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q409676"
+      ]
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e510-ammonium-chloride",
+      "id": "en:e510",
+      "name": "E510 - Ammonium chloride",
+      "products": 121
+    },
+    {
+      "products": 119,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q418057"
+      ],
+      "id": "en:e1505",
+      "url": "https://world.openfoodfacts.org/additive/e1505-triethyl-citrate",
+      "name": "E1505 - Triethyl citrate"
+    },
+    {
+      "name": "E280 - Propionic acid",
+      "id": "en:e280",
+      "url": "https://world.openfoodfacts.org/additive/e280-propionic-acid",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q422956"
+      ],
+      "products": 119
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18967203"
+      ],
+      "products": 117,
+      "name": "E141ii - Copper complexes of chlorophyllins",
+      "id": "en:e141ii",
+      "url": "https://world.openfoodfacts.org/additive/e141ii-copper-complexes-of-chlorophyllins"
+    },
+    {
+      "name": "E333iii - Tricalcium citrate",
+      "id": "en:e333iii",
+      "url": "https://world.openfoodfacts.org/additive/e333iii-tricalcium-citrate",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q420280"
+      ],
+      "products": 113
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e472-acid-esters-of-mono-and-diglycerides-of-fatty-acids",
+      "id": "en:e472",
+      "name": "E472 - Acid esters of mono- and diglycerides of fatty acids",
+      "products": 111
+    },
+    {
+      "name": "E574 - Gluconic acid",
+      "url": "https://world.openfoodfacts.org/additive/e574-gluconic-acid",
+      "id": "en:e574",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q407569"
+      ],
+      "products": 109
+    },
+    {
+      "products": 107,
+      "name": "E641 - E641 food additive",
+      "id": "en:e641",
+      "url": "https://world.openfoodfacts.org/additive/e641-e641-food-additive"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q82182"
+      ],
+      "products": 106,
+      "name": "E140i - Chlorophylls",
+      "id": "en:e140i",
+      "url": "https://world.openfoodfacts.org/additive/e140i-chlorophylls"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e343-magnesium-phosphates",
+      "id": "en:e343",
+      "name": "E343 - Magnesium phosphates",
+      "products": 103,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q2634889"
+      ]
+    },
+    {
+      "products": 103,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q414599"
+      ],
+      "id": "en:e917",
+      "url": "https://world.openfoodfacts.org/additive/e917-potassium-iodate",
+      "name": "E917 - Potassium iodate"
+    },
+    {
+      "id": "en:e942",
+      "url": "https://world.openfoodfacts.org/additive/e942-nitrous-oxide",
+      "name": "E942 - Nitrous oxide",
+      "products": 99,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q905750"
+      ]
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q418064"
+      ],
+      "products": 98,
+      "name": "E336i - Monopotassium tartrate",
+      "url": "https://world.openfoodfacts.org/additive/e336i-monopotassium-tartrate",
+      "id": "en:e336i"
+    },
+    {
+      "id": "en:e331i",
+      "url": "https://world.openfoodfacts.org/additive/e331i-monosodium-citrate",
+      "name": "E331i - Monosodium citrate",
+      "products": 95,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q6460572"
+      ]
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e640i-glycine",
+      "id": "en:e640i",
+      "name": "E640i - Glycine",
+      "products": 90,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18967228"
+      ]
+    },
+    {
+      "name": "E440ii - Amidated pectin",
+      "url": "https://world.openfoodfacts.org/additive/e440ii-amidated-pectin",
+      "id": "en:e440ii",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q188154"
+      ],
+      "products": 84
+    },
+    {
+      "products": 82,
+      "name": "E425 - Konjac",
+      "id": "en:e425",
+      "url": "https://world.openfoodfacts.org/additive/e425-konjac"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q422092"
+      ],
+      "products": 81,
+      "name": "E400 - Alginic acid",
+      "url": "https://world.openfoodfacts.org/additive/e400-alginic-acid",
+      "id": "en:e400"
+    },
+    {
+      "name": "E961 - Neotame",
+      "url": "https://world.openfoodfacts.org/additive/e961-neotame",
+      "id": "en:e961",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q415698"
+      ],
+      "products": 81
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q288266"
+      ],
+      "products": 79,
+      "name": "E518 - Magnesium sulphate",
+      "url": "https://world.openfoodfacts.org/additive/e518-magnesium-sulphate",
+      "id": "en:e518"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q2185998"
+      ],
+      "products": 74,
+      "name": "E916 - Calcium iodate",
+      "id": "en:e916",
+      "url": "https://world.openfoodfacts.org/additive/e916-calcium-iodate"
+    },
+    {
+      "id": "en:e242",
+      "url": "https://world.openfoodfacts.org/additive/e242-dimethyl-dicarbonate",
+      "name": "E242 - Dimethyl dicarbonate",
+      "products": 71,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q416985"
+      ]
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q420143"
+      ],
+      "products": 68,
+      "name": "E142 - Green s",
+      "url": "https://world.openfoodfacts.org/additive/e142-green-s",
+      "id": "en:e142"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q421167"
+      ],
+      "products": 67,
+      "name": "E416 - Karaya-gum",
+      "url": "https://world.openfoodfacts.org/additive/e416-karaya-gum",
+      "id": "en:e416"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q182849"
+      ],
+      "products": 67,
+      "name": "E526 - Calcium hydroxide",
+      "url": "https://world.openfoodfacts.org/additive/e526-calcium-hydroxide",
+      "id": "en:e526"
+    },
+    {
+      "name": "E525 - Potassium hydroxide",
+      "url": "https://world.openfoodfacts.org/additive/e525-potassium-hydroxide",
+      "id": "en:e525",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q132298"
+      ],
+      "products": 67
+    },
+    {
+      "products": 65,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q45044"
+      ],
+      "id": "en:e345",
+      "url": "https://world.openfoodfacts.org/additive/e345-magnesium-citrate",
+      "name": "E345 - Magnesium citrate"
+    },
+    {
+      "name": "E1412 - Distarch phosphate",
+      "id": "en:e1412",
+      "url": "https://world.openfoodfacts.org/additive/e1412-distarch-phosphate",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18967218"
+      ],
+      "products": 64
+    },
+    {
+      "name": "E228 - Potassium bisulphite",
+      "url": "https://world.openfoodfacts.org/additive/e228-potassium-bisulphite",
+      "id": "en:e228",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q412524"
+      ],
+      "products": 62
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e482-calcium-stearoyl-2-lactylate",
+      "id": "en:e482",
+      "name": "E482 - Calcium stearoyl-2-lactylate",
+      "products": 62,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q788535"
+      ]
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18967180"
+      ],
+      "products": 61,
+      "name": "E1414 - Acetylated distarch phosphate",
+      "url": "https://world.openfoodfacts.org/additive/e1414-acetylated-distarch-phosphate",
+      "id": "en:e1414"
+    },
+    {
+      "id": "en:e1450",
+      "url": "https://world.openfoodfacts.org/additive/e1450-starch-sodium-octenyl-succinate",
+      "name": "E1450 - Starch sodium octenyl succinate",
+      "products": 60,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18967290"
+      ]
+    },
+    {
+      "products": 58,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q420079"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e151-brilliant-black-bn",
+      "id": "en:e151",
+      "name": "E151 - Brilliant black bn"
+    },
+    {
+      "id": "en:e514",
+      "url": "https://world.openfoodfacts.org/additive/e514-sodium-sulphates",
+      "name": "E514 - Sodium sulphates",
+      "products": 57,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q211737"
+      ]
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q425183"
+      ],
+      "products": 56,
+      "name": "E203 - Calcium sorbate",
+      "id": "en:e203",
+      "url": "https://world.openfoodfacts.org/additive/e203-calcium-sorbate"
+    },
+    {
+      "products": 56,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q411955"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e900-dimethyl-polysiloxane",
+      "id": "en:e900",
+      "name": "E900 - Dimethyl polysiloxane"
+    },
+    {
+      "products": 56,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18967203"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e141i-copper-complexes-of-chlorophylls",
+      "id": "en:e141i",
+      "name": "E141i - Copper complexes of chlorophylls"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e104-quinoline-yellow",
+      "id": "en:e104",
+      "name": "E104 - Quinoline yellow",
+      "products": 54,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q420123"
+      ]
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e1518-glyceryl-triacetate",
+      "id": "en:e1518",
+      "name": "E1518 - Glyceryl triacetate",
+      "products": 53,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q83253"
+      ]
+    },
+    {
+      "name": "E234 - Nisin",
+      "id": "en:e234",
+      "url": "https://world.openfoodfacts.org/additive/e234-nisin",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q415798"
+      ],
+      "products": 52
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q594836"
+      ],
+      "products": 52,
+      "name": "E329 - Magnesium lactate",
+      "id": "en:e329",
+      "url": "https://world.openfoodfacts.org/additive/e329-magnesium-lactate"
+    },
+    {
+      "id": "en:e519",
+      "url": "https://world.openfoodfacts.org/additive/e519-copper-sulphate",
+      "name": "E519 - Copper sulphate",
+      "products": 51,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q107184"
+      ]
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e470a-sodium-potassium-and-calcium-salts-of-fatty-acids",
+      "id": "en:e470a",
+      "name": "E470a - Sodium‚ potassium and calcium salts of fatty acids",
+      "products": 51
+    },
+    {
+      "id": "en:e140ii",
+      "url": "https://world.openfoodfacts.org/additive/e140ii-chlorophyllins",
+      "name": "E140ii - Chlorophyllins",
+      "products": 51,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q82182"
+      ]
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e962-salt-of-aspartame-acesulfame",
+      "id": "en:e962",
+      "name": "E962 - Salt of aspartame-acesulfame",
+      "products": 51,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q409847"
+      ]
+    },
+    {
+      "products": 51,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q2034064"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e404-calcium-alginate",
+      "id": "en:e404",
+      "name": "E404 - Calcium alginate"
+    },
+    {
+      "id": "en:e536",
+      "url": "https://world.openfoodfacts.org/additive/e536-potassium-ferrocyanide",
+      "name": "E536 - Potassium ferrocyanide",
+      "products": 49,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q422017"
+      ]
+    },
+    {
+      "products": 45,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18967259"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e1404-oxidised-starch",
+      "id": "en:e1404",
+      "name": "E1404 - Oxidised starch"
+    },
+    {
+      "id": "en:e249",
+      "url": "https://world.openfoodfacts.org/additive/e249-potassium-nitrite",
+      "name": "E249 - Potassium nitrite",
+      "products": 45,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q409179"
+      ]
+    },
+    {
+      "name": "E160d - Lycopene",
+      "url": "https://world.openfoodfacts.org/additive/e160d-lycopene",
+      "id": "en:e160d",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q208130"
+      ],
+      "products": 44
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e941-nitrogen",
+      "id": "en:e941",
+      "name": "E941 - Nitrogen",
+      "products": 42,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q627"
+      ]
+    },
+    {
+      "name": "E173 - Aluminium",
+      "url": "https://world.openfoodfacts.org/additive/e173-aluminium",
+      "id": "en:e173",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q663"
+      ],
+      "products": 42
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q3045754"
+      ],
+      "products": 41,
+      "name": "E172ii - E172(ii) food additive",
+      "id": "en:e172ii",
+      "url": "https://world.openfoodfacts.org/additive/e172ii-e172-ii-food-additive"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e1420-acetylated-starch",
+      "id": "en:e1420",
+      "name": "E1420 - Acetylated starch",
+      "products": 38,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18935684"
+      ]
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18967204"
+      ],
+      "products": 37,
+      "name": "E468 - Cross-linked sodium carboxymethylcellulose",
+      "id": "en:e468",
+      "url": "https://world.openfoodfacts.org/additive/e468-cross-linked-sodium-carboxymethylcellulose"
+    },
+    {
+      "name": "E999 - Quillaia extract",
+      "url": "https://world.openfoodfacts.org/additive/e999-quillaia-extract",
+      "id": "en:e999",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q118843"
+      ],
+      "products": 34
+    },
+    {
+      "id": "en:e350i",
+      "url": "https://world.openfoodfacts.org/additive/e350i-sodium-malate",
+      "name": "E350i - Sodium malate",
+      "products": 33,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q836788"
+      ]
+    },
+    {
+      "products": 33,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q2634889"
+      ],
+      "id": "en:e343ii",
+      "url": "https://world.openfoodfacts.org/additive/e343ii-dimagnesium-phosphate",
+      "name": "E343ii - Dimagnesium phosphate"
+    },
+    {
+      "products": 32,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q413739"
+      ],
+      "id": "en:e578",
+      "url": "https://world.openfoodfacts.org/additive/e578-calcium-gluconate",
+      "name": "E578 - Calcium gluconate"
+    },
+    {
+      "products": 32,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q3249706"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e339i-monosodium-phosphate",
+      "id": "en:e339i",
+      "name": "E339i - Monosodium phosphate"
+    },
+    {
+      "name": "E914 - Oxidised polyethylene wax",
+      "url": "https://world.openfoodfacts.org/additive/e914-oxidised-polyethylene-wax",
+      "id": "en:e914",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18608846"
+      ],
+      "products": 30
+    },
+    {
+      "id": "en:e959",
+      "url": "https://world.openfoodfacts.org/additive/e959-neohesperidine-dihydrochalcone",
+      "name": "E959 - Neohesperidine dihydrochalcone",
+      "products": 29,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q424595"
+      ]
+    },
+    {
+      "id": "en:e966",
+      "url": "https://world.openfoodfacts.org/additive/e966-lactitol",
+      "name": "E966 - Lactitol",
+      "products": 28,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q415020"
+      ]
+    },
+    {
+      "id": "en:e576",
+      "url": "https://world.openfoodfacts.org/additive/e576-sodium-gluconate",
+      "name": "E576 - Sodium gluconate",
+      "products": 28,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q264552"
+      ]
+    },
+    {
+      "name": "E555 - Potassium aluminium silicate",
+      "id": "en:e555",
+      "url": "https://world.openfoodfacts.org/additive/e555-potassium-aluminium-silicate",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18944658"
+      ],
+      "products": 27
+    },
+    {
+      "products": 25,
+      "url": "https://world.openfoodfacts.org/additive/e927b-carbamide",
+      "id": "en:e927b",
+      "name": "E927b - Carbamide"
+    },
+    {
+      "id": "en:e957",
+      "url": "https://world.openfoodfacts.org/additive/e957-thaumatin",
+      "name": "E957 - Thaumatin",
+      "products": 25,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q414048"
+      ]
+    },
+    {
+      "name": "E1001 - Choline salt",
+      "id": "en:e1001",
+      "url": "https://world.openfoodfacts.org/additive/e1001-choline-salt",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18668392"
+      ],
+      "products": 24
+    },
+    {
+      "products": 23,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q418705"
+      ],
+      "id": "en:e958",
+      "url": "https://world.openfoodfacts.org/additive/e958-glycyrrhizin",
+      "name": "E958 - Glycyrrhizin"
+    },
+    {
+      "id": "en:e335",
+      "url": "https://world.openfoodfacts.org/additive/e335-sodium-tartrates",
+      "name": "E335 - Sodium tartrates",
+      "products": 23,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q17997701"
+      ]
+    },
+    {
+      "name": "E307b - Tocopherol",
+      "id": "en:e307b",
+      "url": "https://world.openfoodfacts.org/additive/e307b-tocopherol",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q158348"
+      ],
+      "products": 23
+    },
+    {
+      "name": "E928 - Benzole peroxide",
+      "id": "en:e928",
+      "url": "https://world.openfoodfacts.org/additive/e928-benzole-peroxide",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q411424"
+      ],
+      "products": 23
+    },
+    {
+      "name": "E515 - Potassium sulphates",
+      "url": "https://world.openfoodfacts.org/additive/e515-potassium-sulphates",
+      "id": "en:e515",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q193054"
+      ],
+      "products": 23
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q131189"
+      ],
+      "products": 22,
+      "name": "E944 - Propane",
+      "id": "en:e944",
+      "url": "https://world.openfoodfacts.org/additive/e944-propane"
+    },
+    {
+      "products": 22,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q422241"
+      ],
+      "id": "en:e487",
+      "url": "https://world.openfoodfacts.org/additive/e487-sodium-dodecyl-sulfate",
+      "name": "E487 - Sodium dodecyl sulfate"
+    },
+    {
+      "name": "E436 - Polyoxyethylene sorbitan tristearate",
+      "url": "https://world.openfoodfacts.org/additive/e436-polyoxyethylene-sorbitan-tristearate",
+      "id": "en:e436",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q2103107"
+      ],
+      "products": 22
+    },
+    {
+      "products": 22,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q5319"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e285-sodium-tetraborate-borax",
+      "id": "en:e285",
+      "name": "E285 - Sodium tetraborate (borax)"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e233-thiabendazole",
+      "id": "en:e233",
+      "name": "E233 - Thiabendazole",
+      "products": 21
+    },
+    {
+      "name": "E949 - Hydrogen",
+      "url": "https://world.openfoodfacts.org/additive/e949-hydrogen",
+      "id": "en:e949",
+      "products": 21
+    },
+    {
+      "products": 21,
+      "url": "https://world.openfoodfacts.org/additive/e636-maltol",
+      "id": "en:e636",
+      "name": "E636 - Maltol"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e201-sodium-sorbate",
+      "id": "en:e201",
+      "name": "E201 - Sodium sorbate",
+      "products": 20,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q420152"
+      ]
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q413433"
+      ],
+      "products": 19,
+      "name": "E1201 - Polyvinylpyrrolidone",
+      "id": "en:e1201",
+      "url": "https://world.openfoodfacts.org/additive/e1201-polyvinylpyrrolidone"
+    },
+    {
+      "name": "E216 - Propyl para-hydroxybenzoate",
+      "url": "https://world.openfoodfacts.org/additive/e216-propyl-para-hydroxybenzoate",
+      "id": "en:e216",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q511627"
+      ],
+      "products": 18
+    },
+    {
+      "id": "en:e905",
+      "url": "https://world.openfoodfacts.org/additive/e905-microcrystalline-wax",
+      "name": "E905 - Microcrystalline wax",
+      "products": 18,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q579764"
+      ]
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q1090"
+      ],
+      "products": 17,
+      "name": "E174 - Silver",
+      "id": "en:e174",
+      "url": "https://world.openfoodfacts.org/additive/e174-silver"
+    },
+    {
+      "products": 16,
+      "name": "E639 - E639 food additive",
+      "id": "en:e639",
+      "url": "https://world.openfoodfacts.org/additive/e639-e639-food-additive"
+    },
+    {
+      "products": 16,
+      "name": "E15x - E15x food additive",
+      "id": "en:e15x",
+      "url": "https://world.openfoodfacts.org/additive/e15x-e15x-food-additive"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q11867365"
+      ],
+      "products": 16,
+      "name": "E452ii - Potassium polyphosphate",
+      "url": "https://world.openfoodfacts.org/additive/e452ii-potassium-polyphosphate",
+      "id": "en:e452ii"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q724426"
+      ],
+      "products": 16,
+      "name": "E463 - Hydroxypropyl cellulose",
+      "id": "en:e463",
+      "url": "https://world.openfoodfacts.org/additive/e463-hydroxypropyl-cellulose"
+    },
+    {
+      "id": "en:e324",
+      "url": "https://world.openfoodfacts.org/additive/e324-ethoxyquin",
+      "name": "E324 - Ethoxyquin",
+      "products": 15,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q1657816"
+      ]
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q130365"
+      ],
+      "products": 14,
+      "name": "E101ii - Riboflavin-5′-phosphate",
+      "url": "https://world.openfoodfacts.org/additive/e101ii-riboflavin-5%E2%80%B2-phosphate",
+      "id": "en:e101ii"
+    },
+    {
+      "name": "E943b - Isobutane",
+      "id": "en:e943b",
+      "url": "https://world.openfoodfacts.org/additive/e943b-isobutane",
+      "products": 14
+    },
+    {
+      "products": 14,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18601425"
+      ],
+      "id": "en:e964",
+      "url": "https://world.openfoodfacts.org/additive/e964-polyglycitol-syrup",
+      "name": "E964 - Polyglycitol syrup"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q898937"
+      ],
+      "products": 14,
+      "name": "E902 - Candelilla wax",
+      "id": "en:e902",
+      "url": "https://world.openfoodfacts.org/additive/e902-candelilla-wax"
+    },
+    {
+      "name": "E650 - Zinc acetate",
+      "id": "en:e650",
+      "url": "https://world.openfoodfacts.org/additive/e650-zinc-acetate",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q204639"
+      ],
+      "products": 14
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q688"
+      ],
+      "products": 13,
+      "name": "E925 - Chlorine",
+      "id": "en:e925",
+      "url": "https://world.openfoodfacts.org/additive/e925-chlorine"
+    },
+    {
+      "name": "E529 - Calcium oxide",
+      "url": "https://world.openfoodfacts.org/additive/e529-calcium-oxide",
+      "id": "en:e529",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q185006"
+      ],
+      "products": 13
+    },
+    {
+      "name": "E1102 - Glucose oxidase",
+      "id": "en:e1102",
+      "url": "https://world.openfoodfacts.org/additive/e1102-glucose-oxidase",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q419321"
+      ],
+      "products": 13
+    },
+    {
+      "id": "en:e155",
+      "url": "https://world.openfoodfacts.org/additive/e155-brown-ht",
+      "name": "E155 - Brown ht",
+      "products": 13,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q424541"
+      ]
+    },
+    {
+      "name": "E225 - Calcium Disulphite",
+      "url": "https://world.openfoodfacts.org/additive/e225-calcium-disulphite",
+      "id": "en:e225",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q417109"
+      ],
+      "products": 13
+    },
+    {
+      "products": 13,
+      "url": "https://world.openfoodfacts.org/additive/e470-sodium-potassium-calcium-and-magnesium-salts-of-fatty-acids",
+      "id": "en:e470",
+      "name": "E470 - Sodium/potassium/calcium and magnesium salts of fatty acids"
+    },
+    {
+      "id": "en:e218",
+      "url": "https://world.openfoodfacts.org/additive/e218-methyl-p-hydroxybenzoate",
+      "name": "E218 - Methyl p-hydroxybenzoate",
+      "products": 12,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q229987"
+      ]
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q339866"
+      ],
+      "products": 12,
+      "name": "E539 - Sodium thiosulfate",
+      "url": "https://world.openfoodfacts.org/additive/e539-sodium-thiosulfate",
+      "id": "en:e539"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e411-e411-food-additive",
+      "id": "en:e411",
+      "name": "E411 - E411 food additive",
+      "products": 12
+    },
+    {
+      "name": "E332ii - Tripotassium citrate",
+      "url": "https://world.openfoodfacts.org/additive/e332ii-tripotassium-citrate",
+      "id": "en:e332ii",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q419921"
+      ],
+      "products": 12
+    },
+    {
+      "id": "en:e943a",
+      "url": "https://world.openfoodfacts.org/additive/e943a-butane",
+      "name": "E943a - Butane",
+      "products": 11
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q6460572"
+      ],
+      "products": 11,
+      "name": "E331ii - Disodium citrate",
+      "id": "en:e331ii",
+      "url": "https://world.openfoodfacts.org/additive/e331ii-disodium-citrate"
+    },
+    {
+      "id": "en:e472d",
+      "url": "https://world.openfoodfacts.org/additive/e472d-tartaric-acid-esters-of-mono-and-diglycerides-of-fatty-acids",
+      "name": "E472d - Tartaric acid esters of mono- and diglycerides of fatty acids",
+      "products": 11
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e905b-petroleum-jelly",
+      "id": "en:e905b",
+      "name": "E905b - Petroleum jelly",
+      "products": 11,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q579764"
+      ]
+    },
+    {
+      "products": 11,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q290828"
+      ],
+      "id": "en:e450v",
+      "url": "https://world.openfoodfacts.org/additive/e450v-tetrapotassium-diphosphate",
+      "name": "E450v - Tetrapotassium diphosphate"
+    },
+    {
+      "id": "en:e160aiv",
+      "url": "https://world.openfoodfacts.org/additive/e160aiv-algal-carotenes",
+      "name": "E160aiv - Algal carotenes",
+      "products": 11
+    },
+    {
+      "products": 10,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q407548"
+      ],
+      "id": "en:e528",
+      "url": "https://world.openfoodfacts.org/additive/e528-magnesium-hydroxide",
+      "name": "E528 - Magnesium hydroxide"
+    },
+    {
+      "name": "E232 - Sodium orthophenyl phenol",
+      "url": "https://world.openfoodfacts.org/additive/e232-sodium-orthophenyl-phenol",
+      "id": "en:e232",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q6581446"
+      ],
+      "products": 10
+    },
+    {
+      "products": 10,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q629"
+      ],
+      "id": "en:e948",
+      "url": "https://world.openfoodfacts.org/additive/e948-oxygen",
+      "name": "E948 - Oxygen"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e622-monopotassium-glutamate",
+      "id": "en:e622",
+      "name": "E622 - Monopotassium glutamate",
+      "products": 10,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q3029787"
+      ]
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e402-potassium-alginate",
+      "id": "en:e402",
+      "name": "E402 - Potassium alginate",
+      "products": 10,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q16038950"
+      ]
+    },
+    {
+      "products": 9,
+      "name": "E425i - Konjac gum",
+      "url": "https://world.openfoodfacts.org/additive/e425i-konjac-gum",
+      "id": "en:e425i"
+    },
+    {
+      "products": 9,
+      "name": "E637 - Ethyl maltol",
+      "id": "en:e637",
+      "url": "https://world.openfoodfacts.org/additive/e637-ethyl-maltol"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e624-monoammonium-glutamate",
+      "id": "en:e624",
+      "name": "E624 - Monoammonium glutamate",
+      "products": 9,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q8213959"
+      ]
+    },
+    {
+      "products": 9,
+      "name": "E963 - E963 food additive",
+      "id": "en:e963",
+      "url": "https://world.openfoodfacts.org/additive/e963-e963-food-additive"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e1521-polyethylene-glycol",
+      "id": "en:e1521",
+      "name": "E1521 - Polyethylene glycol",
+      "products": 9,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q410083"
+      ]
+    },
+    {
+      "products": 8,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q255933"
+      ],
+      "id": "en:e630",
+      "url": "https://world.openfoodfacts.org/additive/e630-inosinic-acid",
+      "name": "E630 - Inosinic acid"
+    },
+    {
+      "products": 8,
+      "name": "E364 - E364 food additive",
+      "url": "https://world.openfoodfacts.org/additive/e364-e364-food-additive",
+      "id": "en:e364"
+    },
+    {
+      "name": "E1519 - Benzyl alcohol",
+      "id": "en:e1519",
+      "url": "https://world.openfoodfacts.org/additive/e1519-benzyl-alcohol",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q52353"
+      ],
+      "products": 7
+    },
+    {
+      "id": "en:e1202",
+      "url": "https://world.openfoodfacts.org/additive/e1202-polyvinylpolypyrrolidone",
+      "name": "E1202 - Polyvinylpolypyrrolidone",
+      "products": 7,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q3003746"
+      ]
+    },
+    {
+      "id": "en:e905c",
+      "url": "https://world.openfoodfacts.org/additive/e905c-e905c-food-additive",
+      "name": "E905c - E905c food additive",
+      "products": 7,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q579764"
+      ]
+    },
+    {
+      "id": "en:e230",
+      "url": "https://world.openfoodfacts.org/additive/e230-biphenyl",
+      "name": "E230 - Biphenyl",
+      "products": 7,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q410915"
+      ]
+    },
+    {
+      "name": "E580 - Magnesium Gluconate",
+      "id": "en:e580",
+      "url": "https://world.openfoodfacts.org/additive/e580-magnesium-gluconate",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q6731392"
+      ],
+      "products": 7
+    },
+    {
+      "name": "E266 - Sodium dehydroacetate",
+      "id": "en:e266",
+      "url": "https://world.openfoodfacts.org/additive/e266-sodium-dehydroacetate",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q7553316"
+      ],
+      "products": 7
+    },
+    {
+      "name": "E160aiii - Beta-carotene from blakeslea trispora",
+      "url": "https://world.openfoodfacts.org/additive/e160aiii-beta-carotene-from-blakeslea-trispora",
+      "id": "en:e160aiii",
+      "products": 7
+    },
+    {
+      "products": 7,
+      "url": "https://world.openfoodfacts.org/additive/e921-l-cysteine-hydrochloride-monohydrate",
+      "id": "en:e921",
+      "name": "E921 - L-cysteine hydrochloride monohydrate"
+    },
+    {
+      "name": "E507 - Hydrochloric acid",
+      "id": "en:e507",
+      "url": "https://world.openfoodfacts.org/additive/e507-hydrochloric-acid",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q2409"
+      ],
+      "products": 6
+    },
+    {
+      "products": 6,
+      "name": "E161g - Canthaxanthin",
+      "id": "en:e161g",
+      "url": "https://world.openfoodfacts.org/additive/e161g-canthaxanthin"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q1122870"
+      ],
+      "products": 6,
+      "name": "E577 - Potassium gluconate",
+      "url": "https://world.openfoodfacts.org/additive/e577-potassium-gluconate",
+      "id": "en:e577"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q13081784"
+      ],
+      "products": 6,
+      "name": "E318 - Sodium erythorbin",
+      "id": "en:e318",
+      "url": "https://world.openfoodfacts.org/additive/e318-sodium-erythorbin"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q303489"
+      ],
+      "products": 6,
+      "name": "E337 - Potassium sodium tartrate",
+      "id": "en:e337",
+      "url": "https://world.openfoodfacts.org/additive/e337-potassium-sodium-tartrate"
+    },
+    {
+      "name": "E352 - Calcium malates",
+      "url": "https://world.openfoodfacts.org/additive/e352-calcium-malates",
+      "id": "en:e352",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q1356722"
+      ],
+      "products": 6
+    },
+    {
+      "name": "E505 - Ferrous carbonate",
+      "url": "https://world.openfoodfacts.org/additive/e505-ferrous-carbonate",
+      "id": "en:e505",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18967227"
+      ],
+      "products": 6
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q190227"
+      ],
+      "products": 6,
+      "name": "E500iii - Sodium sesquicarbonate",
+      "id": "en:e500iii",
+      "url": "https://world.openfoodfacts.org/additive/e500iii-sodium-sesquicarbonate"
+    },
+    {
+      "products": 6,
+      "name": "E553 - Magnesium silicates",
+      "id": "en:e553",
+      "url": "https://world.openfoodfacts.org/additive/e553-magnesium-silicates"
+    },
+    {
+      "products": 6,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q764245"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e152-black-7984",
+      "id": "en:e152",
+      "name": "E152 - Black 7984"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e231-orthophenyl-phenol",
+      "id": "en:e231",
+      "name": "E231 - Orthophenyl phenol",
+      "products": 6
+    },
+    {
+      "products": 5,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q211737"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e514ii-sodium-hydrogen-sulphate",
+      "id": "en:e514ii",
+      "name": "E514ii - Sodium hydrogen sulphate"
+    },
+    {
+      "name": "E432 - Polyoxyethylene sorbitan monolaurate",
+      "id": "en:e432",
+      "url": "https://world.openfoodfacts.org/additive/e432-polyoxyethylene-sorbitan-monolaurate",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q413616"
+      ],
+      "products": 5
+    },
+    {
+      "products": 5,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q337492"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e1503-castor-oil",
+      "id": "en:e1503",
+      "name": "E1503 - Castor oil"
+    },
+    {
+      "products": 5,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q1640437"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e1440-hydroxypropyl-starch",
+      "id": "en:e1440",
+      "name": "E1440 - Hydroxypropyl starch"
+    },
+    {
+      "name": "E457 - Alpha-Cyclodextrine",
+      "url": "https://world.openfoodfacts.org/additive/e457-alpha-cyclodextrine",
+      "id": "en:e457",
+      "products": 5
+    },
+    {
+      "products": 5,
+      "id": "en:e161",
+      "url": "https://world.openfoodfacts.org/additive/e161-xanthophylls",
+      "name": "E161 - Xanthophylls"
+    },
+    {
+      "products": 5,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q420113"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e462-ethyl-cellulose",
+      "id": "en:e462",
+      "name": "E462 - Ethyl cellulose"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e166-e166-food-additive",
+      "id": "en:e166",
+      "name": "E166 - E166 food additive",
+      "products": 5
+    },
+    {
+      "id": "en:e409",
+      "url": "https://world.openfoodfacts.org/additive/e409-arabinogalactan",
+      "name": "E409 - Arabinogalactan",
+      "products": 5,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q4783458"
+      ]
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q427230"
+      ],
+      "products": 5,
+      "name": "E180 - Litholrubine bk",
+      "id": "en:e180",
+      "url": "https://world.openfoodfacts.org/additive/e180-litholrubine-bk"
+    },
+    {
+      "products": 5,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q407931"
+      ],
+      "id": "en:e504ii",
+      "url": "https://world.openfoodfacts.org/additive/e504ii-magnesium-hydroxide-carbonate",
+      "name": "E504ii - Magnesium hydroxide carbonate"
+    },
+    {
+      "id": "en:e469",
+      "url": "https://world.openfoodfacts.org/additive/e469-enzymatically-hydrolysed-carboxymethylcellulose",
+      "name": "E469 - Enzymatically hydrolysed carboxymethylcellulose",
+      "products": 4,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18935689"
+      ]
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q899410"
+      ],
+      "products": 4,
+      "name": "E226 - Calcium sulphite",
+      "id": "en:e226",
+      "url": "https://world.openfoodfacts.org/additive/e226-calcium-sulphite"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q2317929"
+      ],
+      "products": 4,
+      "name": "E311 - Octyl gallate",
+      "url": "https://world.openfoodfacts.org/additive/e311-octyl-gallate",
+      "id": "en:e311"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q13081804"
+      ],
+      "products": 4,
+      "name": "E386 - E386 food additive",
+      "id": "en:e386",
+      "url": "https://world.openfoodfacts.org/additive/e386-e386-food-additive"
+    },
+    {
+      "name": "E626 - Guanylic acid",
+      "url": "https://world.openfoodfacts.org/additive/e626-guanylic-acid",
+      "id": "en:e626",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q422473"
+      ],
+      "products": 4
+    },
+    {
+      "name": "E900a - E900a food additive",
+      "id": "en:e900a",
+      "url": "https://world.openfoodfacts.org/additive/e900a-e900a-food-additive",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q411955"
+      ],
+      "products": 4
+    },
+    {
+      "name": "E472f - Mixed acetic and tartaric acid esters of mono- and diglycerides of fatty acids",
+      "url": "https://world.openfoodfacts.org/additive/e472f-mixed-acetic-and-tartaric-acid-esters-of-mono-and-diglycerides-of-fatty-acids",
+      "id": "en:e472f",
+      "products": 4
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e450iv-dipotassium-dihydrogenpyrophosphate",
+      "id": "en:e450iv",
+      "name": "E450iv - Dipotassium dihydrogenpyrophosphate",
+      "products": 4,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q290828"
+      ]
+    },
+    {
+      "name": "E474 - Sucroglycerides",
+      "url": "https://world.openfoodfacts.org/additive/e474-sucroglycerides",
+      "id": "en:e474",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18608931"
+      ],
+      "products": 4
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q3045754"
+      ],
+      "products": 4,
+      "name": "E172iii - E172(iii) food additive",
+      "url": "https://world.openfoodfacts.org/additive/e172iii-e172-iii-food-additive",
+      "id": "en:e172iii"
+    },
+    {
+      "name": "E425ii - Konjac glucomannan",
+      "id": "en:e425ii",
+      "url": "https://world.openfoodfacts.org/additive/e425ii-konjac-glucomannan",
+      "products": 4
+    },
+    {
+      "name": "E553a - Magnesium silicates",
+      "url": "https://world.openfoodfacts.org/additive/e553a-magnesium-silicates",
+      "id": "en:e553a",
+      "products": 4
+    },
+    {
+      "products": 4,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18944661"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e550-sodium-silicate",
+      "id": "en:e550",
+      "name": "E550 - Sodium silicate"
+    },
+    {
+      "products": 4,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q411309"
+      ],
+      "id": "en:e522",
+      "url": "https://world.openfoodfacts.org/additive/e522-aluminium-potassium-sulphate",
+      "name": "E522 - Aluminium potassium sulphate"
+    },
+    {
+      "name": "E553ai - Magnesium silicate",
+      "id": "en:e553ai",
+      "url": "https://world.openfoodfacts.org/additive/e553ai-magnesium-silicate",
+      "products": 4
+    },
+    {
+      "id": "en:e515i",
+      "url": "https://world.openfoodfacts.org/additive/e515i-potassium-sulphate",
+      "name": "E515i - Potassium sulphate",
+      "products": 4,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q193054"
+      ]
+    },
+    {
+      "id": "en:e130",
+      "url": "https://world.openfoodfacts.org/additive/e130-indanthrene-blue-rs",
+      "name": "E130 - Indanthrene blue RS",
+      "products": 4,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q185929"
+      ]
+    },
+    {
+      "id": "en:e143",
+      "url": "https://world.openfoodfacts.org/additive/e143-fast-green-fcf",
+      "name": "E143 - Fast Green FCF",
+      "products": 4,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q898299"
+      ]
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e106-flavin-mononucleotide",
+      "id": "en:e106",
+      "name": "E106 - Flavin mononucleotide",
+      "products": 4,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q376061"
+      ]
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e473a-e473a-food-additive",
+      "id": "en:e473a",
+      "name": "E473a - E473a food additive",
+      "products": 3,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q32418"
+      ]
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q421888"
+      ],
+      "products": 3,
+      "name": "E527 - Ammonium hydroxide",
+      "id": "en:e527",
+      "url": "https://world.openfoodfacts.org/additive/e527-ammonium-hydroxide"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q2653981"
+      ],
+      "products": 3,
+      "name": "E121 - Citrus Red 2",
+      "url": "https://world.openfoodfacts.org/additive/e121-citrus-red-2",
+      "id": "en:e121"
+    },
+    {
+      "products": 3,
+      "url": "https://world.openfoodfacts.org/additive/e365-sodium-fumarate",
+      "id": "en:e365",
+      "name": "E365 - Sodium fumarate"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q1284687"
+      ],
+      "products": 3,
+      "name": "E559 - Aluminium silicate",
+      "url": "https://world.openfoodfacts.org/additive/e559-aluminium-silicate",
+      "id": "en:e559"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e919-nitrosyl-chloride",
+      "id": "en:e919",
+      "name": "E919 - Nitrosyl chloride",
+      "products": 3,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q419266"
+      ]
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e1411-distarch-glycerol-thickening-agent",
+      "id": "en:e1411",
+      "name": "E1411 - Distarch glycerol (thickening agent)",
+      "products": 3,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18967214"
+      ]
+    },
+    {
+      "products": 3,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q421074"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e123-amaranth",
+      "id": "en:e123",
+      "name": "E123 - Amaranth"
+    },
+    {
+      "id": "en:e336ii",
+      "url": "https://world.openfoodfacts.org/additive/e336ii-dipotassium-tartrate",
+      "name": "E336ii - Dipotassium tartrate",
+      "products": 3,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q418064"
+      ]
+    },
+    {
+      "name": "E403 - Ammonium alginate",
+      "id": "en:e403",
+      "url": "https://world.openfoodfacts.org/additive/e403-ammonium-alginate",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q16038948"
+      ],
+      "products": 3
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q211737"
+      ],
+      "products": 3,
+      "name": "E514i - Sodium sulphate",
+      "id": "en:e514i",
+      "url": "https://world.openfoodfacts.org/additive/e514i-sodium-sulphate"
+    },
+    {
+      "name": "E332i - Monopotassium citrate",
+      "url": "https://world.openfoodfacts.org/additive/e332i-monopotassium-citrate",
+      "id": "en:e332i",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q419921"
+      ],
+      "products": 3
+    },
+    {
+      "id": "en:e542",
+      "url": "https://world.openfoodfacts.org/additive/e542-bone-phosphate",
+      "name": "E542 - Bone phosphate",
+      "products": 3,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18967189"
+      ]
+    },
+    {
+      "name": "E450vii - Calcium dihydrogen diphosphate",
+      "id": "en:e450vii",
+      "url": "https://world.openfoodfacts.org/additive/e450vii-calcium-dihydrogen-diphosphate",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q290828"
+      ],
+      "products": 3
+    },
+    {
+      "name": "E451ii - Pentapotassium triphosphate",
+      "url": "https://world.openfoodfacts.org/additive/e451ii-pentapotassium-triphosphate",
+      "id": "en:e451ii",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q29145"
+      ],
+      "products": 3
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18967228"
+      ],
+      "products": 3,
+      "name": "E640ii - Sodiumglycinate",
+      "url": "https://world.openfoodfacts.org/additive/e640ii-sodiumglycinate",
+      "id": "en:e640ii"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e1401-modified-starch",
+      "id": "en:e1401",
+      "name": "E1401 - Modified starch",
+      "products": 3,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18967250"
+      ]
+    },
+    {
+      "products": 3,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q1220360"
+      ],
+      "id": "en:e541i",
+      "url": "https://world.openfoodfacts.org/additive/e541i-e541-i-food-additive",
+      "name": "E541i - E541(i) food additive"
+    },
+    {
+      "products": 3,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q1356722"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e352i-calcium-malate",
+      "id": "en:e352i",
+      "name": "E352i - Calcium malate"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18967232"
+      ],
+      "products": 3,
+      "name": "E419 - Gum ghatti (thickener) (Stabilizer (food)stabiliser)",
+      "id": "en:e419",
+      "url": "https://world.openfoodfacts.org/additive/e419-gum-ghatti-thickener-stabilizer-food-stabiliser"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18636149"
+      ],
+      "products": 3,
+      "name": "E431 - Polyoxyethylene (40) stearate",
+      "url": "https://world.openfoodfacts.org/additive/e431-polyoxyethylene-40-stearate",
+      "id": "en:e431"
+    },
+    {
+      "products": 2,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18967208"
+      ],
+      "id": "en:e540",
+      "url": "https://world.openfoodfacts.org/additive/e540-dicalcium-diphosphate",
+      "name": "E540 - Dicalcium diphosphate"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q3045754"
+      ],
+      "products": 2,
+      "name": "E172i - E172(i) food additive",
+      "url": "https://world.openfoodfacts.org/additive/e172i-e172-i-food-additive",
+      "id": "en:e172i"
+    },
+    {
+      "name": "E399 - Lactobionic acid",
+      "id": "en:e399",
+      "url": "https://world.openfoodfacts.org/additive/e399-lactobionic-acid",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q6138969"
+      ],
+      "products": 2
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e380-triammonium-citrate",
+      "id": "en:e380",
+      "name": "E380 - Triammonium citrate",
+      "products": 2,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q13081798"
+      ]
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e303-potassium-ascorbate",
+      "id": "en:e303",
+      "name": "E303 - Potassium ascorbate",
+      "products": 2,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q2252299"
+      ]
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q420280"
+      ],
+      "products": 2,
+      "name": "E333ii - Dicalcium citrate",
+      "id": "en:e333ii",
+      "url": "https://world.openfoodfacts.org/additive/e333ii-dicalcium-citrate"
+    },
+    {
+      "id": "en:e459",
+      "url": "https://world.openfoodfacts.org/additive/e459-beta-cyclodextrine",
+      "name": "E459 - Beta-cyclodextrine",
+      "products": 2
+    },
+    {
+      "name": "E430 - Polyoxyethylene (8) stearate",
+      "id": "en:e430",
+      "url": "https://world.openfoodfacts.org/additive/e430-polyoxyethylene-8-stearate",
+      "products": 2
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18631008"
+      ],
+      "products": 2,
+      "name": "E1410 - Monostarch phosphate",
+      "id": "en:e1410",
+      "url": "https://world.openfoodfacts.org/additive/e1410-monostarch-phosphate"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q5280047"
+      ],
+      "products": 2,
+      "name": "E628 - Dipotassium guanylate",
+      "id": "en:e628",
+      "url": "https://world.openfoodfacts.org/additive/e628-dipotassium-guanylate"
+    },
+    {
+      "products": 2,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q418237"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e103-alkannin",
+      "id": "en:e103",
+      "name": "E103 - Alkannin"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e125-scarlet-gn",
+      "id": "en:e125",
+      "name": "E125 - Scarlet GN",
+      "products": 2,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q934310"
+      ]
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q71969"
+      ],
+      "products": 2,
+      "name": "E239 - Hexamethylene tetramine",
+      "id": "en:e239",
+      "url": "https://world.openfoodfacts.org/additive/e239-hexamethylene-tetramine"
+    },
+    {
+      "products": 2,
+      "url": "https://world.openfoodfacts.org/additive/e586-4-hexylresorcinol",
+      "id": "en:e586",
+      "name": "E586 - 4-hexylresorcinol"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q146339"
+      ],
+      "products": 2,
+      "name": "E1203 - Polyvinyl alcohol",
+      "url": "https://world.openfoodfacts.org/additive/e1203-polyvinyl-alcohol",
+      "id": "en:e1203"
+    },
+    {
+      "products": 2,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q188154"
+      ],
+      "id": "en:e440a",
+      "url": "https://world.openfoodfacts.org/additive/e440a-pectin",
+      "name": "E440a - Pectin"
+    },
+    {
+      "id": "en:e441",
+      "url": "https://world.openfoodfacts.org/additive/e441-superglycerinated-hydrogenated-rapeseed-oil",
+      "name": "E441 - Superglycerinated hydrogenated rapeseed oil",
+      "products": 2
+    },
+    {
+      "name": "E381 - Ammoniumferrocitrate",
+      "url": "https://world.openfoodfacts.org/additive/e381-ammoniumferrocitrate",
+      "id": "en:e381",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q473522"
+      ],
+      "products": 2
+    },
+    {
+      "name": "E472g - Succinylated monoglycerides",
+      "id": "en:e472g",
+      "url": "https://world.openfoodfacts.org/additive/e472g-succinylated-monoglycerides",
+      "products": 2
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18967235"
+      ],
+      "products": 2,
+      "name": "E1441 - Hydroxy propyl distarch glycerine",
+      "id": "en:e1441",
+      "url": "https://world.openfoodfacts.org/additive/e1441-hydroxy-propyl-distarch-glycerine"
+    },
+    {
+      "name": "E107 - Yellow 2G",
+      "url": "https://world.openfoodfacts.org/additive/e107-yellow-2g",
+      "id": "en:e107",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q424528"
+      ],
+      "products": 2
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18601547"
+      ],
+      "products": 2,
+      "name": "E446 - Succistearin",
+      "id": "en:e446",
+      "url": "https://world.openfoodfacts.org/additive/e446-succistearin"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e452iv-calcium-polyphosphate",
+      "id": "en:e452iv",
+      "name": "E452iv - Calcium polyphosphate",
+      "products": 2,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q11867365"
+      ]
+    },
+    {
+      "name": "E370 - 1‚4-Heptonolactone",
+      "id": "en:e370",
+      "url": "https://world.openfoodfacts.org/additive/e370-1-4-heptonolactone",
+      "products": 2
+    },
+    {
+      "products": 2,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q229976"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e214-ethyl-p-hydroxybenzoate",
+      "id": "en:e214",
+      "name": "E214 - Ethyl p-hydroxybenzoate"
+    },
+    {
+      "id": "en:e490",
+      "url": "https://world.openfoodfacts.org/additive/e490-propylene-glycol",
+      "name": "E490 - Propylene glycol",
+      "products": 2,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q161495"
+      ]
+    },
+    {
+      "name": "E335ii - Disodium tartrate",
+      "url": "https://world.openfoodfacts.org/additive/e335ii-disodium-tartrate",
+      "id": "en:e335ii",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q17997701"
+      ],
+      "products": 2
+    },
+    {
+      "products": 2,
+      "name": "E161h - Zeaxanthin",
+      "url": "https://world.openfoodfacts.org/additive/e161h-zeaxanthin",
+      "id": "en:e161h"
+    },
+    {
+      "products": 2,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q4118"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e513-sulphuric-acid",
+      "id": "en:e513",
+      "name": "E513 - Sulphuric acid"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e485-sodium-stearoyl-fumarate",
+      "id": "en:e485",
+      "name": "E485 - Sodium stearoyl fumarate",
+      "products": 1,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18967283"
+      ]
+    },
+    {
+      "name": "E165 - E165 food additive",
+      "id": "en:e165",
+      "url": "https://world.openfoodfacts.org/additive/e165-e165-food-additive",
+      "products": 1
+    },
+    {
+      "name": "E284 - Boric acid",
+      "url": "https://world.openfoodfacts.org/additive/e284-boric-acid",
+      "id": "en:e284",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q187045"
+      ],
+      "products": 1
+    },
+    {
+      "products": 1,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q221123"
+      ],
+      "id": "en:e238",
+      "url": "https://world.openfoodfacts.org/additive/e238-calcium-formiate",
+      "name": "E238 - Calcium formiate"
+    },
+    {
+      "products": 1,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q4119838"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e383-calcium-glycerylphosphate",
+      "id": "en:e383",
+      "name": "E383 - Calcium glycerylphosphate"
+    },
+    {
+      "id": "en:e1205",
+      "url": "https://world.openfoodfacts.org/additive/e1205-basic-methacrylate-copolymer",
+      "name": "E1205 - Basic methacrylate copolymer",
+      "products": 1,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18967186"
+      ]
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e496-sorbitan-trioleate",
+      "id": "en:e496",
+      "name": "E496 - Sorbitan trioleate",
+      "products": 1,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18601524"
+      ]
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18935693"
+      ],
+      "products": 1,
+      "name": "E478 - Lactylated fatty acid esters of glycerol and propane-1",
+      "url": "https://world.openfoodfacts.org/additive/e478-lactylated-fatty-acid-esters-of-glycerol-and-propane-1",
+      "id": "en:e478"
+    },
+    {
+      "name": "E538 - Calcium ferrocyanide",
+      "url": "https://world.openfoodfacts.org/additive/e538-calcium-ferrocyanide",
+      "id": "en:e538",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18967196"
+      ],
+      "products": 1
+    },
+    {
+      "name": "E1403 - Bleached starch",
+      "id": "en:e1403",
+      "url": "https://world.openfoodfacts.org/additive/e1403-bleached-starch",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18935687"
+      ],
+      "products": 1
+    },
+    {
+      "name": "E304ii - Ascorbyl stearate",
+      "url": "https://world.openfoodfacts.org/additive/e304ii-ascorbyl-stearate",
+      "id": "en:e304ii",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q424521"
+      ],
+      "products": 1
+    },
+    {
+      "products": 1,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q2633813"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e1451-acetylated-oxidised-starch",
+      "id": "en:e1451",
+      "name": "E1451 - Acetylated oxidised starch"
+    },
+    {
+      "name": "E209 - Heptylparaben",
+      "id": "en:e209",
+      "url": "https://world.openfoodfacts.org/additive/e209-heptylparaben",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q5732121"
+      ],
+      "products": 1
+    },
+    {
+      "products": 1,
+      "name": "E323 - E323 food additive",
+      "url": "https://world.openfoodfacts.org/additive/e323-e323-food-additive",
+      "id": "en:e323"
+    },
+    {
+      "id": "en:e243",
+      "url": "https://world.openfoodfacts.org/additive/e243-ethyl-lauroyl-arginate",
+      "name": "E243 - Ethyl lauroyl arginate",
+      "products": 1,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18608852"
+      ]
+    },
+    {
+      "products": 1,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q262547"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e163f-petunidin",
+      "id": "en:e163f",
+      "name": "E163f - Petunidin"
+    },
+    {
+      "products": 1,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q416767"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e354-calcium-tartrate",
+      "id": "en:e354",
+      "name": "E354 - Calcium tartrate"
+    },
+    {
+      "name": "E308 - Gamme-tocopherol",
+      "url": "https://world.openfoodfacts.org/additive/e308-gamme-tocopherol",
+      "id": "en:e308",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q155753"
+      ],
+      "products": 1
+    },
+    {
+      "name": "E312 - Dodecyl gallate",
+      "url": "https://world.openfoodfacts.org/additive/e312-dodecyl-gallate",
+      "id": "en:e312",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q418209"
+      ],
+      "products": 1
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q663358"
+      ],
+      "products": 1,
+      "name": "E328 - Ammonium lactate",
+      "url": "https://world.openfoodfacts.org/additive/e328-ammonium-lactate",
+      "id": "en:e328"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e181-tannin",
+      "id": "en:e181",
+      "name": "E181 - Tannin",
+      "products": 1,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q187607"
+      ]
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q290828"
+      ],
+      "products": 1,
+      "name": "E450vi - Dicalcium diphosphate",
+      "id": "en:e450vi",
+      "url": "https://world.openfoodfacts.org/additive/e450vi-dicalcium-diphosphate"
+    },
+    {
+      "name": "E908 - Rice bran wax",
+      "id": "en:e908",
+      "url": "https://world.openfoodfacts.org/additive/e908-rice-bran-wax",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q725234"
+      ],
+      "products": 1
+    },
+    {
+      "name": "E343i - Monomagnesium phosphate",
+      "id": "en:e343i",
+      "url": "https://world.openfoodfacts.org/additive/e343i-monomagnesium-phosphate",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q2634889"
+      ],
+      "products": 1
+    },
+    {
+      "products": 1,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q407153"
+      ],
+      "id": "en:e1504",
+      "url": "https://world.openfoodfacts.org/additive/e1504-ethyl-acetate",
+      "name": "E1504 - Ethyl acetate"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q419370"
+      ],
+      "products": 1,
+      "name": "E523 - Aluminium ammonium sulphate",
+      "url": "https://world.openfoodfacts.org/additive/e523-aluminium-ammonium-sulphate",
+      "id": "en:e523"
+    },
+    {
+      "products": 1,
+      "url": "https://world.openfoodfacts.org/additive/e164-e164-food-additive",
+      "id": "en:e164",
+      "name": "E164 - E164 food additive"
+    },
+    {
+      "products": 1,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q408755"
+      ],
+      "id": "en:e351",
+      "url": "https://world.openfoodfacts.org/additive/e351-potassium-malate",
+      "name": "E351 - Potassium malate"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e560-potassium-silicate",
+      "id": "en:e560",
+      "name": "E560 - Potassium silicate",
+      "products": 1,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q419390"
+      ]
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q17997701"
+      ],
+      "products": 1,
+      "name": "E335i - Monosodium tartrate",
+      "url": "https://world.openfoodfacts.org/additive/e335i-monosodium-tartrate",
+      "id": "en:e335i"
+    },
+    {
+      "name": "E493 - Sorbitan monolaurate",
+      "id": "en:e493",
+      "url": "https://world.openfoodfacts.org/additive/e493-sorbitan-monolaurate",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q15427856"
+      ],
+      "products": 1
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q836445"
+      ],
+      "products": 1,
+      "name": "E367 - Calcium fumarate",
+      "id": "en:e367",
+      "url": "https://world.openfoodfacts.org/additive/e367-calcium-fumarate"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e910-wax-ester",
+      "id": "en:e910",
+      "name": "E910 - Wax ester",
+      "products": 1,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q7975685"
+      ]
+    },
+    {
+      "products": 1,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q286793"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e305-ascorbyl-stearate",
+      "id": "en:e305",
+      "name": "E305 - Ascorbyl stearate"
+    },
+    {
+      "id": "en:e408",
+      "url": "https://world.openfoodfacts.org/additive/e408-bakers-yeast-glycan",
+      "name": "E408 - Bakers yeast glycan",
+      "products": 1,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18935685"
+      ]
+    },
+    {
+      "products": 1,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q420280"
+      ],
+      "url": "https://world.openfoodfacts.org/additive/e333i-monocalcium-citrate",
+      "id": "en:e333i",
+      "name": "E333i - Monocalcium citrate"
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q929052"
+      ],
+      "products": 1,
+      "name": "E111 - Orange GGN",
+      "id": "en:e111",
+      "url": "https://world.openfoodfacts.org/additive/e111-orange-ggn"
+    },
+    {
+      "name": "E236 - Formic acid",
+      "id": "en:e236",
+      "url": "https://world.openfoodfacts.org/additive/e236-formic-acid",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q161233"
+      ],
+      "products": 1
+    },
+    {
+      "products": 1,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q369682"
+      ],
+      "id": "en:e909",
+      "url": "https://world.openfoodfacts.org/additive/e909-spermaceti",
+      "name": "E909 - Spermaceti"
+    },
+    {
+      "id": "en:e458",
+      "url": "https://world.openfoodfacts.org/additive/e458-gamma-cyclodextrine",
+      "name": "E458 - Gamma-Cyclodextrine",
+      "products": 1
+    },
+    {
+      "products": 1,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q158348"
+      ],
+      "id": "en:e307a",
+      "url": "https://world.openfoodfacts.org/additive/e307a-tocopherol",
+      "name": "E307a - Tocopherol"
+    },
+    {
+      "products": 1,
+      "id": "en:e105",
+      "url": "https://world.openfoodfacts.org/additive/e105-e105-food-additive",
+      "name": "E105 - E105 food additive"
+    },
+    {
+      "id": "en:e160f",
+      "url": "https://world.openfoodfacts.org/additive/e160f-ethyl-ester-of-beta-apo-8-carotenic-acid-c-30",
+      "name": "E160f - Ethyl ester of beta-apo-8'-carotenic acid (C 30)",
+      "products": 1
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18967254"
+      ],
+      "products": 1,
+      "name": "E918 - Nitrogen oxides",
+      "id": "en:e918",
+      "url": "https://world.openfoodfacts.org/additive/e918-nitrogen-oxides"
+    },
+    {
+      "id": "en:e638",
+      "url": "https://world.openfoodfacts.org/additive/e638-e638-food-additive",
+      "name": "E638 - E638 food additive",
+      "products": 1
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q17997723"
+      ],
+      "products": 1,
+      "name": "E389 - E389 food additive",
+      "url": "https://world.openfoodfacts.org/additive/e389-e389-food-additive",
+      "id": "en:e389"
+    },
+    {
+      "id": "en:e342",
+      "url": "https://world.openfoodfacts.org/additive/e342-ammonium-phosphates-i-monoammonium-phosphate-ii-diammonium-phosphate",
+      "name": "E342 - Ammonium phosphates: i monoammonium phosphate (ii) diammonium phosphate",
+      "products": 1,
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q18967184"
+      ]
+    },
+    {
+      "name": "E265 - Dehydroacetic acid",
+      "url": "https://world.openfoodfacts.org/additive/e265-dehydroacetic-acid",
+      "id": "en:e265",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q920725"
+      ],
+      "products": 1
+    },
+    {
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q287415"
+      ],
+      "products": 1,
+      "name": "E1000 - Cholic acid",
+      "url": "https://world.openfoodfacts.org/additive/e1000-cholic-acid",
+      "id": "en:e1000"
+    },
+    {
+      "url": "https://world.openfoodfacts.org/additive/e313-e313-food-additive",
+      "id": "en:e313",
+      "name": "E313 - E313 food additive",
+      "products": 1
+    }
+  ]
+}

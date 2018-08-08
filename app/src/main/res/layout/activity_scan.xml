@@ -34,16 +34,15 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
-    <fragment
-        android:id="@+id/frag_scan_chips"
-        android:name="com.github.neone35.enalyzer.ui.scan.ScanChipsFragment"
+    <FrameLayout
+        android:id="@+id/fl_scan_chips"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
-        tools:layout="@layout/fragment_scan_chips" />
+        tools:context=".ui.scan.ScanChipsListFragment" />
 
     <include
         android:id="@+id/inc_fab_camera"

@@ -12,7 +12,7 @@ public class EcodeListResponse {
     @SerializedName("count")
     private int count;
 
-    @SerializedName("ecodeList")
+    @SerializedName("tags")
     private List<EcodeListItem> ecodeList;
 
     public void setCount(int count) {

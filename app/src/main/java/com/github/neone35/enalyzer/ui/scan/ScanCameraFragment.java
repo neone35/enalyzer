@@ -119,12 +119,6 @@ public class ScanCameraFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnScanCameraFragmentListener) {
-            mListener = (OnScanCameraFragmentListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnScanCameraFragmentListener");
-        }
     }
 
     @Override
@@ -155,7 +149,6 @@ public class ScanCameraFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnScanCameraFragmentListener {
-
         void onScanCameraFragmentInteraction(Uri uri);
     }
 }
