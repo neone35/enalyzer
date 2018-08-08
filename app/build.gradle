@@ -74,7 +74,9 @@ dependencies {
     implementation 'com.blankj:utilcode:1.17.3' // helper functions
     implementation "com.jakewharton:butterknife:$butterknife_v" // R class binding
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterknife_v"
+    // UI LIBRARIES
     implementation 'com.beloo.widget:ChipsLayoutManager:0.3.7@aar' // UI view for scanActivity
+    implementation 'at.blogc:expandabletextview:1.0.5' // TextView for expandable long text
 
     // TEST DEPS
     testImplementation 'junit:junit:4.12'

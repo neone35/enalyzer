@@ -55,6 +55,7 @@
                         android:id="@+id/tv_additive_known"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        style="@style/Base.TextAppearance.AppCompat.Small"
                         android:lineSpacingMultiplier="1.2"
                         android:text="'Baker's Amonia', 'Sal volatile', 'Salt of hartshorn' "
                         tools:text="'Baker's Amonia', 'Sal volatile', 'Salt of hartshorn', 'Baker's Amonia', 'Sal volatile', 'Salt of hartshorn'" />
@@ -76,13 +77,42 @@
                         android:text="About"
                         tools:text="About" />
 
-                    <TextView
-                        android:id="@+id/tv_additive_about"
+                    <at.blogc.android.views.ExpandableTextView
+                        android:id="@+id/etv_additive_about"
                         android:layout_width="wrap_content"
+                        style="@style/Base.TextAppearance.AppCompat.Small"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
                         android:lineSpacingMultiplier="1.2"
-                        android:text="Ammonium carbonate is a salt with the chemical formula (NH4)2CO3. Since it readily degrades to gaseous ammonia... "
-                        tools:text="Ammonium carbonate is a salt with the chemical formula (NH4)2CO3. Since it readily degrades to gaseous ammonia..." />
+                        android:maxLines="5"
+                        app:animation_duration="@integer/read_more_expand_duration"
+                        tools:text="@string/long_additive_about_text"
+                        android:text="@string/long_additive_about_text" />
+
+                    <FrameLayout
+                        android:id="@+id/fl_etv_about_holder"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tv_about_read_more"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center"
+                            android:text="@string/read_more"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="16sp" />
+
+                        <ProgressBar
+                            android:id="@+id/pb_about_more"
+                            style="@android:style/Widget.DeviceDefault.ProgressBar"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="center"
+                            android:visibility="invisible" />
+
+                    </FrameLayout>
 
                 </LinearLayout>
 

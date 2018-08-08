@@ -163,18 +163,17 @@ public class ScanActivity extends AppCompatActivity implements
         if (firebaseVisionText != null) {
             String recognizedText = firebaseVisionText.getText();
             Logger.d("Recognized text: " + recognizedText);
+            TEXT_DETECTED = true;
             for (FirebaseVisionCloudText.Page page : firebaseVisionText.getPages()) {
-                TEXT_DETECTED = true;
                 for (FirebaseVisionCloudText.Block block : page.getBlocks()) {
                     Rect boundingBox = block.getBoundingBox();
-//                    Logger.d("Block text: " + block.getTextProperty());
-
+                    Logger.d("Block text: " + block.getTextProperty());
                     for (FirebaseVisionCloudText.Paragraph paragraph : block.getParagraphs()) {
-//                        Logger.d("Paragraph text: " + paragraph.getTextProperty());
+                        Logger.d("Paragraph text: " + paragraph.getTextProperty());
                         for (FirebaseVisionCloudText.Word word : paragraph.getWords()) {
-//                            Logger.d("Word text: " + word.getTextProperty());
+                            Logger.d("Word text: " + word.getTextProperty());
                             for (FirebaseVisionCloudText.Symbol symbol : word.getSymbols()) {
-//                                Logger.d("Symbol: " + symbol.getText());
+                                Logger.d("Symbol: " + symbol.getText());
                             }
                         }
                     }

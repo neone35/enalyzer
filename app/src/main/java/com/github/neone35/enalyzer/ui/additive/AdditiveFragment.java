@@ -1,23 +1,30 @@
 package com.github.neone35.enalyzer.ui.additive;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.NestedScrollView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.OvershootInterpolator;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.ui.main.MainActivity;
 import com.orhanobut.logger.Logger;
 
+import at.blogc.android.views.ExpandableTextView;
+import butterknife.BindInt;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -40,14 +47,27 @@ public class AdditiveFragment extends Fragment {
     TextView tvAdditiveKnown;
     @BindView(R.id.tv_additive_about_label)
     TextView tvAdditiveAboutLabel;
-    @BindView(R.id.tv_additive_about)
-    TextView tvAdditiveAbout;
+    @BindView(R.id.etv_additive_about)
+    ExpandableTextView etvAdditiveAbout;
     @BindView(R.id.btn_previous_additive)
     Button btnPreviousAdditive;
     @BindView(R.id.btn_next_additive)
     Button btnNextAdditive;
     @BindView(R.id.nsv_additive)
     NestedScrollView nsvAdditive;
+    @BindView(R.id.tv_about_read_more)
+    TextView tvAboutReadMore;
+    @BindView(R.id.pb_about_more)
+    ProgressBar pbAboutMore;
+    @BindView(R.id.iv_scan_detail_hazard)
+    ImageView ivScanDetailHazard;
+    @BindView(R.id.fl_buttons_holder)
+    ConstraintLayout flButtonsHolder;
+    @BindView(R.id.fl_etv_about_holder)
+    FrameLayout flEtvAboutHolder;
+
+    @BindInt(R.integer.read_more_expand_duration)
+    int mReadMoreExpandDuration;
 
     private String mSelectedEcode;
     private String mTabSource;
@@ -95,6 +115,7 @@ public class AdditiveFragment extends Fragment {
 
         scrollNestedScrollViewToTop(nsvAdditive);
         setupAdditiveSwitchButtons(null, btnPreviousAdditive, btnNextAdditive);
+        setupExpandableTextView(etvAdditiveAbout, flEtvAboutHolder, tvAboutReadMore, pbAboutMore);
 
         return rootView;
     }
@@ -160,6 +181,48 @@ public class AdditiveFragment extends Fragment {
 //            } else if (mStepID == firstStepID) {
 //                btnPreviousAdditive.setVisibility(View.INVISIBLE);
 //            }
+    }
+
+    private void setupExpandableTextView(ExpandableTextView etv, FrameLayout flReadMoreHolder,
+                                         TextView tvReadMore, ProgressBar pbExpand) {
+        // run after layout pass (to get correct line count)
+        etv.post(() -> {
+            int etvLineCount = etv.getLineCount();
+            int maxEtvLines = etv.getMaxLines();
+            if (etvLineCount > maxEtvLines) {
+                // setup expand animation
+                etv.setExpandInterpolator(new OvershootInterpolator());
+                // run expansion on read more layout click
+                flReadMoreHolder.setOnClickListener(v -> etv.expand());
+                etv.addOnExpandListener(new ExpandableTextView.OnExpandListener() {
+                    @Override
+                    public void onExpand(@NonNull ExpandableTextView view) {
+                        // show loading indicator instead of 'read more' text
+                        tvReadMore.setVisibility(View.INVISIBLE);
+                        pbExpand.setVisibility(View.VISIBLE);
+                        // check if expanded (after expand duration) and hide loading layout
+                        final Handler handler = new Handler();
+                        handler.postDelayed(() -> {
+                            if (etv.isExpanded()) {
+                                flReadMoreHolder.setVisibility(View.GONE);
+                            }
+                        }, mReadMoreExpandDuration + 50);
+                    }
+
+                    @Override
+                    public void onCollapse(@NonNull ExpandableTextView view) {
+
+                    }
+                });
+            } else {
+                flReadMoreHolder.setVisibility(View.GONE);
+            }
+        });
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
     }
 
     /**
