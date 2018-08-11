@@ -1,7 +1,5 @@
 package com.github.neone35.enalyzer.ui.scan;
 
-import android.graphics.Rect;
-import android.os.Handler;
 import android.support.v4.app.FragmentManager;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
@@ -15,7 +13,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
 import com.blankj.utilcode.util.ToastUtils;
@@ -23,6 +20,8 @@ import com.github.neone35.enalyzer.HelpUtils;
 import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.data.models.localjson.ecodelist.EcodeListItem;
 import com.github.neone35.enalyzer.ui.OnAsyncEventListener;
+import com.github.neone35.enalyzer.ui.scan.camera.ScanCameraFragment;
+import com.github.neone35.enalyzer.ui.scan.chips.ScanChipsListFragment;
 import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.cloud.FirebaseVisionCloudDetectorOptions;
 import com.google.firebase.ml.vision.cloud.text.FirebaseVisionCloudText;
@@ -50,9 +49,10 @@ public class ScanActivity extends AppCompatActivity {
     String mAppName;
 
     public static boolean TEXT_DETECTED = false;
-    private Camera.PictureCallback mPicture;
-    private ArrayList<String> mExtractedEcodes;
-    private ArrayList<String> mFoundEcodes;
+    public static boolean ECODES_MATCHED = false;
+    private ArrayList<String> mEcodeList;
+    private String mFoundText;
+    private ArrayList<String> mMatchedEcodesList;
     private FragmentManager mFragmentManager;
 
     @Override
@@ -65,6 +65,7 @@ public class ScanActivity extends AppCompatActivity {
         mFragmentManager = getSupportFragmentManager();
 
         askForScanShortcutPin();
+        mEcodeList = initEcodeList();
         listenForFABclick(cameraFab, doneFab);
     }
 
@@ -79,21 +80,25 @@ public class ScanActivity extends AppCompatActivity {
         }
     }
 
-    private void listenForFABclick(FloatingActionButton cameraFab, FloatingActionButton doneFab) {
+    private ArrayList<String> initEcodeList() {
         String ecodesJsonString = HelpUtils.readJSONStringFromAsset(this, "ecodes.json");
-        List<EcodeListItem> ecodeListItems = HelpUtils.getLocalEcodesList(ecodesJsonString);
-        mExtractedEcodes = HelpUtils.extractEcodes(ecodeListItems);
-        Logger.d("Additives number: " + HelpUtils.mAdditivesNum);
-        Logger.d("Ecodes list: " + mExtractedEcodes);
+        List<EcodeListItem> ecodeObjects = HelpUtils.getLocalEcodeObjectList(ecodesJsonString);
+        return HelpUtils.getEcodes(ecodeObjects);
+    }
 
+    private void listenForFABclick(FloatingActionButton cameraFab, FloatingActionButton doneFab) {
         // initial done FAB listener
         doneFab.setOnClickListener(v -> ToastUtils.showShort("Nothing was detected. Try again"));
 
         // camera FAB listener
         cameraFab.setOnClickListener((View v) -> {
+            // erase list made on last photo scan
+            mMatchedEcodesList = new ArrayList<>();
+            mFoundText = null;
             pbScan.setVisibility(View.VISIBLE);
-            // take picture only when focused
+            // focus camera first
             ScanCameraFragment.mCamera.autoFocus((boolean success, Camera camera) -> {
+                // take picture only when focused
                 if (success) {
                     // get an image from the camera
                     ScanCameraFragment.mCamera.takePicture(null, null, (byte[] data, Camera cameraFocused) -> {
@@ -109,9 +114,10 @@ public class ScanActivity extends AppCompatActivity {
                         FirebaseVisionCloudTextDetector detector = FirebaseVision.getInstance().getVisionCloudTextDetector(options);
                         // run detector on extracted image
                         detectInImage(image, detector, cameraFocused);
-                        // save this scan instance to DB
+                        // set new listener on done FAB
                         doneFab.setOnClickListener(view -> {
-                            if (TEXT_DETECTED) {
+                            // save this scan image to SD only if ecodes found
+                            if (ECODES_MATCHED) {
                                 String fileSavingTitle = getResources().getString(R.string.saving_file);
                                 String pleaseWaitMessage = getResources().getString(R.string.please_wait);
 
@@ -133,15 +139,20 @@ public class ScanActivity extends AppCompatActivity {
                                 });
                                 fileSaveTask.execute(data, null, null);
                             } else {
-                                ToastUtils.showShort("Nothing was detected. Try again");
+                                ToastUtils.showShort("No additive codes found. Couldn't save scan");
                             }
                         });
                     });
                 } else {
+                    pbScan.setVisibility(View.INVISIBLE);
                     ToastUtils.showShort("Camera not focused. Try again");
                 }
             });
         });
+    }
+
+    private boolean checkListNullEmpty(ArrayList<String> arrayList) {
+        return arrayList != null && !arrayList.isEmpty();
     }
 
     private void detectInImage(FirebaseVisionImage image, FirebaseVisionCloudTextDetector detector, Camera camera) {
@@ -149,7 +160,21 @@ public class ScanActivity extends AppCompatActivity {
         detector.detectInImage(image)
                 .addOnSuccessListener(firebaseVisionText -> {
                     Logger.d("Detection successful");
-                    detectEcodes(firebaseVisionText);
+                    // get OCR words
+                    mFoundText = getRecognizedText(firebaseVisionText);
+                    if (mFoundText != null) {
+                        // match text with ecode list
+                        mMatchedEcodesList = HelpUtils.matchEcodes(mFoundText, mEcodeList);
+                        Logger.d("Matched ecodes: " + mMatchedEcodesList);
+                        if (checkListNullEmpty(mMatchedEcodesList)) {
+                            ECODES_MATCHED = true;
+                            // add matched ecodes as chips to sibling fragment
+                            populateChipsLayout(mMatchedEcodesList);
+                        } else {
+                            ECODES_MATCHED = false;
+                            ToastUtils.showShort("No additive codes found");
+                        }
+                    }
                     // restart camera after detection
                     pbScan.setVisibility(View.INVISIBLE);
                     camera.startPreview();
@@ -163,38 +188,38 @@ public class ScanActivity extends AppCompatActivity {
                 });
     }
 
-    private void detectEcodes(FirebaseVisionCloudText firebaseVisionText) {
+    private void populateChipsLayout(ArrayList<String> matchedEcodes) {
+        // display extracted ecodes in chips layout
+        if (mFragmentManager != null) {
+            mFragmentManager.beginTransaction()
+                    .replace(R.id.fl_scan_chips, ScanChipsListFragment.newInstance(matchedEcodes))
+                    .commit();
+        }
+    }
+
+    private String getRecognizedText(FirebaseVisionCloudText firebaseVisionText) {
         if (firebaseVisionText != null) {
             String recognizedText = firebaseVisionText.getText();
             Logger.d("Recognized text: " + recognizedText);
             TEXT_DETECTED = true;
-            // display extracted ecodes in chips layout
-
-//            if (mFragmentManager != null) {
-//                mFragmentManager.beginTransaction()
-//                        .replace(R.id.fl_scan_chips, ScanChipsListFragment.newInstance(mExtractedEcodes))
-//                        .commit();
+//            for (FirebaseVisionCloudText.Page page : firebaseVisionText.getPages()) {
+//                for (FirebaseVisionCloudText.Block block : page.getBlocks()) {
+//                    for (FirebaseVisionCloudText.Paragraph paragraph : block.getParagraphs()) {
+//                        for (FirebaseVisionCloudText.Word word : paragraph.getWords()) {
+//                            StringBuilder wordString = new StringBuilder();
+//                            for (FirebaseVisionCloudText.Symbol symbol : word.getSymbols()) {
+//                                wordString.append(symbol.getText());
+//                            }
+//                            mFoundWordsList.add(wordString.toString());
+//                        }
+//                    }
+//                }
 //            }
-            for (FirebaseVisionCloudText.Page page : firebaseVisionText.getPages()) {
-                for (FirebaseVisionCloudText.Block block : page.getBlocks()) {
-                    Rect boundingBox = block.getBoundingBox();
-//                    Logger.d("Block text: " + block.getTextProperty());
-                    for (FirebaseVisionCloudText.Paragraph paragraph : block.getParagraphs()) {
-//                        Logger.d("Paragraph text: " + paragraph.getTextProperty());
-                        for (FirebaseVisionCloudText.Word word : paragraph.getWords()) {
-                            StringBuilder wordText = new StringBuilder();
-                            for (FirebaseVisionCloudText.Symbol symbol : word.getSymbols()) {
-//                                Logger.d("Symbol: " + symbol.getText());
-                                wordText.append(symbol.getText());
-                            }
-                            Logger.d("Word text: " + wordText);
-                        }
-                    }
-                }
-            }
+            return recognizedText;
         } else {
             TEXT_DETECTED = false;
             ToastUtils.showShort("No text found");
+            return null;
         }
     }
 

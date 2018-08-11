@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/frag_scan_camera"
-        android:name="com.github.neone35.enalyzer.ui.scan.ScanCameraFragment"
+        android:name="com.github.neone35.enalyzer.ui.scan.camera.ScanCameraFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
@@ -42,7 +42,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
-        tools:context=".ui.scan.ScanChipsListFragment" />
+        tools:context=".ui.scan.chips.ScanChipsListFragment" />
 
     <include
         android:id="@+id/inc_fab_camera"

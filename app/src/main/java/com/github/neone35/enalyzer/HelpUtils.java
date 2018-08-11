@@ -19,8 +19,6 @@ public class HelpUtils {
 
     private static Gson gson = new Gson();
     public static int mAdditivesNum = 0;
-    public static ArrayList<String> mExtractedEcodes = new ArrayList<String>();
-    public static ArrayList<String> mFoundEcodes = new ArrayList<String>();
 
     public static String readJSONStringFromAsset(Context ctx, String fileName) {
         String jsonString = null;
@@ -42,35 +40,63 @@ public class HelpUtils {
         return jsonString;
     }
 
-    public static List<EcodeListItem> getLocalEcodesList(String additivesJsonString) {
+    public static List<EcodeListItem> getLocalEcodeObjectList(String additivesJsonString) {
         Type responseType = new TypeToken<EcodeListResponse>() {
         }.getType();
         EcodeListResponse ecodeListResponse = gson.fromJson(additivesJsonString, responseType);
-        mAdditivesNum = ecodeListResponse.getCount();
-        String ecodeItemListString = gson.toJson(ecodeListResponse.getEcodeList());
-        Type itemListType = new TypeToken<List<EcodeListItem>>() {
-        }.getType();
-        return gson.fromJson(ecodeItemListString, itemListType);
+        return ecodeListResponse.getEcodeList();
     }
 
-    public static ArrayList<String> extractEcodes(List<EcodeListItem> ecodeListItems) {
-        for (int i = 0; i < HelpUtils.mAdditivesNum; i++) {
+    public static ArrayList<String> getEcodes(List<EcodeListItem> ecodeObjects) {
+        mAdditivesNum = ecodeObjects.size();
+        ArrayList<String> eCodeList = new ArrayList<>();
+        for (int i = 0; i < mAdditivesNum; i++) {
+            String eCodeID = ecodeObjects.get(i).getId();
             // "en:e322i"
-            List<String> splittedId = Splitter.onPattern(":").splitToList(ecodeListItems.get(i).getId());
+            List<String> splittedId = Splitter
+                    .onPattern(":")
+                    .omitEmptyStrings() // remove nulls
+                    .trimResults() // remove white space
+                    .splitToList(eCodeID);
             // "e322i"
             String eCode = splittedId.get(1);
-            // "E322i"
+            // "E + 322i"
             String eCodeCapitalE = eCode.substring(0, 1).toUpperCase() + eCode.substring(1);
-            mExtractedEcodes.add(eCodeCapitalE);
+            eCodeList.add(eCodeCapitalE);
         }
-        return mExtractedEcodes;
+        return eCodeList;
     }
 
-    public static ArrayList<String> findEcodes(List<String> extractedEcodes) {
-        int extractedNum = extractedEcodes.size();
-        for (int i = 0; i < extractedNum; i++) {
-
+    public static ArrayList<String> getWikiDataQCodes(List<EcodeListItem> ecodeObjects) {
+        ArrayList<String> wikiDataQCodeList = new ArrayList<>();
+        for (int i = 0; i < mAdditivesNum; i++) {
+            String wikiDataURL = ecodeObjects.get(i).getSameAs().get(0);
+            // "https://www.wikidata.org/wiki/Q422071"
+            List<String> splittedURL = Splitter
+                    .onPattern("/")
+                    .omitEmptyStrings() // remove nulls
+                    .trimResults() // remove white space
+                    .splitToList(wikiDataURL);
+            // "Q422071"
+            int splitPartsNum = splittedURL.size();
+            String wikiDataQCode = splittedURL.get(splitPartsNum - 1);
+            wikiDataQCodeList.add(wikiDataQCode);
         }
-        return null;
+        return wikiDataQCodeList;
+    }
+
+    public static ArrayList<String> matchEcodes(String recognizedText, List<String> eCodesList) {
+        ArrayList<String> matchedEcodeList = new ArrayList<>();
+
+        // check recognized text for each additive ecode
+        for (int i = 0; i < mAdditivesNum; i++) {
+            // "E322i"
+            String eCode = eCodesList.get(i);
+            if (recognizedText.contains(eCode)) {
+                matchedEcodeList.add(eCode);
+            }
+        }
+
+        return matchedEcodeList;
     }
 }

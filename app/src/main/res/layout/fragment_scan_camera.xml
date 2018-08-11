@@ -5,7 +5,7 @@
     android:id="@+id/fl_scan_camera_preview"
     android:layout_height="match_parent"
     android:layout_weight="1"
-    tools:context=".ui.scan.ScanCameraFragment">
+    tools:context=".ui.scan.camera.ScanCameraFragment">
 
     <ProgressBar
         android:id="@+id/pb_camera_preview"

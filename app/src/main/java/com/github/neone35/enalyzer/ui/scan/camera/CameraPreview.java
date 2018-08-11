@@ -1,4 +1,4 @@
-package com.github.neone35.enalyzer.ui.scan;
+package com.github.neone35.enalyzer.ui.scan.camera;
 
 import android.content.Context;
 import android.hardware.Camera;
@@ -36,7 +36,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         mHolder = getHolder();
         mHolder.addCallback(this);
         // deprecated setting, but required on Android versions prior to 3.0
-        mHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+//        mHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
     }
 
     public CameraPreview(Context context, AttributeSet attrs) {
@@ -48,7 +48,6 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         try {
             mCamera.setPreviewDisplay(holder);
             mCamera.startPreview();
-            Logger.d("Camera preview has started with camera parameters : " + mCamera.getParameters());
         } catch (IOException e) {
             Logger.d("Error setting camera preview: " + e.getMessage());
         }

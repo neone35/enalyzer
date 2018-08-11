@@ -1,4 +1,4 @@
-package com.github.neone35.enalyzer.ui.scan;
+package com.github.neone35.enalyzer.ui.scan.camera;
 
 import android.hardware.Camera;
 import android.os.AsyncTask;

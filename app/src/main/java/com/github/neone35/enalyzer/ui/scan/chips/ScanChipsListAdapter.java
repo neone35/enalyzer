@@ -1,4 +1,4 @@
-package com.github.neone35.enalyzer.ui.scan;
+package com.github.neone35.enalyzer.ui.scan.chips;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -6,10 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.github.neone35.enalyzer.R;
+import com.orhanobut.logger.Logger;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class ScanChipsListAdapter extends RecyclerView.Adapter<ScanChipsListAdap
 
     private List<String> eCodesList;
 
-    public ScanChipsListAdapter(List<String> eCodesList) {
+    ScanChipsListAdapter(List<String> eCodesList) {
         this.eCodesList = eCodesList;
     }
 
@@ -35,9 +35,8 @@ public class ScanChipsListAdapter extends RecyclerView.Adapter<ScanChipsListAdap
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.tvChip.setText(eCodesList.get(position));
-        holder.ibChipClose.setOnClickListener(v -> {
-            removeItem(position);
-        });
+        holder.ibChipClose.setOnClickListener(v ->
+                ScanChipsListAdapter.this.removeItem(position));
     }
 
     @Override
@@ -47,7 +46,10 @@ public class ScanChipsListAdapter extends RecyclerView.Adapter<ScanChipsListAdap
 
     private void removeItem(int position) {
         eCodesList.remove(position);
+        // animate one item removal
         notifyItemRemoved(position);
+        // update all items after removed item
+        notifyItemRangeChanged(position, getItemCount());
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

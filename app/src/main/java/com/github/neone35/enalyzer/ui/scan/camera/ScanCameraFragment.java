@@ -1,9 +1,8 @@
-package com.github.neone35.enalyzer.ui.scan;
+package com.github.neone35.enalyzer.ui.scan.camera;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -31,28 +30,10 @@ public class ScanCameraFragment extends Fragment {
     @BindView(R.id.fl_scan_camera_preview)
     FrameLayout flScanCameraPreview;
 
-    private String mParam1;
-    private OnScanCameraFragmentListener mListener;
     public static Camera mCamera;
     private CameraPreview mPreview;
 
     public ScanCameraFragment() {
-    }
-
-    public static ScanCameraFragment newInstance(String param1) {
-        ScanCameraFragment fragment = new ScanCameraFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-        }
     }
 
     @Override
@@ -65,12 +46,6 @@ public class ScanCameraFragment extends Fragment {
         startCameraPreview();
 
         return rootView;
-    }
-
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onScanCameraFragmentInteraction(uri);
-        }
     }
 
     public void hideStatusBar() {
@@ -127,7 +102,6 @@ public class ScanCameraFragment extends Fragment {
         if (mCamera != null) {
             mCamera.release();
         }
-        mListener = null;
     }
 
     @Override
@@ -136,19 +110,5 @@ public class ScanCameraFragment extends Fragment {
         if (mCamera != null) {
             mCamera.release();
         }
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnScanCameraFragmentListener {
-        void onScanCameraFragmentInteraction(Uri uri);
     }
 }
