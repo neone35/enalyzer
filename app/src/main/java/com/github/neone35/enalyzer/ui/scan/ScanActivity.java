@@ -20,6 +20,7 @@ import com.github.neone35.enalyzer.HelpUtils;
 import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.data.models.localjson.ecodelist.EcodeListItem;
 import com.github.neone35.enalyzer.ui.OnAsyncEventListener;
+import com.github.neone35.enalyzer.ui.main.MainActivity;
 import com.github.neone35.enalyzer.ui.scan.camera.ScanCameraFragment;
 import com.github.neone35.enalyzer.ui.scan.chips.ScanChipsListFragment;
 import com.google.firebase.ml.vision.FirebaseVision;
@@ -151,10 +152,6 @@ public class ScanActivity extends AppCompatActivity {
         });
     }
 
-    private boolean checkListNullEmpty(ArrayList<String> arrayList) {
-        return arrayList != null && !arrayList.isEmpty();
-    }
-
     private void detectInImage(FirebaseVisionImage image, FirebaseVisionCloudTextDetector detector, Camera camera) {
         // return true if detection runs
         detector.detectInImage(image)
@@ -166,7 +163,7 @@ public class ScanActivity extends AppCompatActivity {
                         // match text with ecode list
                         mMatchedEcodesList = HelpUtils.matchEcodes(mFoundText, mEcodeList);
                         Logger.d("Matched ecodes: " + mMatchedEcodesList);
-                        if (checkListNullEmpty(mMatchedEcodesList)) {
+                        if (HelpUtils.checkListNullEmpty(mMatchedEcodesList)) {
                             ECODES_MATCHED = true;
                             // add matched ecodes as chips to sibling fragment
                             populateChipsLayout(mMatchedEcodesList);

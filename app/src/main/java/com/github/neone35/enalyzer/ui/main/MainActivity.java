@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.os.Environment;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -38,6 +39,7 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -82,6 +84,8 @@ public class MainActivity extends AppCompatActivity implements
     private FirebaseAnalytics mFirebaseAnalytics;
     private SharedPreferences mSettings;
     private FragmentManager mFragmentManager;
+    public static File mMediaStorageDir;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +96,10 @@ public class MainActivity extends AppCompatActivity implements
 
         mSettings = this.getSharedPreferences("Settings", Context.MODE_PRIVATE);
         mFragmentManager = getSupportFragmentManager();
+        // This location works best if you want the created images to be shared
+        // between applications and persist after your app has been uninstalled.
+        mMediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES), mAppName);
 
         setSupportActionBar(mToolbar);
         setupFirebaseAnalytics();
@@ -340,8 +348,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onScanListInteraction(DummyContent.DummyItem item) {
-        Logger.d(item);
+    public void onScanListInteraction(String savedPhotoPath) {
+        Logger.d(savedPhotoPath);
         int currentPage = mViewPager.getCurrentItem();
         // if current page is scans
         if (currentPage == 0) {

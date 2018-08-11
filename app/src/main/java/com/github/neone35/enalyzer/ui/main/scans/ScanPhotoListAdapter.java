@@ -1,5 +1,7 @@
 package com.github.neone35.enalyzer.ui.main.scans;
 
+import android.content.Context;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,22 +10,23 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.ui.main.scans.ScanPhotoListFragment.OnScanPhotoListListener;
-import com.github.neone35.enalyzer.dummy.DummyContent.DummyItem;
 
-import java.util.List;
+import java.io.File;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ScanPhotoListAdapter extends RecyclerView.Adapter<ScanPhotoListAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private File[] mPhotoFileList;
+    private Context mContext;
     private final OnScanPhotoListListener mListener;
 
-    ScanPhotoListAdapter(List<DummyItem> items, OnScanPhotoListListener listener) {
-        mValues = items;
+    ScanPhotoListAdapter(File[] photoFileList, OnScanPhotoListListener listener) {
+        mPhotoFileList = photoFileList;
         mListener = listener;
     }
 
@@ -37,35 +40,40 @@ public class ScanPhotoListAdapter extends RecyclerView.Adapter<ScanPhotoListAdap
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
+
+        holder.mSavedPhotoFile = mPhotoFileList[position];
+        Uri photoFileUri = Uri.fromFile(holder.mSavedPhotoFile);
+        Glide.with(holder.ivPhoto)
+                .load(photoFileUri)
+                .into(holder.ivPhoto);
+
 
         holder.mView.setOnClickListener(v -> {
             if (null != mListener) {
                 // Notify the active callbacks interface (the activity, if the
                 // fragment is attached to one) that an item has been selected.
-                mListener.onScanListInteraction(holder.mItem);
+                mListener.onScanListInteraction(photoFileUri.toString());
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return mValues.size();
+        return mPhotoFileList.length;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         final View mView;
-        DummyItem mItem;
+        File mSavedPhotoFile;
         @BindView(R.id.iv_scan_photo)
         ImageView ivPhoto;
         @BindView(R.id.tv_scan_photo_date)
         TextView tvPhotoDate;
 
-        ViewHolder(View view) {
-            super(view);
-            mView = view;
-            ButterKnife.bind(view, ivPhoto);
-            ButterKnife.bind(view, tvPhotoDate);
+        ViewHolder(View itemView) {
+            super(itemView);
+            mView = itemView;
+            ButterKnife.bind(this, itemView);
         }
 
         @Override

@@ -12,6 +12,7 @@ import android.os.Environment;
 
 import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.ui.OnAsyncEventListener;
+import com.github.neone35.enalyzer.ui.main.MainActivity;
 import com.orhanobut.logger.Logger;
 
 import java.io.File;
@@ -109,10 +110,7 @@ public class FileSaveTask extends AsyncTask<byte[], Void, Boolean> {
     private File createOutputMediaFile(int type) {
         // To be safe, check that the SDCard is mounted
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-            File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-                    Environment.DIRECTORY_PICTURES), mAppName);
-            // This location works best if you want the created images to be shared
-            // between applications and persist after your app has been uninstalled.
+            File mediaStorageDir = MainActivity.mMediaStorageDir;
 
             // Create the storage directory if it does not exist
             if (!mediaStorageDir.exists()) {

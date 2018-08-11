@@ -11,9 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.blankj.utilcode.util.ToastUtils;
+import com.github.neone35.enalyzer.HelpUtils;
 import com.github.neone35.enalyzer.R;
-import com.github.neone35.enalyzer.dummy.DummyContent;
-import com.github.neone35.enalyzer.dummy.DummyContent.DummyItem;
+import com.github.neone35.enalyzer.ui.main.MainActivity;
+
+import java.io.File;
+import java.util.ArrayList;
 
 /**
  * A fragment representing a list of Items.
@@ -26,6 +30,7 @@ public class ScanPhotoListFragment extends Fragment {
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 2;
     private OnScanPhotoListListener mListener;
+    private File[] mPhotoFilesList = null;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -46,10 +51,14 @@ public class ScanPhotoListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
+    }
+
+    public File[] getListOfSavedPhotoFiles() {
+        File photosDir = MainActivity.mMediaStorageDir;
+        return photosDir.listFiles();
     }
 
     @Override
@@ -66,7 +75,13 @@ public class ScanPhotoListFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new ScanPhotoListAdapter(DummyContent.ITEMS, mListener));
+
+            mPhotoFilesList = getListOfSavedPhotoFiles();
+            if (mPhotoFilesList != null) {
+                recyclerView.setAdapter(new ScanPhotoListAdapter(mPhotoFilesList, mListener));
+            } else {
+                ToastUtils.showShort("No scan files found");
+            }
         }
         return view;
     }
@@ -100,6 +115,6 @@ public class ScanPhotoListFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnScanPhotoListListener {
-        void onScanListInteraction(DummyItem item);
+        void onScanListInteraction(String savedPhotoPath);
     }
 }

@@ -99,4 +99,8 @@ public class HelpUtils {
 
         return matchedEcodeList;
     }
+
+    public static boolean checkListNullEmpty(ArrayList<String> arrayList) {
+        return arrayList != null && !arrayList.isEmpty();
+    }
 }
