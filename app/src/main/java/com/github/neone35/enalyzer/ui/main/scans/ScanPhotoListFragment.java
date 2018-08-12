@@ -77,6 +77,7 @@ public class ScanPhotoListFragment extends Fragment {
             }
 
             mPhotoFilesList = getListOfSavedPhotoFiles();
+
             if (mPhotoFilesList != null) {
                 recyclerView.setAdapter(new ScanPhotoListAdapter(mPhotoFilesList, mListener));
             } else {

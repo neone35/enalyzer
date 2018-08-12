@@ -54,7 +54,7 @@ public class ScanDetailListAdapter extends RecyclerView.Adapter<ScanDetailListAd
         holder.mView.setOnClickListener(v -> {
             if (null != mListener) {
                 // Pass transitionViews to AdditiveActivity through MainActivity callback
-                HashMap<String, View> transitionViews = new HashMap<String, View>();
+                HashMap<String, View> transitionViews = new HashMap<>();
                 transitionViews.put(MainActivity.KEY_PHOTO_TRANSITION_VIEW, holder.ivPhoto);
                 transitionViews.put(MainActivity.KEY_ECODE_TRANSITION_VIEW, holder.tvEcode);
                 mListener.onScanDetailListInteraction(transitionViews);
@@ -78,8 +78,6 @@ public class ScanDetailListAdapter extends RecyclerView.Adapter<ScanDetailListAd
         TextView tvCategory;
         @BindView(R.id.tv_scan_detail_names)
         TextView tvNames;
-        @BindView(R.id.iv_scan_detail_hazard)
-        ImageView ivHazardView;
         @BindString(R.string.additive_image_transition)
         String additiveImageTransitionName;
         @BindString(R.string.additive_ecode_transition)

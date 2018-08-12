@@ -5,6 +5,7 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import com.github.neone35.enalyzer.data.models.room.Additive;
 
@@ -22,7 +23,13 @@ public interface AdditiveDao {
     LiveData<Additive> getOneByEcode(String ecode);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void bulkInsert(Additive... additives);
+    void bulkInsert(Additive[] additives);
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void oneInsert(Additive additive);
+
+    @Update
+    void bulkUpdate(Additive[] additives);
 
     @Query("DELETE FROM additives")
     void deleteAllAdditives();

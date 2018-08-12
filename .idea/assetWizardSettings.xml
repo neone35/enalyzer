@@ -23,7 +23,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/image/ic_photo_camera_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/image/ic_flash_off_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -33,13 +33,10 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="assetSourceType" value="FILE" />
-                            <entry key="color" value="ffffff" />
-                            <entry key="height" value="650" />
-                            <entry key="outputName" value="ic_widget_scan_shortcut" />
+                            <entry key="color" value="848484" />
+                            <entry key="outputName" value="ic_flash_off_grey_24dp" />
                             <entry key="overrideSize" value="true" />
                             <entry key="sourceFile" value="C:\Users\aarta\Documents\PersonalFiles\Projects\ANDprojects\Enalyzer files\graphics\enalyzer_widget_widget 1.svg" />
-                            <entry key="width" value="500" />
                           </map>
                         </option>
                       </PersistentState>

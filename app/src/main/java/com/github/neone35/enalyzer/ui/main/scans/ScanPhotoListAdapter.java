@@ -19,6 +19,8 @@ import java.io.File;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.bumptech.glide.request.RequestOptions.fitCenterTransform;
+
 public class ScanPhotoListAdapter extends RecyclerView.Adapter<ScanPhotoListAdapter.ViewHolder> {
 
     private File[] mPhotoFileList;
@@ -45,6 +47,7 @@ public class ScanPhotoListAdapter extends RecyclerView.Adapter<ScanPhotoListAdap
         Uri photoFileUri = Uri.fromFile(holder.mSavedPhotoFile);
         Glide.with(holder.ivPhoto)
                 .load(photoFileUri)
+                .apply(fitCenterTransform())
                 .into(holder.ivPhoto);
 
 

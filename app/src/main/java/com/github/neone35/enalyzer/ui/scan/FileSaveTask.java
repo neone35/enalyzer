@@ -9,6 +9,7 @@ import android.graphics.Matrix;
 import android.hardware.Camera;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.support.v4.content.ContextCompat;
 
 import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.ui.OnAsyncEventListener;
@@ -34,25 +35,22 @@ public class FileSaveTask extends AsyncTask<byte[], Void, Boolean> {
     private OnAsyncEventListener<Boolean> mCallBack;
     private Exception mException;
     private String mAppName;
-    private String mDialogTitle;
-    private String mDialogMessage;
     @SuppressLint("StaticFieldLeak")
     private Context mContext;
 
-    FileSaveTask(String appName, String saveDialogTitle, String saveDialogMessage,
-                 Context context, OnAsyncEventListener<Boolean> callback) {
-        mAppName = appName;
-        mDialogTitle = saveDialogTitle;
-        mDialogMessage = saveDialogMessage;
+    FileSaveTask(Context context, OnAsyncEventListener<Boolean> callback) {
         mCallBack = callback;
         mContext = context;
     }
 
     @Override
     protected void onPreExecute() {
+        mAppName = mContext.getResources().getString(R.string.app_name);
+        String fileSavingTitle = mContext.getResources().getString(R.string.saving_file);
+        String pleaseWaitMessage = mContext.getResources().getString(R.string.please_wait);
         dialog = new ProgressDialog(mContext);
-        dialog.setTitle(mDialogTitle);
-        dialog.setMessage(mDialogMessage);
+        dialog.setTitle(fileSavingTitle);
+        dialog.setMessage(pleaseWaitMessage);
         dialog.setIndeterminate(true);
         dialog.show();
     }

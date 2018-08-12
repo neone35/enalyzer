@@ -18,6 +18,7 @@ public class Additive {
     @ColumnInfo(name = "pubchem_ID")
     private String pubchemID;
 
+    private String name;
     private String description;
     private String category;
     private String formula;
@@ -29,14 +30,15 @@ public class Additive {
     @ColumnInfo(name = "hazards")
     private List<Hazard> hazard;
 
-    // Constructor used by Room to create Recipes
+    // Constructor used by Room to create Additives
     public Additive(int ecode, String wikiDataID, String wikiEditDate, String pubchemID,
-                    String description, String category, String formula, String imageURL,
+                    String name, String description, String category, String formula, String imageURL,
                     List<String> knownAs, List<String> ghsPictogramURL, List<Hazard> hazard) {
         this.ecode = ecode;
         this.wikiDataID = wikiDataID;
         this.wikiEditDate = wikiEditDate;
         this.pubchemID = pubchemID;
+        this.name = name;
         this.description = description;
         this.category = category;
         this.formula = formula;
@@ -88,5 +90,13 @@ public class Additive {
 
     public List<Hazard> getHazard() {
         return hazard;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

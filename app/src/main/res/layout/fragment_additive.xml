@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:paddingBottom="48dp"
+            android:paddingBottom="@dimen/additive_switch_button_height"
             android:scrollbars="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +39,10 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="8dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -65,7 +68,10 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="8dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -82,7 +88,7 @@
                         android:layout_width="wrap_content"
                         style="@style/Base.TextAppearance.AppCompat.Small"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
+                        android:layout_marginBottom="4dp"
                         android:lineSpacingMultiplier="1.2"
                         android:maxLines="5"
                         app:animation_duration="@integer/read_more_expand_duration"
@@ -107,8 +113,8 @@
                         <ProgressBar
                             android:id="@+id/pb_about_more"
                             style="@android:style/Widget.DeviceDefault.ProgressBar"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
                             android:layout_gravity="center"
                             android:visibility="invisible" />
 
@@ -116,33 +122,31 @@
 
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_margin="8dp"
-                    android:background="@color/colorDivider" />
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="8dp"
                     android:orientation="vertical">
 
-                    <include
-                        android:id="@+id/inc_hazards_cl"
-                        layout="@layout/include_hazard_pictograms"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/tv_additive_hazards_label"
+                        style="@style/Base.TextAppearance.AppCompat.SearchResult.Subtitle"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="-8dp"
-                        android:layout_marginLeft="-8dp"
-                        android:layout_marginStart="-8dp"
-                        android:layout_marginTop="-8dp" />
+                        android:layout_marginBottom="4dp"
+                        android:text="Hazards"
+                        tools:text="Hazards" />
 
                     <fragment
                         android:id="@+id/frag_hazard"
                         android:name="com.github.neone35.enalyzer.ui.additive.HazardStatementListFragment"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="8dp"
                         tools:context=".additive.AdditiveActivity"
                         tools:layout="@layout/fragment_hazard_statement_list" />
 

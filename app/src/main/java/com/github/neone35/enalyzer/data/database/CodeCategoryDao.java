@@ -33,7 +33,7 @@ public interface CodeCategoryDao {
     LiveData<CodeCategory> loadAcidityRegulators();
 
     @Query("SELECT * FROM code_categories WHERE e_codes BETWEEN 600 AND 699")
-    LiveData<CodeCategory> loadFlavourEnhancer();
+    LiveData<CodeCategory> loadFlavourEnhancers();
 
     @Query("SELECT * FROM code_categories WHERE e_codes BETWEEN 700 AND 799")
     LiveData<CodeCategory> loadAntibiotics();
