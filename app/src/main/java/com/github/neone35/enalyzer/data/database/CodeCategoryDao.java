@@ -17,6 +17,9 @@ public interface CodeCategoryDao {
     @Query("SELECT * FROM code_categories")
     LiveData<List<CodeCategory>> getAll();
 
+    @Query("SELECT * FROM code_categories where id = :id")
+    LiveData<CodeCategory> getById(int id);
+
     @Query("SELECT * FROM code_categories WHERE e_codes BETWEEN 100 AND 199")
     LiveData<CodeCategory> loadColours();
 

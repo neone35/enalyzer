@@ -122,8 +122,6 @@
 
                 </LinearLayout>
 
-
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -178,6 +176,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:text="@string/additive_switch_prev"
+            tools:text="E220"
             android:theme="@style/AppTheme.Button.Primary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
@@ -189,6 +188,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:text="@string/additive_switch_next"
+            tools:text="E225"
             android:theme="@style/AppTheme.Button.Primary"
             app:layout_constraintBottom_toBottomOf="@+id/btn_previous_additive"
             app:layout_constraintEnd_toEndOf="parent"

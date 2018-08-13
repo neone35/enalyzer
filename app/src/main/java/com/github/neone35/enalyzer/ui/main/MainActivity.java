@@ -76,11 +76,11 @@ public class MainActivity extends AppCompatActivity implements
     public static final String KEY_PAGER_INSTRUCT_MOTION = "pager_motion";
     public static final String KEY_SELECTED_ECODE = "selected_ecode";
     public static final String KEY_TAB_SOURCE = "tab_source";
-    public static String KEY_PHOTO_TRANSITION_VIEW = "photo_transition";
-    public static String KEY_ECODE_TRANSITION_VIEW = "ecode_transition";
+    public static final String KEY_PHOTO_TRANSITION_VIEW = "photo_transition";
+    public static final String KEY_ECODE_TRANSITION_VIEW = "ecode_transition";
     public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 1;
-    public static int ID_CAMERA_PERMISSION;
-    public static int ID_EXTERNAL_STORAGE_PERMISSION;
+    public static final String CAMERA_PERMISSION = android.Manifest.permission.CAMERA;
+    public static final String EXTERNAL_STORAGE_PERMISSION = android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
     private FirebaseAnalytics mFirebaseAnalytics;
     private SharedPreferences mSettings;
     private FragmentManager mFragmentManager;
@@ -161,10 +161,11 @@ public class MainActivity extends AppCompatActivity implements
         });
 
         addFab.setOnClickListener(v -> {
-            checkAndRequestPermissions();
-            if (ID_CAMERA_PERMISSION == PackageManager.PERMISSION_GRANTED &&
-                    ID_EXTERNAL_STORAGE_PERMISSION == PackageManager.PERMISSION_GRANTED)
+            String permissions[] = {CAMERA_PERMISSION, EXTERNAL_STORAGE_PERMISSION};
+            // scan activity is started only after permissions are allowed
+            if (checkAndRequestPermissions(permissions)) {
                 startScanActivity();
+            }
         });
     }
 
@@ -188,20 +189,23 @@ public class MainActivity extends AppCompatActivity implements
         outState.putInt(KEY_TAB_POSITION, mTabLayout.getSelectedTabPosition());
     }
 
-    private void checkAndRequestPermissions() {
-        ID_CAMERA_PERMISSION = ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA);
-        ID_EXTERNAL_STORAGE_PERMISSION = ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
+    private boolean checkAndRequestPermissions(String permissions[]) {
         List<String> listPermissionsNeeded = new ArrayList<>();
 
-        if (ID_CAMERA_PERMISSION != PackageManager.PERMISSION_GRANTED) {
-            listPermissionsNeeded.add(android.Manifest.permission.CAMERA);
+        for (String permission : permissions) {
+            int PERMISSION_ID = ContextCompat.checkSelfPermission(this, permission);
+            if (PERMISSION_ID != PackageManager.PERMISSION_GRANTED) {
+                listPermissionsNeeded.add(permission);
+            }
         }
-        if (ID_EXTERNAL_STORAGE_PERMISSION != PackageManager.PERMISSION_GRANTED) {
-            listPermissionsNeeded.add(android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        }
+
         if (!listPermissionsNeeded.isEmpty()) {
             ActivityCompat.requestPermissions(this, listPermissionsNeeded.toArray
                     (new String[listPermissionsNeeded.size()]), REQUEST_ID_MULTIPLE_PERMISSIONS);
+            // goes to onRequestPermissionsResult
+            return false;
+        } else {
+            return true;
         }
     }
 
@@ -214,18 +218,14 @@ public class MainActivity extends AppCompatActivity implements
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     // permission was granted, yay! Do the
                     // contacts-related task you need to do.
-                    mAddFab.setEnabled(true);
-                    mAddFab.setAlpha(1f);
-                    final Handler handler = new Handler();
-                    handler.postDelayed(() ->
-                                    mAddFab.performClick(),
-                            1000);
+
+                    // delay start after permission screen exit animation
+//                    final Handler handler = new Handler();
+                    startScanActivity();
                 } else {
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
                     ToastUtils.showShort("Permissions denied. Limited functionality.");
-                    mAddFab.setEnabled(false);
-                    mAddFab.setAlpha(0.5f);
                 }
             }
             // other 'case' lines to check for other

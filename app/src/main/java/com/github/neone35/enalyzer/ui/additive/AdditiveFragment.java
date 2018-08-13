@@ -59,8 +59,6 @@ public class AdditiveFragment extends Fragment {
     TextView tvAboutReadMore;
     @BindView(R.id.pb_about_more)
     ProgressBar pbAboutMore;
-    @BindView(R.id.iv_scan_detail_hazard)
-    ImageView ivScanDetailHazard;
     @BindView(R.id.fl_buttons_holder)
     ConstraintLayout flButtonsHolder;
     @BindView(R.id.fl_etv_about_holder)
