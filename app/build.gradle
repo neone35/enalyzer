@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application' // main android plugin
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.github.neone35.enalyzer"
         minSdkVersion 16
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -31,11 +31,12 @@ android {
 }
 
 ext {
-    support_lib_v = '27.1.1'
+    support_lib_v = '28.0.0-rc01'
     aac_v = '1.1.1'
     retrofit_v = '2.4.0'
     glide_v = '4.7.1'
     butterknife_v = '8.8.1'
+    stetho_v = '1.5.0'
 }
 
 dependencies {
@@ -51,7 +52,7 @@ dependencies {
 
     // GOOGLE PLAY SERVICES
     implementation 'com.google.firebase:firebase-core:16.0.1'
-    implementation 'com.google.firebase:firebase-ml-vision:16.0.0'
+    implementation 'com.google.firebase:firebase-ml-vision:17.0.0'
 
     // ANDROID ARCHITECTURE COMPONENTS
     implementation "android.arch.lifecycle:extensions:$aac_v" // ViewModel & LiveData
@@ -71,6 +72,8 @@ dependencies {
     implementation 'com.blankj:utilcode:1.17.3' // helper functions
     implementation "com.jakewharton:butterknife:$butterknife_v" // R class binding
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterknife_v"
+    implementation "com.facebook.stetho:stetho:$stetho_v" //network debugging in chrome
+    implementation "com.facebook.stetho:stetho-okhttp3:$stetho_v"
     // UI LIBRARIES
     implementation 'com.beloo.widget:ChipsLayoutManager:0.3.7@aar' // UI view for scanActivity
     implementation 'at.blogc:expandabletextview:1.0.5' // TextView for expandable long text

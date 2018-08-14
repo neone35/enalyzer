@@ -23,7 +23,7 @@ public class Query {
     @Override
     public String toString() {
         return
-                "Query{" +
+                "WikiDataQuery{" +
                         "wikiPage = '" + wikiPage + '\'' +
                         "}";
     }
