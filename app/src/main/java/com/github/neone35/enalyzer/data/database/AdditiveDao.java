@@ -22,14 +22,17 @@ public interface AdditiveDao {
     @Query("SELECT * FROM additives where ecode = :ecode")
     LiveData<Additive> getOneByEcode(String ecode);
 
+    @Query("SELECT * FROM additives where ecode = :ecode")
+    Additive getOneStaticByEcode(String ecode);
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void bulkInsert(Additive[] additives);
+    void bulkInsert(List<Additive> additives);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void oneInsert(Additive additive);
 
     @Update
-    void bulkUpdate(Additive[] additives);
+    void bulkUpdate(List<Additive> additives);
 
     @Query("DELETE FROM additives")
     void deleteAllAdditives();

@@ -2,21 +2,27 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "f1973d6507c675124d5f2647ba768c6e",
+    "identityHash": "ae5db05e5292f53637fdbd3c90a124de",
     "entities": [
       {
         "tableName": "additives",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ecode` INTEGER NOT NULL, `wiki_data_Id` TEXT, `wiki_edit_date` TEXT, `pubchem_ID` TEXT, `name` TEXT, `description` TEXT, `category` TEXT, `formula` TEXT, `imageURL` TEXT, `known_as` TEXT, `ghs_pictogram_urls` TEXT, `hazards` TEXT, PRIMARY KEY(`ecode`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ecode` TEXT NOT NULL, `code` INTEGER NOT NULL, `wiki_data_qcode` TEXT, `wiki_edit_date` TEXT, `pubchem_ID` TEXT, `name` TEXT, `description` TEXT, `category` TEXT, `formula` TEXT, `imageURL` TEXT, `known_as` TEXT, `ghs_pictogram_urls` TEXT, `hazards` TEXT, PRIMARY KEY(`ecode`))",
         "fields": [
           {
             "fieldPath": "ecode",
             "columnName": "ecode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "code",
+            "columnName": "code",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "wikiDataID",
-            "columnName": "wiki_data_Id",
+            "fieldPath": "wikiDataQCode",
+            "columnName": "wiki_data_qcode",
             "affinity": "TEXT",
             "notNull": false
           },
@@ -113,7 +119,7 @@
             "notNull": false
           },
           {
-            "fieldPath": "Ecodes",
+            "fieldPath": "ECodes",
             "columnName": "e_codes",
             "affinity": "TEXT",
             "notNull": false
@@ -130,7 +136,7 @@
       },
       {
         "tableName": "code_categories",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `range` TEXT, `title` TEXT, `e_codes` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `range` TEXT, `title` TEXT, `codes` TEXT)",
         "fields": [
           {
             "fieldPath": "id",
@@ -151,8 +157,8 @@
             "notNull": false
           },
           {
-            "fieldPath": "Ecodes",
-            "columnName": "e_codes",
+            "fieldPath": "codes",
+            "columnName": "codes",
             "affinity": "TEXT",
             "notNull": false
           }
@@ -169,7 +175,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"f1973d6507c675124d5f2647ba768c6e\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"ae5db05e5292f53637fdbd3c90a124de\")"
     ]
   }
 }

@@ -26,5 +26,5 @@ public interface ScanPhotoDao {
     void deleteAllScanPhotos();
 
     @Query("DELETE FROM scan_photos where id IN (:ids)")
-    void deleteById(Integer... ids);
+    void deleteById(List<Integer> ids);
 }

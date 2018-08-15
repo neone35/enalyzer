@@ -1,6 +1,7 @@
 package com.github.neone35.enalyzer.ui.main;
 
 import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
@@ -27,6 +28,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.ToastUtils;
+import com.facebook.stetho.Stetho;
+import com.github.neone35.enalyzer.AppExecutors;
+import com.github.neone35.enalyzer.HelpUtils;
+import com.github.neone35.enalyzer.data.database.MainDatabase;
+import com.github.neone35.enalyzer.data.models.localjson.ecodelist.EcodeListItem;
+import com.github.neone35.enalyzer.data.models.room.Additive;
+import com.github.neone35.enalyzer.data.models.room.CodeCategory;
 import com.github.neone35.enalyzer.ui.scan.ScanActivity;
 import com.github.neone35.enalyzer.ui.additive.AdditiveActivity;
 import com.github.neone35.enalyzer.R;
@@ -73,7 +81,8 @@ public class MainActivity extends AppCompatActivity implements
     public static final String SCANS_DETAIL = "scans_detail";
     public static final String CODES_DETAIL = "codes_detail";
     public static final String KEY_TAB_POSITION = "tab_position";
-    public static final String KEY_PAGER_INSTRUCT_MOTION = "pager_motion";
+    public static final String KEY_SETTING_PAGER_INSTRUCT_MOTION = "pager_motion";
+    public static final String KEY_SETTING_LOCAL_DATA_INIT = "local_data_init";
     public static final String KEY_SELECTED_ECODE = "selected_ecode";
     public static final String KEY_TAB_SOURCE = "tab_source";
     public static final String KEY_PHOTO_TRANSITION_VIEW = "photo_transition";
@@ -84,14 +93,17 @@ public class MainActivity extends AppCompatActivity implements
     private FirebaseAnalytics mFirebaseAnalytics;
     private SharedPreferences mSettings;
     private FragmentManager mFragmentManager;
+    private MainDatabase mMainDB;
+    private final AppExecutors mExecutors = AppExecutors.getInstance();
     public static File mMediaStorageDir;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        Stetho.initializeWithDefaults(this);
         Logger.addLogAdapter(new AndroidLogAdapter());
+        setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
         mSettings = this.getSharedPreferences("Settings", Context.MODE_PRIVATE);
@@ -107,9 +119,39 @@ public class MainActivity extends AppCompatActivity implements
         setupAddFAB(mViewPager, mAddFab);
 
         // show instructive motion (once per lifetime)
-        if (!mSettings.getBoolean(KEY_PAGER_INSTRUCT_MOTION, false))
+        if (!mSettings.getBoolean(KEY_SETTING_PAGER_INSTRUCT_MOTION, false))
             showInstructiveMotion(mViewPager);
+        // init local data (once per lifetime)
+        if (!mSettings.getBoolean(KEY_SETTING_LOCAL_DATA_INIT, false)) {
+            mMainDB = MainDatabase.getInstance(this);
+            insertLocalData();
+        }
     }
+
+    private void insertLocalData() {
+        mExecutors.diskIO().execute(() -> {
+            String ecodesJsonString = HelpUtils.readJSONStringFromAsset(this, "ecodes.json");
+            List<EcodeListItem> ecodeObjects = HelpUtils.getLocalEcodeObjectList(ecodesJsonString);
+            ArrayList<Integer> codesList = new ArrayList<>();
+            ArrayList<String> eCodes = HelpUtils.getEcodes(ecodeObjects);
+            // String "E160a" -> int "160"
+            for (String eCode : eCodes) {
+                int code = Integer.valueOf(HelpUtils.stripNonDigits(eCode));
+                codesList.add(code);
+            }
+            ArrayList<String> wikiQCodes = HelpUtils.getWikiDataQCodes(ecodeObjects);
+            ArrayList<String> categories = mMainDB.getCategories();
+            ArrayList<String> categoryRanges = mMainDB.getCategoryRanges();
+
+            mMainDB.insertInitialAdditives(codesList, eCodes, wikiQCodes, categories);
+            mMainDB.insertCodeCategories(categories, categoryRanges, codesList, eCodes);
+
+            SharedPreferences.Editor editor = mSettings.edit();
+            editor.putBoolean(KEY_SETTING_LOCAL_DATA_INIT, true);
+            editor.apply();
+        });
+    }
+
 
     private void showInstructiveMotion(ViewPager pager) {
         final Handler handler = new Handler();
@@ -121,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements
                 3000);
         // save key for lifetime (show motion once)
         SharedPreferences.Editor editor = mSettings.edit();
-        editor.putBoolean(KEY_PAGER_INSTRUCT_MOTION, true);
+        editor.putBoolean(KEY_SETTING_PAGER_INSTRUCT_MOTION, true);
         editor.apply();
     }
 
@@ -132,6 +174,7 @@ public class MainActivity extends AppCompatActivity implements
 
             }
 
+            @SuppressLint("RestrictedApi")
             @Override
             public void onPageSelected(int position) {
                 long animDuration = 500;
@@ -263,7 +306,7 @@ public class MainActivity extends AppCompatActivity implements
                 mFragmentManager.popBackStack(CODES_DETAIL, FragmentManager.POP_BACK_STACK_INCLUSIVE);
             }
             // one (scans or codes) detail fragment is in back stack
-        } else if (fragStackNum == 1) {
+        } else if (fragStackNum == 1 && lastEntryName != null) {
             // if tab = scans
             if (currentPageTitle.equals("Scans")) {
                 // && backstack = scans

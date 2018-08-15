@@ -95,8 +95,8 @@ public class ScanActivity extends AppCompatActivity {
         String ecodesJsonString = HelpUtils.readJSONStringFromAsset(this, "ecodes.json");
         List<EcodeListItem> ecodeObjects = HelpUtils.getLocalEcodeObjectList(ecodesJsonString);
         Logger.d(HelpUtils.getEcodes(ecodeObjects));
-        Logger.d(HelpUtils.getWikiDataQCodes(ecodeObjects));
-        Logger.d(HelpUtils.getWikiDataNames(ecodeObjects));
+//        Logger.d(HelpUtils.getWikiDataQCodes(ecodeObjects));
+//        Logger.d(HelpUtils.getWikiDataNames(ecodeObjects));
         return HelpUtils.getEcodes(ecodeObjects);
     }
 

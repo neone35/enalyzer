@@ -3,6 +3,7 @@ package com.github.neone35.enalyzer.data.models.room;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 import java.util.List;
 
@@ -10,9 +11,12 @@ import java.util.List;
 public class Additive {
 
     @PrimaryKey
-    private int ecode;
-    @ColumnInfo(name = "wiki_data_Id")
-    private String wikiDataID;
+    @NonNull
+    private String ecode;
+    @ColumnInfo(name = "code")
+    private int code;
+    @ColumnInfo(name = "wiki_data_qcode")
+    private String wikiDataQCode;
     @ColumnInfo(name = "wiki_edit_date")
     private String wikiEditDate;
     @ColumnInfo(name = "pubchem_ID")
@@ -31,11 +35,12 @@ public class Additive {
     private List<Hazard> hazard;
 
     // Constructor used by Room to create Additives
-    public Additive(int ecode, String wikiDataID, String wikiEditDate, String pubchemID,
+    public Additive(@NonNull String ecode, int code, String wikiDataQCode, String wikiEditDate, String pubchemID,
                     String name, String description, String category, String formula, String imageURL,
                     List<String> knownAs, List<String> ghsPictogramURL, List<Hazard> hazard) {
         this.ecode = ecode;
-        this.wikiDataID = wikiDataID;
+        this.code = code;
+        this.wikiDataQCode = wikiDataQCode;
         this.wikiEditDate = wikiEditDate;
         this.pubchemID = pubchemID;
         this.name = name;
@@ -48,48 +53,45 @@ public class Additive {
         this.hazard = hazard;
     }
 
-    public int getEcode() {
+    @NonNull
+    public String getEcode() {
         return ecode;
     }
 
-    public String getWikiDataID() {
-        return wikiDataID;
+    public void setEcode(@NonNull String ecode) {
+        this.ecode = ecode;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public String getWikiDataQCode() {
+        return wikiDataQCode;
+    }
+
+    public void setWikiDataQCode(String wikiDataQCode) {
+        this.wikiDataQCode = wikiDataQCode;
     }
 
     public String getWikiEditDate() {
         return wikiEditDate;
     }
 
+    public void setWikiEditDate(String wikiEditDate) {
+        this.wikiEditDate = wikiEditDate;
+    }
+
     public String getPubchemID() {
         return pubchemID;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public String getFormula() {
-        return formula;
-    }
-
-    public String getImageURL() {
-        return imageURL;
-    }
-
-    public List<String> getKnownAs() {
-        return knownAs;
-    }
-
-    public List<String> getGhsPictogramURL() {
-        return ghsPictogramURL;
-    }
-
-    public List<Hazard> getHazard() {
-        return hazard;
+    public void setPubchemID(String pubchemID) {
+        this.pubchemID = pubchemID;
     }
 
     public String getName() {
@@ -98,5 +100,61 @@ public class Additive {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getFormula() {
+        return formula;
+    }
+
+    public void setFormula(String formula) {
+        this.formula = formula;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
+    public List<String> getKnownAs() {
+        return knownAs;
+    }
+
+    public void setKnownAs(List<String> knownAs) {
+        this.knownAs = knownAs;
+    }
+
+    public List<String> getGhsPictogramURL() {
+        return ghsPictogramURL;
+    }
+
+    public void setGhsPictogramURL(List<String> ghsPictogramURL) {
+        this.ghsPictogramURL = ghsPictogramURL;
+    }
+
+    public List<Hazard> getHazard() {
+        return hazard;
+    }
+
+    public void setHazard(List<Hazard> hazard) {
+        this.hazard = hazard;
     }
 }

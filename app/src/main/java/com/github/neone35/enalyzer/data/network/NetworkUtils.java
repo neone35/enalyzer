@@ -35,11 +35,10 @@ public class NetworkUtils {
     private static final String WIKI_IMG_AUTHORITY = "upload.wikimedia.org";
     private static final String PUBCHEM_BASE_URL = "https://pubchem.ncbi.nlm.nih.gov/";
 
-
     // gets additive titles one by one (with qCode) and returns list of them
-    public static List<String> getWikiTitleStringList(String... qCodes) {
+    public static ArrayList<String> getWikiTitleStringList(ArrayList<String> qCodes) {
         WikiEndpointInterface wikiEndpointInterface = getWikiApiService();
-        List<String> additiveTitles = new ArrayList<>();
+        ArrayList<String> additiveTitles = new ArrayList<>();
         try {
             for (String qCode : qCodes) {
                 Call<WikiDataTitleResponse> retroCall =
@@ -68,10 +67,43 @@ public class NetworkUtils {
         return additiveTitles;
     }
 
+    // gets bulk of wikimainpages in one request by using additive titles
+    public static ArrayList<WikiMainPage> getWikiMainPageList(ArrayList<String> additiveTitles) {
+        WikiEndpointInterface wikiEndpointInterface = getWikiApiService();
+        ArrayList<WikiMainPage> wikiMainPageList = new ArrayList<>();
+        try {
+            Call<WikiMainResponse> retroCall =
+                    wikiEndpointInterface.getWikiMainByAdditiveTitle(additiveTitles);
+            WikiMainResponse wikiMainResponse = retroCall.execute().body();
+            for (String title : additiveTitles) {
+                if (wikiMainResponse != null) {
+                    // key = "1156934", value = WikiMainPage
+                    HashMap<String, WikiMainPage> wikiMainPageMap =
+                            wikiMainResponse.getWikiMainQuery().getWikiPageMap();
+                    // select "1156934"
+                    Map.Entry<String, WikiMainPage> wikiMainPageEntry =
+                            wikiMainPageMap.entrySet().iterator().next();
+                    // get WikiMainPage
+                    WikiMainPage wikiMainPage = wikiMainPageEntry.getValue();
+                    wikiMainPageList.add(wikiMainPage);
+                } else {
+                    Logger.d("No wikimainpage received for additive title: " + title);
+                }
+            }
+        } catch (IOException e) {
+            Logger.d(e.getMessage());
+        }
+        // parsed response contains last requested url titles in the top
+        // we need them in the order of request url
+        Collections.reverse(wikiMainPageList);
+        Logger.d("First wikiMainPage title: " + wikiMainPageList.get(0).getTitle());
+        return wikiMainPageList;
+    }
+
     // gets pubchemCIDs one by one (with additive title) and returns list of them
-    public static List<Integer> getPubchemCIDList(List<String> additiveTitles) {
+    public static ArrayList<Integer> getPubchemCIDList(ArrayList<String> additiveTitles) {
         PubchemEndpointInterface pubchemEndpointInterface = getPubchemApiService();
-        List<Integer> pubchemCIDs = new ArrayList<>();
+        ArrayList<Integer> pubchemCIDs = new ArrayList<>();
         try {
             for (String title : additiveTitles) {
                 Call<PubchemCIDResponse> retroCall =
@@ -93,9 +125,9 @@ public class NetworkUtils {
     }
 
     // gets pubchemFormulas one by one (with pubchemCID) and returns list of them
-    public static List<String> getPubchemFormulaList(List<Integer> pubchemCIDs) {
+    public static ArrayList<String> getPubchemFormulaList(ArrayList<Integer> pubchemCIDs) {
         PubchemEndpointInterface pubchemEndpointInterface = getPubchemApiService();
-        List<String> pubchemFormulas = new ArrayList<>();
+        ArrayList<String> pubchemFormulas = new ArrayList<>();
         try {
             for (int pubchemCID : pubchemCIDs) {
                 Call<PubchemDetailsResponse> retroCall =
@@ -161,39 +193,6 @@ public class NetworkUtils {
         return pubchemHazardsMap;
     }
 
-    // gets bulk of wikimainpages in one request by using additive titles
-    public static List<WikiMainPage> getWikiMainPageList(List<String> additiveTitles) {
-        WikiEndpointInterface wikiEndpointInterface = getWikiApiService();
-        List<WikiMainPage> wikiMainPageList = new ArrayList<>();
-        try {
-            Call<WikiMainResponse> retroCall =
-                    wikiEndpointInterface.getWikiMainByAdditiveTitle(additiveTitles);
-            WikiMainResponse wikiMainResponse = retroCall.execute().body();
-            for (String title : additiveTitles) {
-                if (wikiMainResponse != null) {
-                    // key = "1156934", value = WikiMainPage
-                    HashMap<String, WikiMainPage> wikiMainPageMap =
-                            wikiMainResponse.getWikiMainQuery().getWikiPageMap();
-                    // select "1156934"
-                    Map.Entry<String, WikiMainPage> wikiMainPageEntry =
-                            wikiMainPageMap.entrySet().iterator().next();
-                    // get WikiMainPage
-                    WikiMainPage wikiMainPage = wikiMainPageEntry.getValue();
-                    wikiMainPageList.add(wikiMainPage);
-                } else {
-                    Logger.d("No wikimainpage received for additive title: " + title);
-                }
-            }
-        } catch (IOException e) {
-            Logger.d(e.getMessage());
-        }
-        // parsed response contains last requested url titles in the top
-        // we need them in the order of request url
-        Collections.reverse(wikiMainPageList);
-        Logger.d("First wikiMainPage title: " + wikiMainPageList.get(0).getTitle());
-        return wikiMainPageList;
-    }
-
     private static WikiEndpointInterface getWikiApiService() {
         OkHttpClient client = new OkHttpClient.Builder()
                 .addNetworkInterceptor(new StethoInterceptor())
@@ -222,8 +221,8 @@ public class NetworkUtils {
 
     // Constructs bulk absolute wiki image urls by their filenames
     // imageFilename ex. Uhličitan_amonný.JPG
-    public static List<String> getWikiImgUrl(List<String> imgFilenames) {
-        List<String> imgUrlList = new ArrayList<>();
+    public static ArrayList<String> getWikiImgUrl(ArrayList<String> imgFilenames) {
+        ArrayList<String> imgUrlList = new ArrayList<>();
         for (String imgFilename : imgFilenames) {
             // 98e10a0a133d46ffef7de40065a4d758
             String MD5OfFilename = EncryptUtils.encryptMD5ToString(imgFilename);

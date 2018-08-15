@@ -27,12 +27,12 @@
         </activity>
 
         <!-- download on-device (offline) ML model on install -->
-        <meta-data
-            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
-            android:value="ocr" />
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
+        <!--<meta-data-->
+        <!--android:name="com.google.firebase.ml.vision.DEPENDENCIES"-->
+        <!--android:value="ocr" />-->
+        <!--<meta-data-->
+        <!--android:name="com.google.android.gms.version"-->
+        <!--android:value="@integer/google_play_services_version" />-->
 
         <activity
             android:name=".ui.additive.AdditiveActivity"
@@ -71,5 +71,6 @@
                 android:resource="@xml/widget_scan_shortcut_info" />
         </receiver>
 
+        <service android:name=".data.network.WikiJobService" />
     </application>
 </manifest>

@@ -5,6 +5,7 @@ import android.content.Context;
 import com.github.neone35.enalyzer.data.models.localjson.ClassificationResponse;
 import com.github.neone35.enalyzer.data.models.localjson.ecodelist.EcodeListItem;
 import com.github.neone35.enalyzer.data.models.localjson.ecodelist.EcodeListResponse;
+import com.github.neone35.enalyzer.data.models.room.Additive;
 import com.google.common.base.Splitter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -56,20 +57,46 @@ public class HelpUtils {
         ArrayList<String> eCodeList = new ArrayList<>();
         for (int i = 0; i < mAdditivesNum; i++) {
             String eCodeID = ecodeObjects.get(i).getId();
-            // "en:e322i"
-            List<String> splittedId = Splitter
-                    .onPattern(":")
-                    .omitEmptyStrings() // remove nulls
-                    .trimResults() // remove white space
-                    .splitToList(eCodeID);
-            // "e322i"
-            String eCode = splittedId.get(1);
-            // "E + 322i"
-            String eCodeCapitalE = eCode.substring(0, 1).toUpperCase() + eCode.substring(1);
-            eCodeList.add(eCodeCapitalE);
+            if (eCodeID != null) {
+                // "en:e322i"
+                List<String> splittedId = Splitter
+                        .onPattern(":")
+                        .omitEmptyStrings() // remove nulls
+                        .trimResults() // remove white space
+                        .splitToList(eCodeID);
+                // "e322i"
+                String eCode = splittedId.get(1);
+                // "E + 322i"
+                String eCodeCapitalE = eCode.substring(0, 1).toUpperCase() + eCode.substring(1);
+                eCodeList.add(eCodeCapitalE);
+            }
         }
         Logger.d("Found " + eCodeList.size() + " ecodes in " + ecodeObjects.size() + " additives");
         return eCodeList;
+    }
+
+    public static ArrayList<String> getWikiDataQCodes(List<EcodeListItem> ecodeObjects) {
+        ArrayList<String> wikiDataQCodeList = new ArrayList<>();
+        for (int i = 0; i < mAdditivesNum; i++) {
+            List<String> wikiDataURLs = ecodeObjects.get(i).getSameAs();
+            if (wikiDataURLs != null) {
+                String wikiDataURL = wikiDataURLs.get(0);
+                // "https://www.wikidata.org/wiki/Q422071"
+                List<String> splittedURL = Splitter
+                        .onPattern("/")
+                        .omitEmptyStrings() // remove nulls
+                        .trimResults() // remove white space
+                        .splitToList(wikiDataURL);
+                // "Q422071"
+                int splitPartsNum = splittedURL.size();
+                String wikiDataQCode = splittedURL.get(splitPartsNum - 1);
+                wikiDataQCodeList.add(wikiDataQCode);
+            } else {
+                // add null to make sure every Additive corresponds to ecode
+                wikiDataQCodeList.add(null);
+            }
+        }
+        return wikiDataQCodeList;
     }
 
     public static HashMap<String, ClassificationResponse> getLocalHazardObjectList(String clsJsonString) {
@@ -112,34 +139,11 @@ public class HelpUtils {
         return hazardStatementsList;
     }
 
-    public static ArrayList<String> getWikiDataQCodes(List<EcodeListItem> ecodeObjects) {
-        ArrayList<String> wikiDataQCodeList = new ArrayList<>();
-        for (int i = 0; i < mAdditivesNum; i++) {
-            EcodeListItem ecodeListItem = ecodeObjects.get(i);
-            if (ecodeListItem.getSameAs() != null) {
-                String wikiDataURL = ecodeListItem.getSameAs().get(0);
-                // "https://www.wikidata.org/wiki/Q422071"
-                List<String> splittedURL = Splitter
-                        .onPattern("/")
-                        .omitEmptyStrings() // remove nulls
-                        .trimResults() // remove white space
-                        .splitToList(wikiDataURL);
-                // "Q422071"
-                int splitPartsNum = splittedURL.size();
-                String wikiDataQCode = splittedURL.get(splitPartsNum - 1);
-                wikiDataQCodeList.add(wikiDataQCode);
-            }
-        }
-        Logger.d("Found " + wikiDataQCodeList.size() + " wikiQCodes in " + ecodeObjects.size() + " additives");
-        return wikiDataQCodeList;
-    }
-
     public static ArrayList<String> getWikiDataNames(List<EcodeListItem> ecodeObjects) {
         ArrayList<String> wikiDataNamesList = new ArrayList<>();
         for (int i = 0; i < mAdditivesNum; i++) {
-            EcodeListItem ecodeListItem = ecodeObjects.get(i);
-            if (ecodeListItem.getName() != null) {
-                String wikiDataName = ecodeListItem.getName();
+            String wikiDataName = ecodeObjects.get(i).getName();
+            if (wikiDataName != null) {
                 // "https://www.wikidata.org/wiki/Q422071"
                 List<String> splittedName = Splitter
                         .onPattern("-")
@@ -169,6 +173,17 @@ public class HelpUtils {
         }
 
         return matchedEcodeList;
+    }
+
+    public static String stripNonDigits(final CharSequence input) {
+        final StringBuilder sb = new StringBuilder(input.length());
+        for (int i = 0; i < input.length(); i++) {
+            final char c = input.charAt(i);
+            if (c > 47 && c < 58) {
+                sb.append(c);
+            }
+        }
+        return sb.toString();
     }
 
     public static boolean checkListNullEmpty(ArrayList<String> arrayList) {

@@ -15,7 +15,15 @@ public class ScanPhoto {
     private String fileName;
     private String date;
     @ColumnInfo(name = "e_codes")
-    private List<String> Ecodes;
+    private List<String> ECodes;
+
+    // Constructor used by Room to create Additives
+    public ScanPhoto(int id, String fileName, String date, List<String> ECodes) {
+        this.id = id;
+        this.fileName = fileName;
+        this.date = date;
+        this.ECodes = ECodes;
+    }
 
     public int getId() {
         return id;
@@ -41,11 +49,11 @@ public class ScanPhoto {
         this.date = date;
     }
 
-    public List<String> getEcodes() {
-        return Ecodes;
+    public List<String> getECodes() {
+        return ECodes;
     }
 
-    public void setEcodes(List<String> ecodes) {
-        Ecodes = ecodes;
+    public void setECodes(List<String> ECodes) {
+        this.ECodes = ECodes;
     }
 }

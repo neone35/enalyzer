@@ -13,8 +13,15 @@ public class CodeCategory {
     private int id;
     private String range;
     private String title;
-    @ColumnInfo(name = "e_codes")
-    private List<Integer> Ecodes;
+    @ColumnInfo(name = "codes")
+    private List<Integer> codes;
+
+    // Constructor used by Room to create Additives
+    public CodeCategory(String range, String title, List<Integer> codes) {
+        this.range = range;
+        this.title = title;
+        this.codes = codes;
+    }
 
     public int getId() {
         return id;
@@ -40,11 +47,11 @@ public class CodeCategory {
         this.title = title;
     }
 
-    public List<Integer> getEcodes() {
-        return Ecodes;
+    public List<Integer> getCodes() {
+        return codes;
     }
 
-    public void setEcodes(List<Integer> ecodes) {
-        Ecodes = ecodes;
+    public void setCodes(List<Integer> ECodes) {
+        this.codes = ECodes;
     }
 }
