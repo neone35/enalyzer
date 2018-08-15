@@ -15,8 +15,8 @@ public interface PubchemEndpointInterface {
     Call<PubchemCIDResponse> getPubchemCIDByAdditiveTitle(@Path("title") String additiveTitle);
 
     @GET("/rest/pug/compound/cid/{cID}/property/MolecularFormula,MolecularWeight,Complexity/JSON")
-    Call<PubchemDetailsResponse> getPubchemDetailsByCID(@Path("cID") String cID);
+    Call<PubchemDetailsResponse> getPubchemDetailsByCID(@Path("cID") int cID);
 
     @GET("/rest/pug_view/data/compound/{cID}/JSON?heading=Hazards+Identification")
-    Callback<PubchemHazardsResponse> getPubchemHazardsByCID(@Path("cID") String cID);
+    Call<PubchemHazardsResponse> getPubchemHazardsByCID(@Path("cID") int cID);
 }

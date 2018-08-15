@@ -11,7 +11,7 @@ public class WikiMainResponse {
     private String batchcomplete;
 
     @SerializedName("query")
-    private Query query;
+    private WikiMainQuery wikiMainQuery;
 
     public void setBatchcomplete(String batchcomplete) {
         this.batchcomplete = batchcomplete;
@@ -21,12 +21,12 @@ public class WikiMainResponse {
         return batchcomplete;
     }
 
-    public void setQuery(Query query) {
-        this.query = query;
+    public void setWikiMainQuery(WikiMainQuery wikiMainQuery) {
+        this.wikiMainQuery = wikiMainQuery;
     }
 
-    public Query getQuery() {
-        return query;
+    public WikiMainQuery getWikiMainQuery() {
+        return wikiMainQuery;
     }
 
     @Override
@@ -34,7 +34,7 @@ public class WikiMainResponse {
         return
                 "WikiMainResponse{" +
                         "batchcomplete = '" + batchcomplete + '\'' +
-                        ",query = '" + query + '\'' +
+                        ",wikiMainQuery = '" + wikiMainQuery + '\'' +
                         "}";
     }
 }

@@ -3,6 +3,8 @@ package com.github.neone35.enalyzer.data.network;
 import com.github.neone35.enalyzer.data.models.remotejson.wikidatatitle.WikiDataTitleResponse;
 import com.github.neone35.enalyzer.data.models.remotejson.wikimain.WikiMainResponse;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -15,5 +17,5 @@ public interface WikiEndpointInterface {
     Call<WikiDataTitleResponse> getAdditiveTitleByWikiQCode(@Query("wbeuentities") String qCode);
 
     @GET(actionQuery + "&prop=extracts|pageprops|pageterms|info&exintro=&explaintext=&redirects=1")
-    Call<WikiMainResponse> getWikiMainByAdditiveTitle(@Query("titles") String... titles);
+    Call<WikiMainResponse> getWikiMainByAdditiveTitle(@Query("titles") List<String> titles);
 }

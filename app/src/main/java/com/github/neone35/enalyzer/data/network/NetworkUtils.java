@@ -1,18 +1,25 @@
 package com.github.neone35.enalyzer.data.network;
 
+import android.content.Context;
 import android.net.Uri;
 
 import com.blankj.utilcode.util.EncryptUtils;
-import com.blankj.utilcode.util.ToastUtils;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
+import com.github.neone35.enalyzer.HelpUtils;
+import com.github.neone35.enalyzer.data.models.localjson.ClassificationResponse;
+import com.github.neone35.enalyzer.data.models.remotejson.pubchemcid.PubchemCIDResponse;
+import com.github.neone35.enalyzer.data.models.remotejson.pubchemdetails.PubchemDetailsResponse;
+import com.github.neone35.enalyzer.data.models.remotejson.pubchemhazards.InformationItem;
+import com.github.neone35.enalyzer.data.models.remotejson.pubchemhazards.PubchemHazardsResponse;
 import com.github.neone35.enalyzer.data.models.remotejson.wikidatatitle.WikiDataTitlePage;
 import com.github.neone35.enalyzer.data.models.remotejson.wikidatatitle.WikiDataTitleResponse;
-import com.google.common.reflect.TypeToken;
+import com.github.neone35.enalyzer.data.models.remotejson.wikimain.WikiMainPage;
+import com.github.neone35.enalyzer.data.models.remotejson.wikimain.WikiMainResponse;
 import com.orhanobut.logger.Logger;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +35,9 @@ public class NetworkUtils {
     private static final String WIKI_IMG_AUTHORITY = "upload.wikimedia.org";
     private static final String PUBCHEM_BASE_URL = "https://pubchem.ncbi.nlm.nih.gov/";
 
-    public static List<String> getWikiTitleList(String... qCodes) {
+
+    // gets additive titles one by one (with qCode) and returns list of them
+    public static List<String> getWikiTitleStringList(String... qCodes) {
         WikiEndpointInterface wikiEndpointInterface = getWikiApiService();
         List<String> additiveTitles = new ArrayList<>();
         try {
@@ -49,16 +58,143 @@ public class NetworkUtils {
                     String title = wikiDataTitlePage.getTitle();
                     additiveTitles.add(title);
                 } else {
-                    Logger.d("No response received for qCode " + qCode);
+                    Logger.d("No wikiDataTitle received for qCode: " + qCode);
                 }
             }
         } catch (IOException e) {
             Logger.d(e.getMessage());
         }
+        Logger.d("First additive title : " + additiveTitles.get(0));
         return additiveTitles;
     }
 
-    public static WikiEndpointInterface getWikiApiService() {
+    // gets pubchemCIDs one by one (with additive title) and returns list of them
+    public static List<Integer> getPubchemCIDList(List<String> additiveTitles) {
+        PubchemEndpointInterface pubchemEndpointInterface = getPubchemApiService();
+        List<Integer> pubchemCIDs = new ArrayList<>();
+        try {
+            for (String title : additiveTitles) {
+                Call<PubchemCIDResponse> retroCall =
+                        pubchemEndpointInterface.getPubchemCIDByAdditiveTitle(title);
+                PubchemCIDResponse pubchemCIDResponse = retroCall.execute().body();
+                if (pubchemCIDResponse != null) {
+                    // "517111" (there can be multiple CIDs)
+                    int pubchemCID = pubchemCIDResponse.getIdentifierList().getCID().get(0);
+                    pubchemCIDs.add(pubchemCID);
+                } else {
+                    Logger.d("No pubchemCID received for additive title: " + title);
+                }
+            }
+        } catch (IOException e) {
+            Logger.d(e.getMessage());
+        }
+        Logger.d("First CID : " + pubchemCIDs.get(0));
+        return pubchemCIDs;
+    }
+
+    // gets pubchemFormulas one by one (with pubchemCID) and returns list of them
+    public static List<String> getPubchemFormulaList(List<Integer> pubchemCIDs) {
+        PubchemEndpointInterface pubchemEndpointInterface = getPubchemApiService();
+        List<String> pubchemFormulas = new ArrayList<>();
+        try {
+            for (int pubchemCID : pubchemCIDs) {
+                Call<PubchemDetailsResponse> retroCall =
+                        pubchemEndpointInterface.getPubchemDetailsByCID(pubchemCID);
+                PubchemDetailsResponse pubchemDetailsResponse = retroCall.execute().body();
+                if (pubchemDetailsResponse != null) {
+                    // "CH8N2O3"
+                    String pubchemFormula = pubchemDetailsResponse.getPropertyTable().getProperties().get(0).getMolecularFormula();
+                    pubchemFormulas.add(pubchemFormula);
+                } else {
+                    Logger.d("No pubchemFormula received for cID: " + pubchemCID);
+                }
+            }
+        } catch (IOException e) {
+            Logger.d(e.getMessage());
+        }
+        Logger.d("First pubchemFormula : " + pubchemFormulas.get(0));
+        return pubchemFormulas;
+    }
+
+    // extracts hazardCodes from reference text (with one pubchemCID) and returns list of them
+    public static HashMap<String, String> getPubchemHazardsList(int pubchemCID, Context ctx) {
+        PubchemEndpointInterface pubchemEndpointInterface = getPubchemApiService();
+        HashMap<String, String> pubchemHazardsMap = new HashMap<>();
+        try {
+            Call<PubchemHazardsResponse> retroCall =
+                    pubchemEndpointInterface.getPubchemHazardsByCID(pubchemCID);
+            PubchemHazardsResponse pubchemHazardsResponse = retroCall.execute().body();
+            if (pubchemHazardsResponse != null) {
+                List<InformationItem> informationItems = pubchemHazardsResponse.getRecord()
+                        // "Safety and Hazards"
+                        .getSection().get(0)
+                        // "Hazards Identification"
+                        .getSection().get(0)
+                        // "GHS Classification"
+                        .getSection().get(0)
+                        .getInformation();
+                // match received references with local hazard codes
+                for (InformationItem informationItem : informationItems) {
+                    String referenceText = informationItem.getStringValue();
+                    String clsJsonString = HelpUtils.readJSONStringFromAsset(ctx, "ghs_classification.json");
+                    HashMap<String, ClassificationResponse> clsObjectsMap = HelpUtils.getLocalHazardObjectList(clsJsonString);
+                    ArrayList<String> hazardCodeList = HelpUtils.getHazardCodeList(clsObjectsMap);
+                    ArrayList<String> hazardStatementList = HelpUtils.getHazardStatementList(clsObjectsMap);
+                    // iterate through every hazard code
+                    for (int i = 0; i < hazardCodeList.size(); i++) {
+                        String hazardCode = hazardCodeList.get(i);
+                        if (referenceText.contains(hazardCode)) {
+                            // put code as key and statement as value into map
+                            pubchemHazardsMap.put(hazardCode, hazardStatementList.get(i));
+                        }
+                    }
+                }
+            } else {
+                Logger.d("No pubchemDetails (with hazards) received for cID: " + pubchemCID);
+            }
+        } catch (IOException e) {
+            Logger.d(e.getMessage());
+        }
+        String firstHazardCode = pubchemHazardsMap.entrySet().iterator().next().getKey();
+        String firstHazardStatement = pubchemHazardsMap.entrySet().iterator().next().getValue();
+        Logger.d("First hazard is: " + firstHazardCode + " " + firstHazardStatement);
+        return pubchemHazardsMap;
+    }
+
+    // gets bulk of wikimainpages in one request by using additive titles
+    public static List<WikiMainPage> getWikiMainPageList(List<String> additiveTitles) {
+        WikiEndpointInterface wikiEndpointInterface = getWikiApiService();
+        List<WikiMainPage> wikiMainPageList = new ArrayList<>();
+        try {
+            Call<WikiMainResponse> retroCall =
+                    wikiEndpointInterface.getWikiMainByAdditiveTitle(additiveTitles);
+            WikiMainResponse wikiMainResponse = retroCall.execute().body();
+            for (String title : additiveTitles) {
+                if (wikiMainResponse != null) {
+                    // key = "1156934", value = WikiMainPage
+                    HashMap<String, WikiMainPage> wikiMainPageMap =
+                            wikiMainResponse.getWikiMainQuery().getWikiPageMap();
+                    // select "1156934"
+                    Map.Entry<String, WikiMainPage> wikiMainPageEntry =
+                            wikiMainPageMap.entrySet().iterator().next();
+                    // get WikiMainPage
+                    WikiMainPage wikiMainPage = wikiMainPageEntry.getValue();
+                    wikiMainPageList.add(wikiMainPage);
+                } else {
+                    Logger.d("No wikimainpage received for additive title: " + title);
+                }
+            }
+        } catch (IOException e) {
+            Logger.d(e.getMessage());
+        }
+        // parsed response contains last requested url titles in the top
+        // we need them in the order of request url
+        Collections.reverse(wikiMainPageList);
+        Logger.d("First wikiMainPage title: " + wikiMainPageList.get(0).getTitle());
+        return wikiMainPageList;
+    }
+
+    private static WikiEndpointInterface getWikiApiService() {
         OkHttpClient client = new OkHttpClient.Builder()
                 .addNetworkInterceptor(new StethoInterceptor())
                 .build();
@@ -71,7 +207,7 @@ public class NetworkUtils {
         return retrofit.create(WikiEndpointInterface.class);
     }
 
-    public static PubchemEndpointInterface getPubchemApiService() {
+    private static PubchemEndpointInterface getPubchemApiService() {
         OkHttpClient client = new OkHttpClient.Builder()
                 .addNetworkInterceptor(new StethoInterceptor())
                 .build();
@@ -84,23 +220,29 @@ public class NetworkUtils {
         return retrofit.create(PubchemEndpointInterface.class);
     }
 
+    // Constructs bulk absolute wiki image urls by their filenames
     // imageFilename ex. Uhličitan_amonný.JPG
-    public static String getWikiImgUrl(String imgFilename) {
-        // 98e10a0a133d46ffef7de40065a4d758
-        String MD5OfFilename = EncryptUtils.encryptMD5ToString(imgFilename);
-        String MD5FirstChar = MD5OfFilename.substring(0, 1); // 9
-        String MD5SecondChar = MD5OfFilename.substring(1, 2); // 8
+    public static List<String> getWikiImgUrl(List<String> imgFilenames) {
+        List<String> imgUrlList = new ArrayList<>();
+        for (String imgFilename : imgFilenames) {
+            // 98e10a0a133d46ffef7de40065a4d758
+            String MD5OfFilename = EncryptUtils.encryptMD5ToString(imgFilename);
+            String MD5FirstChar = MD5OfFilename.substring(0, 1); // 9
+            String MD5SecondChar = MD5OfFilename.substring(1, 2); // 8
 
-        // https://upload.wikimedia.org/wikipedia/commons/9/98/
-        String imgUrl = new Uri.Builder().scheme("https")
-                .authority(WIKI_IMG_AUTHORITY)
-                .appendPath("wikipedia")
-                .appendPath("commons")
-                .appendPath(MD5FirstChar)
-                .appendPath(MD5FirstChar + MD5SecondChar)
-                .build().toString();
-        // https://upload.wikimedia.org/wikipedia/commons/9/98/Uhličitan_amonný.JPG
-        return imgUrl + imgFilename;
+            // https://upload.wikimedia.org/wikipedia/commons/9/98
+            String imgUrl = new Uri.Builder().scheme("https")
+                    .authority(WIKI_IMG_AUTHORITY)
+                    .appendPath("wikipedia")
+                    .appendPath("commons")
+                    .appendPath(MD5FirstChar)
+                    .appendPath(MD5FirstChar + MD5SecondChar)
+                    .build().toString();
+            // https://upload.wikimedia.org/wikipedia/commons/9/98/Uhličitan_amonný.JPG
+            imgUrlList.add("/" + imgUrl + imgFilename);
+        }
+        Logger.d("First img URL: " + imgUrlList.get(0));
+        return imgUrlList;
     }
 
 }

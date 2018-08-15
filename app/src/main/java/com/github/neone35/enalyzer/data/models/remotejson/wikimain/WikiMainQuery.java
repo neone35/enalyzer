@@ -7,24 +7,24 @@ import com.google.gson.annotations.SerializedName;
 import java.util.HashMap;
 
 @Generated("com.robohorse.robopojogenerator")
-public class Query {
+public class WikiMainQuery {
 
     @SerializedName("pages")
-    private HashMap<String, WikiMainPage> wikiPage;
+    private HashMap<String, WikiMainPage> wikiPageMap;
 
-    public void setWikiPage(HashMap<String, WikiMainPage> wikiPage) {
-        this.wikiPage = this.wikiPage;
+    public void setWikiPageMap(HashMap<String, WikiMainPage> wikiPageMap) {
+        this.wikiPageMap = this.wikiPageMap;
     }
 
-    public HashMap<String, WikiMainPage> getWikiPage() {
-        return wikiPage;
+    public HashMap<String, WikiMainPage> getWikiPageMap() {
+        return wikiPageMap;
     }
 
     @Override
     public String toString() {
         return
                 "WikiDataQuery{" +
-                        "wikiPage = '" + wikiPage + '\'' +
+                        "wikiPageMap = '" + wikiPageMap + '\'' +
                         "}";
     }
 }

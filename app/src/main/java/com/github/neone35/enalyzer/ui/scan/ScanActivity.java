@@ -25,9 +25,10 @@ import com.github.neone35.enalyzer.ui.scan.camera.ScanCameraFragment;
 import com.github.neone35.enalyzer.ui.scan.chips.ScanChipsListFragment;
 import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.cloud.FirebaseVisionCloudDetectorOptions;
-import com.google.firebase.ml.vision.cloud.text.FirebaseVisionCloudText;
-import com.google.firebase.ml.vision.cloud.text.FirebaseVisionCloudTextDetector;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
+import com.google.firebase.ml.vision.text.FirebaseVisionCloudTextRecognizerOptions;
+import com.google.firebase.ml.vision.text.FirebaseVisionText;
+import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer;
 import com.orhanobut.logger.Logger;
 
 import java.io.ByteArrayInputStream;
@@ -93,6 +94,9 @@ public class ScanActivity extends AppCompatActivity {
     private ArrayList<String> initEcodeList() {
         String ecodesJsonString = HelpUtils.readJSONStringFromAsset(this, "ecodes.json");
         List<EcodeListItem> ecodeObjects = HelpUtils.getLocalEcodeObjectList(ecodesJsonString);
+        Logger.d(HelpUtils.getEcodes(ecodeObjects));
+        Logger.d(HelpUtils.getWikiDataQCodes(ecodeObjects));
+        Logger.d(HelpUtils.getWikiDataNames(ecodeObjects));
         return HelpUtils.getEcodes(ecodeObjects);
     }
 
@@ -135,18 +139,18 @@ public class ScanActivity extends AppCompatActivity {
                         // get an image from the camera
                         mScanCamera.takePicture(null, null, (byte[] data, Camera cameraFocused) -> {
                             // set ML Kit options
-                            FirebaseVisionCloudDetectorOptions options =
-                                    new FirebaseVisionCloudDetectorOptions.Builder()
-                                            .setModelType(FirebaseVisionCloudDetectorOptions.LATEST_MODEL)
-                                            .setMaxResults(30)
+                            FirebaseVisionCloudTextRecognizerOptions options =
+                                    new FirebaseVisionCloudTextRecognizerOptions.Builder()
+                                            // better suits well-formatted dense text (excellent for ingredient labels)
+                                            .setModelType(FirebaseVisionCloudTextRecognizerOptions.DENSE_MODEL)
                                             .build();
                             // extract image & get detector instance
                             Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
                             Bitmap scaledBitmap = scaleDownBitmapQuality(bitmap, 85);
                             FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(scaledBitmap);
-                            FirebaseVisionCloudTextDetector detector = FirebaseVision.getInstance().getVisionCloudTextDetector(options);
+                            FirebaseVisionTextRecognizer textRecognizer = FirebaseVision.getInstance().getCloudTextRecognizer(options);
                             // run detector on extracted image
-                            detectInImage(image, detector, cameraFocused);
+                            detectInImage(image, textRecognizer, cameraFocused);
                             // set new listener on done FAB
                             doneFab.setOnClickListener(view -> {
                                 // save this scan image to SD only if ecodes found
@@ -188,9 +192,9 @@ public class ScanActivity extends AppCompatActivity {
         return BitmapFactory.decodeStream(new ByteArrayInputStream(out.toByteArray()));
     }
 
-    private void detectInImage(FirebaseVisionImage image, FirebaseVisionCloudTextDetector detector, Camera camera) {
+    private void detectInImage(FirebaseVisionImage image, FirebaseVisionTextRecognizer textRecognizer, Camera camera) {
         // return true if detection runs
-        detector.detectInImage(image)
+        textRecognizer.processImage(image)
                 .addOnSuccessListener(firebaseVisionText -> {
                     Logger.d("Detection successful");
                     // get OCR words
@@ -231,7 +235,7 @@ public class ScanActivity extends AppCompatActivity {
         }
     }
 
-    private String getRecognizedText(FirebaseVisionCloudText firebaseVisionText) {
+    private String getRecognizedText(FirebaseVisionText firebaseVisionText) {
         if (firebaseVisionText != null) {
             String recognizedText = firebaseVisionText.getText();
             Logger.d("Recognized text: " + recognizedText);
