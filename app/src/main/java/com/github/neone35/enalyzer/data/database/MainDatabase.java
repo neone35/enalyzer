@@ -90,6 +90,7 @@ public abstract class MainDatabase extends RoomDatabase {
                 Additive additive = additiveDao().getOneStaticByEcode(eCode);
                 String additiveCategory = additive.getCategory();
                 if (additiveCategory != null) {
+                    // "Colours" == "Colours"
                     if (additiveCategory.equals(category)) {
                         categoryCodes.add(codes.get(j));
                     }
@@ -129,5 +130,9 @@ public abstract class MainDatabase extends RoomDatabase {
         categoryRanges.add("E900-E999");
         categoryRanges.add("E1000-E1599");
         return categoryRanges;
+    }
+
+    public void insertOneScanPhoto(String fileName, String photoDate, ArrayList<String> eCodes) {
+
     }
 }

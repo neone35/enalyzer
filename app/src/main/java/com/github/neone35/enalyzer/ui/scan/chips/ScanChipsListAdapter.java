@@ -9,7 +9,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.github.neone35.enalyzer.R;
-import com.orhanobut.logger.Logger;
 
 import java.util.List;
 
@@ -18,10 +17,10 @@ import butterknife.ButterKnife;
 
 public class ScanChipsListAdapter extends RecyclerView.Adapter<ScanChipsListAdapter.ViewHolder> {
 
-    private List<String> eCodesList;
+    public static List<String> mECodeChipsList;
 
-    ScanChipsListAdapter(List<String> eCodesList) {
-        this.eCodesList = eCodesList;
+    ScanChipsListAdapter(List<String> eCodeChipsList) {
+        mECodeChipsList = eCodeChipsList;
     }
 
     @NonNull
@@ -34,18 +33,18 @@ public class ScanChipsListAdapter extends RecyclerView.Adapter<ScanChipsListAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.tvChip.setText(eCodesList.get(position));
+        holder.tvChip.setText(mECodeChipsList.get(position));
         holder.ibChipClose.setOnClickListener(v ->
                 ScanChipsListAdapter.this.removeItem(position));
     }
 
     @Override
     public int getItemCount() {
-        return eCodesList.size();
+        return mECodeChipsList.size();
     }
 
     private void removeItem(int position) {
-        eCodesList.remove(position);
+        mECodeChipsList.remove(position);
         // animate one item removal
         notifyItemRemoved(position);
         // update all items after removed item

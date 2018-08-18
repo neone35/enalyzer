@@ -61,7 +61,6 @@ public class ScanChipsListFragment extends Fragment {
 
         if (mMatchedEcodeList != null) {
             Logger.d("Received ecodes: " + mMatchedEcodeList);
-
 //            chipsAdapter = createChipsAdapter(savedInstanceState);
             chipsAdapter = new ScanChipsListAdapter(mMatchedEcodeList);
 

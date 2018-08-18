@@ -14,7 +14,6 @@ import android.widget.ProgressBar;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.github.neone35.enalyzer.R;
-import com.github.neone35.enalyzer.ui.OnAsyncEventListener;
 
 import java.util.Objects;
 
@@ -58,7 +57,7 @@ public class ScanCameraFragment extends Fragment {
         if (checkCameraHardware(Objects.requireNonNull(this.getActivity()))) {
             hideStatusBar();
             // Open back camera in separate thread
-            CameraOpenTask cameraOpenTask = new CameraOpenTask(new OnAsyncEventListener<Camera>() {
+            CameraOpenTask cameraOpenTask = new CameraOpenTask(new OnAsyncCameraListener<Camera>() {
                 @Override
                 public void onSuccess(Camera camera) {
                     pbCameraPreview.setVisibility(View.INVISIBLE);

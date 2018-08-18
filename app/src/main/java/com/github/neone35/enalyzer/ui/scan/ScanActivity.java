@@ -17,14 +17,16 @@ import android.view.ViewTreeObserver;
 import android.widget.ProgressBar;
 
 import com.blankj.utilcode.util.ToastUtils;
+import com.github.neone35.enalyzer.AppExecutors;
 import com.github.neone35.enalyzer.HelpUtils;
 import com.github.neone35.enalyzer.R;
+import com.github.neone35.enalyzer.data.database.MainDatabase;
 import com.github.neone35.enalyzer.data.models.localjson.ecodelist.EcodeListItem;
-import com.github.neone35.enalyzer.ui.OnAsyncEventListener;
+import com.github.neone35.enalyzer.data.models.room.ScanPhoto;
 import com.github.neone35.enalyzer.ui.scan.camera.ScanCameraFragment;
+import com.github.neone35.enalyzer.ui.scan.chips.ScanChipsListAdapter;
 import com.github.neone35.enalyzer.ui.scan.chips.ScanChipsListFragment;
 import com.google.firebase.ml.vision.FirebaseVision;
-import com.google.firebase.ml.vision.cloud.FirebaseVisionCloudDetectorOptions;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.google.firebase.ml.vision.text.FirebaseVisionCloudTextRecognizerOptions;
 import com.google.firebase.ml.vision.text.FirebaseVisionText;
@@ -37,10 +39,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindDrawable;
-import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class ScanActivity extends AppCompatActivity {
 
@@ -65,6 +65,8 @@ public class ScanActivity extends AppCompatActivity {
     private ArrayList<String> mMatchedEcodesList;
     private FragmentManager mFragmentManager;
     private Camera mScanCamera;
+    private MainDatabase mMainDB;
+    private final AppExecutors mExecutors = AppExecutors.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,10 +76,11 @@ public class ScanActivity extends AppCompatActivity {
 
 //        postponeTransitions();
         mFragmentManager = getSupportFragmentManager();
+        mMainDB = MainDatabase.getInstance(this);
 
         askForScanShortcutPin();
         mEcodeList = initEcodeList();
-        listenForFABclick();
+        listenForFABclicks();
     }
 
     private void askForScanShortcutPin() {
@@ -100,7 +103,7 @@ public class ScanActivity extends AppCompatActivity {
         return HelpUtils.getEcodes(ecodeObjects);
     }
 
-    private void listenForFABclick() {
+    private void listenForFABclicks() {
         // initial done FAB listener
         doneFab.setOnClickListener(v -> ToastUtils.showShort("Nothing was detected. Try again"));
 
@@ -132,7 +135,7 @@ public class ScanActivity extends AppCompatActivity {
             if (mScanCamera != null) {
                 // focus camera first
                 mScanCamera.autoFocus((boolean success, Camera camera) -> {
-                    // flash turns off
+                    // flash turns off, so update drawable of FAB
                     flashFab.setImageDrawable(mFlashOnDrawable);
                     // take picture only when focused
                     if (success) {
@@ -151,26 +154,12 @@ public class ScanActivity extends AppCompatActivity {
                             FirebaseVisionTextRecognizer textRecognizer = FirebaseVision.getInstance().getCloudTextRecognizer(options);
                             // run detector on extracted image
                             detectInImage(image, textRecognizer, cameraFocused);
+
                             // set new listener on done FAB
                             doneFab.setOnClickListener(view -> {
                                 // save this scan image to SD only if ecodes found
                                 if (ECODES_MATCHED) {
-                                    // save image to external storage in separate thread
-                                    FileSaveTask fileSaveTask = new FileSaveTask(this, new OnAsyncEventListener<Boolean>() {
-                                        @Override
-                                        public void onSuccess(Boolean success) {
-                                            ToastUtils.showShort("File successfully saved");
-                                            // go back to MainActivity
-                                            finish();
-                                        }
-
-                                        @Override
-                                        public void onFailure(Exception e) {
-                                            ToastUtils.showShort("Could not save the file");
-                                            e.printStackTrace();
-                                        }
-                                    });
-                                    fileSaveTask.execute(data, null, null);
+                                    savePhotoFile(data);
                                 } else {
                                     ToastUtils.showShort("No additive codes found. Couldn't save scan");
                                 }
@@ -183,6 +172,34 @@ public class ScanActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    private void savePhotoFile(byte[] data) {
+        // save image to external storage in separate thread
+        FileSaveTask fileSaveTask = new FileSaveTask(this, new OnAsyncFileSaveListener<ScanPhoto>() {
+            @Override
+            public void onSuccess(ScanPhoto scanPhotoWithFileAndDate) {
+                // get ecodes chips (after user removal) live from adapter
+                List<String> liveECodeChipsList = ScanChipsListAdapter.mECodeChipsList;
+                // add them to returned ScanPhoto model with file details already set
+                scanPhotoWithFileAndDate.setECodes(liveECodeChipsList);
+                mExecutors.diskIO().execute(() -> {
+                    // add row to database
+                    // it'll be shown in ScanPhotoListAdapter
+                    mMainDB.scanPhotoDao().insertOne(scanPhotoWithFileAndDate);
+                });
+                ToastUtils.showShort("File successfully saved");
+                // go back to MainActivity
+                finish();
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                ToastUtils.showShort("Could not save the file");
+                e.printStackTrace();
+            }
+        });
+        fileSaveTask.execute(data, null, null);
     }
 
     @SuppressWarnings("SameParameterValue")

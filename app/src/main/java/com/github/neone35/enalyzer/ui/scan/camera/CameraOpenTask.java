@@ -3,7 +3,7 @@ package com.github.neone35.enalyzer.ui.scan.camera;
 import android.hardware.Camera;
 import android.os.AsyncTask;
 
-import com.github.neone35.enalyzer.ui.OnAsyncEventListener;
+import com.github.neone35.enalyzer.ui.scan.OnAsyncFileSaveListener;
 
 /**
  * A safe way to get an instance of the Camera object.
@@ -11,10 +11,10 @@ import com.github.neone35.enalyzer.ui.OnAsyncEventListener;
 public class CameraOpenTask extends AsyncTask<Void, Void, Camera> {
 
     private Camera mCamera;
-    private OnAsyncEventListener<Camera> mCallback;
+    private OnAsyncCameraListener<Camera> mCallback;
     private Exception mException;
 
-    CameraOpenTask(OnAsyncEventListener<Camera> callback) {
+    CameraOpenTask(OnAsyncCameraListener<Camera> callback) {
         mCallback = callback;
     }
 

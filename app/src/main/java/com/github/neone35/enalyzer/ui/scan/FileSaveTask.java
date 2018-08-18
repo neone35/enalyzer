@@ -6,13 +6,11 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.hardware.Camera;
 import android.os.AsyncTask;
 import android.os.Environment;
-import android.support.v4.content.ContextCompat;
 
 import com.github.neone35.enalyzer.R;
-import com.github.neone35.enalyzer.ui.OnAsyncEventListener;
+import com.github.neone35.enalyzer.data.models.room.ScanPhoto;
 import com.github.neone35.enalyzer.ui.main.MainActivity;
 import com.orhanobut.logger.Logger;
 
@@ -24,21 +22,19 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import butterknife.BindString;
-import butterknife.ButterKnife;
-
 import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE;
 
-public class FileSaveTask extends AsyncTask<byte[], Void, Boolean> {
+public class FileSaveTask extends AsyncTask<byte[], Void, ScanPhoto> {
 
     private ProgressDialog dialog;
-    private OnAsyncEventListener<Boolean> mCallBack;
+    private OnAsyncFileSaveListener<ScanPhoto> mCallBack;
     private Exception mException;
     private String mAppName;
     @SuppressLint("StaticFieldLeak")
     private Context mContext;
+    private ScanPhoto mScanPhoto;
 
-    FileSaveTask(Context context, OnAsyncEventListener<Boolean> callback) {
+    FileSaveTask(Context context, OnAsyncFileSaveListener<ScanPhoto> callback) {
         mCallBack = callback;
         mContext = context;
     }
@@ -56,22 +52,22 @@ public class FileSaveTask extends AsyncTask<byte[], Void, Boolean> {
     }
 
     @Override
-    protected Boolean doInBackground(byte[]... bytes) {
+    protected ScanPhoto doInBackground(byte[]... bytes) {
         try {
             writeOutputMediaFileToSD(bytes[0]);
-            return true;
+            return mScanPhoto;
         } catch (Exception e) {
             mException = e;
-            return false;
+            return null;
         }
     }
 
     @Override
-    protected void onPostExecute(Boolean successful) {
+    protected void onPostExecute(ScanPhoto scanPhotoWithFileAndDate) {
         dialog.dismiss();
         if (mCallBack != null) {
             if (mException == null) {
-                mCallBack.onSuccess(successful);
+                mCallBack.onSuccess(scanPhotoWithFileAndDate);
             } else {
                 mCallBack.onFailure(mException);
             }
@@ -122,12 +118,12 @@ public class FileSaveTask extends AsyncTask<byte[], Void, Boolean> {
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
             File mediaFile;
             if (type == MEDIA_TYPE_IMAGE) {
-                mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-                        "IMG_" + timeStamp + ".jpg");
+                String path = mediaStorageDir.getPath() + File.separator + "IMG_" + timeStamp + ".jpg";
+                mScanPhoto = new ScanPhoto(path, timeStamp, null);
+                mediaFile = new File(path);
             } else {
                 return null;
             }
-
             return mediaFile;
         } else {
             Logger.d("No mounted SD card found");
