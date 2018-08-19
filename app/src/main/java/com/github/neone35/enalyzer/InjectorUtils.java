@@ -5,6 +5,7 @@ import android.content.Context;
 import com.github.neone35.enalyzer.data.MainRepository;
 import com.github.neone35.enalyzer.data.database.MainDatabase;
 import com.github.neone35.enalyzer.data.network.NetworkRoot;
+import com.github.neone35.enalyzer.ui.main.scans.photos.ScanPhotosViewModelFactory;
 
 public class InjectorUtils {
 
@@ -24,6 +25,11 @@ public class InjectorUtils {
         provideRepository(context.getApplicationContext());
         AppExecutors executors = AppExecutors.getInstance();
         return NetworkRoot.getInstance(context.getApplicationContext(), executors);
+    }
+
+    public static ScanPhotosViewModelFactory provideScanPhotoViewModelFactory(Context context) {
+        MainRepository repository = provideRepository(context.getApplicationContext());
+        return new ScanPhotosViewModelFactory(repository);
     }
 
 }

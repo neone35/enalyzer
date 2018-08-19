@@ -13,7 +13,7 @@ import java.util.List;
 
 @Dao
 public interface ScanPhotoDao {
-    @Query("SELECT * FROM scan_photos")
+    @Query("SELECT * FROM scan_photos ORDER BY time_millis DESC")
     LiveData<List<ScanPhoto>> getAll();
 
     @Query("SELECT * FROM scan_photos where id = :id")

@@ -4,23 +4,25 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Entity(tableName = "scan_photos")
-public class ScanPhoto {
+public class ScanPhoto implements Comparator<ScanPhoto> {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
     @ColumnInfo(name = "file_name")
     private String filePath;
-    private String date;
+    @ColumnInfo(name = "time_millis")
+    private long timeMillis;
     @ColumnInfo(name = "e_codes")
     private List<String> ECodes;
 
     // Constructor used by Room to create Additives
-    public ScanPhoto(String filePath, String date, List<String> ECodes) {
+    public ScanPhoto(String filePath, long timeMillis, List<String> ECodes) {
         this.filePath = filePath;
-        this.date = date;
+        this.timeMillis = timeMillis;
         this.ECodes = ECodes;
     }
 
@@ -40,12 +42,12 @@ public class ScanPhoto {
         this.filePath = filePath;
     }
 
-    public String getDate() {
-        return date;
+    public long getTimeMillis() {
+        return timeMillis;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setTimeMillis(long date) {
+        this.timeMillis = date;
     }
 
     public List<String> getECodes() {
@@ -55,4 +57,10 @@ public class ScanPhoto {
     public void setECodes(List<String> ECodes) {
         this.ECodes = ECodes;
     }
+
+    @Override
+    public int compare(ScanPhoto o1, ScanPhoto o2) {
+        return Long.compare(o1.timeMillis, o2.timeMillis);
+    }
+
 }

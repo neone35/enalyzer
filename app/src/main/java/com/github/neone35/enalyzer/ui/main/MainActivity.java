@@ -33,8 +33,6 @@ import com.github.neone35.enalyzer.AppExecutors;
 import com.github.neone35.enalyzer.HelpUtils;
 import com.github.neone35.enalyzer.data.database.MainDatabase;
 import com.github.neone35.enalyzer.data.models.localjson.ecodelist.EcodeListItem;
-import com.github.neone35.enalyzer.data.models.room.Additive;
-import com.github.neone35.enalyzer.data.models.room.CodeCategory;
 import com.github.neone35.enalyzer.ui.scan.ScanActivity;
 import com.github.neone35.enalyzer.ui.additive.AdditiveActivity;
 import com.github.neone35.enalyzer.R;
@@ -42,7 +40,7 @@ import com.github.neone35.enalyzer.dummy.DummyContent;
 import com.github.neone35.enalyzer.ui.main.codes.CodeCategoryListFragment;
 import com.github.neone35.enalyzer.ui.main.codes.CodeDetailListFragment;
 import com.github.neone35.enalyzer.ui.main.scans.ScanDetailListFragment;
-import com.github.neone35.enalyzer.ui.main.scans.ScanPhotoListFragment;
+import com.github.neone35.enalyzer.ui.main.scans.photos.ScanPhotoListFragment;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
@@ -131,15 +129,15 @@ public class MainActivity extends AppCompatActivity implements
     private void insertLocalData() {
         mExecutors.diskIO().execute(() -> {
             String ecodesJsonString = HelpUtils.readJSONStringFromAsset(this, "ecodes.json");
-            List<EcodeListItem> ecodeObjects = HelpUtils.getLocalEcodeObjectList(ecodesJsonString);
+            List<EcodeListItem> eCodeObjects = HelpUtils.getLocalEcodeObjectList(ecodesJsonString);
             ArrayList<Integer> codesList = new ArrayList<>();
-            ArrayList<String> eCodes = HelpUtils.getEcodes(ecodeObjects);
+            ArrayList<String> eCodes = HelpUtils.getEcodes(eCodeObjects);
             // String "E160a" -> int "160"
             for (String eCode : eCodes) {
                 int code = Integer.valueOf(HelpUtils.stripNonDigits(eCode));
                 codesList.add(code);
             }
-            ArrayList<String> wikiQCodes = HelpUtils.getWikiDataQCodes(ecodeObjects);
+            ArrayList<String> wikiQCodes = HelpUtils.getWikiDataQCodes(eCodeObjects);
             ArrayList<String> categories = mMainDB.getCategories();
             ArrayList<String> categoryRanges = mMainDB.getCategoryRanges();
 
@@ -391,8 +389,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onScanListInteraction(String savedPhotoPath) {
-        Logger.d(savedPhotoPath);
+    public void onScanListInteraction(List<String> scanPhotoECodes) {
+        Logger.d(scanPhotoECodes);
         int currentPage = mViewPager.getCurrentItem();
         // if current page is scans
         if (currentPage == 0) {

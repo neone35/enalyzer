@@ -1,11 +1,14 @@
 package com.github.neone35.enalyzer.data;
 
+import android.arch.lifecycle.LiveData;
+
 import com.github.neone35.enalyzer.AppExecutors;
 import com.github.neone35.enalyzer.HelpUtils;
 import com.github.neone35.enalyzer.data.database.AdditiveDao;
 import com.github.neone35.enalyzer.data.database.CodeCategoryDao;
 import com.github.neone35.enalyzer.data.database.ScanPhotoDao;
 import com.github.neone35.enalyzer.data.models.localjson.ecodelist.EcodeListItem;
+import com.github.neone35.enalyzer.data.models.room.ScanPhoto;
 import com.github.neone35.enalyzer.data.network.NetworkRoot;
 import com.orhanobut.logger.Logger;
 
@@ -49,10 +52,18 @@ public class MainRepository {
         return sInstance;
     }
 
+    // called from ScanPhotosViewModel
+    public LiveData<List<ScanPhoto>> getAllScanPhotos() {
+        return mScanPhotoDao.getAll();
+    }
+
+    // called from ?
+    public LiveData<ScanPhoto> getScanPhotoById(int id) {
+        return mScanPhotoDao.getById(id);
+    }
+
     public static void initializeLocalData() {
         // initialize (& fetch) once per lifetime
-
-
     }
 
 }

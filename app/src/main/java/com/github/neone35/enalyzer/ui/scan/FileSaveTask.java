@@ -116,10 +116,12 @@ public class FileSaveTask extends AsyncTask<byte[], Void, ScanPhoto> {
 
             // Create a media file name
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
+            long time = System.currentTimeMillis();
             File mediaFile;
             if (type == MEDIA_TYPE_IMAGE) {
                 String path = mediaStorageDir.getPath() + File.separator + "IMG_" + timeStamp + ".jpg";
-                mScanPhoto = new ScanPhoto(path, timeStamp, null);
+                // adding photo path and time to ScanPhoto model
+                mScanPhoto = new ScanPhoto("file://" + path, time, null);
                 mediaFile = new File(path);
             } else {
                 return null;

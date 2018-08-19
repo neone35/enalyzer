@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "ae5db05e5292f53637fdbd3c90a124de",
+    "identityHash": "a77edf95f1ccd3902678251a7cab4d04",
     "entities": [
       {
         "tableName": "additives",
@@ -98,7 +98,7 @@
       },
       {
         "tableName": "scan_photos",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `file_name` TEXT, `date` TEXT, `e_codes` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `file_name` TEXT, `time_millis` INTEGER NOT NULL, `e_codes` TEXT)",
         "fields": [
           {
             "fieldPath": "id",
@@ -107,16 +107,16 @@
             "notNull": true
           },
           {
-            "fieldPath": "fileName",
+            "fieldPath": "filePath",
             "columnName": "file_name",
             "affinity": "TEXT",
             "notNull": false
           },
           {
-            "fieldPath": "date",
-            "columnName": "date",
-            "affinity": "TEXT",
-            "notNull": false
+            "fieldPath": "timeMillis",
+            "columnName": "time_millis",
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "ECodes",
@@ -175,7 +175,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"ae5db05e5292f53637fdbd3c90a124de\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"a77edf95f1ccd3902678251a7cab4d04\")"
     ]
   }
 }

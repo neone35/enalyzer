@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.neone35.enalyzer.R;
+import com.github.neone35.enalyzer.ui.main.scans.photos.ScanPhotoListFragment;
 
 // Root Fragment for Scan fragments
 public class ScanFragment extends Fragment {

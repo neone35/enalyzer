@@ -1,5 +1,6 @@
-package com.github.neone35.enalyzer.ui.main.scans;
+package com.github.neone35.enalyzer.ui.main.scans.photos;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,11 +14,14 @@ import android.view.ViewGroup;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.github.neone35.enalyzer.HelpUtils;
+import com.github.neone35.enalyzer.InjectorUtils;
 import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.ui.main.MainActivity;
+import com.orhanobut.logger.Logger;
 
 import java.io.File;
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * A fragment representing a list of Items.
@@ -76,13 +80,23 @@ public class ScanPhotoListFragment extends Fragment {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
 
-            mPhotoFilesList = getListOfSavedPhotoFiles();
-
-            if (mPhotoFilesList != null) {
-                recyclerView.setAdapter(new ScanPhotoListAdapter(mPhotoFilesList, mListener));
-            } else {
-                ToastUtils.showShort("No scan files found");
-            }
+            // Get repository instance (start observing MutableLiveData trigger)
+            ScanPhotosViewModelFactory factory =
+                    InjectorUtils.provideScanPhotoViewModelFactory(Objects.requireNonNull(this.getContext()));
+            // Tie fragment & ViewModel together
+            ScanPhotosViewModel viewModel = ViewModelProviders.of(this, factory).get(ScanPhotosViewModel.class);
+            // Trigger LiveData notification on fragment creation & observe change in DB calling DAO
+            viewModel.getScanPhotos().observe(this, scanPhotoList -> {
+                if (scanPhotoList != null) {
+                    if (!scanPhotoList.isEmpty()) {
+                        Logger.d("Setting scanPhotos adapter");
+                        // send out recipes, click listener and widget ID (if launched as config activity)
+                        recyclerView.setAdapter(new ScanPhotoListAdapter(scanPhotoList, mListener));
+                    } else {
+                        ToastUtils.showLong("No scan photos found. Tap \u002B to add!");
+                    }
+                }
+            });
         }
         return view;
     }
@@ -116,6 +130,6 @@ public class ScanPhotoListFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnScanPhotoListListener {
-        void onScanListInteraction(String savedPhotoPath);
+        void onScanListInteraction(List<String> scanPhotoECodes);
     }
 }
