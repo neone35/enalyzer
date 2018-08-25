@@ -15,6 +15,7 @@ import com.github.neone35.enalyzer.data.models.remotejson.wikidatatitle.WikiData
 import com.github.neone35.enalyzer.data.models.remotejson.wikidatatitle.WikiDataTitleResponse;
 import com.github.neone35.enalyzer.data.models.remotejson.wikimain.WikiMainPage;
 import com.github.neone35.enalyzer.data.models.remotejson.wikimain.WikiMainResponse;
+import com.google.common.base.Joiner;
 import com.orhanobut.logger.Logger;
 
 import java.io.IOException;
@@ -72,30 +73,24 @@ public class NetworkUtils {
         WikiEndpointInterface wikiEndpointInterface = getWikiApiService();
         ArrayList<WikiMainPage> wikiMainPageList = new ArrayList<>();
         try {
+            String titlesJoined = Joiner.on("|").join(additiveTitles);
             Call<WikiMainResponse> retroCall =
-                    wikiEndpointInterface.getWikiMainByAdditiveTitle(additiveTitles);
+                    wikiEndpointInterface.getWikiMainByAdditiveTitle(titlesJoined);
             WikiMainResponse wikiMainResponse = retroCall.execute().body();
-            for (String title : additiveTitles) {
-                if (wikiMainResponse != null) {
-                    // key = "1156934", value = WikiMainPage
-                    HashMap<String, WikiMainPage> wikiMainPageMap =
-                            wikiMainResponse.getWikiMainQuery().getWikiPageMap();
-                    // select "1156934"
-                    Map.Entry<String, WikiMainPage> wikiMainPageEntry =
-                            wikiMainPageMap.entrySet().iterator().next();
-                    // get WikiMainPage
-                    WikiMainPage wikiMainPage = wikiMainPageEntry.getValue();
-                    wikiMainPageList.add(wikiMainPage);
-                } else {
-                    Logger.d("No wikimainpage received for additive title: " + title);
-                }
+            // key = "1156934", value = WikiMainPage
+            if (wikiMainResponse != null) {
+                HashMap<String, WikiMainPage> wikiMainPageMap =
+                        wikiMainResponse.getWikiMainQuery().getWikiPageMap();
+                // select "1156934" (key) & get WikiMainPages
+                wikiMainPageList.addAll(wikiMainPageMap.values());
             }
+
         } catch (IOException e) {
             Logger.d(e.getMessage());
         }
         // parsed response contains last requested url titles in the top
         // we need them in the order of request url
-        Collections.reverse(wikiMainPageList);
+//        Collections.reverse(wikiMainPageList);
         Logger.d("First wikiMainPage title: " + wikiMainPageList.get(0).getTitle());
         return wikiMainPageList;
     }
@@ -221,15 +216,13 @@ public class NetworkUtils {
 
     // Constructs bulk absolute wiki image urls by their filenames
     // imageFilename ex. Uhličitan_amonný.JPG
-    public static ArrayList<String> getWikiImgUrl(ArrayList<String> imgFilenames) {
-        ArrayList<String> imgUrlList = new ArrayList<>();
-        for (String imgFilename : imgFilenames) {
-            // 98e10a0a133d46ffef7de40065a4d758
-            String MD5OfFilename = EncryptUtils.encryptMD5ToString(imgFilename);
+    public static String getWikiImgUrl(String imgFilename) {
+        try {
+            String MD5OfFilename = EncryptUtils.encryptMD5ToString(imgFilename).toLowerCase();
             String MD5FirstChar = MD5OfFilename.substring(0, 1); // 9
-            String MD5SecondChar = MD5OfFilename.substring(1, 2); // 8
+            String MD5SecondChar = MD5OfFilename.substring(1, 2); // e
 
-            // https://upload.wikimedia.org/wikipedia/commons/9/98
+            // https://upload.wikimedia.org/wikipedia/commons/9/9e
             String imgUrl = new Uri.Builder().scheme("https")
                     .authority(WIKI_IMG_AUTHORITY)
                     .appendPath("wikipedia")
@@ -237,11 +230,12 @@ public class NetworkUtils {
                     .appendPath(MD5FirstChar)
                     .appendPath(MD5FirstChar + MD5SecondChar)
                     .build().toString();
-            // https://upload.wikimedia.org/wikipedia/commons/9/98/Uhličitan_amonný.JPG
-            imgUrlList.add("/" + imgUrl + imgFilename);
+            String finalUrl = imgUrl + "/" + imgFilename;
+            Logger.d("First img URL: " + finalUrl);
+            return finalUrl;
+        } catch (Exception e) {
+            Logger.d(e.getMessage());
+            return null;
         }
-        Logger.d("First img URL: " + imgUrlList.get(0));
-        return imgUrlList;
     }
-
 }

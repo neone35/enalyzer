@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.github.neone35.enalyzer.AppExecutors;
+import com.github.neone35.enalyzer.HelpUtils;
 import com.github.neone35.enalyzer.data.models.remotejson.wikimain.WikiMainPage;
 import com.github.neone35.enalyzer.data.models.room.Additive;
 import com.orhanobut.logger.Logger;
@@ -79,6 +80,7 @@ public class NetworkRoot {
         return mDownloadedPubchemHazards;
     }
 
+    // starts WikiJobService which calls fetchWiki() in BG
     public void startWikiFetchJobService(ArrayList<String> qCodes) {
         Intent intentToWikiFetch = new Intent(mContext, WikiJobService.class);
         Bundle bundle = new Bundle();
@@ -98,7 +100,6 @@ public class NetworkRoot {
 
                 // notify observers of MutableLiveData (repository) if fetch is successful
                 if (wikiMainPageList != null && wikiMainPageList.size() != 0) {
-                    mDownloadedWikiTitles.postValue(wikiTitleStringList);
                     Logger.d("fetchWiki has " + wikiMainPageList.size() + " values");
                     Logger.d("First value is %s", wikiMainPageList.get(0).getTitle());
                     // update LiveData off main thread -> to main thread (postValue)

@@ -83,37 +83,44 @@ public abstract class MainDatabase extends RoomDatabase {
             // "E100-E199"
             String categoryRange = categoryRanges.get(i);
             ArrayList<Integer> categoryCodes = new ArrayList<>();
+            ArrayList<String> categoryEcodes = new ArrayList<>();
             for (int j = 0; j < eCodes.size(); j++) {
                 // "E160a"
                 String eCode = eCodes.get(j);
+                // "160"
+                int code = codes.get(j);
                 // "Colours"
                 Additive additive = additiveDao().getOneStaticByEcode(eCode);
                 String additiveCategory = additive.getCategory();
                 if (additiveCategory != null) {
                     // "Colours" == "Colours"
-                    if (additiveCategory.equals(category)) {
-                        categoryCodes.add(codes.get(j));
+                    if (additiveCategory.equals(category) && eCode != null) {
+                        categoryCodes.add(code);
+                        categoryEcodes.add(eCode);
                     }
                 } else {
                     Logger.d(additive.getEcode() + " has no category assigned");
                 }
             }
-            CodeCategory codeCategory = new CodeCategory(categoryRange, category, categoryCodes);
-            codeCategoryList.add(codeCategory);
+            CodeCategory codeCategory = new CodeCategory(categoryRange, category, categoryCodes, categoryEcodes);
+            // not all categories are filled with additives, so skip them
+            if (!codeCategory.getECodes().isEmpty()) {
+                codeCategoryList.add(codeCategory);
+            }
         }
         codeCategoryDao().bulkInsert(codeCategoryList);
     }
 
     public ArrayList<String> getCategories() {
         ArrayList<String> categories = new ArrayList<>();
-        categories.add("Colour");
-        categories.add("Preservative");
-        categories.add("Antioxidant, acidity regulator");
-        categories.add("Thickener, stabiliser, emulsifier");
-        categories.add("Acidity regulator, anti-caking agent");
-        categories.add("Flavour enhancer");
-        categories.add("Antibiotic");
-        categories.add("Glazing agent, gase & sweetener");
+        categories.add("Colours");
+        categories.add("Preservatives");
+        categories.add("Antioxidants, acidity regulators");
+        categories.add("Thickeners, stabilisers, emulsifiers");
+        categories.add("Acidity regulators, anti-caking agents");
+        categories.add("Flavour enhancers");
+        categories.add("Antibiotics");
+        categories.add("Glazing agents, gases & sweeteners");
         categories.add("Additional");
         return categories;
     }

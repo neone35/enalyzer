@@ -5,7 +5,9 @@ import android.content.Context;
 import com.github.neone35.enalyzer.data.MainRepository;
 import com.github.neone35.enalyzer.data.database.MainDatabase;
 import com.github.neone35.enalyzer.data.network.NetworkRoot;
-import com.github.neone35.enalyzer.ui.main.scans.photos.ScanPhotosViewModelFactory;
+import com.github.neone35.enalyzer.ui.main.codes.category.CodeCategoryViewModelFactory;
+import com.github.neone35.enalyzer.ui.main.scans.detail.ScanDetailViewModelFactory;
+import com.github.neone35.enalyzer.ui.main.scans.photos.ScanPhotoViewModelFactory;
 
 public class InjectorUtils {
 
@@ -27,9 +29,19 @@ public class InjectorUtils {
         return NetworkRoot.getInstance(context.getApplicationContext(), executors);
     }
 
-    public static ScanPhotosViewModelFactory provideScanPhotoViewModelFactory(Context context) {
+    public static ScanPhotoViewModelFactory provideScanPhotoViewModelFactory(Context context) {
         MainRepository repository = provideRepository(context.getApplicationContext());
-        return new ScanPhotosViewModelFactory(repository);
+        return new ScanPhotoViewModelFactory(repository);
+    }
+
+    public static ScanDetailViewModelFactory provideScanDetailViewModelFactory(Context context, int scanPhotoID) {
+        MainRepository repository = provideRepository(context.getApplicationContext());
+        return new ScanDetailViewModelFactory(repository, scanPhotoID);
+    }
+
+    public static CodeCategoryViewModelFactory provideCodeCategoryViewModelFactory(Context context) {
+        MainRepository repository = provideRepository(context.getApplicationContext());
+        return new CodeCategoryViewModelFactory(repository);
     }
 
 }

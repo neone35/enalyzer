@@ -48,7 +48,6 @@
             android:layout_marginRight="@dimen/list_item_title_margin"
             android:layout_marginStart="@dimen/list_item_title_margin"
             android:layout_marginTop="@dimen/list_item_title_margin"
-            android:text="2018/07/31"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/list_item_title_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/iv_scan_photo"

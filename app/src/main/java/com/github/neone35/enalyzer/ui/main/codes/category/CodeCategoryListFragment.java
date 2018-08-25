@@ -1,5 +1,6 @@
-package com.github.neone35.enalyzer.ui.main.codes;
+package com.github.neone35.enalyzer.ui.main.codes.category;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,9 +12,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.blankj.utilcode.util.ToastUtils;
+import com.github.neone35.enalyzer.InjectorUtils;
 import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.dummy.DummyContent;
 import com.github.neone35.enalyzer.dummy.DummyContent.DummyItem;
+import com.orhanobut.logger.Logger;
+
+import java.util.List;
+import java.util.Objects;
 
 /**
  * A fragment representing a list of Items.
@@ -65,7 +72,22 @@ public class CodeCategoryListFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new CodeCategoryListAdapter(DummyContent.ITEMS, mListener));
+
+            // Get repository instance (start observing MutableLiveData trigger)
+            CodeCategoryViewModelFactory factory =
+                    InjectorUtils.provideCodeCategoryViewModelFactory(Objects.requireNonNull(this.getContext()));
+            // Tie fragment & ViewModel together
+            CodeCategoryViewModel viewModel = ViewModelProviders.of(this, factory).get(CodeCategoryViewModel.class);
+            // Trigger LiveData notification on fragment creation & observe change in DB calling DAO
+            viewModel.getCodeCategories().observe(this, codeCategoryList -> {
+                if (codeCategoryList != null) {
+                    if (!codeCategoryList.isEmpty()) {
+                        Logger.d("Setting codeCategory adapter");
+                        // send out recipes, click listener and widget ID (if launched as config activity)
+                        recyclerView.setAdapter(new CodeCategoryListAdapter(codeCategoryList, mListener));
+                    }
+                }
+            });
         }
         return view;
     }
@@ -99,6 +121,6 @@ public class CodeCategoryListFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnCodeCategoryListListener {
-        void onCodeCategoryListInteraction(DummyItem item);
+        void onCodeCategoryListInteraction(List<String> codeCategoryECodes);
     }
 }

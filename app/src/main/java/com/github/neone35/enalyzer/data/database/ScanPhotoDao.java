@@ -19,6 +19,9 @@ public interface ScanPhotoDao {
     @Query("SELECT * FROM scan_photos where id = :id")
     LiveData<ScanPhoto> getById(int id);
 
+    @Query("SELECT * FROM scan_photos where id = :id")
+    ScanPhoto getOneStaticById(int id);
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertOne(ScanPhoto scanPhoto);
 

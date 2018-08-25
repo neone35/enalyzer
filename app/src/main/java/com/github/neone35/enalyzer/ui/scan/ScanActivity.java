@@ -22,6 +22,7 @@ import com.github.neone35.enalyzer.HelpUtils;
 import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.data.database.MainDatabase;
 import com.github.neone35.enalyzer.data.models.localjson.ecodelist.EcodeListItem;
+import com.github.neone35.enalyzer.data.models.room.Additive;
 import com.github.neone35.enalyzer.data.models.room.ScanPhoto;
 import com.github.neone35.enalyzer.ui.scan.camera.ScanCameraFragment;
 import com.github.neone35.enalyzer.ui.scan.chips.ScanChipsListAdapter;
@@ -190,7 +191,11 @@ public class ScanActivity extends AppCompatActivity {
                 });
                 ToastUtils.showShort("File successfully saved");
                 // go back to MainActivity
-                finish();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    finishAfterTransition();
+                } else {
+                    finish();
+                }
             }
 
             @Override

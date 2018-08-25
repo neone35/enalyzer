@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "a77edf95f1ccd3902678251a7cab4d04",
+    "identityHash": "cbffc484561f556d5b32eb2c980c691f",
     "entities": [
       {
         "tableName": "additives",
@@ -136,7 +136,7 @@
       },
       {
         "tableName": "code_categories",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `range` TEXT, `title` TEXT, `codes` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `range` TEXT, `title` TEXT, `codes` TEXT, `e_codes` TEXT)",
         "fields": [
           {
             "fieldPath": "id",
@@ -161,6 +161,12 @@
             "columnName": "codes",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "ECodes",
+            "columnName": "e_codes",
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -175,7 +181,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"a77edf95f1ccd3902678251a7cab4d04\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"cbffc484561f556d5b32eb2c980c691f\")"
     ]
   }
 }

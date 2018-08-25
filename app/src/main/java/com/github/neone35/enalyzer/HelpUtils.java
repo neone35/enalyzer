@@ -144,7 +144,6 @@ public class HelpUtils {
         for (int i = 0; i < mAdditivesNum; i++) {
             String wikiDataName = ecodeObjects.get(i).getName();
             if (wikiDataName != null) {
-                // "https://www.wikidata.org/wiki/Q422071"
                 List<String> splittedName = Splitter
                         .onPattern("-")
                         .omitEmptyStrings() // remove nulls

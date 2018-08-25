@@ -1,7 +1,6 @@
-package com.github.neone35.enalyzer.ui.main.codes;
+package com.github.neone35.enalyzer.ui.main.codes.category;
 
 import android.support.annotation.NonNull;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +8,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.github.neone35.enalyzer.R;
-import com.github.neone35.enalyzer.ui.main.codes.CodeCategoryListFragment.OnCodeCategoryListListener;
+import com.github.neone35.enalyzer.data.models.room.CodeCategory;
+import com.github.neone35.enalyzer.ui.main.codes.category.CodeCategoryListFragment.OnCodeCategoryListListener;
 import com.github.neone35.enalyzer.dummy.DummyContent.DummyItem;
 
 import java.util.List;
@@ -20,11 +20,11 @@ import butterknife.ButterKnife;
 
 public class CodeCategoryListAdapter extends RecyclerView.Adapter<CodeCategoryListAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private List<CodeCategory> mCodeCategoryList;
     private final CodeCategoryListFragment.OnCodeCategoryListListener mListener;
 
-    CodeCategoryListAdapter(List<DummyItem> items, OnCodeCategoryListListener listener) {
-        mValues = items;
+    CodeCategoryListAdapter(List<CodeCategory> codeCategoryList, OnCodeCategoryListListener listener) {
+        mCodeCategoryList = codeCategoryList;
         mListener = listener;
     }
 
@@ -38,35 +38,39 @@ public class CodeCategoryListAdapter extends RecyclerView.Adapter<CodeCategoryLi
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
+
+        // bind code categories from viewmodel one by one
+        CodeCategory codeCategory = holder.mCodeCategory = mCodeCategoryList.get(position);
+
+        holder.tvCodeCategoryRange.setText(codeCategory.getRange());
+        holder.tvCodeCategory.setText(codeCategory.getTitle());
 
         holder.mView.setOnClickListener(v -> {
             if (null != mListener) {
                 // Notify the active callbacks interface (the activity, if the
                 // fragment is attached to one) that an item has been selected.
-                mListener.onCodeCategoryListInteraction(holder.mItem);
+                mListener.onCodeCategoryListInteraction(holder.mCodeCategory.getECodes());
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return mValues.size();
+        return mCodeCategoryList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         final View mView;
-        DummyItem mItem;
+        CodeCategory mCodeCategory;
         @BindView(R.id.tv_code_category_range)
         TextView tvCodeCategoryRange;
         @BindView(R.id.tv_code_category)
         TextView tvCodeCategory;
 
-        ViewHolder(View view) {
-            super(view);
-            mView = view;
-            ButterKnife.bind(view, tvCodeCategoryRange);
-            ButterKnife.bind(view, tvCodeCategory);
+        ViewHolder(View itemView) {
+            super(itemView);
+            mView = itemView;
+            ButterKnife.bind(this, itemView);
         }
 
         @Override

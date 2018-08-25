@@ -87,7 +87,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/tv_scan_detail_ecode" />
 
                 <TextView
-                    android:id="@+id/tv_scan_detail_names"
+                    android:id="@+id/tv_scan_detail_known_as"
                     style="@style/Base.TextAppearance.AppCompat.Small"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
                     android:layout_marginStart="8dp"
-                    android:text="'Baker's Amonia', 'Sal volatile', 'Salt of hartshorn'"
+                    android:text="@string/no_other_names"
                     android:textColor="@color/colorSecondaryText"
                     android:textSize="@dimen/list_item_subtitle_text_size"
                     app:layout_constraintBottom_toBottomOf="parent"

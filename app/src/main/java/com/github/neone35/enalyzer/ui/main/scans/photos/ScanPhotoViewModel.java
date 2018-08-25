@@ -8,11 +8,11 @@ import com.github.neone35.enalyzer.data.models.room.ScanPhoto;
 
 import java.util.List;
 
-class ScanPhotosViewModel extends ViewModel {
+class ScanPhotoViewModel extends ViewModel {
 
     private final LiveData<List<ScanPhoto>> mScanPhotos;
 
-    ScanPhotosViewModel(MainRepository repository) {
+    ScanPhotoViewModel(MainRepository repository) {
         mScanPhotos = repository.getAllScanPhotos();
     }
 

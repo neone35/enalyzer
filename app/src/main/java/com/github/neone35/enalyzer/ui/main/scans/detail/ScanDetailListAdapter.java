@@ -1,4 +1,4 @@
-package com.github.neone35.enalyzer.ui.main.scans;
+package com.github.neone35.enalyzer.ui.main.scans.detail;
 
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -9,10 +9,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.github.neone35.enalyzer.R;
-import com.github.neone35.enalyzer.dummy.DummyContent.DummyItem;
+import com.github.neone35.enalyzer.data.models.room.Additive;
+import com.github.neone35.enalyzer.data.models.room.ScanPhoto;
 import com.github.neone35.enalyzer.ui.main.MainActivity;
+import com.google.common.base.Joiner;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -20,14 +24,20 @@ import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.bumptech.glide.request.RequestOptions.fitCenterTransform;
+
 public class ScanDetailListAdapter extends RecyclerView.Adapter<ScanDetailListAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final ScanPhoto mScanPhoto;
     private final ScanDetailListFragment.OnScanDetailListListener mListener;
+    private List<Additive> mScanPhotoAdditives;
+    private final int KNOWN_AS_NUM = 3;
 
-    ScanDetailListAdapter(List<DummyItem> items, ScanDetailListFragment.OnScanDetailListListener listener) {
-        mValues = items;
+    ScanDetailListAdapter(ScanPhoto scanPhoto, ScanDetailListFragment.OnScanDetailListListener listener,
+                          List<Additive> scanPhotoAdditives) {
+        mScanPhoto = scanPhoto;
         mListener = listener;
+        mScanPhotoAdditives = scanPhotoAdditives;
     }
 
     @NonNull
@@ -35,13 +45,31 @@ public class ScanDetailListAdapter extends RecyclerView.Adapter<ScanDetailListAd
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_scan_detail_item, parent, false);
-
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
+        Additive additive = holder.mAdditive = mScanPhotoAdditives.get(position);
+
+        // bind data to views
+        if (additive.getImageURL() != null) {
+            Glide.with(holder.ivPhoto)
+                    .load(additive.getImageURL())
+                    .apply(fitCenterTransform())
+                    .into(holder.ivPhoto);
+        }
+        holder.tvEcode.setText(additive.getEcode());
+        holder.tvCategory.setText(additive.getCategory());
+        holder.tvScanDetailName.setText(additive.getName());
+        if (additive.getKnownAs() != null) {
+            ArrayList<String> knownAses = new ArrayList<>();
+            for (int i = 0; i < KNOWN_AS_NUM - 1; i++) {
+                knownAses.add(additive.getKnownAs().get(i));
+            }
+            String knownAsJoined = Joiner.on(", ").join(knownAses);
+            holder.tvKnownAs.setText(knownAsJoined);
+        }
 
         // assign unique transition name to recyclerView item
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -53,10 +81,10 @@ public class ScanDetailListAdapter extends RecyclerView.Adapter<ScanDetailListAd
 
         holder.mView.setOnClickListener(v -> {
             if (null != mListener) {
-                // Pass transitionViews to AdditiveActivity through MainActivity callback
                 HashMap<String, View> transitionViews = new HashMap<>();
                 transitionViews.put(MainActivity.KEY_PHOTO_TRANSITION_VIEW, holder.ivPhoto);
                 transitionViews.put(MainActivity.KEY_ECODE_TRANSITION_VIEW, holder.tvEcode);
+                // Pass transitionViews to AdditiveActivity through MainActivity callback
                 mListener.onScanDetailListInteraction(transitionViews);
             }
         });
@@ -64,20 +92,24 @@ public class ScanDetailListAdapter extends RecyclerView.Adapter<ScanDetailListAd
 
     @Override
     public int getItemCount() {
-        return mValues.size();
+        return mScanPhoto.getECodes().size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         final View mView;
-        DummyItem mItem;
+        Additive mAdditive;
         @BindView(R.id.iv_scan_detail_photo)
         ImageView ivPhoto;
         @BindView(R.id.tv_scan_detail_ecode)
         TextView tvEcode;
         @BindView(R.id.tv_scan_detail_category)
         TextView tvCategory;
-        @BindView(R.id.tv_scan_detail_names)
-        TextView tvNames;
+        @BindView(R.id.tv_scan_detail_known_as)
+        TextView tvKnownAs;
+        @BindView(R.id.tv_scan_detail_name)
+        TextView tvScanDetailName;
+        @BindView(R.id.tv_scan_detail_formula)
+        TextView tvScanDetailFormula;
         @BindString(R.string.additive_image_transition)
         String additiveImageTransitionName;
         @BindString(R.string.additive_ecode_transition)

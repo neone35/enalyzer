@@ -13,9 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.blankj.utilcode.util.ToastUtils;
-import com.github.neone35.enalyzer.HelpUtils;
 import com.github.neone35.enalyzer.InjectorUtils;
 import com.github.neone35.enalyzer.R;
+import com.github.neone35.enalyzer.dummy.DummyContent;
 import com.github.neone35.enalyzer.ui.main.MainActivity;
 import com.orhanobut.logger.Logger;
 
@@ -81,10 +81,10 @@ public class ScanPhotoListFragment extends Fragment {
             }
 
             // Get repository instance (start observing MutableLiveData trigger)
-            ScanPhotosViewModelFactory factory =
+            ScanPhotoViewModelFactory factory =
                     InjectorUtils.provideScanPhotoViewModelFactory(Objects.requireNonNull(this.getContext()));
             // Tie fragment & ViewModel together
-            ScanPhotosViewModel viewModel = ViewModelProviders.of(this, factory).get(ScanPhotosViewModel.class);
+            ScanPhotoViewModel viewModel = ViewModelProviders.of(this, factory).get(ScanPhotoViewModel.class);
             // Trigger LiveData notification on fragment creation & observe change in DB calling DAO
             viewModel.getScanPhotos().observe(this, scanPhotoList -> {
                 if (scanPhotoList != null) {
@@ -93,7 +93,7 @@ public class ScanPhotoListFragment extends Fragment {
                         // send out recipes, click listener and widget ID (if launched as config activity)
                         recyclerView.setAdapter(new ScanPhotoListAdapter(scanPhotoList, mListener));
                     } else {
-                        ToastUtils.showLong("No scan photos found. Tap \u002B to add!");
+                        recyclerView.setAdapter(new ScanPhotoDummyAdapter(DummyContent.ITEMS));
                     }
                 }
             });
@@ -130,6 +130,6 @@ public class ScanPhotoListFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnScanPhotoListListener {
-        void onScanListInteraction(List<String> scanPhotoECodes);
+        void onScanListInteraction(int scanPhotoID);
     }
 }

@@ -28,7 +28,6 @@ import static com.bumptech.glide.request.RequestOptions.fitCenterTransform;
 public class ScanPhotoListAdapter extends RecyclerView.Adapter<ScanPhotoListAdapter.ViewHolder> {
 
     private List<ScanPhoto> mScanPhotoList;
-    private Context mContext;
     private final OnScanPhotoListListener mListener;
 
     ScanPhotoListAdapter(List<ScanPhoto> scanPhotoList, OnScanPhotoListListener listener) {
@@ -48,7 +47,7 @@ public class ScanPhotoListAdapter extends RecyclerView.Adapter<ScanPhotoListAdap
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
         // bind scan photos sorted by time taken from viewmodel one by one
-        ScanPhoto scanPhoto = mScanPhotoList.get(position);
+        ScanPhoto scanPhoto = holder.mSavedScanPhoto = mScanPhotoList.get(position);
         Logger.d("Setting scanPhoto file: " + scanPhoto.getFilePath());
         Glide.with(holder.ivPhoto)
                 .load(scanPhoto.getFilePath())
@@ -65,7 +64,7 @@ public class ScanPhotoListAdapter extends RecyclerView.Adapter<ScanPhotoListAdap
             if (null != mListener) {
                 // Notify the active callbacks interface (the activity, if the
                 // fragment is attached to one) that an item has been selected.
-                mListener.onScanListInteraction(scanPhoto.getECodes());
+                mListener.onScanListInteraction(scanPhoto.getId());
             }
         });
     }

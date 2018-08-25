@@ -17,5 +17,5 @@ public interface WikiEndpointInterface {
     Call<WikiDataTitleResponse> getAdditiveTitleByWikiQCode(@Query("wbeuentities") String qCode);
 
     @GET(actionQuery + "&prop=extracts|pageprops|pageterms|info&exintro=&explaintext=&redirects=1")
-    Call<WikiMainResponse> getWikiMainByAdditiveTitle(@Query("titles") List<String> titles);
+    Call<WikiMainResponse> getWikiMainByAdditiveTitle(@Query("titles") String titlesJoined);
 }

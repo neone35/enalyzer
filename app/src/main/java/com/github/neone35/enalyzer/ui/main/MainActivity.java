@@ -3,6 +3,7 @@ package com.github.neone35.enalyzer.ui.main;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -36,10 +37,9 @@ import com.github.neone35.enalyzer.data.models.localjson.ecodelist.EcodeListItem
 import com.github.neone35.enalyzer.ui.scan.ScanActivity;
 import com.github.neone35.enalyzer.ui.additive.AdditiveActivity;
 import com.github.neone35.enalyzer.R;
-import com.github.neone35.enalyzer.dummy.DummyContent;
-import com.github.neone35.enalyzer.ui.main.codes.CodeCategoryListFragment;
+import com.github.neone35.enalyzer.ui.main.codes.category.CodeCategoryListFragment;
 import com.github.neone35.enalyzer.ui.main.codes.CodeDetailListFragment;
-import com.github.neone35.enalyzer.ui.main.scans.ScanDetailListFragment;
+import com.github.neone35.enalyzer.ui.main.scans.detail.ScanDetailListFragment;
 import com.github.neone35.enalyzer.ui.main.scans.photos.ScanPhotoListFragment;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.orhanobut.logger.AndroidLogAdapter;
@@ -94,13 +94,13 @@ public class MainActivity extends AppCompatActivity implements
     private MainDatabase mMainDB;
     private final AppExecutors mExecutors = AppExecutors.getInstance();
     public static File mMediaStorageDir;
+    private ProgressDialog dialog;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Stetho.initializeWithDefaults(this);
-        Logger.addLogAdapter(new AndroidLogAdapter());
+        debugConfig();
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
@@ -116,9 +116,6 @@ public class MainActivity extends AppCompatActivity implements
         setupTabs(mFragmentManager);
         setupAddFAB(mViewPager, mAddFab);
 
-        // show instructive motion (once per lifetime)
-        if (!mSettings.getBoolean(KEY_SETTING_PAGER_INSTRUCT_MOTION, false))
-            showInstructiveMotion(mViewPager);
         // init local data (once per lifetime)
         if (!mSettings.getBoolean(KEY_SETTING_LOCAL_DATA_INIT, false)) {
             mMainDB = MainDatabase.getInstance(this);
@@ -126,7 +123,17 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
+    private void debugConfig() {
+        Stetho.initializeWithDefaults(this);
+        Logger.addLogAdapter(new AndroidLogAdapter());
+    }
+
     private void insertLocalData() {
+        dialog = new ProgressDialog(this);
+        dialog.setTitle(getResources().getString(R.string.loading_local_data));
+        dialog.setMessage(getResources().getString(R.string.please_wait));
+        dialog.setIndeterminate(true);
+        dialog.show();
         mExecutors.diskIO().execute(() -> {
             String ecodesJsonString = HelpUtils.readJSONStringFromAsset(this, "ecodes.json");
             List<EcodeListItem> eCodeObjects = HelpUtils.getLocalEcodeObjectList(ecodesJsonString);
@@ -144,10 +151,19 @@ public class MainActivity extends AppCompatActivity implements
             mMainDB.insertInitialAdditives(codesList, eCodes, wikiQCodes, categories);
             mMainDB.insertCodeCategories(categories, categoryRanges, codesList, eCodes);
 
-            SharedPreferences.Editor editor = mSettings.edit();
-            editor.putBoolean(KEY_SETTING_LOCAL_DATA_INIT, true);
-            editor.apply();
+            runOnUiThread(() -> {
+                dialog.dismiss();
+                // show instructive motion (once per lifetime)
+                if (!mSettings.getBoolean(KEY_SETTING_PAGER_INSTRUCT_MOTION, false)) {
+                    showInstructiveMotion(mViewPager);
+                    ToastUtils.showShort("No scans found. Press '+' to add.");
+                }
+            });
         });
+
+        SharedPreferences.Editor editor = mSettings.edit();
+        editor.putBoolean(KEY_SETTING_LOCAL_DATA_INIT, true);
+        editor.apply();
     }
 
 
@@ -203,7 +219,7 @@ public class MainActivity extends AppCompatActivity implements
 
         addFab.setOnClickListener(v -> {
             String permissions[] = {CAMERA_PERMISSION, EXTERNAL_STORAGE_PERMISSION};
-            // scan activity is started only after permissions are allowed
+            // scan activity is started only if permissions are allowed
             if (checkAndRequestPermissions(permissions)) {
                 startScanActivity();
             }
@@ -257,15 +273,10 @@ public class MainActivity extends AppCompatActivity implements
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // permission was granted, yay! Do the
-                    // contacts-related task you need to do.
-
-                    // delay start after permission screen exit animation
-//                    final Handler handler = new Handler();
+                    // permission was granted, yay!
                     startScanActivity();
                 } else {
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
+                    // permission denied, boo!
                     ToastUtils.showShort("Permissions denied. Limited functionality.");
                 }
             }
@@ -389,14 +400,14 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onScanListInteraction(List<String> scanPhotoECodes) {
-        Logger.d(scanPhotoECodes);
+    public void onScanListInteraction(int scanPhotoID) {
+        Logger.d(scanPhotoID);
         int currentPage = mViewPager.getCurrentItem();
         // if current page is scans
         if (currentPage == 0) {
             // replace ScanList with ScanDetailList
             mFragmentManager.beginTransaction()
-                    .replace(R.id.fl_scan_root, ScanDetailListFragment.newInstance(1))
+                    .replace(R.id.fl_scan_root, ScanDetailListFragment.newInstance(1, scanPhotoID))
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     // enable switch back to ScanList with addToBackStack
                     .addToBackStack(SCANS_DETAIL)
@@ -410,8 +421,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onCodeCategoryListInteraction(DummyContent.DummyItem item) {
-        Logger.d(item);
+    public void onCodeCategoryListInteraction(List<String> codeCategoryECodes) {
+        Logger.d(codeCategoryECodes);
         int currentPage = mViewPager.getCurrentItem();
         // if current page is codes
         if (currentPage == 1) {

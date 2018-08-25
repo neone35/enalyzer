@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.neone35.enalyzer.R;
+import com.github.neone35.enalyzer.ui.main.codes.category.CodeCategoryListFragment;
 
 // Root Fragment for Code fragments
 public class CodeFragment extends Fragment {

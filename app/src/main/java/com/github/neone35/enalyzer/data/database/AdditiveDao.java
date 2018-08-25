@@ -9,6 +9,7 @@ import android.arch.persistence.room.Update;
 
 import com.github.neone35.enalyzer.data.models.room.Additive;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Dao
@@ -17,7 +18,7 @@ public interface AdditiveDao {
     LiveData<List<Additive>> getAll();
 
     @Query("SELECT * FROM additives where ecode IN (:ecodes)")
-    LiveData<List<Additive>> getBulkByEcode(String... ecodes);
+    LiveData<List<Additive>> getBulkByEcode(List<String> ecodes);
 
     @Query("SELECT * FROM additives where ecode = :ecode")
     LiveData<Additive> getOneByEcode(String ecode);
@@ -25,13 +26,19 @@ public interface AdditiveDao {
     @Query("SELECT * FROM additives where ecode = :ecode")
     Additive getOneStaticByEcode(String ecode);
 
+    @Query("SELECT * FROM additives where wiki_data_qcode = :qcode")
+    Additive getOneStaticByQcode(String qcode);
+
+    @Query("SELECT * FROM additives where ecode IN (:ecodes)")
+    List<Additive> getBulkStaticByEcode(List<String> ecodes);
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void bulkInsert(List<Additive> additives);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void oneInsert(Additive additive);
 
-    @Update
+    @Update(onConflict = OnConflictStrategy.REPLACE)
     void bulkUpdate(List<Additive> additives);
 
     @Query("DELETE FROM additives")

@@ -1,5 +1,6 @@
 package com.github.neone35.enalyzer.data.models.room;
 
+import android.annotation.SuppressLint;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
@@ -33,6 +34,7 @@ public class Additive {
     private List<String> ghsPictogramURL;
     @ColumnInfo(name = "hazards")
     private List<Hazard> hazard;
+
 
     // Constructor used by Room to create Additives
     public Additive(@NonNull String ecode, int code, String wikiDataQCode, String wikiEditDate, String pubchemID,

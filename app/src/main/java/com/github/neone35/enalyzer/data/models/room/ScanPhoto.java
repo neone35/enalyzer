@@ -4,11 +4,12 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 @Entity(tableName = "scan_photos")
-public class ScanPhoto implements Comparator<ScanPhoto> {
+public class ScanPhoto {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -57,10 +58,4 @@ public class ScanPhoto implements Comparator<ScanPhoto> {
     public void setECodes(List<String> ECodes) {
         this.ECodes = ECodes;
     }
-
-    @Override
-    public int compare(ScanPhoto o1, ScanPhoto o2) {
-        return Long.compare(o1.timeMillis, o2.timeMillis);
-    }
-
 }

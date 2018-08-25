@@ -1,5 +1,6 @@
-package com.github.neone35.enalyzer.ui.main.scans;
+package com.github.neone35.enalyzer.ui.main.scans.detail;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,10 +12,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.facebook.stetho.common.ArrayListAccumulator;
+import com.github.neone35.enalyzer.AppExecutors;
+import com.github.neone35.enalyzer.InjectorUtils;
 import com.github.neone35.enalyzer.R;
+import com.github.neone35.enalyzer.data.database.MainDatabase;
+import com.github.neone35.enalyzer.data.models.room.Additive;
 import com.github.neone35.enalyzer.dummy.DummyContent;
+import com.orhanobut.logger.Logger;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * A fragment representing a list of Items.
@@ -25,8 +35,12 @@ import java.util.HashMap;
 public class ScanDetailListFragment extends Fragment {
 
     private static final String ARG_COLUMN_COUNT = "column-count";
+    private static final String ARG_PHOTO_ID = "photo-id";
     private int mColumnCount = 1;
     private OnScanDetailListListener mListener;
+    private int mScanPhotoID;
+    private MainDatabase mMainDB;
+    private final AppExecutors mExecutors = AppExecutors.getInstance();
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -35,10 +49,11 @@ public class ScanDetailListFragment extends Fragment {
     public ScanDetailListFragment() {
     }
 
-    public static ScanDetailListFragment newInstance(int columnCount) {
+    public static ScanDetailListFragment newInstance(int columnCount, int scanPhotoID) {
         ScanDetailListFragment fragment = new ScanDetailListFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
+        args.putInt(ARG_PHOTO_ID, scanPhotoID);
         fragment.setArguments(args);
         return fragment;
     }
@@ -46,9 +61,11 @@ public class ScanDetailListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mMainDB = MainDatabase.getInstance(this.getActivity());
 
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
+            mScanPhotoID = getArguments().getInt(ARG_PHOTO_ID);
         }
     }
 
@@ -66,7 +83,27 @@ public class ScanDetailListFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new ScanDetailListAdapter(DummyContent.ITEMS, mListener));
+
+            // Get repository instance (start observing MutableLiveData trigger)
+            ScanDetailViewModelFactory factory =
+                    InjectorUtils.provideScanDetailViewModelFactory(Objects.requireNonNull(this.getContext()), mScanPhotoID);
+            // Tie fragment & ViewModel together
+            ScanDetailViewModel viewModel = ViewModelProviders.of(this, factory).get(ScanDetailViewModel.class);
+            // Trigger LiveData notification on fragment creation & observe change in DB calling DAO
+            viewModel.getScanPhoto().observe(this, scanPhoto -> {
+                if (scanPhoto != null) {
+                    Logger.d("Setting scanPhotos adapter");
+                    mExecutors.diskIO().execute(() -> {
+                        List<Additive> scanPhotoAdditives = mMainDB.additiveDao()
+                                .getBulkStaticByEcode(Objects.requireNonNull(scanPhoto).getECodes());
+                        Objects.requireNonNull(getActivity()).runOnUiThread(() -> {
+                            recyclerView.setAdapter(new ScanDetailListAdapter(scanPhoto, mListener, scanPhotoAdditives));
+                        });
+
+                    });
+
+                }
+            });
         }
         return view;
     }
