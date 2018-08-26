@@ -18,4 +18,8 @@
     <string name="chip_button_descr">Shows code in a chip layout</string>
     <string name="loading_local_data">Loading local data</string>
     <string name="no_other_names">No other names</string>
+    <string name="known_as_label">Known as</string>
+    <string name="about_label">About</string>
+    <string name="hazards_label">Hazards</string>
+    <string name="no_description">No description</string>
 </resources>

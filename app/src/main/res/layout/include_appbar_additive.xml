@@ -63,7 +63,7 @@
             app:layout_constraintTop_toTopOf="@+id/iv_additive_photo" />
 
         <TextView
-            android:id="@+id/tv_additive_code"
+            android:id="@+id/tv_additive_ecode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/list_item_title_margin"
@@ -87,10 +87,10 @@
             android:text="CH8N2O3"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/list_item_subtitle_text_size"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_additive_code"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_additive_ecode"
             app:layout_constraintEnd_toEndOf="@+id/iv_additive_photo"
-            app:layout_constraintStart_toEndOf="@+id/tv_additive_code"
-            app:layout_constraintTop_toTopOf="@+id/tv_additive_code"
+            app:layout_constraintStart_toEndOf="@+id/tv_additive_ecode"
+            app:layout_constraintTop_toTopOf="@+id/tv_additive_ecode"
             tools:text="CH8N2O3" />
 
     </android.support.constraint.ConstraintLayout>

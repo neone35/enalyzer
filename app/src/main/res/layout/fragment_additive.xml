@@ -51,7 +51,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="4dp"
-                        android:text="Known as"
+                        android:text="@string/known_as_label"
                         tools:text="Known as" />
 
                     <TextView
@@ -60,7 +60,7 @@
                         android:layout_height="wrap_content"
                         style="@style/Base.TextAppearance.AppCompat.Small"
                         android:lineSpacingMultiplier="1.2"
-                        android:text="'Baker's Amonia', 'Sal volatile', 'Salt of hartshorn' "
+                        android:text="@string/no_other_names"
                         tools:text="'Baker's Amonia', 'Sal volatile', 'Salt of hartshorn', 'Baker's Amonia', 'Sal volatile', 'Salt of hartshorn'" />
 
                 </LinearLayout>
@@ -80,7 +80,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="4dp"
-                        android:text="About"
+                        android:text="@string/about_label"
                         tools:text="About" />
 
                     <at.blogc.android.views.ExpandableTextView
@@ -93,7 +93,7 @@
                         android:maxLines="5"
                         app:animation_duration="@integer/read_more_expand_duration"
                         tools:text="@string/long_additive_about_text"
-                        android:text="@string/long_additive_about_text" />
+                        android:text="@string/no_description" />
 
                     <FrameLayout
                         android:id="@+id/fl_etv_about_holder"
@@ -137,7 +137,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="4dp"
-                        android:text="Hazards"
+                        android:text="@string/hazards_label"
                         tools:text="Hazards" />
 
                     <fragment

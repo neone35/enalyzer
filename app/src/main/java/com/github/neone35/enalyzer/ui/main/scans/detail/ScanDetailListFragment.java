@@ -84,7 +84,7 @@ public class ScanDetailListFragment extends Fragment {
 
             // Get repository instance (start observing MutableLiveData trigger)
             ScanAdditivesVMF factory =
-                    InjectorUtils.provideScanAdditivesViewModelFactory(Objects.requireNonNull(this.getContext()), mScanPhotoID, mScanPhotoEcodes);
+                    InjectorUtils.provideScanAdditivesVMF(Objects.requireNonNull(this.getContext()), mScanPhotoID, mScanPhotoEcodes);
             // Tie fragment & ViewModel together
             ScanAdditivesVM viewModel = ViewModelProviders.of(this, factory).get(ScanAdditivesVM.class);
             // Trigger LiveData notification on fragment creation & observe change in DB calling DAO
@@ -137,6 +137,6 @@ public class ScanDetailListFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnScanDetailListListener {
-        void onScanDetailListInteraction(HashMap<String, View> transitionViews);
+        void onScanDetailListInteraction(HashMap<String, View> transitionViews, String eCode);
     }
 }

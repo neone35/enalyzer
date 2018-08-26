@@ -1,6 +1,6 @@
 package com.github.neone35.enalyzer.ui.additive;
 
-import android.animation.ObjectAnimator;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,14 +19,22 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.github.neone35.enalyzer.HelpUtils;
+import com.github.neone35.enalyzer.InjectorUtils;
 import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.ui.main.MainActivity;
+import com.google.common.base.Joiner;
 import com.orhanobut.logger.Logger;
+
+import java.util.Objects;
 
 import at.blogc.android.views.ExpandableTextView;
 import butterknife.BindInt;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.bumptech.glide.request.RequestOptions.fitCenterTransform;
 
 /**
  * Activities that contain this fragment must implement the
@@ -39,14 +47,10 @@ public class AdditiveFragment extends Fragment {
 
     @BindView(R.id.iv_additive_photo)
     ImageView ivAdditivePhoto;
-    @BindView(R.id.tv_additive_code)
-    TextView tvAdditiveCode;
-    @BindView(R.id.tv_additive_known_label)
-    TextView tvAdditiveKnownLabel;
+    @BindView(R.id.tv_additive_ecode)
+    TextView tvAdditiveEcode;
     @BindView(R.id.tv_additive_known)
     TextView tvAdditiveKnown;
-    @BindView(R.id.tv_additive_about_label)
-    TextView tvAdditiveAboutLabel;
     @BindView(R.id.etv_additive_about)
     ExpandableTextView etvAdditiveAbout;
     @BindView(R.id.btn_previous_additive)
@@ -105,17 +109,59 @@ public class AdditiveFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_additive, container, false);
         ButterKnife.bind(this, rootView);
+
         // set transition names received from recyclerView adapter
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ivAdditivePhoto.setTransitionName(mPhotoTransitionName);
-            tvAdditiveCode.setTransitionName(mEcodeTransitionName);
+            tvAdditiveEcode.setTransitionName(mEcodeTransitionName);
         }
 
+        // setup views
         scrollNestedScrollViewToTop(nsvAdditive);
         setupAdditiveSwitchButtons(null, btnPreviousAdditive, btnNextAdditive);
         setupExpandableTextView(etvAdditiveAbout, flEtvAboutHolder, tvAboutReadMore, pbAboutMore);
 
+        // bind data
+        // Get repository instance (start observing MutableLiveData trigger)
+        AdditiveVMF factory =
+                InjectorUtils.provideAdditiveVMF(Objects.requireNonNull(this.getContext()), mSelectedEcode);
+        // Tie fragment & ViewModel together
+        AdditiveVM viewModel = ViewModelProviders.of(this, factory).get(AdditiveVM.class);
+        // Trigger LiveData notification on fragment creation & observe change in DB calling DAO
+        viewModel.getOneAdditive().observe(this, additive -> {
+            if (additive != null) {
+                tvAdditiveEcode.setText(additive.getEcode());
+                // load image
+                if (additive.getImageURL() != null) {
+                    loadImageUrlInto(ivAdditivePhoto, additive.getImageURL());
+                }
+                // load other views
+                if (additive.getKnownAs() != null) {
+                    String knownAsJoined = Joiner.on(", ").join(additive.getKnownAs());
+                    tvAdditiveKnown.setText(knownAsJoined);
+                }
+                if (additive.getDescription() != null) {
+                    etvAdditiveAbout.setText(additive.getDescription());
+                }
+            }
+        });
+
         return rootView;
+    }
+
+    private void loadImageUrlInto(ImageView iv, String imgUrl) {
+        if (imgUrl != null) {
+            if (HelpUtils.imageTypeSupported(imgUrl)) {
+                try {
+                    Glide.with(iv)
+                            .load(imgUrl)
+                            .apply(fitCenterTransform())
+                            .into(iv);
+                } catch (Exception e) {
+                    Logger.d(e.getMessage());
+                }
+            }
+        }
     }
 
     @Override
@@ -190,7 +236,7 @@ public class AdditiveFragment extends Fragment {
             if (etvLineCount > maxEtvLines) {
                 // setup expand animation
                 etv.setExpandInterpolator(new OvershootInterpolator());
-                // run expansion on read more layout click
+                // run expansion on 'read more' layout click
                 flReadMoreHolder.setOnClickListener(v -> etv.expand());
                 etv.addOnExpandListener(new ExpandableTextView.OnExpandListener() {
                     @Override

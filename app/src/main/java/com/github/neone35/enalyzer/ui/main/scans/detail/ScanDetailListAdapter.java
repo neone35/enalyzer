@@ -91,7 +91,7 @@ public class ScanDetailListAdapter extends RecyclerView.Adapter<ScanDetailListAd
                 transitionViews.put(MainActivity.KEY_PHOTO_TRANSITION_VIEW, holder.ivPhoto);
                 transitionViews.put(MainActivity.KEY_ECODE_TRANSITION_VIEW, holder.tvEcode);
                 // Pass transitionViews to AdditiveActivity through MainActivity callback
-                mListener.onScanDetailListInteraction(transitionViews);
+                mListener.onScanDetailListInteraction(transitionViews, additive.getEcode());
             }
         });
     }

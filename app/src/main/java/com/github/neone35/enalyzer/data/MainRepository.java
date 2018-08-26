@@ -89,6 +89,12 @@ public class MainRepository {
         return mAdditiveDao.getBulkByEcode(ecodes);
     }
 
+    // gets one Additive by Ecode
+    // used in AdditiveFragment
+    public LiveData<Additive> getAdditiveByEcode(String eCode) {
+        return mAdditiveDao.getOneByEcode(eCode);
+    }
+
     public LiveData<Boolean> getNetworkLoadingStatus() {
         return mNetworkRoot.getLoadingStatus();
     }

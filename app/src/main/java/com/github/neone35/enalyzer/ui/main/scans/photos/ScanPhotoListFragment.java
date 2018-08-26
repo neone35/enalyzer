@@ -81,7 +81,7 @@ public class ScanPhotoListFragment extends Fragment {
 
             // Get repository instance (start observing MutableLiveData trigger)
             ScanPhotoVMF factory =
-                    InjectorUtils.provideScanPhotoViewModelFactory(Objects.requireNonNull(this.getContext()));
+                    InjectorUtils.provideScanPhotoVMF(Objects.requireNonNull(this.getContext()));
             // Tie fragment & ViewModel together
             ScanPhotoVM viewModel = ViewModelProviders.of(this, factory).get(ScanPhotoVM.class);
             // Trigger LiveData notification on fragment creation & observe change in DB calling DAO

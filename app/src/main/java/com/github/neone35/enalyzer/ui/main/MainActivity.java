@@ -366,10 +366,12 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-    private void startAdditiveActivity(String tabSourceKey, HashMap<String, View> transitionViews) {
+    private void startAdditiveActivity(String tabSourceKey,
+                                       HashMap<String, View> transitionViews,
+                                       String selectedEcode) {
         Intent additiveActivityIntent = new Intent(this, AdditiveActivity.class);
         Bundle additiveBundle = new Bundle();
-        additiveBundle.putString(KEY_SELECTED_ECODE, "E221");
+        additiveBundle.putString(KEY_SELECTED_ECODE, selectedEcode);
         additiveBundle.putString(KEY_TAB_SOURCE, tabSourceKey);
         // start with transitions
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -416,8 +418,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onScanDetailListInteraction(HashMap<String, View> transitionViews) {
-        startAdditiveActivity(SCANS_DETAIL, transitionViews);
+    public void onScanDetailListInteraction(HashMap<String, View> transitionViews, String eCode) {
+        startAdditiveActivity(SCANS_DETAIL, transitionViews, eCode);
     }
 
     @Override
@@ -437,8 +439,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onCodeDetailListInteraction(HashMap<String, View> transitionViews) {
-        startAdditiveActivity(CODES_DETAIL, transitionViews);
+    public void onCodeDetailListInteraction(HashMap<String, View> transitionViews, String eCode) {
+        startAdditiveActivity(CODES_DETAIL, transitionViews, eCode);
     }
 }
 

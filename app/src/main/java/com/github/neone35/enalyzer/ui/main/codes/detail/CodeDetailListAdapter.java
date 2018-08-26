@@ -81,7 +81,7 @@ public class CodeDetailListAdapter extends RecyclerView.Adapter<CodeDetailListAd
                 HashMap<String, View> transitionViews = new HashMap<String, View>();
                 transitionViews.put(MainActivity.KEY_PHOTO_TRANSITION_VIEW, holder.ivPhoto);
                 transitionViews.put(MainActivity.KEY_ECODE_TRANSITION_VIEW, holder.tvPhotoTitle);
-                mListener.onCodeDetailListInteraction(transitionViews);
+                mListener.onCodeDetailListInteraction(transitionViews, additive.getEcode());
             }
         });
     }

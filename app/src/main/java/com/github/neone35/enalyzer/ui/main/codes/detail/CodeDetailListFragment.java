@@ -83,7 +83,7 @@ public class CodeDetailListFragment extends Fragment {
 
             // Get repository instance (start observing MutableLiveData trigger)
             CodeAdditivesVMF factory =
-                    InjectorUtils.provideCodeAdditivesViewModelFactory(Objects.requireNonNull(this.getContext()), mCodeCategoryID, mCodeCategoryEcodes);
+                    InjectorUtils.provideCodeAdditivesVMF(Objects.requireNonNull(this.getContext()), mCodeCategoryID, mCodeCategoryEcodes);
             // Tie fragment & ViewModel together
             CodeAdditivesVM viewModel = ViewModelProviders.of(this, factory).get(CodeAdditivesVM.class);
             // Trigger LiveData notification on fragment creation & observe change in DB calling DAO
@@ -136,6 +136,6 @@ public class CodeDetailListFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnCodeDetailListListener {
-        void onCodeDetailListInteraction(HashMap<String, View> ivTransitionPhoto);
+        void onCodeDetailListInteraction(HashMap<String, View> ivTransitionPhoto, String eCode);
     }
 }

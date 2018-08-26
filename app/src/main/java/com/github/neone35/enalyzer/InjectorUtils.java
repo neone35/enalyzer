@@ -5,6 +5,7 @@ import android.content.Context;
 import com.github.neone35.enalyzer.data.MainRepository;
 import com.github.neone35.enalyzer.data.database.MainDatabase;
 import com.github.neone35.enalyzer.data.network.NetworkRoot;
+import com.github.neone35.enalyzer.ui.additive.AdditiveVMF;
 import com.github.neone35.enalyzer.ui.main.codes.detail.CodeAdditivesVMF;
 import com.github.neone35.enalyzer.ui.main.scans.detail.ScanAdditivesVMF;
 import com.github.neone35.enalyzer.ui.main.codes.category.CodeCategoryVMF;
@@ -32,24 +33,29 @@ public class InjectorUtils {
         return NetworkRoot.getInstance(context.getApplicationContext(), executors);
     }
 
-    public static ScanPhotoVMF provideScanPhotoViewModelFactory(Context context) {
+    public static ScanPhotoVMF provideScanPhotoVMF(Context context) {
         MainRepository repository = provideRepository(context.getApplicationContext());
         return new ScanPhotoVMF(repository);
     }
 
-    public static ScanAdditivesVMF provideScanAdditivesViewModelFactory(Context context, int scanPhotoID, List<String> ecodes) {
+    public static ScanAdditivesVMF provideScanAdditivesVMF(Context context, int scanPhotoID, List<String> ecodes) {
         MainRepository repository = provideRepository(context.getApplicationContext());
         return new ScanAdditivesVMF(repository, scanPhotoID, ecodes);
     }
 
-    public static CodeCategoryVMF provideCodeCategoryViewModelFactory(Context context) {
+    public static CodeCategoryVMF provideCodeCategoryVMF(Context context) {
         MainRepository repository = provideRepository(context.getApplicationContext());
         return new CodeCategoryVMF(repository);
     }
 
-    public static CodeAdditivesVMF provideCodeAdditivesViewModelFactory(Context context, int codeCategoryID, List<String> ecodes) {
+    public static CodeAdditivesVMF provideCodeAdditivesVMF(Context context, int codeCategoryID, List<String> ecodes) {
         MainRepository repository = provideRepository(context.getApplicationContext());
         return new CodeAdditivesVMF(repository, codeCategoryID, ecodes);
+    }
+
+    public static AdditiveVMF provideAdditiveVMF(Context context, String eCode) {
+        MainRepository repository = provideRepository(context.getApplicationContext());
+        return new AdditiveVMF(repository, eCode);
     }
 
 }
