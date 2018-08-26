@@ -400,14 +400,14 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onScanListInteraction(int scanPhotoID) {
+    public void onScanListInteraction(int scanPhotoID, ArrayList<String> scanPhotoEcodes) {
         Logger.d(scanPhotoID);
         int currentPage = mViewPager.getCurrentItem();
         // if current page is scans
         if (currentPage == 0) {
             // replace ScanList with ScanDetailList
             mFragmentManager.beginTransaction()
-                    .replace(R.id.fl_scan_root, ScanDetailListFragment.newInstance(1, scanPhotoID))
+                    .replace(R.id.fl_scan_root, ScanDetailListFragment.newInstance(1, scanPhotoID, scanPhotoEcodes))
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     // enable switch back to ScanList with addToBackStack
                     .addToBackStack(SCANS_DETAIL)

@@ -16,6 +16,7 @@ import com.github.neone35.enalyzer.ui.main.scans.photos.ScanPhotoListFragment.On
 import com.orhanobut.logger.Logger;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -64,7 +65,9 @@ public class ScanPhotoListAdapter extends RecyclerView.Adapter<ScanPhotoListAdap
             if (null != mListener) {
                 // Notify the active callbacks interface (the activity, if the
                 // fragment is attached to one) that an item has been selected.
-                mListener.onScanListInteraction(scanPhoto.getId());
+                ArrayList<String> eCodesArrayList = new ArrayList<>(scanPhoto.getECodes().size());
+                eCodesArrayList.addAll(scanPhoto.getECodes());
+                mListener.onScanListInteraction(scanPhoto.getId(), eCodesArrayList);
             }
         });
     }

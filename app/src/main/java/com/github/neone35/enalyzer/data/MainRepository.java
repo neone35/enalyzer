@@ -90,12 +90,17 @@ public class MainRepository {
         return mScanPhotoDao.getAll();
     }
 
+    // gets list of Additives by Ecodes
+    // used in ScanDetailListFragment && CodeDetailListFragment
+    public LiveData<List<Additive>> getBulkAdditiveByEcodes(List<String> ecodes) {
+        return mAdditiveDao.getBulkByEcode(ecodes);
+    }
+
+    // checks and downloads empty Additive fields using ScanPhoto eCodes (Additive PK)
     // called from ScanDetailViewModel
-    public LiveData<ScanPhoto> getScanPhotoById(int id) {
+    public LiveData<ScanPhoto> getScanPhotoById(int id, List<String> ecodes) {
         mExecutors.diskIO().execute(() -> {
-            ScanPhoto scanPhoto = mScanPhotoDao.getOneStaticById(id);
-            List<Additive> scanPhotoAdditives = mAdditiveDao
-                    .getBulkStaticByEcode(Objects.requireNonNull(scanPhoto).getECodes());
+            List<Additive> scanPhotoAdditives = mAdditiveDao.getBulkStaticByEcode(ecodes);
             // check if additive has empty fields
             ArrayList<String> emptyQCodes = new ArrayList<>();
             for (int i = 0; i < scanPhotoAdditives.size(); i++) {

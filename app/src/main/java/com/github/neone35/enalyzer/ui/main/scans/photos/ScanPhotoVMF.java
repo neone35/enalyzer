@@ -1,4 +1,4 @@
-package com.github.neone35.enalyzer.ui.main.scans.detail;
+package com.github.neone35.enalyzer.ui.main.scans.photos;
 
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
@@ -6,14 +6,12 @@ import android.support.annotation.NonNull;
 
 import com.github.neone35.enalyzer.data.MainRepository;
 
-public class ScanDetailViewModelFactory extends ViewModelProvider.NewInstanceFactory {
+public class ScanPhotoVMF extends ViewModelProvider.NewInstanceFactory {
 
     private final MainRepository mRepository;
-    private final int mScanPhotoID;
 
-    public ScanDetailViewModelFactory(MainRepository repository, int scanPhotoID) {
+    public ScanPhotoVMF(MainRepository repository) {
         this.mRepository = repository;
-        this.mScanPhotoID = scanPhotoID;
     }
 
     @NonNull
@@ -21,6 +19,8 @@ public class ScanDetailViewModelFactory extends ViewModelProvider.NewInstanceFac
     @SuppressWarnings(value = "unchecked")
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         //noinspection unchecked
-        return (T) new ScanDetailViewModel(mRepository, mScanPhotoID);
+        return (T) new ScanPhotoVM(mRepository);
     }
+
 }
+

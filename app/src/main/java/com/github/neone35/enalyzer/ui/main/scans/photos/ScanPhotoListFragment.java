@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.blankj.utilcode.util.ToastUtils;
 import com.github.neone35.enalyzer.InjectorUtils;
 import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.dummy.DummyContent;
@@ -20,7 +19,7 @@ import com.github.neone35.enalyzer.ui.main.MainActivity;
 import com.orhanobut.logger.Logger;
 
 import java.io.File;
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**
@@ -81,10 +80,10 @@ public class ScanPhotoListFragment extends Fragment {
             }
 
             // Get repository instance (start observing MutableLiveData trigger)
-            ScanPhotoViewModelFactory factory =
+            ScanPhotoVMF factory =
                     InjectorUtils.provideScanPhotoViewModelFactory(Objects.requireNonNull(this.getContext()));
             // Tie fragment & ViewModel together
-            ScanPhotoViewModel viewModel = ViewModelProviders.of(this, factory).get(ScanPhotoViewModel.class);
+            ScanPhotoVM viewModel = ViewModelProviders.of(this, factory).get(ScanPhotoVM.class);
             // Trigger LiveData notification on fragment creation & observe change in DB calling DAO
             viewModel.getScanPhotos().observe(this, scanPhotoList -> {
                 if (scanPhotoList != null) {
@@ -130,6 +129,6 @@ public class ScanPhotoListFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnScanPhotoListListener {
-        void onScanListInteraction(int scanPhotoID);
+        void onScanListInteraction(int scanPhotoID, ArrayList<String> scanPhotoEcodes);
     }
 }

@@ -28,14 +28,11 @@ import static com.bumptech.glide.request.RequestOptions.fitCenterTransform;
 
 public class ScanDetailListAdapter extends RecyclerView.Adapter<ScanDetailListAdapter.ViewHolder> {
 
-    private final ScanPhoto mScanPhoto;
     private final ScanDetailListFragment.OnScanDetailListListener mListener;
     private List<Additive> mScanPhotoAdditives;
-    private final int KNOWN_AS_NUM = 3;
 
-    ScanDetailListAdapter(ScanPhoto scanPhoto, ScanDetailListFragment.OnScanDetailListListener listener,
+    ScanDetailListAdapter(ScanDetailListFragment.OnScanDetailListListener listener,
                           List<Additive> scanPhotoAdditives) {
-        mScanPhoto = scanPhoto;
         mListener = listener;
         mScanPhotoAdditives = scanPhotoAdditives;
     }
@@ -64,7 +61,7 @@ public class ScanDetailListAdapter extends RecyclerView.Adapter<ScanDetailListAd
         holder.tvScanDetailName.setText(additive.getName());
         if (additive.getKnownAs() != null) {
             ArrayList<String> knownAses = new ArrayList<>();
-            for (int i = 0; i < KNOWN_AS_NUM - 1; i++) {
+            for (int i = 0; i < ScanDetailListFragment.KNOWN_AS_NUM - 1; i++) {
                 knownAses.add(additive.getKnownAs().get(i));
             }
             String knownAsJoined = Joiner.on(", ").join(knownAses);
@@ -92,7 +89,7 @@ public class ScanDetailListAdapter extends RecyclerView.Adapter<ScanDetailListAd
 
     @Override
     public int getItemCount() {
-        return mScanPhoto.getECodes().size();
+        return mScanPhotoAdditives.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
