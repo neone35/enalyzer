@@ -12,6 +12,7 @@ import com.github.neone35.enalyzer.data.models.room.CodeCategory;
 import com.github.neone35.enalyzer.ui.main.codes.category.CodeCategoryListFragment.OnCodeCategoryListListener;
 import com.github.neone35.enalyzer.dummy.DummyContent.DummyItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -49,7 +50,11 @@ public class CodeCategoryListAdapter extends RecyclerView.Adapter<CodeCategoryLi
             if (null != mListener) {
                 // Notify the active callbacks interface (the activity, if the
                 // fragment is attached to one) that an item has been selected.
-                mListener.onCodeCategoryListInteraction(holder.mCodeCategory.getECodes());
+                ArrayList<String> eCodesArrayList = new ArrayList<>(codeCategory.getECodes().size());
+                eCodesArrayList.addAll(codeCategory.getECodes());
+                mListener.onCodeCategoryListInteraction(
+                        holder.mCodeCategory.getId(),
+                        eCodesArrayList);
             }
         });
     }

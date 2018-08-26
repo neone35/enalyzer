@@ -5,8 +5,9 @@ import android.content.Context;
 import com.github.neone35.enalyzer.data.MainRepository;
 import com.github.neone35.enalyzer.data.database.MainDatabase;
 import com.github.neone35.enalyzer.data.network.NetworkRoot;
+import com.github.neone35.enalyzer.ui.main.codes.detail.CodeAdditivesVMF;
 import com.github.neone35.enalyzer.ui.main.scans.detail.ScanAdditivesVMF;
-import com.github.neone35.enalyzer.ui.main.codes.category.CodeCategoryViewModelFactory;
+import com.github.neone35.enalyzer.ui.main.codes.category.CodeCategoryVMF;
 import com.github.neone35.enalyzer.ui.main.scans.photos.ScanPhotoVMF;
 
 import java.util.List;
@@ -36,14 +37,19 @@ public class InjectorUtils {
         return new ScanPhotoVMF(repository);
     }
 
-    public static ScanAdditivesVMF provideAdditivesViewModelFactory(Context context, int scanPhotoID, List<String> ecodes) {
+    public static ScanAdditivesVMF provideScanAdditivesViewModelFactory(Context context, int scanPhotoID, List<String> ecodes) {
         MainRepository repository = provideRepository(context.getApplicationContext());
         return new ScanAdditivesVMF(repository, scanPhotoID, ecodes);
     }
 
-    public static CodeCategoryViewModelFactory provideCodeCategoryViewModelFactory(Context context) {
+    public static CodeCategoryVMF provideCodeCategoryViewModelFactory(Context context) {
         MainRepository repository = provideRepository(context.getApplicationContext());
-        return new CodeCategoryViewModelFactory(repository);
+        return new CodeCategoryVMF(repository);
+    }
+
+    public static CodeAdditivesVMF provideCodeAdditivesViewModelFactory(Context context, int codeCategoryID, List<String> ecodes) {
+        MainRepository repository = provideRepository(context.getApplicationContext());
+        return new CodeAdditivesVMF(repository, codeCategoryID, ecodes);
     }
 
 }

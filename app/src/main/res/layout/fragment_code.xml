@@ -1,8 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fl_code_root"
+<LinearLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorWhite"
-    tools:context=".ui.main.codes.CodeFragment" />
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ProgressBar
+        android:id="@+id/pb_code_detail"
+        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:indeterminate="true"
+        android:visibility="gone"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp" />
+
+    <FrameLayout
+        android:id="@+id/fl_code_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite"
+        tools:context=".ui.main.codes.CodeFragment" />
+
+</LinearLayout>
+
+
+

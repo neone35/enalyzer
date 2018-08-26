@@ -12,13 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.blankj.utilcode.util.ToastUtils;
 import com.github.neone35.enalyzer.InjectorUtils;
 import com.github.neone35.enalyzer.R;
-import com.github.neone35.enalyzer.dummy.DummyContent;
-import com.github.neone35.enalyzer.dummy.DummyContent.DummyItem;
 import com.orhanobut.logger.Logger;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -74,10 +72,10 @@ public class CodeCategoryListFragment extends Fragment {
             }
 
             // Get repository instance (start observing MutableLiveData trigger)
-            CodeCategoryViewModelFactory factory =
+            CodeCategoryVMF factory =
                     InjectorUtils.provideCodeCategoryViewModelFactory(Objects.requireNonNull(this.getContext()));
             // Tie fragment & ViewModel together
-            CodeCategoryViewModel viewModel = ViewModelProviders.of(this, factory).get(CodeCategoryViewModel.class);
+            CodeCategoryVM viewModel = ViewModelProviders.of(this, factory).get(CodeCategoryVM.class);
             // Trigger LiveData notification on fragment creation & observe change in DB calling DAO
             viewModel.getCodeCategories().observe(this, codeCategoryList -> {
                 if (codeCategoryList != null) {
@@ -121,6 +119,6 @@ public class CodeCategoryListFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnCodeCategoryListListener {
-        void onCodeCategoryListInteraction(List<String> codeCategoryECodes);
+        void onCodeCategoryListInteraction(int codeCategoryID, ArrayList<String> codeCategoryECodes);
     }
 }

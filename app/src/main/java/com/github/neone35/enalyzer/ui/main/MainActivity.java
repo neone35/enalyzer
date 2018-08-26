@@ -38,7 +38,7 @@ import com.github.neone35.enalyzer.ui.scan.ScanActivity;
 import com.github.neone35.enalyzer.ui.additive.AdditiveActivity;
 import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.ui.main.codes.category.CodeCategoryListFragment;
-import com.github.neone35.enalyzer.ui.main.codes.CodeDetailListFragment;
+import com.github.neone35.enalyzer.ui.main.codes.detail.CodeDetailListFragment;
 import com.github.neone35.enalyzer.ui.main.scans.detail.ScanDetailListFragment;
 import com.github.neone35.enalyzer.ui.main.scans.photos.ScanPhotoListFragment;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -421,14 +421,14 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onCodeCategoryListInteraction(List<String> codeCategoryECodes) {
+    public void onCodeCategoryListInteraction(int codeCategoryID, ArrayList<String> codeCategoryECodes) {
         Logger.d(codeCategoryECodes);
         int currentPage = mViewPager.getCurrentItem();
         // if current page is codes
         if (currentPage == 1) {
             // replace CodeCategoryList with CodeDetailList
             mFragmentManager.beginTransaction()
-                    .replace(R.id.fl_code_root, CodeDetailListFragment.newInstance(3))
+                    .replace(R.id.fl_code_root, CodeDetailListFragment.newInstance(3, codeCategoryID, codeCategoryECodes))
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     // enable switch back to CodeCategoryList with addToBackStack
                     .addToBackStack(CODES_DETAIL)

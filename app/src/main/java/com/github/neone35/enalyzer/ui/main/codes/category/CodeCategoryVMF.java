@@ -6,11 +6,11 @@ import android.support.annotation.NonNull;
 
 import com.github.neone35.enalyzer.data.MainRepository;
 
-public class CodeCategoryViewModelFactory extends ViewModelProvider.NewInstanceFactory {
+public class CodeCategoryVMF extends ViewModelProvider.NewInstanceFactory {
 
     private final MainRepository mRepository;
 
-    public CodeCategoryViewModelFactory(MainRepository repository) {
+    public CodeCategoryVMF(MainRepository repository) {
         this.mRepository = repository;
     }
 
@@ -19,6 +19,6 @@ public class CodeCategoryViewModelFactory extends ViewModelProvider.NewInstanceF
     @SuppressWarnings(value = "unchecked")
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         //noinspection unchecked
-        return (T) new CodeCategoryViewModel(mRepository);
+        return (T) new CodeCategoryVM(mRepository);
     }
 }

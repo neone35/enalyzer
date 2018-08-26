@@ -1,10 +1,6 @@
 package com.github.neone35.enalyzer.data;
 
-import android.annotation.SuppressLint;
 import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.Observer;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import com.github.neone35.enalyzer.AppExecutors;
 import com.github.neone35.enalyzer.data.database.AdditiveDao;
@@ -20,7 +16,6 @@ import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class MainRepository {
 
@@ -33,8 +28,6 @@ public class MainRepository {
     private final ScanPhotoDao mScanPhotoDao;
     private final CodeCategoryDao mCodeCategoryDao;
     private final AdditiveDao mAdditiveDao;
-
-    private ArrayList<String> mEmptyEcodes = new ArrayList<>();
 
     private MainRepository(ScanPhotoDao scanPhotoDao, CodeCategoryDao codeCategoryDao,
                            AdditiveDao additiveDao, NetworkRoot recipesNetworkRoot,
@@ -96,27 +89,37 @@ public class MainRepository {
         return mAdditiveDao.getBulkByEcode(ecodes);
     }
 
+    public LiveData<Boolean> getNetworkLoadingStatus() {
+        return mNetworkRoot.getLoadingStatus();
+    }
+
     // checks and downloads empty Additive fields using ScanPhoto eCodes (Additive PK)
     // called from ScanDetailViewModel
-    public LiveData<ScanPhoto> getScanPhotoById(int id, List<String> ecodes) {
+    public LiveData<ScanPhoto> fetchAndGetScanPhotoById(int id, List<String> ecodes) {
         mExecutors.diskIO().execute(() -> {
             List<Additive> scanPhotoAdditives = mAdditiveDao.getBulkStaticByEcode(ecodes);
             // check if additive has empty fields
-            ArrayList<String> emptyQCodes = new ArrayList<>();
-            for (int i = 0; i < scanPhotoAdditives.size(); i++) {
-                Additive additive = scanPhotoAdditives.get(i);
-                // find additives with empty wiki fields
-                String wikiQCode = additive.getWikiDataQCode();
-                if (checkWikiFields(additive) && wikiQCode != null) {
-                    // Q codes are used for empty field further fetch
-                    emptyQCodes.add(wikiQCode);
-                }
-            }
+            ArrayList<String> emptyQCodes = checkEmptyAdditivesByQCode(scanPhotoAdditives);
             if (!emptyQCodes.isEmpty()) {
                 mNetworkRoot.startWikiFetchJobService(emptyQCodes);
             }
         });
         return mScanPhotoDao.getById(id);
+    }
+
+    private ArrayList<String> checkEmptyAdditivesByQCode(List<Additive> scanPhotoAdditives) {
+        ArrayList<String> emptyQCodes = new ArrayList<>();
+        for (int i = 0; i < scanPhotoAdditives.size(); i++) {
+            Additive additive = scanPhotoAdditives.get(i);
+            // find additives with empty wiki fields
+            String wikiQCode = additive.getWikiDataQCode();
+            // only additives with assigned Q code will be fetched
+            if (checkWikiFields(additive) && wikiQCode != null) {
+                // Q codes are used for further empty field fetch
+                emptyQCodes.add(wikiQCode);
+            }
+        }
+        return emptyQCodes;
     }
 
     private boolean checkWikiFields(Additive additive) {
@@ -127,13 +130,22 @@ public class MainRepository {
                 additive.getWikiEditDate() == null;
     }
 
-    // called from CodeCategoryViewModel
+    // called from CodeCategoryVM
     public LiveData<List<CodeCategory>> getAllCodeCategories() {
         return mCodeCategoryDao.getAll();
     }
 
     // called from CodeDetailViewModel
-    public LiveData<CodeCategory> getCodeCategoryById(int id) {
+    public LiveData<CodeCategory> fetchAndGetCodeCategoryById(int id, List<String> ecodes) {
+        // fetch empty fields of requested category
+        mExecutors.diskIO().execute(() -> {
+            List<Additive> scanPhotoAdditives = mAdditiveDao.getBulkStaticByEcode(ecodes);
+            // check if additive has empty fields
+            ArrayList<String> emptyQCodes = checkEmptyAdditivesByQCode(scanPhotoAdditives);
+            if (!emptyQCodes.isEmpty()) {
+                mNetworkRoot.startWikiFetchJobService(emptyQCodes);
+            }
+        });
         switch (id) {
             case 1:
                 return mCodeCategoryDao.loadColours();

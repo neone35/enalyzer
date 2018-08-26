@@ -35,6 +35,7 @@ public class NetworkUtils {
     private static final String WIKI_BASE_URL = "https://en.wikipedia.org/";
     private static final String WIKI_IMG_AUTHORITY = "upload.wikimedia.org";
     private static final String PUBCHEM_BASE_URL = "https://pubchem.ncbi.nlm.nih.gov/";
+    private static final int WIKI_MAIN_TITLES_LIMIT = 50;
 
     // gets additive titles one by one (with qCode) and returns list of them
     public static ArrayList<String> getWikiTitleStringList(ArrayList<String> qCodes) {
@@ -46,19 +47,24 @@ public class NetworkUtils {
                         wikiEndpointInterface.getAdditiveTitleByWikiQCode(qCode);
                 WikiDataTitleResponse wikiDataTitleResponse = retroCall.execute().body();
                 if (wikiDataTitleResponse != null) {
-                    // key = "1156934", value = WikiDataTitlePage
-                    HashMap<String, WikiDataTitlePage> wikiPageMap =
-                            wikiDataTitleResponse.getWikiDataQuery().getWikiPageMap();
-                    // select "1156934"
-                    Map.Entry<String, WikiDataTitlePage> wikiPageEntry =
-                            wikiPageMap.entrySet().iterator().next();
-                    // get WikiDataTitlePage
-                    WikiDataTitlePage wikiDataTitlePage = wikiPageEntry.getValue();
-                    // ex. "Ammonium carbonate"
-                    String title = wikiDataTitlePage.getTitle();
-                    additiveTitles.add(title);
+                    // check if title exists for this Q code
+                    if (wikiDataTitleResponse.getWikiDataQuery() != null) {
+                        // key = "1156934", value = WikiDataTitlePage
+                        HashMap<String, WikiDataTitlePage> wikiPageMap =
+                                wikiDataTitleResponse.getWikiDataQuery().getWikiPageMap();
+                        // select "1156934"
+                        Map.Entry<String, WikiDataTitlePage> wikiPageEntry =
+                                wikiPageMap.entrySet().iterator().next();
+                        // get WikiDataTitlePage
+                        WikiDataTitlePage wikiDataTitlePage = wikiPageEntry.getValue();
+                        // ex. "Ammonium carbonate"
+                        String title = wikiDataTitlePage.getTitle();
+                        additiveTitles.add(title);
+                    } else {
+                        Logger.d("No wikiDataTitle query received for qCode: " + qCode);
+                    }
                 } else {
-                    Logger.d("No wikiDataTitle received for qCode: " + qCode);
+                    Logger.d("No wikiDataTitle response received for qCode: " + qCode);
                 }
             }
         } catch (IOException e) {
@@ -73,16 +79,49 @@ public class NetworkUtils {
         WikiEndpointInterface wikiEndpointInterface = getWikiApiService();
         ArrayList<WikiMainPage> wikiMainPageList = new ArrayList<>();
         try {
-            String titlesJoined = Joiner.on("|").join(additiveTitles);
-            Call<WikiMainResponse> retroCall =
-                    wikiEndpointInterface.getWikiMainByAdditiveTitle(titlesJoined);
-            WikiMainResponse wikiMainResponse = retroCall.execute().body();
-            // key = "1156934", value = WikiMainPage
-            if (wikiMainResponse != null) {
-                HashMap<String, WikiMainPage> wikiMainPageMap =
-                        wikiMainResponse.getWikiMainQuery().getWikiPageMap();
-                // select "1156934" (key) & get WikiMainPages
-                wikiMainPageList.addAll(wikiMainPageMap.values());
+            Logger.d("Additive title size: " + additiveTitles.size());
+            // wikipedia has limit of 50 titles per request
+            if (additiveTitles.size() <= WIKI_MAIN_TITLES_LIMIT) {
+                String titlesJoined = Joiner.on("|").join(additiveTitles);
+                Call<WikiMainResponse> retroCall =
+                        wikiEndpointInterface.getWikiMainByAdditiveTitle(titlesJoined);
+                WikiMainResponse wikiMainResponse = retroCall.execute().body();
+                // key = "1156934", value = WikiMainPage
+                if (wikiMainResponse != null) {
+                    HashMap<String, WikiMainPage> wikiMainPageMap =
+                            wikiMainResponse.getWikiMainQuery().getWikiPageMap();
+                    // select "1156934" (key) & get WikiMainPages
+                    wikiMainPageList.addAll(wikiMainPageMap.values());
+                }
+            } else {
+                ArrayList<String> additiveTitleSets = new ArrayList<>();
+                int requestNum = (int) Math.ceil(additiveTitles.size() / (double) WIKI_MAIN_TITLES_LIMIT);
+                // make sets of divided titles
+                for (int i = 0; i < requestNum; i++) {
+                    // 0, 50, 100, 150
+                    int fromIndex = i * WIKI_MAIN_TITLES_LIMIT;
+                    // 50, 100, 150, 200
+                    int toIndex = (i + 1) * WIKI_MAIN_TITLES_LIMIT;
+                    // set toIndex to max existing if it's higher than calculated (ex. 58, not 100)
+                    if (toIndex > additiveTitles.size()) toIndex = additiveTitles.size();
+                    List<String> additiveTitleSet = additiveTitles.subList(fromIndex, toIndex);
+                    String joinedTitleSet = Joiner.on("|").join(additiveTitleSet);
+                    Logger.d("Additive title set: " + joinedTitleSet);
+                    additiveTitleSets.add(joinedTitleSet);
+                }
+                // make requests with divided title sets
+                for (int i = 0; i < requestNum; i++) {
+                    Call<WikiMainResponse> retroCall =
+                            wikiEndpointInterface.getWikiMainByAdditiveTitle(additiveTitleSets.get(i));
+                    WikiMainResponse wikiMainResponse = retroCall.execute().body();
+                    // key = "1156934", value = WikiMainPage
+                    if (wikiMainResponse != null) {
+                        HashMap<String, WikiMainPage> wikiMainPageMap =
+                                wikiMainResponse.getWikiMainQuery().getWikiPageMap();
+                        // select "1156934" (key) & get WikiMainPages
+                        wikiMainPageList.addAll(wikiMainPageMap.values());
+                    }
+                }
             }
 
         } catch (IOException e) {
@@ -231,7 +270,7 @@ public class NetworkUtils {
                     .appendPath(MD5FirstChar + MD5SecondChar)
                     .build().toString();
             String finalUrl = imgUrl + "/" + imgFilename;
-            Logger.d("First img URL: " + finalUrl);
+//            Logger.d("First img URL: " + finalUrl);
             return finalUrl;
         } catch (Exception e) {
             Logger.d(e.getMessage());

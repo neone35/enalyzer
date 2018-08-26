@@ -8,11 +8,11 @@ import com.github.neone35.enalyzer.data.models.room.CodeCategory;
 
 import java.util.List;
 
-public class CodeCategoryViewModel extends ViewModel {
+public class CodeCategoryVM extends ViewModel {
 
     private final LiveData<List<CodeCategory>> mCodeCategories;
 
-    CodeCategoryViewModel(MainRepository repository) {
+    CodeCategoryVM(MainRepository repository) {
         mCodeCategories = repository.getAllCodeCategories();
     }
 

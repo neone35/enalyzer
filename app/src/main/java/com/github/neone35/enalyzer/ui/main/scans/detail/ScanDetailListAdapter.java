@@ -10,11 +10,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.github.neone35.enalyzer.HelpUtils;
 import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.data.models.room.Additive;
 import com.github.neone35.enalyzer.data.models.room.ScanPhoto;
 import com.github.neone35.enalyzer.ui.main.MainActivity;
 import com.google.common.base.Joiner;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -51,10 +53,17 @@ public class ScanDetailListAdapter extends RecyclerView.Adapter<ScanDetailListAd
 
         // bind data to views
         if (additive.getImageURL() != null) {
-            Glide.with(holder.ivPhoto)
-                    .load(additive.getImageURL())
-                    .apply(fitCenterTransform())
-                    .into(holder.ivPhoto);
+            String imageUrl = additive.getImageURL();
+            if (HelpUtils.imageTypeSupported(imageUrl)) {
+                try {
+                    Glide.with(holder.ivPhoto)
+                            .load(additive.getImageURL())
+                            .apply(fitCenterTransform())
+                            .into(holder.ivPhoto);
+                } catch (Exception e) {
+                    Logger.d(e.getMessage());
+                }
+            }
         }
         holder.tvEcode.setText(additive.getEcode());
         holder.tvCategory.setText(additive.getCategory());

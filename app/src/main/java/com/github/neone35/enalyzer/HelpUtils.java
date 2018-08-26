@@ -188,4 +188,9 @@ public class HelpUtils {
     public static boolean checkListNullEmpty(ArrayList<String> arrayList) {
         return arrayList != null && !arrayList.isEmpty();
     }
+
+    public static boolean imageTypeSupported(String imageUrl) {
+        String imageType = imageUrl.substring(imageUrl.length() - 3, imageUrl.length());
+        return !imageType.equals("svg") && !imageType.equals("tif");
+    }
 }

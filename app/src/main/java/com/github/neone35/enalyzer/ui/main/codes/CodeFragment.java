@@ -1,6 +1,7 @@
 package com.github.neone35.enalyzer.ui.main.codes;
 
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -8,8 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.neone35.enalyzer.InjectorUtils;
 import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.ui.main.codes.category.CodeCategoryListFragment;
+import com.github.neone35.enalyzer.ui.main.codes.detail.CodeAdditivesVM;
+import com.github.neone35.enalyzer.ui.main.codes.detail.CodeAdditivesVMF;
+
+import java.util.Objects;
 
 // Root Fragment for Code fragments
 public class CodeFragment extends Fragment {

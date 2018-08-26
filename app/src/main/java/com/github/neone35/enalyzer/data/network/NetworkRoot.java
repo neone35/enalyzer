@@ -33,6 +33,7 @@ public class NetworkRoot {
     private final MutableLiveData<HashMap<String, String>> mDownloadedPubchemHazards;
     private final AppExecutors mExecutors;
     private final Context mContext;
+    private MutableLiveData<Boolean> mIsLoading;
 
     public static final String KEY_WIKI_QCODES = "wiki_qcodes";
 
@@ -44,6 +45,7 @@ public class NetworkRoot {
         mDownloadedPubchemCIDs = new MutableLiveData<>();
         mDownloadedPubchemFormulas = new MutableLiveData<>();
         mDownloadedPubchemHazards = new MutableLiveData<>();
+        mIsLoading = new MutableLiveData<>();
     }
 
     // Get singleton for this class
@@ -80,8 +82,14 @@ public class NetworkRoot {
         return mDownloadedPubchemHazards;
     }
 
+    public LiveData<Boolean> getLoadingStatus() {
+        return mIsLoading;
+    }
+
+
     // starts WikiJobService which calls fetchWiki() in BG
     public void startWikiFetchJobService(ArrayList<String> qCodes) {
+        mIsLoading.postValue(true);
         Intent intentToWikiFetch = new Intent(mContext, WikiJobService.class);
         Bundle bundle = new Bundle();
         bundle.putStringArrayList(KEY_WIKI_QCODES, qCodes);
@@ -96,6 +104,7 @@ public class NetworkRoot {
         mExecutors.networkIO().execute(() -> {
             try {
                 ArrayList<String> wikiTitleStringList = NetworkUtils.getWikiTitleStringList(qCodes);
+                Logger.d("Wiki titles: " + wikiTitleStringList);
                 ArrayList<WikiMainPage> wikiMainPageList = NetworkUtils.getWikiMainPageList(wikiTitleStringList);
 
                 // notify observers of MutableLiveData (repository) if fetch is successful
@@ -104,6 +113,7 @@ public class NetworkRoot {
                     Logger.d("First value is %s", wikiMainPageList.get(0).getTitle());
                     // update LiveData off main thread -> to main thread (postValue)
                     mDownloadedWikiMainPages.postValue(wikiMainPageList);
+                    mIsLoading.postValue(false);
                 }
             } catch (Exception e) {
                 Logger.e(e.getMessage());

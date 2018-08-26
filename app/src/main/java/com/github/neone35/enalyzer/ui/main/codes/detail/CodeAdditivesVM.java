@@ -1,23 +1,23 @@
-package com.github.neone35.enalyzer.ui.main.scans.detail;
+package com.github.neone35.enalyzer.ui.main.codes.detail;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 
 import com.github.neone35.enalyzer.data.MainRepository;
 import com.github.neone35.enalyzer.data.models.room.Additive;
-import com.github.neone35.enalyzer.data.models.room.ScanPhoto;
+import com.github.neone35.enalyzer.data.models.room.CodeCategory;
 
 import java.util.List;
 
-public class ScanAdditivesVM extends ViewModel {
+public class CodeAdditivesVM extends ViewModel {
 
     private final LiveData<List<Additive>> mAdditives;
-    private final LiveData<ScanPhoto> mScanPhoto;
+    private final LiveData<CodeCategory> mCodeCategory;
     private LiveData<Boolean> mLoading;
 
-    ScanAdditivesVM(MainRepository repository, int scanPhotoID, List<String> ecodes) {
+    CodeAdditivesVM(MainRepository repository, int codeCategoryID, List<String> ecodes) {
         // download empty additive fields for this scan photo
-        mScanPhoto = repository.fetchAndGetScanPhotoById(scanPhotoID, ecodes);
+        mCodeCategory = repository.fetchAndGetCodeCategoryById(codeCategoryID, ecodes);
         // get live additives by scan photo ecodes
         mAdditives = repository.getBulkAdditiveByEcodes(ecodes);
         mLoading = repository.getNetworkLoadingStatus();
@@ -27,11 +27,12 @@ public class ScanAdditivesVM extends ViewModel {
         return mAdditives;
     }
 
-    public LiveData<ScanPhoto> getScanPhoto() {
-        return mScanPhoto;
+    public LiveData<CodeCategory> getCodeCategory() {
+        return mCodeCategory;
     }
 
     public LiveData<Boolean> getLoading() {
         return mLoading;
     }
+
 }

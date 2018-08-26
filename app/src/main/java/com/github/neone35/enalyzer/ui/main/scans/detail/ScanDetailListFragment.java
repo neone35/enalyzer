@@ -11,11 +11,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
-import com.github.neone35.enalyzer.AppExecutors;
 import com.github.neone35.enalyzer.InjectorUtils;
 import com.github.neone35.enalyzer.R;
-import com.github.neone35.enalyzer.data.database.MainDatabase;
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
@@ -38,6 +37,7 @@ public class ScanDetailListFragment extends Fragment {
     private OnScanDetailListListener mListener;
     private int mScanPhotoID;
     private ArrayList<String> mScanPhotoEcodes;
+    private ProgressBar mScanLoadingBar;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -84,7 +84,7 @@ public class ScanDetailListFragment extends Fragment {
 
             // Get repository instance (start observing MutableLiveData trigger)
             ScanAdditivesVMF factory =
-                    InjectorUtils.provideAdditivesViewModelFactory(Objects.requireNonNull(this.getContext()), mScanPhotoID, mScanPhotoEcodes);
+                    InjectorUtils.provideScanAdditivesViewModelFactory(Objects.requireNonNull(this.getContext()), mScanPhotoID, mScanPhotoEcodes);
             // Tie fragment & ViewModel together
             ScanAdditivesVM viewModel = ViewModelProviders.of(this, factory).get(ScanAdditivesVM.class);
             // Trigger LiveData notification on fragment creation & observe change in DB calling DAO
@@ -93,6 +93,15 @@ public class ScanDetailListFragment extends Fragment {
                     Logger.d("Setting scanDetail adapter");
                     recyclerView.setAdapter(new ScanDetailListAdapter(mListener, additiveList));
                 }
+            });
+            viewModel.getLoading().observe(this, isLoading -> {
+                mScanLoadingBar = view.getRootView().findViewById(R.id.pb_scan_detail);
+                if (isLoading != null)
+                    if (isLoading) {
+                        mScanLoadingBar.setVisibility(View.VISIBLE);
+                    } else {
+                        mScanLoadingBar.setVisibility(View.GONE);
+                    }
             });
         }
         return view;
@@ -114,6 +123,7 @@ public class ScanDetailListFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+        mScanLoadingBar.setVisibility(View.GONE);
     }
 
     /**

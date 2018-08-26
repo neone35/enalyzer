@@ -5,5 +5,5 @@
     android:name="com.github.neone35.enalyzer.main.codes.CodeDetailListFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.codes.CodeDetailListFragment"
+    tools:context=".ui.main.codes.detail.CodeDetailListFragment"
     tools:listitem="@layout/fragment_code_detail_item" />
