@@ -20,13 +20,18 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.github.neone35.enalyzer.AppExecutors;
 import com.github.neone35.enalyzer.HelpUtils;
 import com.github.neone35.enalyzer.InjectorUtils;
 import com.github.neone35.enalyzer.R;
+import com.github.neone35.enalyzer.data.database.MainDatabase;
+import com.github.neone35.enalyzer.data.models.room.Additive;
+import com.github.neone35.enalyzer.data.models.room.ScanPhoto;
 import com.github.neone35.enalyzer.ui.main.MainActivity;
 import com.google.common.base.Joiner;
 import com.orhanobut.logger.Logger;
 
+import java.util.List;
 import java.util.Objects;
 
 import at.blogc.android.views.ExpandableTextView;
@@ -73,19 +78,26 @@ public class AdditiveFragment extends Fragment {
 
     private String mSelectedEcode;
     private String mTabSource;
+    private int mScanOrCodeID;
     private String mPhotoTransitionName;
     private String mEcodeTransitionName;
     private OnAdditiveFragmentListener mListener;
+    private MainDatabase mMainDB;
+    private final AppExecutors mExecutors = AppExecutors.getInstance();
 
     public AdditiveFragment() {
     }
 
-    public static AdditiveFragment newInstance(String eCode, String tabSource,
-                                               String photoTransitionName, String ecodeTransitionName) {
+    public static AdditiveFragment newInstance(String eCode,
+                                               String tabSource,
+                                               int scanOrCodeID,
+                                               String photoTransitionName,
+                                               String ecodeTransitionName) {
         AdditiveFragment fragment = new AdditiveFragment();
         Bundle args = new Bundle();
         args.putString(MainActivity.KEY_SELECTED_ECODE, eCode);
         args.putString(MainActivity.KEY_TAB_SOURCE, tabSource);
+        args.putInt(MainActivity.KEY_SCAN_CODE_ID, scanOrCodeID);
         args.putString(MainActivity.KEY_PHOTO_TRANSITION_VIEW, photoTransitionName);
         args.putString(MainActivity.KEY_ECODE_TRANSITION_VIEW, ecodeTransitionName);
         fragment.setArguments(args);
@@ -98,8 +110,10 @@ public class AdditiveFragment extends Fragment {
         if (getArguments() != null) {
             mSelectedEcode = getArguments().getString(MainActivity.KEY_SELECTED_ECODE);
             mTabSource = getArguments().getString(MainActivity.KEY_TAB_SOURCE);
+            mScanOrCodeID = getArguments().getInt(MainActivity.KEY_SCAN_CODE_ID);
             mPhotoTransitionName = getArguments().getString(MainActivity.KEY_PHOTO_TRANSITION_VIEW);
             mEcodeTransitionName = getArguments().getString(MainActivity.KEY_ECODE_TRANSITION_VIEW);
+            mMainDB = MainDatabase.getInstance(this.getActivity());
         }
     }
 
@@ -118,7 +132,6 @@ public class AdditiveFragment extends Fragment {
 
         // setup views
         scrollNestedScrollViewToTop(nsvAdditive);
-        setupAdditiveSwitchButtons(null, btnPreviousAdditive, btnNextAdditive);
         setupExpandableTextView(etvAdditiveAbout, flEtvAboutHolder, tvAboutReadMore, pbAboutMore);
 
         // bind data
@@ -143,6 +156,7 @@ public class AdditiveFragment extends Fragment {
                 if (additive.getDescription() != null) {
                     etvAdditiveAbout.setText(additive.getDescription());
                 }
+                setupAdditiveSwitchButtons(additive, mTabSource, mScanOrCodeID, btnPreviousAdditive, btnNextAdditive);
             }
         });
 
@@ -163,6 +177,7 @@ public class AdditiveFragment extends Fragment {
             }
         }
     }
+
 
     @Override
     public void onAttach(Context context) {
@@ -189,34 +204,76 @@ public class AdditiveFragment extends Fragment {
                 500);
     }
 
-    private void setupAdditiveSwitchButtons(String replaceWithData, Button btnPreviousAdditive, Button btnNextAdditive) {
-        int eCodeID = 0;
-        // If source is 'scans' tab, switch between scanDetail items
-        if (mTabSource.equals(MainActivity.SCANS_DETAIL)) {
-            // TODO: Add 'ScanDetail' additive switch logic
-            btnPreviousAdditive.setOnClickListener(v -> {
-                if (null != mListener) {
-                    mListener.onAdditiveFragmentInteraction(replaceWithData, eCodeID, AdditiveActivity.KEY_PREVIOUS);
-                }
-            });
-            btnNextAdditive.setOnClickListener(v -> {
-                if (null != mListener) {
-                    mListener.onAdditiveFragmentInteraction(replaceWithData, eCodeID, AdditiveActivity.KEY_NEXT);
-                }
-            });
-        } else if (mTabSource.equals(MainActivity.CODES_DETAIL)) {
-            // TODO: Add 'CodeDetail' additive switch logic
-            btnPreviousAdditive.setOnClickListener(v -> {
-                if (null != mListener) {
-                    mListener.onAdditiveFragmentInteraction(replaceWithData, eCodeID, AdditiveActivity.KEY_PREVIOUS);
-                }
-            });
-            btnNextAdditive.setOnClickListener(v -> {
-                if (null != mListener) {
-                    mListener.onAdditiveFragmentInteraction(replaceWithData, eCodeID, AdditiveActivity.KEY_NEXT);
-                }
-            });
+    private void setBtnTexts(int i, List<String> scanPhotoEcodes) {
+        int currentEcodesNum = scanPhotoEcodes.size();
+        if (i == currentEcodesNum - 1) {
+            // if matched last eCode, set next first
+            String nextBtnText = scanPhotoEcodes.get(0);
+            String previousBtnText = scanPhotoEcodes.get(i - 1);
+            btnPreviousAdditive.setText(previousBtnText);
+            btnNextAdditive.setText(nextBtnText);
+        } else if (i == 0) {
+            // if matched first eCode, set previous last
+            String nextBtnText = scanPhotoEcodes.get(i + 1);
+            String previousBtnText = scanPhotoEcodes.get(currentEcodesNum - 1);
+            btnPreviousAdditive.setText(previousBtnText);
+            btnNextAdditive.setText(nextBtnText);
+        } else {
+            // if matched any other eCode, set normally
+            String nextBtnText = scanPhotoEcodes.get(i + 1);
+            String previousBtnText = scanPhotoEcodes.get(i - 1);
+            btnPreviousAdditive.setText(previousBtnText);
+            btnNextAdditive.setText(nextBtnText);
         }
+    }
+
+    private void setupAdditiveSwitchButtons(Additive currentAdditive, String tabSource, int photoOrCategoryID,
+                                            Button btnPreviousAdditive, Button btnNextAdditive) {
+
+        String currentEcode = currentAdditive.getEcode();
+
+        if (tabSource.equals(MainActivity.SCANS_DETAIL)) {
+            mExecutors.diskIO().execute(() -> {
+                ScanPhoto currentScanPhoto = mMainDB.scanPhotoDao().getOneStaticById(photoOrCategoryID);
+                List<String> scanPhotoEcodes = currentScanPhoto.getECodes();
+                int currentEcodesNum = scanPhotoEcodes.size();
+                Objects.requireNonNull(getActivity()).runOnUiThread(() -> {
+                    for (int i = 0; i < currentEcodesNum; i++) {
+                        // determine which ecode from current scan photo is selected
+                        String currentScanPhotoEcode = scanPhotoEcodes.get(i);
+                        if (currentEcode.equals(currentScanPhotoEcode)) {
+//                        Logger.d("Matched additive eCode: " + currentScanPhotoEcode + " at pos " + i);
+                            setBtnTexts(i, scanPhotoEcodes);
+                        }
+                    }
+                });
+            });
+        } else if (tabSource.equals(MainActivity.CODES_DETAIL)) {
+//            mExecutors.diskIO().execute(() -> {
+//                List<String> codeCategoryEcodes = mMainDB.codeCategoryDao().getCategoryEcodesStaticById(photoOrCategoryID);
+//                Logger.d("codeCategoryEcodes: " + codeCategoryEcodes);
+//                int currentEcodesNum = codeCategoryEcodes.size();
+//                for (int i = 0; i < currentEcodesNum-1; i++) {
+//                    // determine which ecode from current scan photo is selected
+//                    if (currentEcode.equals(codeCategoryEcodes.get(i))) {
+//                        setBtnTexts(i, codeCategoryEcodes);
+//                    }
+//                }
+//            });
+            flButtonsHolder.setVisibility(View.GONE);
+        }
+
+        btnPreviousAdditive.setOnClickListener(v -> {
+            if (null != mListener) {
+                mListener.onAdditiveFragmentInteraction(currentAdditive, photoOrCategoryID, mTabSource, AdditiveActivity.KEY_PREVIOUS);
+            }
+        });
+        btnNextAdditive.setOnClickListener(v -> {
+            if (null != mListener) {
+                mListener.onAdditiveFragmentInteraction(currentAdditive, photoOrCategoryID, mTabSource, AdditiveActivity.KEY_NEXT);
+            }
+        });
+
         // control button visibility
 //            int firstStepID = oneRecipe.getSteps().get(0).getId();
 //            int lastStepID = oneRecipe.getSteps().size() - 1;
@@ -280,6 +337,6 @@ public class AdditiveFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnAdditiveFragmentListener {
-        void onAdditiveFragmentInteraction(String replaceWithData, int currentAdditiveID, String whichBtn);
+        void onAdditiveFragmentInteraction(Additive currentAdditive, int photoOrCategoryID, String tabSource, String whichBtn);
     }
 }

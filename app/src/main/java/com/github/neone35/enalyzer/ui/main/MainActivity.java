@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements
     public static final String KEY_SETTING_LOCAL_DATA_INIT = "local_data_init";
     public static final String KEY_SELECTED_ECODE = "selected_ecode";
     public static final String KEY_TAB_SOURCE = "tab_source";
+    public static final String KEY_SCAN_CODE_ID = "scan_code_id";
     public static final String KEY_PHOTO_TRANSITION_VIEW = "photo_transition";
     public static final String KEY_ECODE_TRANSITION_VIEW = "ecode_transition";
     public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 1;
@@ -367,12 +368,14 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void startAdditiveActivity(String tabSourceKey,
+                                       int scanOrCodeID,
                                        HashMap<String, View> transitionViews,
                                        String selectedEcode) {
         Intent additiveActivityIntent = new Intent(this, AdditiveActivity.class);
         Bundle additiveBundle = new Bundle();
         additiveBundle.putString(KEY_SELECTED_ECODE, selectedEcode);
         additiveBundle.putString(KEY_TAB_SOURCE, tabSourceKey);
+        additiveBundle.putInt(KEY_SCAN_CODE_ID, scanOrCodeID);
         // start with transitions
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ActivityOptions options;
@@ -403,7 +406,7 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public void onScanListInteraction(int scanPhotoID, ArrayList<String> scanPhotoEcodes) {
-        Logger.d(scanPhotoID);
+//        Logger.d(scanPhotoID);
         int currentPage = mViewPager.getCurrentItem();
         // if current page is scans
         if (currentPage == 0) {
@@ -418,8 +421,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onScanDetailListInteraction(HashMap<String, View> transitionViews, String eCode) {
-        startAdditiveActivity(SCANS_DETAIL, transitionViews, eCode);
+    public void onScanDetailListInteraction(HashMap<String, View> transitionViews, String eCode, int scanPhotoID) {
+        startAdditiveActivity(SCANS_DETAIL, scanPhotoID, transitionViews, eCode);
     }
 
     @Override
@@ -439,8 +442,8 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onCodeDetailListInteraction(HashMap<String, View> transitionViews, String eCode) {
-        startAdditiveActivity(CODES_DETAIL, transitionViews, eCode);
+    public void onCodeDetailListInteraction(HashMap<String, View> transitionViews, String eCode, int codeCategoryID) {
+        startAdditiveActivity(CODES_DETAIL, codeCategoryID, transitionViews, eCode);
     }
 }
 

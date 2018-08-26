@@ -32,11 +32,14 @@ public class CodeDetailListAdapter extends RecyclerView.Adapter<CodeDetailListAd
 
     private final CodeDetailListFragment.OnCodeDetailListListener mListener;
     private List<Additive> mCodeCategoryAdditives;
+    private int mCodeCategoryID;
 
     CodeDetailListAdapter(CodeDetailListFragment.OnCodeDetailListListener listener,
-                          List<Additive> codeCategoryAdditives) {
+                          List<Additive> codeCategoryAdditives,
+                          int codeCategoryID) {
         mListener = listener;
         mCodeCategoryAdditives = codeCategoryAdditives;
+        mCodeCategoryID = codeCategoryID;
     }
 
     @NonNull
@@ -81,7 +84,7 @@ public class CodeDetailListAdapter extends RecyclerView.Adapter<CodeDetailListAd
                 HashMap<String, View> transitionViews = new HashMap<String, View>();
                 transitionViews.put(MainActivity.KEY_PHOTO_TRANSITION_VIEW, holder.ivPhoto);
                 transitionViews.put(MainActivity.KEY_ECODE_TRANSITION_VIEW, holder.tvPhotoTitle);
-                mListener.onCodeDetailListInteraction(transitionViews, additive.getEcode());
+                mListener.onCodeDetailListInteraction(transitionViews, additive.getEcode(), mCodeCategoryID);
             }
         });
     }

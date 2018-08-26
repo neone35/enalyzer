@@ -91,7 +91,7 @@ public class ScanDetailListFragment extends Fragment {
             viewModel.getAdditives().observe(this, additiveList -> {
                 if (additiveList != null) {
                     Logger.d("Setting scanDetail adapter");
-                    recyclerView.setAdapter(new ScanDetailListAdapter(mListener, additiveList));
+                    recyclerView.setAdapter(new ScanDetailListAdapter(mListener, additiveList, mScanPhotoID));
                 }
             });
             viewModel.getLoading().observe(this, isLoading -> {
@@ -137,6 +137,6 @@ public class ScanDetailListFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnScanDetailListListener {
-        void onScanDetailListInteraction(HashMap<String, View> transitionViews, String eCode);
+        void onScanDetailListInteraction(HashMap<String, View> transitionViews, String eCode, int scanPhotoID);
     }
 }

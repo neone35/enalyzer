@@ -20,6 +20,9 @@ public interface CodeCategoryDao {
     @Query("SELECT * FROM code_categories where id = :id")
     LiveData<CodeCategory> getById(int id);
 
+    @Query("SELECT e_codes FROM code_categories where id = :id ORDER BY codes ASC")
+    List<String> getCategoryEcodesStaticById(int id);
+
     @Query("SELECT * FROM code_categories WHERE codes BETWEEN 100 AND 199")
     LiveData<CodeCategory> loadColours();
 

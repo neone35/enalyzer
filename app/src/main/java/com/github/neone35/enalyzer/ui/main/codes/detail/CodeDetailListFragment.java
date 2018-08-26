@@ -90,7 +90,7 @@ public class CodeDetailListFragment extends Fragment {
             viewModel.getAdditives().observe(this, additiveList -> {
                 if (additiveList != null) {
                     Logger.d("Setting codeDetail adapter");
-                    recyclerView.setAdapter(new CodeDetailListAdapter(mListener, additiveList));
+                    recyclerView.setAdapter(new CodeDetailListAdapter(mListener, additiveList, mCodeCategoryID));
                 }
             });
             viewModel.getLoading().observe(this, isLoading -> {
@@ -136,6 +136,6 @@ public class CodeDetailListFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnCodeDetailListListener {
-        void onCodeDetailListInteraction(HashMap<String, View> ivTransitionPhoto, String eCode);
+        void onCodeDetailListInteraction(HashMap<String, View> ivTransitionPhoto, String eCode, int codeCategoryID);
     }
 }
