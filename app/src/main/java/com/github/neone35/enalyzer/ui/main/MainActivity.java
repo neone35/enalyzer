@@ -33,6 +33,7 @@ import com.facebook.stetho.Stetho;
 import com.github.neone35.enalyzer.AppExecutors;
 import com.github.neone35.enalyzer.HelpUtils;
 import com.github.neone35.enalyzer.data.database.MainDatabase;
+import com.github.neone35.enalyzer.data.models.localjson.ClassificationResponse;
 import com.github.neone35.enalyzer.data.models.localjson.ecodelist.EcodeListItem;
 import com.github.neone35.enalyzer.ui.scan.ScanActivity;
 import com.github.neone35.enalyzer.ui.additive.AdditiveActivity;
@@ -136,6 +137,7 @@ public class MainActivity extends AppCompatActivity implements
         dialog.setIndeterminate(true);
         dialog.show();
         mExecutors.diskIO().execute(() -> {
+            // insert ecodes.json
             String ecodesJsonString = HelpUtils.readJSONStringFromAsset(this, "ecodes.json");
             List<EcodeListItem> eCodeObjects = HelpUtils.getLocalEcodeObjectList(ecodesJsonString);
             ArrayList<Integer> codesList = new ArrayList<>();
@@ -151,6 +153,13 @@ public class MainActivity extends AppCompatActivity implements
 
             mMainDB.insertInitialAdditives(codesList, eCodes, wikiQCodes, categories);
             mMainDB.insertCodeCategories(categories, categoryRanges, codesList, eCodes);
+
+            // insert ghs_classification.json
+            String clsJsonString = HelpUtils.readJSONStringFromAsset(this, "ghs_classification.json");
+            List<ClassificationResponse> clsList = HelpUtils.getLocalHazardObjectList(clsJsonString);
+            ArrayList<String> hazardCodeList = HelpUtils.getHazardCodeList(clsList);
+            ArrayList<String> hazardStatementList = HelpUtils.getHazardStatementList(clsList);
+            mMainDB.insertHazards(hazardCodeList, hazardStatementList);
 
             runOnUiThread(() -> {
                 dialog.dismiss();

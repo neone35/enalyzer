@@ -71,6 +71,7 @@ public class ScanDetailListAdapter extends RecyclerView.Adapter<ScanDetailListAd
         holder.tvEcode.setText(additive.getEcode());
         holder.tvCategory.setText(additive.getCategory());
         holder.tvScanDetailName.setText(additive.getName());
+        holder.tvScanDetailFormula.setText(additive.getFormula());
         if (additive.getKnownAs() != null) {
             ArrayList<String> knownAses = new ArrayList<>();
             for (int i = 0; i < ScanDetailListFragment.KNOWN_AS_NUM - 1; i++) {

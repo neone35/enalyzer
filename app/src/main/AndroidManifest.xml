@@ -72,5 +72,6 @@
         </receiver>
 
         <service android:name=".data.network.WikiJobService" />
+        <service android:name=".data.network.PubchemJobService" />
     </application>
 </manifest>

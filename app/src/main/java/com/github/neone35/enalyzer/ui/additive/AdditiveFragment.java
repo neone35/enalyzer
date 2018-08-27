@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.NestedScrollView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,6 +55,8 @@ public class AdditiveFragment extends Fragment {
     ImageView ivAdditivePhoto;
     @BindView(R.id.tv_additive_ecode)
     TextView tvAdditiveEcode;
+    @BindView(R.id.tv_additive_formula)
+    TextView tvAdditiveFormula;
     @BindView(R.id.tv_additive_known)
     TextView tvAdditiveKnown;
     @BindView(R.id.etv_additive_about)
@@ -155,6 +158,18 @@ public class AdditiveFragment extends Fragment {
                 }
                 if (additive.getDescription() != null) {
                     etvAdditiveAbout.setText(additive.getDescription());
+                }
+                if (additive.getFormula() != null) {
+                    tvAdditiveFormula.setText(additive.getFormula());
+                }
+                if (additive.getHazardList() != null) {
+                    for (int i = 0; i < additive.getHazardList().size(); i++) {
+                        String code = additive.getHazardList().get(i).getStatementCode();
+                        String statement = additive.getHazardList().get(i).getStatement();
+                        Logger.d(code + " " + statement);
+                    }
+                } else {
+                    Logger.d("No hazards found");
                 }
                 setupAdditiveSwitchButtons(additive, mTabSource, mScanOrCodeID, btnPreviousAdditive, btnNextAdditive);
             }

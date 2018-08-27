@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -99,22 +100,18 @@ public class HelpUtils {
         return wikiDataQCodeList;
     }
 
-    public static HashMap<String, ClassificationResponse> getLocalHazardObjectList(String clsJsonString) {
-        Type responseType = new TypeToken<ClassificationResponse>() {
+    public static ArrayList<ClassificationResponse> getLocalHazardObjectList(String clsJsonString) {
+        Type responseType = new TypeToken<Collection<ClassificationResponse>>() {
         }.getType();
         return gson.fromJson(clsJsonString, responseType);
     }
 
-    public static ArrayList<String> getHazardCodeList(HashMap<String, ClassificationResponse> clsObjectsMap) {
-        mHazardsNum = clsObjectsMap.size();
+    public static ArrayList<String> getHazardCodeList(List<ClassificationResponse> clsObjectList) {
+        mHazardsNum = clsObjectList.size();
         ArrayList<String> hazardCodesList = new ArrayList<>();
         for (int i = 0; i < mHazardsNum; i++) {
-            // key = "0", value = ClassificationResponse
-            // select "0"
-            Map.Entry<String, ClassificationResponse> clsEntry =
-                    clsObjectsMap.entrySet().iterator().next();
             // get ClassificationResponse
-            ClassificationResponse clsResponse = clsEntry.getValue();
+            ClassificationResponse clsResponse = clsObjectList.get(i);
             // "H200"
             String hazardCode = clsResponse.getCode();
             hazardCodesList.add(hazardCode);
@@ -122,17 +119,13 @@ public class HelpUtils {
         return hazardCodesList;
     }
 
-    public static ArrayList<String> getHazardStatementList(HashMap<String, ClassificationResponse> clsObjectsMap) {
-        mHazardsNum = clsObjectsMap.size();
+    public static ArrayList<String> getHazardStatementList(List<ClassificationResponse> clsObjectList) {
+        mHazardsNum = clsObjectList.size();
         ArrayList<String> hazardStatementsList = new ArrayList<>();
         for (int i = 0; i < mHazardsNum; i++) {
-            // key = "0", value = ClassificationResponse
-            // select "0"
-            Map.Entry<String, ClassificationResponse> clsEntry =
-                    clsObjectsMap.entrySet().iterator().next();
             // get ClassificationResponse
-            ClassificationResponse clsResponse = clsEntry.getValue();
-            // "H200"
+            ClassificationResponse clsResponse = clsObjectList.get(i);
+            // "Unstable Explosive""
             String hazardStatement = clsResponse.getHazardStatements();
             hazardStatementsList.add(hazardStatement);
         }

@@ -22,4 +22,5 @@
     <string name="about_label">About</string>
     <string name="hazards_label">Hazards</string>
     <string name="no_description">No description</string>
+    <string name="no_formula">No formula</string>
 </resources>

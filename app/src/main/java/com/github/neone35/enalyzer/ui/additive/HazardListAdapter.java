@@ -15,11 +15,11 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HazardStatementListAdapter extends RecyclerView.Adapter<HazardStatementListAdapter.ViewHolder> {
+public class HazardListAdapter extends RecyclerView.Adapter<HazardListAdapter.ViewHolder> {
 
     private final List<DummyItem> mValues;
 
-    HazardStatementListAdapter(List<DummyItem> items) {
+    HazardListAdapter(List<DummyItem> items) {
         mValues = items;
     }
 

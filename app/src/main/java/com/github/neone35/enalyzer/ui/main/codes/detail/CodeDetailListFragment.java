@@ -90,7 +90,12 @@ public class CodeDetailListFragment extends Fragment {
             viewModel.getAdditives().observe(this, additiveList -> {
                 if (additiveList != null) {
                     Logger.d("Setting codeDetail adapter");
-                    recyclerView.setAdapter(new CodeDetailListAdapter(mListener, additiveList, mCodeCategoryID));
+                    RecyclerView.Adapter adapter = recyclerView.getAdapter();
+                    if (adapter == null) {
+                        recyclerView.setAdapter(new CodeDetailListAdapter(mListener, additiveList, mCodeCategoryID));
+                    } else {
+                        adapter.notifyItemRangeChanged(0, adapter.getItemCount());
+                    }
                 }
             });
             viewModel.getLoading().observe(this, isLoading -> {

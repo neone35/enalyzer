@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "cbffc484561f556d5b32eb2c980c691f",
+    "identityHash": "caf53460935eef42e0dab9934ceff9f7",
     "entities": [
       {
         "tableName": "additives",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ecode` TEXT NOT NULL, `code` INTEGER NOT NULL, `wiki_data_qcode` TEXT, `wiki_edit_date` TEXT, `pubchem_ID` TEXT, `name` TEXT, `description` TEXT, `category` TEXT, `formula` TEXT, `imageURL` TEXT, `known_as` TEXT, `ghs_pictogram_urls` TEXT, `hazards` TEXT, PRIMARY KEY(`ecode`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ecode` TEXT NOT NULL, `code` INTEGER NOT NULL, `wiki_data_qcode` TEXT, `wiki_edit_date` TEXT, `pubchem_ID` INTEGER NOT NULL, `name` TEXT, `description` TEXT, `category` TEXT, `formula` TEXT, `imageURL` TEXT, `known_as` TEXT, `ghs_pictogram_urls` TEXT, `hazards` TEXT, PRIMARY KEY(`ecode`))",
         "fields": [
           {
             "fieldPath": "ecode",
@@ -35,8 +35,8 @@
           {
             "fieldPath": "pubchemID",
             "columnName": "pubchem_ID",
-            "affinity": "TEXT",
-            "notNull": false
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "name",
@@ -81,7 +81,7 @@
             "notNull": false
           },
           {
-            "fieldPath": "hazard",
+            "fieldPath": "hazardList",
             "columnName": "hazards",
             "affinity": "TEXT",
             "notNull": false
@@ -177,11 +177,37 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "hazards",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`statement_code` TEXT NOT NULL, `statement` TEXT, PRIMARY KEY(`statement_code`))",
+        "fields": [
+          {
+            "fieldPath": "statementCode",
+            "columnName": "statement_code",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "statement",
+            "columnName": "statement",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "statement_code"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"cbffc484561f556d5b32eb2c980c691f\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"caf53460935eef42e0dab9934ceff9f7\")"
     ]
   }
 }

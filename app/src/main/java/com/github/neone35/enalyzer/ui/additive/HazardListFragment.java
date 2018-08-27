@@ -13,14 +13,13 @@ import android.view.ViewGroup;
 
 import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.dummy.DummyContent;
-import com.github.neone35.enalyzer.ui.additive.HazardStatementListAdapter;
 
-public class HazardStatementListFragment extends Fragment {
+public class HazardListFragment extends Fragment {
 
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
 
-    public HazardStatementListFragment() {
+    public HazardListFragment() {
     }
 
 
@@ -38,7 +37,7 @@ public class HazardStatementListFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new HazardStatementListAdapter(DummyContent.ITEMS));
+            recyclerView.setAdapter(new HazardListAdapter(DummyContent.ITEMS));
             // turn on sroll inertion on NestedScrollView
             recyclerView.setNestedScrollingEnabled(false);
         }

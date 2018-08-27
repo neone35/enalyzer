@@ -2,6 +2,9 @@ package com.github.neone35.enalyzer.data.network;
 
 import android.content.Context;
 import android.net.Uri;
+import android.support.v4.util.SparseArrayCompat;
+import android.util.Pair;
+import android.util.SparseArray;
 
 import com.blankj.utilcode.util.EncryptUtils;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
@@ -15,6 +18,7 @@ import com.github.neone35.enalyzer.data.models.remotejson.wikidatatitle.WikiData
 import com.github.neone35.enalyzer.data.models.remotejson.wikidatatitle.WikiDataTitleResponse;
 import com.github.neone35.enalyzer.data.models.remotejson.wikimain.WikiMainPage;
 import com.github.neone35.enalyzer.data.models.remotejson.wikimain.WikiMainResponse;
+import com.github.neone35.enalyzer.data.models.room.Hazard;
 import com.google.common.base.Joiner;
 import com.orhanobut.logger.Logger;
 
@@ -135,33 +139,37 @@ public class NetworkUtils {
     }
 
     // gets pubchemCIDs one by one (with additive title) and returns list of them
-    public static ArrayList<Integer> getPubchemCIDList(ArrayList<String> additiveTitles) {
+    public static SparseArray<String> getPubchemCIDWithTitleList(ArrayList<String> additiveTitles) {
         PubchemEndpointInterface pubchemEndpointInterface = getPubchemApiService();
-        ArrayList<Integer> pubchemCIDs = new ArrayList<>();
+        // maps integers to objects
+        SparseArray<String> pubchemCIDAndTitleArray = new SparseArray<>();
         try {
             for (String title : additiveTitles) {
-                Call<PubchemCIDResponse> retroCall =
-                        pubchemEndpointInterface.getPubchemCIDByAdditiveTitle(title);
-                PubchemCIDResponse pubchemCIDResponse = retroCall.execute().body();
-                if (pubchemCIDResponse != null) {
-                    // "517111" (there can be multiple CIDs)
-                    int pubchemCID = pubchemCIDResponse.getIdentifierList().getCID().get(0);
-                    pubchemCIDs.add(pubchemCID);
-                } else {
-                    Logger.d("No pubchemCID received for additive title: " + title);
+                if (title != null) {
+                    Call<PubchemCIDResponse> retroCall =
+                            pubchemEndpointInterface.getPubchemCIDByAdditiveTitle(title);
+                    PubchemCIDResponse pubchemCIDResponse = retroCall.execute().body();
+                    if (pubchemCIDResponse != null) {
+                        // "517111" (there can be multiple CIDs)
+                        int pubchemCID = pubchemCIDResponse.getIdentifierList().getCID().get(0);
+                        pubchemCIDAndTitleArray.put(pubchemCID, title);
+                    } else {
+                        Logger.d("No pubchemCID received for additive title: " + title);
+                    }
                 }
             }
         } catch (IOException e) {
             Logger.d(e.getMessage());
         }
-        Logger.d("First CID : " + pubchemCIDs.get(0));
-        return pubchemCIDs;
+        Logger.d("First pubchemCID : " + pubchemCIDAndTitleArray.keyAt(0));
+        return pubchemCIDAndTitleArray;
     }
 
     // gets pubchemFormulas one by one (with pubchemCID) and returns list of them
-    public static ArrayList<String> getPubchemFormulaList(ArrayList<Integer> pubchemCIDs) {
+    public static SparseArray<String> getPubchemCIDWithFormulaList(ArrayList<Integer> pubchemCIDs) {
         PubchemEndpointInterface pubchemEndpointInterface = getPubchemApiService();
-        ArrayList<String> pubchemFormulas = new ArrayList<>();
+        // maps integers to objects
+        SparseArray<String> pubchemCIDAndFormulaMap = new SparseArray<>();
         try {
             for (int pubchemCID : pubchemCIDs) {
                 Call<PubchemDetailsResponse> retroCall =
@@ -170,7 +178,7 @@ public class NetworkUtils {
                 if (pubchemDetailsResponse != null) {
                     // "CH8N2O3"
                     String pubchemFormula = pubchemDetailsResponse.getPropertyTable().getProperties().get(0).getMolecularFormula();
-                    pubchemFormulas.add(pubchemFormula);
+                    pubchemCIDAndFormulaMap.put(pubchemCID, pubchemFormula);
                 } else {
                     Logger.d("No pubchemFormula received for cID: " + pubchemCID);
                 }
@@ -178,53 +186,54 @@ public class NetworkUtils {
         } catch (IOException e) {
             Logger.d(e.getMessage());
         }
-        Logger.d("First pubchemFormula : " + pubchemFormulas.get(0));
-        return pubchemFormulas;
+        Logger.d("First pubchemFormula : " + pubchemCIDAndFormulaMap.valueAt(0));
+        return pubchemCIDAndFormulaMap;
     }
 
     // extracts hazardCodes from reference text (with one pubchemCID) and returns list of them
-    public static HashMap<String, String> getPubchemHazardsList(int pubchemCID, Context ctx) {
+    public static List<Pair<Integer, ArrayList<Hazard>>> getPubchemCIDsWithHazardsList(ArrayList<Integer> pubchemCIDs,
+                                                                                       List<String> hazardCodeList,
+                                                                                       List<String> hazardStatementList) {
         PubchemEndpointInterface pubchemEndpointInterface = getPubchemApiService();
-        HashMap<String, String> pubchemHazardsMap = new HashMap<>();
+        List<Pair<Integer, ArrayList<Hazard>>> pubchemCIDsWithHazardsPairList = new ArrayList<>();
+        ArrayList<Hazard> foundHazardsList = new ArrayList<>();
         try {
-            Call<PubchemHazardsResponse> retroCall =
-                    pubchemEndpointInterface.getPubchemHazardsByCID(pubchemCID);
-            PubchemHazardsResponse pubchemHazardsResponse = retroCall.execute().body();
-            if (pubchemHazardsResponse != null) {
-                List<InformationItem> informationItems = pubchemHazardsResponse.getRecord()
-                        // "Safety and Hazards"
-                        .getSection().get(0)
-                        // "Hazards Identification"
-                        .getSection().get(0)
-                        // "GHS Classification"
-                        .getSection().get(0)
-                        .getInformation();
-                // match received references with local hazard codes
-                for (InformationItem informationItem : informationItems) {
-                    String referenceText = informationItem.getStringValue();
-                    String clsJsonString = HelpUtils.readJSONStringFromAsset(ctx, "ghs_classification.json");
-                    HashMap<String, ClassificationResponse> clsObjectsMap = HelpUtils.getLocalHazardObjectList(clsJsonString);
-                    ArrayList<String> hazardCodeList = HelpUtils.getHazardCodeList(clsObjectsMap);
-                    ArrayList<String> hazardStatementList = HelpUtils.getHazardStatementList(clsObjectsMap);
-                    // iterate through every hazard code
-                    for (int i = 0; i < hazardCodeList.size(); i++) {
-                        String hazardCode = hazardCodeList.get(i);
-                        if (referenceText.contains(hazardCode)) {
-                            // put code as key and statement as value into map
-                            pubchemHazardsMap.put(hazardCode, hazardStatementList.get(i));
+            for (int pubchemCID : pubchemCIDs) {
+                Call<PubchemHazardsResponse> retroCall =
+                        pubchemEndpointInterface.getPubchemHazardsByCID(pubchemCID);
+                PubchemHazardsResponse pubchemHazardsResponse = retroCall.execute().body();
+                if (pubchemHazardsResponse != null) {
+                    List<InformationItem> informationItems = pubchemHazardsResponse.getRecord()
+                            // "Safety and Hazards"
+                            .getSection().get(0)
+                            // "Hazards Identification"
+                            .getSection().get(0)
+                            // "GHS Classification"
+                            .getSection().get(0)
+                            .getInformation();
+                    // search for local hazard codes in received reference texts
+                    for (InformationItem informationItem : informationItems) {
+                        String referenceText = informationItem.getStringValue();
+                        // iterate through every hazard code
+                        for (int i = 0; i < hazardCodeList.size(); i++) {
+                            String hazardCode = hazardCodeList.get(i);
+                            if (referenceText.contains(hazardCode)) {
+                                Hazard hazard = new Hazard(hazardCode, hazardStatementList.get(i));
+                                foundHazardsList.add(hazard);
+                            }
                         }
+                        Pair<Integer, ArrayList<Hazard>> pubchemCIDWithHazardsPair = new Pair<>(pubchemCID, foundHazardsList);
+                        pubchemCIDsWithHazardsPairList.add(pubchemCIDWithHazardsPair);
                     }
+                } else {
+                    Logger.d("No pubchemDetails (with hazards) received for cID: " + pubchemCID);
                 }
-            } else {
-                Logger.d("No pubchemDetails (with hazards) received for cID: " + pubchemCID);
             }
         } catch (IOException e) {
             Logger.d(e.getMessage());
         }
-        String firstHazardCode = pubchemHazardsMap.entrySet().iterator().next().getKey();
-        String firstHazardStatement = pubchemHazardsMap.entrySet().iterator().next().getValue();
-        Logger.d("First hazard is: " + firstHazardCode + " " + firstHazardStatement);
-        return pubchemHazardsMap;
+        Logger.d("First hazard is: " + foundHazardsList.get(0).getStatementCode());
+        return pubchemCIDsWithHazardsPairList;
     }
 
     private static WikiEndpointInterface getWikiApiService() {
@@ -269,9 +278,8 @@ public class NetworkUtils {
                     .appendPath(MD5FirstChar)
                     .appendPath(MD5FirstChar + MD5SecondChar)
                     .build().toString();
-            String finalUrl = imgUrl + "/" + imgFilename;
-//            Logger.d("First img URL: " + finalUrl);
-            return finalUrl;
+            //            Logger.d("First img URL: " + finalUrl);
+            return imgUrl + "/" + imgFilename;
         } catch (Exception e) {
             Logger.d(e.getMessage());
             return null;

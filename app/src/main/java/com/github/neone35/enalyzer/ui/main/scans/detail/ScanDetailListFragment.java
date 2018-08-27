@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 
 import com.github.neone35.enalyzer.InjectorUtils;
 import com.github.neone35.enalyzer.R;
+import com.github.neone35.enalyzer.ui.scan.chips.ScanChipsListAdapter;
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
@@ -91,7 +92,12 @@ public class ScanDetailListFragment extends Fragment {
             viewModel.getAdditives().observe(this, additiveList -> {
                 if (additiveList != null) {
                     Logger.d("Setting scanDetail adapter");
-                    recyclerView.setAdapter(new ScanDetailListAdapter(mListener, additiveList, mScanPhotoID));
+                    RecyclerView.Adapter adapter = recyclerView.getAdapter();
+                    if (adapter == null) {
+                        recyclerView.setAdapter(new ScanDetailListAdapter(mListener, additiveList, mScanPhotoID));
+                    } else {
+                        adapter.notifyItemRangeChanged(0, adapter.getItemCount());
+                    }
                 }
             });
             viewModel.getLoading().observe(this, isLoading -> {

@@ -1,6 +1,5 @@
 package com.github.neone35.enalyzer.data.models.room;
 
-import android.annotation.SuppressLint;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
@@ -21,7 +20,7 @@ public class Additive {
     @ColumnInfo(name = "wiki_edit_date")
     private String wikiEditDate;
     @ColumnInfo(name = "pubchem_ID")
-    private String pubchemID;
+    private int pubchemID;
 
     private String name;
     private String description;
@@ -33,13 +32,13 @@ public class Additive {
     @ColumnInfo(name = "ghs_pictogram_urls")
     private List<String> ghsPictogramURL;
     @ColumnInfo(name = "hazards")
-    private List<Hazard> hazard;
+    private List<Hazard> hazardList;
 
 
     // Constructor used by Room to create Additives
-    public Additive(@NonNull String ecode, int code, String wikiDataQCode, String wikiEditDate, String pubchemID,
+    public Additive(@NonNull String ecode, int code, String wikiDataQCode, String wikiEditDate, int pubchemID,
                     String name, String description, String category, String formula, String imageURL,
-                    List<String> knownAs, List<String> ghsPictogramURL, List<Hazard> hazard) {
+                    List<String> knownAs, List<String> ghsPictogramURL, List<Hazard> hazardList) {
         this.ecode = ecode;
         this.code = code;
         this.wikiDataQCode = wikiDataQCode;
@@ -52,7 +51,7 @@ public class Additive {
         this.imageURL = imageURL;
         this.knownAs = knownAs;
         this.ghsPictogramURL = ghsPictogramURL;
-        this.hazard = hazard;
+        this.hazardList = hazardList;
     }
 
     @NonNull
@@ -88,11 +87,11 @@ public class Additive {
         this.wikiEditDate = wikiEditDate;
     }
 
-    public String getPubchemID() {
+    public int getPubchemID() {
         return pubchemID;
     }
 
-    public void setPubchemID(String pubchemID) {
+    public void setPubchemID(int pubchemID) {
         this.pubchemID = pubchemID;
     }
 
@@ -152,11 +151,11 @@ public class Additive {
         this.ghsPictogramURL = ghsPictogramURL;
     }
 
-    public List<Hazard> getHazard() {
-        return hazard;
+    public List<Hazard> getHazardList() {
+        return hazardList;
     }
 
-    public void setHazard(List<Hazard> hazard) {
-        this.hazard = hazard;
+    public void setHazardList(List<Hazard> hazardList) {
+        this.hazardList = hazardList;
     }
 }

@@ -142,7 +142,7 @@
 
                     <fragment
                         android:id="@+id/frag_hazard"
-                        android:name="com.github.neone35.enalyzer.ui.additive.HazardStatementListFragment"
+                        android:name="com.github.neone35.enalyzer.ui.additive.HazardListFragment"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         tools:context=".additive.AdditiveActivity"

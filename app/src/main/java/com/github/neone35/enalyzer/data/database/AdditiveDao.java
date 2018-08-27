@@ -29,6 +29,12 @@ public interface AdditiveDao {
     @Query("SELECT * FROM additives where wiki_data_qcode = :qcode")
     Additive getOneStaticByQcode(String qcode);
 
+    @Query("SELECT * FROM additives where name = :title")
+    Additive getOneStaticByTitle(String title);
+
+    @Query("SELECT * FROM additives where pubchem_ID = :CID")
+    Additive getOneStaticByCID(int CID);
+
     @Query("SELECT * FROM additives where ecode IN (:ecodes)")
     List<Additive> getBulkStaticByEcode(List<String> ecodes);
 

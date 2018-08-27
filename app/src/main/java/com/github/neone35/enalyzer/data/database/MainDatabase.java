@@ -8,13 +8,14 @@ import android.content.Context;
 
 import com.github.neone35.enalyzer.data.models.room.Additive;
 import com.github.neone35.enalyzer.data.models.room.CodeCategory;
+import com.github.neone35.enalyzer.data.models.room.Hazard;
 import com.github.neone35.enalyzer.data.models.room.ScanPhoto;
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 
 // version number needs to be incremented if schema models change
-@Database(entities = {Additive.class, ScanPhoto.class, CodeCategory.class}, version = 1)
+@Database(entities = {Additive.class, ScanPhoto.class, CodeCategory.class, Hazard.class}, version = 1)
 @TypeConverters({MainConverters.class})
 public abstract class MainDatabase extends RoomDatabase {
 
@@ -39,6 +40,8 @@ public abstract class MainDatabase extends RoomDatabase {
     public abstract AdditiveDao additiveDao();
     public abstract ScanPhotoDao scanPhotoDao();
     public abstract CodeCategoryDao codeCategoryDao();
+
+    public abstract HazardDao hazardDao();
 
 
     public void insertInitialAdditives(ArrayList<Integer> codes, ArrayList<String> eCodes,
@@ -67,7 +70,7 @@ public abstract class MainDatabase extends RoomDatabase {
                 category = categories.get(8);
             }
             Additive additive = new Additive(eCodes.get(i), code, wikiQCodes.get(i),
-                    null, null, null, null, category,
+                    null, 0, null, null, category,
                     null, null, null, null, null);
             additiveList.add(additive);
         }
@@ -111,6 +114,19 @@ public abstract class MainDatabase extends RoomDatabase {
         codeCategoryDao().bulkInsert(codeCategoryList);
     }
 
+    public void insertHazards(ArrayList<String> hazardCodeList, ArrayList<String> hazardStatementList) {
+        ArrayList<Hazard> hazardList = new ArrayList<>();
+        for (int i = 0; i < hazardCodeList.size(); i++) {
+            // "H200"
+            String hazardCode = hazardCodeList.get(i);
+            // "Unstable Explosive""
+            String hazardStatement = hazardStatementList.get(i);
+            Hazard hazard = new Hazard(hazardCode, hazardStatement);
+            hazardList.add(hazard);
+        }
+        hazardDao().bulkInsert(hazardList);
+    }
+
     public ArrayList<String> getCategories() {
         ArrayList<String> categories = new ArrayList<>();
         categories.add("Colours");
@@ -139,7 +155,4 @@ public abstract class MainDatabase extends RoomDatabase {
         return categoryRanges;
     }
 
-    public void insertOneScanPhoto(String fileName, String photoDate, ArrayList<String> eCodes) {
-
-    }
 }

@@ -23,7 +23,8 @@ public class InjectorUtils {
                 NetworkRoot.getInstance(context.getApplicationContext(), executors);
         return MainRepository.getInstance(
                 database.scanPhotoDao(), database.codeCategoryDao(),
-                database.additiveDao(), networkDataSource, executors);
+                database.additiveDao(), database.hazardDao(),
+                networkDataSource, executors);
     }
 
     // for services and jobs (external access)
