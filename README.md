@@ -8,7 +8,7 @@ Use this to:
 -   Learn everything about 500+ food additives
 -   Make healthy meal choices
 
-P.S. If you can't find food labels with Exxx codes, look into 'example-labels' folder or [openfoodfacts.org](hhttps://world.openfoodfacts.org/country/france/additive/e250-sodium-nitrite/7)
+P.S. If you can't find food labels with Exxx codes, look into 'example-labels' folder or [openfoodfacts.org](https://world.openfoodfacts.org/country/france/additive/e250-sodium-nitrite/7)
 
 ## Features
 - Recognizes special text
