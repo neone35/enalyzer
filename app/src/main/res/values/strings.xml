@@ -26,4 +26,6 @@
     <string name="first_time_setup">Performing first time setup</string>
     <string name="sample_ecode">Hxxx</string>
     <string name="no_statement">No statement</string>
+    <string name="no_category">No category</string>
+    <string name="no_name">No name</string>
 </resources>

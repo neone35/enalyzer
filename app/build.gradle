@@ -1,6 +1,18 @@
 apply plugin: 'com.android.application' // main android plugin
 
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 android {
+    signingConfigs {
+        config {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile rootProject.file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.github.neone35.enalyzer"
@@ -22,6 +34,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
     compileOptions {
@@ -40,43 +53,61 @@ ext {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.android.support:support-v4:$support_lib_v" //v4
-    implementation "com.android.support:appcompat-v7:$support_lib_v" // dependent on v4
-    implementation "com.android.support:design:$support_lib_v" // material design components
-    implementation "com.android.support:support-vector-drawable:$support_lib_v" // VectorDrawableCompat
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "com.android.support:support-v4:$support_lib_v"
+    // dependent on v4
+    implementation "com.android.support:appcompat-v7:$support_lib_v"
+    // material design components
+    implementation "com.android.support:design:$support_lib_v"
+    // VectorDrawableCompat
+    implementation "com.android.support:support-vector-drawable:$support_lib_v"
     implementation "com.android.support:recyclerview-v7:$support_lib_v"
     implementation "com.android.support:cardview-v7:$support_lib_v"
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     implementation 'com.android.support:multidex:1.0.3'
 
     // GOOGLE PLAY SERVICES
-    implementation 'com.google.firebase:firebase-core:16.0.1'
+    implementation 'com.google.firebase:firebase-core:16.0.3'
     implementation 'com.google.firebase:firebase-ml-vision:17.0.0'
 
     // ANDROID ARCHITECTURE COMPONENTS
-    implementation "android.arch.lifecycle:extensions:$aac_v" // ViewModel & LiveData
-    implementation "android.arch.lifecycle:runtime:$aac_v" // Compat with support library
+    // ViewModel & LiveData
+    implementation "android.arch.lifecycle:runtime:$aac_v"
+    implementation "android.arch.lifecycle:extensions:$aac_v"
+    // Compat with support library
     annotationProcessor "android.arch.lifecycle:compiler:$aac_v"
-    implementation "android.arch.persistence.room:runtime:$aac_v" // database
+    // database
     annotationProcessor "android.arch.persistence.room:compiler:$aac_v"
+    implementation "android.arch.persistence.room:runtime:$aac_v"
 
     // 3RD PARTY LIBRARIES
-    implementation 'com.google.code.gson:gson:2.8.5' // parsing
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_v" // network calls
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit_v" // gson & retrofit
-    implementation 'com.orhanobut:logger:2.2.0' // logging
-    implementation "com.github.bumptech.glide:glide:$glide_v" // loading images
+    // parsing
+    implementation 'com.google.code.gson:gson:2.8.5'
+    // network calls
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_v"
+    // gson & retrofit
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_v"
+    // logging
+    implementation 'com.orhanobut:logger:2.2.0'
+    // loading images
+    implementation "com.github.bumptech.glide:glide:$glide_v"
     annotationProcessor "com.github.bumptech.glide:compiler:$glide_v"
-    api 'com.google.guava:guava:25.1-android' // helper libraries from Google
-    implementation 'com.blankj:utilcode:1.17.3' // helper functions
-    implementation "com.jakewharton:butterknife:$butterknife_v" // R class binding
+    // helper libraries from Google
+    api 'com.google.guava:guava:25.1-android'
+    // helper functions
+    implementation 'com.blankj:utilcode:1.17.3'
+    // R class binding
+    implementation "com.jakewharton:butterknife:$butterknife_v"
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterknife_v"
-    implementation "com.facebook.stetho:stetho:$stetho_v" //network debugging in chrome
+    //network debugging in chrome
+    implementation "com.facebook.stetho:stetho:$stetho_v"
     implementation "com.facebook.stetho:stetho-okhttp3:$stetho_v"
+
     // UI LIBRARIES
-    implementation 'com.beloo.widget:ChipsLayoutManager:0.3.7@aar' // UI view for scanActivity
-    implementation 'at.blogc:expandabletextview:1.0.5' // TextView for expandable long text
+    // UI view for scanActivity
+    implementation 'com.beloo.widget:ChipsLayoutManager:0.3.7@aar'
+    // TextView for expandable long text
+    implementation 'at.blogc:expandabletextview:1.0.5'
 
     // TEST DEPS
     testImplementation 'junit:junit:4.12'
