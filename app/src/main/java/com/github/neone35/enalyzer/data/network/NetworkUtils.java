@@ -232,7 +232,6 @@ public class NetworkUtils {
         } catch (IOException e) {
             Logger.d(e.getMessage());
         }
-        Logger.d("First hazard is: " + foundHazardsList.get(0).getStatementCode());
         return pubchemCIDsWithHazardsPairList;
     }
 

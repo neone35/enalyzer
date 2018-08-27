@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 
 import com.github.neone35.enalyzer.InjectorUtils;
 import com.github.neone35.enalyzer.R;
+import com.github.neone35.enalyzer.ui.main.codes.detail.CodeDetailListAdapter;
 import com.github.neone35.enalyzer.ui.scan.chips.ScanChipsListAdapter;
 import com.orhanobut.logger.Logger;
 
@@ -39,6 +40,7 @@ public class ScanDetailListFragment extends Fragment {
     private int mScanPhotoID;
     private ArrayList<String> mScanPhotoEcodes;
     private ProgressBar mScanLoadingBar;
+    private boolean DATA_UPDATED_ONCE = false;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -96,7 +98,7 @@ public class ScanDetailListFragment extends Fragment {
                     if (adapter == null) {
                         recyclerView.setAdapter(new ScanDetailListAdapter(mListener, additiveList, mScanPhotoID));
                     } else {
-                        adapter.notifyItemRangeChanged(0, adapter.getItemCount());
+                        recyclerView.swapAdapter(new ScanDetailListAdapter(mListener, additiveList, mScanPhotoID), false);
                     }
                 }
             });

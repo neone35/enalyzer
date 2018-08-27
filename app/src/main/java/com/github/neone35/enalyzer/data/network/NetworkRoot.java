@@ -3,9 +3,11 @@ package com.github.neone35.enalyzer.data.network;
 import android.annotation.SuppressLint;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.Observer;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.util.Pair;
 import android.util.SparseArray;
 
@@ -170,15 +172,18 @@ public class NetworkRoot {
                 List<Pair<Integer, ArrayList<Hazard>>> pubchemCIDsWithHazardsPairList =
                         NetworkUtils.getPubchemCIDsWithHazardsList(pubchemCIDs, hazardCodeList, hazardStatementList);
 
-                Logger.d("pubchemCIDs has " + pubchemCIDs.size() + " values with first " + pubchemCIDs.get(0));
-                Logger.d("pubchemFormulas has " + pubchemCIDWithFormulaArray.size() + " values with first " + pubchemCIDWithFormulaArray.valueAt(0));
-                Logger.d("pubchemHazards has " + pubchemCIDsWithHazardsPairList.get(0).first + " values with first " + pubchemCIDsWithHazardsPairList.get(0).second.get(0).getStatementCode());
+//                Logger.d("pubchemCIDs has " + pubchemCIDs.size() + " values with first " + pubchemCIDs.get(0));
+//                Logger.d("pubchemFormulas has " + pubchemCIDWithFormulaArray.size() + " values with first " + pubchemCIDWithFormulaArray.valueAt(0));
+//                Logger.d("pubchemHazards has " + pubchemCIDsWithHazardsPairList.get(0).first + " values with first " + pubchemCIDsWithHazardsPairList.get(0).second.get(0).getStatementCode());
                 // notify observers of MutableLiveData (repository) if fetch is successful
                 if (pubchemCIDs.size() != 0 && pubchemCIDWithFormulaArray.size() != 0 && pubchemCIDsWithHazardsPairList.size() != 0) {
                     // update LiveData off main thread -> to main thread (postValue)
                     mDownloadedPubchemCIDsWithTitles.postValue(pubchemCIDWithTitleArray);
-                    mDownloadedPubchemCIDsWithFormulas.postValue(pubchemCIDWithFormulaArray);
-                    mDownloadedPubchemCIDsWithHazardsList.postValue(pubchemCIDsWithHazardsPairList);
+                    // only download additional pubchem data after CIDs are inserted
+                    getDownloadedPubchemCIDsWithTitles().observeForever(pubchemCIDsWithTitles -> {
+                        mDownloadedPubchemCIDsWithFormulas.postValue(pubchemCIDWithFormulaArray);
+                        mDownloadedPubchemCIDsWithHazardsList.postValue(pubchemCIDsWithHazardsPairList);
+                    });
                     Logger.d("finished notifying all pubchem observers");
                     mIsPubchemLoading.postValue(false);
                     mIsSomethingLoading.postValue(false);

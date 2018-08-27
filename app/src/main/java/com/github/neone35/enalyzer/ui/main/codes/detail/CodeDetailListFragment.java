@@ -94,7 +94,7 @@ public class CodeDetailListFragment extends Fragment {
                     if (adapter == null) {
                         recyclerView.setAdapter(new CodeDetailListAdapter(mListener, additiveList, mCodeCategoryID));
                     } else {
-                        adapter.notifyItemRangeChanged(0, adapter.getItemCount());
+                        recyclerView.swapAdapter(new CodeDetailListAdapter(mListener, additiveList, mCodeCategoryID), false);
                     }
                 }
             });

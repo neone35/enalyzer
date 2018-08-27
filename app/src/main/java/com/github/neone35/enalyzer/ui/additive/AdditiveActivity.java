@@ -55,7 +55,6 @@ public class AdditiveActivity extends AppCompatActivity implements
                 mFragmentManager.beginTransaction()
                         .add(R.id.frag_additive, additiveFragment)
                         .commit();
-
             }
         }
     }

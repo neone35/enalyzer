@@ -40,7 +40,6 @@ public abstract class MainDatabase extends RoomDatabase {
     public abstract AdditiveDao additiveDao();
     public abstract ScanPhotoDao scanPhotoDao();
     public abstract CodeCategoryDao codeCategoryDao();
-
     public abstract HazardDao hazardDao();
 
 
@@ -114,7 +113,8 @@ public abstract class MainDatabase extends RoomDatabase {
         codeCategoryDao().bulkInsert(codeCategoryList);
     }
 
-    public void insertHazards(ArrayList<String> hazardCodeList, ArrayList<String> hazardStatementList) {
+    public void insertHazards(ArrayList<String> hazardCodeList,
+                              ArrayList<String> hazardStatementList) {
         ArrayList<Hazard> hazardList = new ArrayList<>();
         for (int i = 0; i < hazardCodeList.size(); i++) {
             // "H200"

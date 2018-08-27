@@ -7,9 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.facebook.stetho.common.ArrayListAccumulator;
+import com.github.neone35.enalyzer.HelpUtils;
 import com.github.neone35.enalyzer.R;
+import com.github.neone35.enalyzer.data.models.room.Hazard;
 import com.github.neone35.enalyzer.dummy.DummyContent.DummyItem;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -17,10 +22,10 @@ import butterknife.ButterKnife;
 
 public class HazardListAdapter extends RecyclerView.Adapter<HazardListAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final List<Hazard> mHazards;
 
-    HazardListAdapter(List<DummyItem> items) {
-        mValues = items;
+    HazardListAdapter(List<Hazard> hazards) {
+        mHazards = hazards;
     }
 
     @NonNull
@@ -33,12 +38,21 @@ public class HazardListAdapter extends RecyclerView.Adapter<HazardListAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
+        // sort hazard objects by their int code
+//        Collections.sort(mHazards, (o1, o2) ->
+//                Integer.valueOf(HelpUtils.stripNonDigits(o1.getStatementCode()))
+//                        - Integer.valueOf(HelpUtils.stripNonDigits(o2.getStatementCode()))
+//        );
+
+        Hazard hazard = holder.mHazard = mHazards.get(position);
+
+        holder.tvHazardStatementCode.setText(hazard.getStatementCode());
+        holder.tvHazardStatement.setText(hazard.getStatement());
     }
 
     @Override
     public int getItemCount() {
-        return mValues.size();
+        return mHazards.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -47,13 +61,12 @@ public class HazardListAdapter extends RecyclerView.Adapter<HazardListAdapter.Vi
         TextView tvHazardStatementCode;
         @BindView(R.id.tv_hazard_statement)
         TextView tvHazardStatement;
-        DummyItem mItem;
+        Hazard mHazard;
 
         ViewHolder(View view) {
             super(view);
             mView = view;
-            ButterKnife.bind(view, tvHazardStatementCode);
-            ButterKnife.bind(view, tvHazardStatement);
+            ButterKnife.bind(this, view);
         }
 
         @Override

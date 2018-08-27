@@ -23,4 +23,7 @@
     <string name="hazards_label">Hazards</string>
     <string name="no_description">No description</string>
     <string name="no_formula">No formula</string>
+    <string name="first_time_setup">Performing first time setup</string>
+    <string name="sample_ecode">Hxxx</string>
+    <string name="no_statement">No statement</string>
 </resources>

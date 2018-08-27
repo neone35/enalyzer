@@ -8,8 +8,9 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.NestedScrollView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
 import com.github.neone35.enalyzer.AppExecutors;
 import com.github.neone35.enalyzer.HelpUtils;
@@ -27,11 +29,13 @@ import com.github.neone35.enalyzer.InjectorUtils;
 import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.data.database.MainDatabase;
 import com.github.neone35.enalyzer.data.models.room.Additive;
+import com.github.neone35.enalyzer.data.models.room.Hazard;
 import com.github.neone35.enalyzer.data.models.room.ScanPhoto;
 import com.github.neone35.enalyzer.ui.main.MainActivity;
 import com.google.common.base.Joiner;
 import com.orhanobut.logger.Logger;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -75,6 +79,8 @@ public class AdditiveFragment extends Fragment {
     ConstraintLayout flButtonsHolder;
     @BindView(R.id.fl_etv_about_holder)
     FrameLayout flEtvAboutHolder;
+    @BindView(R.id.rv_hazards)
+    RecyclerView rvHazards;
 
     @BindInt(R.integer.read_more_expand_duration)
     int mReadMoreExpandDuration;
@@ -163,13 +169,10 @@ public class AdditiveFragment extends Fragment {
                     tvAdditiveFormula.setText(additive.getFormula());
                 }
                 if (additive.getHazardList() != null) {
-                    for (int i = 0; i < additive.getHazardList().size(); i++) {
-                        String code = additive.getHazardList().get(i).getStatementCode();
-                        String statement = additive.getHazardList().get(i).getStatement();
-                        Logger.d(code + " " + statement);
-                    }
+                    rvHazards.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    rvHazards.setAdapter(new HazardListAdapter(additive.getHazardList()));
                 } else {
-                    Logger.d("No hazards found");
+                    ToastUtils.showShort("No hazards found");
                 }
                 setupAdditiveSwitchButtons(additive, mTabSource, mScanOrCodeID, btnPreviousAdditive, btnNextAdditive);
             }

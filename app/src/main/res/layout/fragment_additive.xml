@@ -140,13 +140,13 @@
                         android:text="@string/hazards_label"
                         tools:text="Hazards" />
 
-                    <fragment
-                        android:id="@+id/frag_hazard"
-                        android:name="com.github.neone35.enalyzer.ui.additive.HazardListFragment"
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_hazards"
+                        android:name="com.github.neone35.enalyzer.HazardStatementFragment"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        tools:context=".additive.AdditiveActivity"
-                        tools:layout="@layout/fragment_hazard_statement_list" />
+                        android:layout_height="wrap_content"
+                        tools:context=".ui.additive.AdditiveActivity"
+                        tools:listitem="@layout/fragment_hazard_statement_item" />
 
                 </LinearLayout>
 

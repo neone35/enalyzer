@@ -35,6 +35,7 @@ import com.github.neone35.enalyzer.HelpUtils;
 import com.github.neone35.enalyzer.data.database.MainDatabase;
 import com.github.neone35.enalyzer.data.models.localjson.ClassificationResponse;
 import com.github.neone35.enalyzer.data.models.localjson.ecodelist.EcodeListItem;
+import com.github.neone35.enalyzer.data.models.room.Hazard;
 import com.github.neone35.enalyzer.ui.scan.ScanActivity;
 import com.github.neone35.enalyzer.ui.additive.AdditiveActivity;
 import com.github.neone35.enalyzer.R;
@@ -132,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private void insertLocalData() {
         dialog = new ProgressDialog(this);
-        dialog.setTitle(getResources().getString(R.string.loading_local_data));
+        dialog.setTitle(getResources().getString(R.string.first_time_setup));
         dialog.setMessage(getResources().getString(R.string.please_wait));
         dialog.setIndeterminate(true);
         dialog.show();

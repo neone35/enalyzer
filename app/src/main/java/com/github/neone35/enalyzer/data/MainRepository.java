@@ -131,6 +131,7 @@ public class MainRepository {
                 mAdditiveDao.bulkUpdate(newAdditives);
             }
         }));
+
         LiveData<List<Pair<Integer, ArrayList<Hazard>>>> downloadedPubchemCIDsWithHazardsList = mNetworkRoot.getDownloadedPubchemCIDsWithHazards();
         downloadedPubchemCIDsWithHazardsList.observeForever(pubchemCIDsWithHazardsList -> mExecutors.diskIO().execute(() -> {
             ArrayList<Additive> newAdditives = new ArrayList<>();
