@@ -1,11 +1,9 @@
 package com.github.neone35.enalyzer.data.models.room;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 @Entity(tableName = "scan_photos")

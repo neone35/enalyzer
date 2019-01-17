@@ -20,7 +20,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
         javaCompileOptions {
@@ -46,48 +46,51 @@ android {
     }
 }
 
+configurations {
+    all*.exclude group: 'com.google.guava', module: 'listenablefuture'
+}
+
 ext {
-    support_lib_v = '28.0.0-rc01'
-    aac_v = '1.1.1'
+    aac_v = '2.1.0-alpha01'
     retrofit_v = '2.4.0'
-    glide_v = '4.7.1'
-    butterknife_v = '8.8.1'
+    glide_v = '4.8.0'
+    butterknife_v = '10.0.0'
     stetho_v = '1.5.0'
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "com.android.support:support-v4:$support_lib_v"
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
 
     // dependent on v4
-    implementation "com.android.support:appcompat-v7:$support_lib_v"
+    implementation "androidx.appcompat:appcompat:1.1.0-alpha01"
 
     // material design components
-    implementation "com.android.support:design:$support_lib_v"
+    implementation "com.google.android.material:material:1.1.0-alpha02"
 
     // VectorDrawableCompat
-    implementation "com.android.support:support-vector-drawable:$support_lib_v"
-    implementation "com.android.support:recyclerview-v7:$support_lib_v"
-    implementation "com.android.support:cardview-v7:$support_lib_v"
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
-    implementation 'com.android.support:multidex:1.0.3'
+    implementation "androidx.vectordrawable:vectordrawable:1.1.0-alpha01"
+    implementation "androidx.recyclerview:recyclerview:1.1.0-alpha01"
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.multidex:multidex:2.0.1'
 
     // GOOGLE PLAY SERVICES
-    implementation 'com.google.firebase:firebase-core:16.0.3'
-    implementation 'com.google.firebase:firebase-ml-vision:17.0.0'
+    implementation 'com.google.firebase:firebase-core:16.0.6'
+    implementation 'com.google.firebase:firebase-ml-vision:18.0.2'
 
     // ANDROID ARCHITECTURE COMPONENTS
 
     // ViewModel & LiveData
-    implementation "android.arch.lifecycle:runtime:$aac_v"
-    implementation "android.arch.lifecycle:extensions:$aac_v"
+    implementation "androidx.lifecycle:lifecycle-runtime:$aac_v"
+    implementation "androidx.lifecycle:lifecycle-extensions:$aac_v"
 
     // Compat with support library
-    annotationProcessor "android.arch.lifecycle:compiler:$aac_v"
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$aac_v"
 
     // database
-    annotationProcessor "android.arch.persistence.room:compiler:$aac_v"
-    implementation "android.arch.persistence.room:runtime:$aac_v"
+    annotationProcessor "androidx.room:room-compiler:$aac_v"
+    implementation "androidx.room:room-runtime:$aac_v"
 
     // 3RD PARTY LIBRARIES
 
@@ -131,8 +134,8 @@ dependencies {
 
     // TEST DEPS
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 
     //OTHER
     compileOnly 'org.glassfish:javax.annotation:10.0-b28'

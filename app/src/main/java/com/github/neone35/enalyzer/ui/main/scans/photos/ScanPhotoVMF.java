@@ -1,8 +1,8 @@
 package com.github.neone35.enalyzer.ui.main.scans.photos;
 
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
-import android.support.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.annotation.NonNull;
 
 import com.github.neone35.enalyzer.data.MainRepository;
 

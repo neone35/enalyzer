@@ -1,7 +1,7 @@
 package com.github.neone35.enalyzer.ui.main.codes.category;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModel;
 
 import com.github.neone35.enalyzer.data.MainRepository;
 import com.github.neone35.enalyzer.data.models.room.CodeCategory;

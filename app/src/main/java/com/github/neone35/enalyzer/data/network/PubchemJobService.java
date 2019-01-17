@@ -2,8 +2,8 @@ package com.github.neone35.enalyzer.data.network;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.JobIntentService;
+import androidx.annotation.NonNull;
+import androidx.core.app.JobIntentService;
 
 import com.github.neone35.enalyzer.InjectorUtils;
 import com.orhanobut.logger.Logger;

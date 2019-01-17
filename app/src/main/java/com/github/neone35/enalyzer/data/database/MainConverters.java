@@ -1,6 +1,6 @@
 package com.github.neone35.enalyzer.data.database;
 
-import android.arch.persistence.room.TypeConverter;
+import androidx.room.TypeConverter;
 
 import com.github.neone35.enalyzer.data.models.room.Hazard;
 import com.google.gson.Gson;

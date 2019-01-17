@@ -1,15 +1,11 @@
 package com.github.neone35.enalyzer.data.network;
 
-import android.content.Context;
 import android.net.Uri;
-import android.support.v4.util.SparseArrayCompat;
 import android.util.Pair;
 import android.util.SparseArray;
 
 import com.blankj.utilcode.util.EncryptUtils;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
-import com.github.neone35.enalyzer.HelpUtils;
-import com.github.neone35.enalyzer.data.models.localjson.ClassificationResponse;
 import com.github.neone35.enalyzer.data.models.remotejson.pubchemcid.PubchemCIDResponse;
 import com.github.neone35.enalyzer.data.models.remotejson.pubchemdetails.PubchemDetailsResponse;
 import com.github.neone35.enalyzer.data.models.remotejson.pubchemhazards.InformationItem;
@@ -24,7 +20,6 @@ import com.orhanobut.logger.Logger;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

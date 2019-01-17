@@ -1,8 +1,8 @@
 package com.github.neone35.enalyzer.data;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.Observer;
-import android.support.annotation.Nullable;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+
 import android.util.Pair;
 import android.util.SparseArray;
 

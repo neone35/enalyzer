@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.scan.chips.ScanChipsListFragment">
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_chips_list"
         android:name=".ui.scan.ScanChipsListFragment"
         android:layout_width="match_parent"

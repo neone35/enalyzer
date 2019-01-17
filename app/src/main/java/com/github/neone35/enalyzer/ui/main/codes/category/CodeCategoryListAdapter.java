@@ -1,7 +1,7 @@
 package com.github.neone35.enalyzer.ui.main.codes.category;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.data.models.room.CodeCategory;
 import com.github.neone35.enalyzer.ui.main.codes.category.CodeCategoryListFragment.OnCodeCategoryListListener;
-import com.github.neone35.enalyzer.dummy.DummyContent.DummyItem;
 
 import java.util.ArrayList;
 import java.util.List;

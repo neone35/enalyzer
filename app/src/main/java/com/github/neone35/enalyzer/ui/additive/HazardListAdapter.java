@@ -1,20 +1,15 @@
 package com.github.neone35.enalyzer.ui.additive;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.facebook.stetho.common.ArrayListAccumulator;
-import com.github.neone35.enalyzer.HelpUtils;
 import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.data.models.room.Hazard;
-import com.github.neone35.enalyzer.dummy.DummyContent.DummyItem;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;

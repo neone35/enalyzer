@@ -1,16 +1,15 @@
 package com.github.neone35.enalyzer.ui.additive;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
+import androidx.fragment.app.FragmentManager;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.widget.Button;
 
 import com.github.neone35.enalyzer.AppExecutors;
 import com.github.neone35.enalyzer.R;
 import com.github.neone35.enalyzer.data.database.MainDatabase;
 import com.github.neone35.enalyzer.data.models.room.Additive;
-import com.github.neone35.enalyzer.data.models.room.CodeCategory;
 import com.github.neone35.enalyzer.data.models.room.ScanPhoto;
 import com.github.neone35.enalyzer.ui.main.MainActivity;
 import com.orhanobut.logger.Logger;
